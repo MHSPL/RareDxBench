@@ -129,6 +129,77 @@
     $("ovFull").onclick = () => { state.lbCols = null; state.lbScale = "3"; setTab("leaderboard"); window.scrollTo({ top: 0 }); };
     drawLbTable($("ovTable"), cols, ranked, [[null, cols.length ? lbClassRows(cols, true) : []]], false);
     $("ovNote").innerHTML = lbCoverageNotes(ranked, partial).filter(Boolean).join("<br>");
+    renderOverallRanking();
+  }
+
+  // ---------- ranking ----------
+  const RK_CAT_LABELS = {
+    known_gene_disease: "Established cases (known gene & disease)",
+    known_gene_known_disease: "Known gene, known disease (extended KG)",
+    known_gene_new_disease: "Known gene, new disease association",
+    new_gene_known_disease: "Novel gene, known disease",
+    new_gene_new_disease: "Novel gene & novel disease"
+  };
+  const RK_CAT_COUNTS = {
+    known_gene_disease: 422,
+    known_gene_known_disease: 234,
+    known_gene_new_disease: 244,
+    new_gene_known_disease: 246,
+    new_gene_new_disease: 250
+  };
+
+  function rankingOverallRows() {
+    return [
+      { label: "Recall@1 (Top-1 accuracy)", n: 1396, get: (m) => m.top1_pct, strong: true },
+      { label: "Recall@5 (Top-5)", n: 1396, get: (m) => m.top5_pct, indent: true },
+      { label: "Recall@10 (Top-10)", n: 1396, get: (m) => m.top10_pct, indent: true },
+      { label: "Recall@20 (Top-20)", n: 1396, get: (m) => m.top20_pct, indent: true },
+      { label: "Mean Reciprocal Rank (MRR)", n: 1396, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
+      { label: "NDCG@10", n: 1396, get: (m) => m.ndcg10, fmt: (v) => Number(v).toFixed(4) },
+      { label: "Median Rank", n: 1396, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
+    ];
+  }
+
+  function rankingCatRows(metricKey, suffix = "", fmt = null) {
+    const maxN = 422;
+    return Object.keys(RK_CAT_LABELS).map((cat) => ({
+      label: RK_CAT_LABELS[cat],
+      n: RK_CAT_COUNTS[cat],
+      bar: RK_CAT_COUNTS[cat] / maxN,
+      get: (m) => (m.per_category?.[cat] ? m.per_category[cat][metricKey] : null),
+      fmt: fmt || ((v) => f1(v) + suffix)
+    }));
+  }
+
+  function renderOverallRanking() {
+    const rk = D.ranking_data;
+    if (!rk || !rk.models || !rk.models.length || !$("ovRankTable")) return;
+    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
+    $("ovRankSub").innerHTML = `Recall@K and Mean Reciprocal Rank (MRR) across 1,396 rare disease cases for all ${rkCols.length} models and baselines. The best value in each row is shaded in that model's colour.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">See the full ranking leaderboard</button> for category breakdowns.</span>`;
+    $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
+    drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows()]], false);
+    $("ovRankNote").innerHTML = "MRR denominator is n_total=1,396 (cases where true gene was absent contribute 0). Recall@K is the percentage of cases where the true causal gene was ranked &le; K.";
+  }
+
+  function renderRanking() {
+    const rk = D.ranking_data;
+    if (!rk || !rk.models || !rk.models.length || !$("rkTable")) return;
+    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
+    $("rkTitle").textContent = "Variant ranking: Gene prioritization across 1,396 rare disease cases";
+    $("rkSub").innerHTML = "Recall@K and Mean Reciprocal Rank (MRR) across 1,396 simulated rare-disease cases, evaluated overall and across 5 gene and disease familiarity categories. The best value in each row is shaded in that model's colour.";
+
+    const sections = [
+      ["Overall performance (1,396 patients)", rankingOverallRows()],
+      ["Recall@1 by disease & gene familiarity category", rankingCatRows("top1_pct")],
+      ["Recall@5 by disease & gene familiarity category", rankingCatRows("top5_pct")],
+      ["Mean Reciprocal Rank (MRR) by category", rankingCatRows("mrr", "", (v) => Number(v).toFixed(4))]
+    ];
+    drawLbTable($("rkTable"), rkCols, rkCols, sections, false);
+    $("rkNote").innerHTML = [
+      "MRR denominator is n_total=1,396 (cases where true gene was absent contribute 0).",
+      "Categories test model generalisation from established gene-disease pairs to novel diseases and entirely novel disease genes without existing KG connections.",
+      "Recall@K is the percentage of cases where the true causal gene was ranked &le; K."
+    ].join("<br>");
   }
 
   // Accuracy against safety: score across, cross-direction errors up (inverted).

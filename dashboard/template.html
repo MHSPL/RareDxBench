@@ -99,9 +99,15 @@
       <div class="table-wrap"><table id="ovTable" class="lbt"></table></div>
       <p class="note" id="ovNote"></p>
     </div>
-    <div class="card rank-empty" data-static>
-      <h3>Variant ranking</h3>
-      <p>A snapshot of the ranking results will appear here once they are added to the repository.</p>
+    <div class="card fig-main lb-card" data-static>
+      <div class="card-head">
+        <div>
+          <h3>Variant ranking: Gene prioritization across 1,396 rare disease cases</h3>
+          <p id="ovRankSub"></p>
+        </div>
+      </div>
+      <div class="table-wrap"><table id="ovRankTable" class="lbt"></table></div>
+      <p class="note" id="ovRankNote"></p>
     </div>
   </section>
 
@@ -172,9 +178,16 @@
 
   <!-- VARIANT RANKING -->
   <section class="view" id="view-ranking" role="tabpanel" hidden>
-    <div class="card rank-empty" data-static>
-      <h3>No ranking results yet</h3>
-      <p>Variant ranking results will appear here once they are added to the repository.</p>
+    <h2 class="sr-only">Variant ranking leaderboard</h2>
+    <div class="card fig-main lb-card" data-static>
+      <div class="card-head">
+        <div>
+          <h3 id="rkTitle">Variant ranking: Gene prioritization across 1,396 rare disease cases</h3>
+          <p id="rkSub"></p>
+        </div>
+      </div>
+      <div class="table-wrap"><table id="rkTable" class="lbt"></table></div>
+      <p class="note" id="rkNote"></p>
     </div>
   </section>
 

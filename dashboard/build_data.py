@@ -32,6 +32,7 @@ from dashboard.loaders import (  # noqa: F401  (re-exported)
 from dashboard.scoring import macro_f1_directional, score_model, concordance  # noqa: F401
 from dashboard.variant_table import VARIANT_COLUMNS, NO_CALL, build_variant_table  # noqa: F401
 from dashboard.archive import load_previous_dataset, carry_over_archived_models  # noqa: F401
+from dashboard.ranking_scoring import build_ranking_data
 
 
 def build_dashboard_dataset():
@@ -88,6 +89,12 @@ def build_dashboard_dataset():
     variant_table = build_variant_table(unified_dict, model_predictions, model_keys)
 
     # -------------------------------------------------------------------------
+    # VARIANT RANKING BENCHMARK
+    # -------------------------------------------------------------------------
+    ranking_data = build_ranking_data(REPO_ROOT)
+    print(f"Loaded variant ranking benchmark: {len(ranking_data['models'])} models.")
+
+    # -------------------------------------------------------------------------
     # FINAL ASSEMBLED DASHBOARD PAYLOAD
     # -------------------------------------------------------------------------
     payload = {
@@ -108,6 +115,7 @@ def build_dashboard_dataset():
         "cross_direction": models_cross,
         "concordance": concordance_matrix,
         "variant_table": variant_table,
+        "ranking_data": ranking_data,
     }
 
     carry_over_archived_models(payload, missing)

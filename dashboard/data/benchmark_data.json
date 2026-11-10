@@ -2,7 +2,7 @@
   "metadata": {
     "title": "RareDx Bench",
     "subtitle": "An open rare disease diagnostics benchmark for any AI model or classical tool, scored against ClinGen expert classifications",
-    "evaluation_date": "November 05, 2026",
+    "evaluation_date": "November 10, 2026",
     "total_variants": 2894,
     "categories": [
       "Cancer Predisposition",
@@ -762,6 +762,97 @@
       }
     },
     {
+      "key": "aiva_gemini_argon",
+      "name": "Gemini 4 Argon",
+      "short_name": "Gemini 4 Argon",
+      "family": "Google",
+      "is_anthropic": false,
+      "type": "AIVA agent",
+      "color": "#F9A825",
+      "color_dark": "#FBC02D",
+      "description": "AIVA agent",
+      "section": "aiva",
+      "evaluated_count": 2894,
+      "total_cohort": 2894,
+      "coverage_pct": 100.0,
+      "exact_accuracy": 54.39,
+      "directional_accuracy": 72.91,
+      "macro_f1_5": 47.34,
+      "macro_f1_3": 53.5,
+      "critical_error_count": 1,
+      "critical_error_rate": 0.03,
+      "false_pathogenic_count": 0,
+      "false_benign_count": 1,
+      "avg_latency_sec": 149.5,
+      "per_class_5": {
+        "Pathogenic": {
+          "precision": 95.86,
+          "recall": 55.76,
+          "f1": 70.5,
+          "support": 1329,
+          "tp": 741,
+          "fp": 32,
+          "fn": 588
+        },
+        "Likely Pathogenic": {
+          "precision": 58.08,
+          "recall": 60.5,
+          "f1": 59.27,
+          "support": 962,
+          "tp": 582,
+          "fp": 420,
+          "fn": 380
+        },
+        "Uncertain Significance": {
+          "precision": 0.13,
+          "recall": 3.12,
+          "f1": 0.25,
+          "support": 32,
+          "tp": 1,
+          "fp": 752,
+          "fn": 31
+        },
+        "Likely Benign": {
+          "precision": 65.8,
+          "recall": 44.97,
+          "f1": 53.43,
+          "support": 338,
+          "tp": 152,
+          "fp": 79,
+          "fn": 186
+        },
+        "Benign": {
+          "precision": 72.59,
+          "recall": 42.06,
+          "f1": 53.26,
+          "support": 233,
+          "tp": 98,
+          "fp": 37,
+          "fn": 135
+        }
+      },
+      "per_class_3": {
+        "pathogenic": {
+          "precision": 99.44,
+          "recall": 77.04,
+          "f1": 86.82,
+          "support": 2291
+        },
+        "vus": {
+          "precision": 0.13,
+          "recall": 3.12,
+          "f1": 0.25,
+          "support": 32
+        },
+        "benign": {
+          "precision": 93.99,
+          "recall": 60.25,
+          "f1": 73.43,
+          "support": 571
+        }
+      }
+    },
+    {
       "key": "aiva_gpt_sol",
       "name": "GPT-6.1 Sol",
       "short_name": "GPT-6.1 Sol",
@@ -848,6 +939,97 @@
           "precision": 80.95,
           "recall": 23.82,
           "f1": 36.81,
+          "support": 571
+        }
+      }
+    },
+    {
+      "key": "aiva_gpt_astra",
+      "name": "GPT-6 Astra",
+      "short_name": "GPT-6 Astra",
+      "family": "OpenAI",
+      "is_anthropic": false,
+      "type": "AIVA agent",
+      "color": "#10A37F",
+      "color_dark": "#26A69A",
+      "description": "AIVA agent",
+      "section": "aiva",
+      "evaluated_count": 2894,
+      "total_cohort": 2894,
+      "coverage_pct": 100.0,
+      "exact_accuracy": 4.56,
+      "directional_accuracy": 21.25,
+      "macro_f1_5": 7.66,
+      "macro_f1_3": 24.13,
+      "critical_error_count": 14,
+      "critical_error_rate": 0.48,
+      "false_pathogenic_count": 0,
+      "false_benign_count": 14,
+      "avg_latency_sec": 69.5,
+      "per_class_5": {
+        "Pathogenic": {
+          "precision": 91.67,
+          "recall": 2.48,
+          "f1": 4.84,
+          "support": 1329,
+          "tp": 33,
+          "fp": 3,
+          "fn": 1296
+        },
+        "Likely Pathogenic": {
+          "precision": 6.03,
+          "recall": 2.7,
+          "f1": 3.73,
+          "support": 962,
+          "tp": 26,
+          "fp": 405,
+          "fn": 936
+        },
+        "Uncertain Significance": {
+          "precision": 0.44,
+          "recall": 31.25,
+          "f1": 0.88,
+          "support": 32,
+          "tp": 10,
+          "fp": 2243,
+          "fn": 22
+        },
+        "Likely Benign": {
+          "precision": 41.48,
+          "recall": 16.57,
+          "f1": 23.68,
+          "support": 338,
+          "tp": 56,
+          "fp": 79,
+          "fn": 282
+        },
+        "Benign": {
+          "precision": 17.95,
+          "recall": 3.0,
+          "f1": 5.15,
+          "support": 233,
+          "tp": 7,
+          "fp": 32,
+          "fn": 226
+        }
+      },
+      "per_class_3": {
+        "pathogenic": {
+          "precision": 99.36,
+          "recall": 20.25,
+          "f1": 33.65,
+          "support": 2291
+        },
+        "vus": {
+          "precision": 0.44,
+          "recall": 31.25,
+          "f1": 0.88,
+          "support": 32
+        },
+        "benign": {
+          "precision": 81.03,
+          "recall": 24.69,
+          "f1": 37.85,
           "support": 571
         }
       }
@@ -1580,6 +1762,74 @@
         "benign"
       ]
     },
+    "aiva_gemini_argon": {
+      "matrix_5": [
+        [
+          741,
+          410,
+          177,
+          1,
+          0
+        ],
+        [
+          32,
+          582,
+          348,
+          0,
+          0
+        ],
+        [
+          0,
+          10,
+          1,
+          13,
+          8
+        ],
+        [
+          0,
+          0,
+          157,
+          152,
+          29
+        ],
+        [
+          0,
+          0,
+          70,
+          65,
+          98
+        ]
+      ],
+      "matrix_3": [
+        [
+          1765,
+          525,
+          1
+        ],
+        [
+          10,
+          1,
+          21
+        ],
+        [
+          0,
+          227,
+          344
+        ]
+      ],
+      "labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Uncertain Significance",
+        "Likely Benign",
+        "Benign"
+      ],
+      "labels_3": [
+        "pathogenic",
+        "vus",
+        "benign"
+      ]
+    },
     "aiva_gpt_sol": {
       "matrix_5": [
         [
@@ -1633,6 +1883,74 @@
           0,
           435,
           136
+        ]
+      ],
+      "labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Uncertain Significance",
+        "Likely Benign",
+        "Benign"
+      ],
+      "labels_3": [
+        "pathogenic",
+        "vus",
+        "benign"
+      ]
+    },
+    "aiva_gpt_astra": {
+      "matrix_5": [
+        [
+          33,
+          402,
+          884,
+          7,
+          3
+        ],
+        [
+          3,
+          26,
+          929,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          10,
+          15,
+          4
+        ],
+        [
+          0,
+          0,
+          259,
+          56,
+          23
+        ],
+        [
+          0,
+          0,
+          171,
+          55,
+          7
+        ]
+      ],
+      "matrix_3": [
+        [
+          464,
+          1813,
+          14
+        ],
+        [
+          3,
+          10,
+          19
+        ],
+        [
+          0,
+          430,
+          141
         ]
       ],
       "labels_5": [
@@ -6506,6 +6824,596 @@
         "blb_f1": 50.0
       }
     },
+    "aiva_gemini_argon": {
+      "Cancer Predisposition": {
+        "count": 581,
+        "exact_correct": 330,
+        "directional_correct": 427,
+        "matrix_5": [
+          [
+            143,
+            48,
+            14,
+            1,
+            0
+          ],
+          [
+            5,
+            70,
+            25,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            9,
+            2
+          ],
+          [
+            0,
+            0,
+            75,
+            88,
+            6
+          ],
+          [
+            0,
+            0,
+            24,
+            38,
+            29
+          ]
+        ],
+        "exact_accuracy": 56.8,
+        "directional_accuracy": 73.49,
+        "macro_f1": 49.37,
+        "macro_f1_3": 55.57,
+        "plp_f1": 71.92,
+        "vus_f1": 0,
+        "blb_f1": 51.51
+      },
+      "Metabolic Disorders": {
+        "count": 1094,
+        "exact_correct": 584,
+        "directional_correct": 792,
+        "matrix_5": [
+          [
+            276,
+            185,
+            98,
+            0,
+            0
+          ],
+          [
+            15,
+            278,
+            177,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            17,
+            16,
+            3
+          ],
+          [
+            0,
+            0,
+            4,
+            5,
+            14
+          ]
+        ],
+        "exact_accuracy": 53.38,
+        "directional_accuracy": 72.39,
+        "macro_f1": 48.77,
+        "macro_f1_3": 53.01,
+        "plp_f1": 62.23,
+        "vus_f1": 0,
+        "blb_f1": 59.68
+      },
+      "Cardiovascular Disorders": {
+        "count": 133,
+        "exact_correct": 49,
+        "directional_correct": 85,
+        "matrix_5": [
+          [
+            30,
+            30,
+            8,
+            0,
+            0
+          ],
+          [
+            1,
+            12,
+            34,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            2,
+            3,
+            6
+          ]
+        ],
+        "exact_accuracy": 36.84,
+        "directional_accuracy": 63.91,
+        "macro_f1": 42.23,
+        "macro_f1_3": 78.83,
+        "plp_f1": 43.79,
+        "vus_f1": 0,
+        "blb_f1": 40.67
+      },
+      "Hematologic Disorders": {
+        "count": 298,
+        "exact_correct": 167,
+        "directional_correct": 234,
+        "matrix_5": [
+          [
+            80,
+            58,
+            17,
+            0,
+            0
+          ],
+          [
+            6,
+            77,
+            34,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            10,
+            4,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            6
+          ]
+        ],
+        "exact_accuracy": 56.04,
+        "directional_accuracy": 78.52,
+        "macro_f1": 48.02,
+        "macro_f1_3": 53.19,
+        "plp_f1": 63.51,
+        "vus_f1": 0,
+        "blb_f1": 56.55
+      },
+      "Immunodeficiency Disorders": {
+        "count": 80,
+        "exact_correct": 65,
+        "directional_correct": 69,
+        "matrix_5": [
+          [
+            30,
+            4,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            31,
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 81.25,
+        "directional_accuracy": 86.25,
+        "macro_f1": 68.75,
+        "macro_f1_3": 60.58,
+        "plp_f1": 87.49,
+        "vus_f1": 0,
+        "blb_f1": 50.0
+      },
+      "Neurodevelopmental Disorders": {
+        "count": 182,
+        "exact_correct": 62,
+        "directional_correct": 90,
+        "matrix_5": [
+          [
+            27,
+            6,
+            9,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            29,
+            10,
+            6
+          ],
+          [
+            0,
+            0,
+            34,
+            16,
+            18
+          ]
+        ],
+        "exact_accuracy": 34.07,
+        "directional_accuracy": 49.45,
+        "macro_f1": 45.14,
+        "macro_f1_3": 67.37,
+        "plp_f1": 56.63,
+        "vus_f1": 0,
+        "blb_f1": 33.65
+      },
+      "Neuromuscular Disorders": {
+        "count": 169,
+        "exact_correct": 100,
+        "directional_correct": 126,
+        "matrix_5": [
+          [
+            51,
+            25,
+            6,
+            0,
+            0
+          ],
+          [
+            1,
+            43,
+            19,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            15,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            2
+          ]
+        ],
+        "exact_accuracy": 59.17,
+        "directional_accuracy": 74.56,
+        "macro_f1": 48.19,
+        "macro_f1_3": 43.9,
+        "plp_f1": 70.64,
+        "vus_f1": 4.44,
+        "blb_f1": 47.62
+      },
+      "Ophthalmologic Disorders": {
+        "count": 98,
+        "exact_correct": 66,
+        "directional_correct": 79,
+        "matrix_5": [
+          [
+            28,
+            11,
+            8,
+            0,
+            0
+          ],
+          [
+            2,
+            33,
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            5,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 67.35,
+        "directional_accuracy": 80.61,
+        "macro_f1": 55.23,
+        "macro_f1_3": 54.08,
+        "plp_f1": 74.73,
+        "vus_f1": 0,
+        "blb_f1": 35.72
+      },
+      "Hearing Disorders": {
+        "count": 79,
+        "exact_correct": 42,
+        "directional_correct": 58,
+        "matrix_5": [
+          [
+            23,
+            10,
+            6,
+            0,
+            0
+          ],
+          [
+            2,
+            15,
+            14,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4,
+            4
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 53.16,
+        "directional_accuracy": 73.42,
+        "macro_f1": 48.03,
+        "macro_f1_3": 88.73,
+        "plp_f1": 62.72,
+        "vus_f1": 0,
+        "blb_f1": 33.34
+      },
+      "RASopathies": {
+        "count": 153,
+        "exact_correct": 95,
+        "directional_correct": 134,
+        "matrix_5": [
+          [
+            43,
+            31,
+            9,
+            0,
+            0
+          ],
+          [
+            0,
+            13,
+            5,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            16,
+            5
+          ],
+          [
+            0,
+            0,
+            3,
+            3,
+            23
+          ]
+        ],
+        "exact_accuracy": 62.09,
+        "directional_accuracy": 87.58,
+        "macro_f1": 53.51,
+        "macro_f1_3": 62.5,
+        "plp_f1": 55.1,
+        "vus_f1": 0,
+        "blb_f1": 78.68
+      },
+      "Vascular Disorders": {
+        "count": 16,
+        "exact_correct": 10,
+        "directional_correct": 12,
+        "matrix_5": [
+          [
+            7,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 62.5,
+        "directional_accuracy": 75.0,
+        "macro_f1": 66.34,
+        "macro_f1_3": 77.33,
+        "plp_f1": 66.18,
+        "vus_f1": 0,
+        "blb_f1": 33.34
+      },
+      "Epilepsy / Neurological": {
+        "count": 11,
+        "exact_correct": 4,
+        "directional_correct": 4,
+        "matrix_5": [
+          [
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 36.36,
+        "directional_accuracy": 36.36,
+        "macro_f1": 44.44,
+        "macro_f1_3": 33.34,
+        "plp_f1": 66.66,
+        "vus_f1": 0,
+        "blb_f1": 0.0
+      }
+    },
     "aiva_gpt_sol": {
       "Cancer Predisposition": {
         "count": 581,
@@ -7091,6 +7999,596 @@
         "directional_accuracy": 9.09,
         "macro_f1": 0.0,
         "macro_f1_3": 11.11,
+        "plp_f1": 0.0,
+        "vus_f1": 0,
+        "blb_f1": 0.0
+      }
+    },
+    "aiva_gpt_astra": {
+      "Cancer Predisposition": {
+        "count": 581,
+        "exact_correct": 51,
+        "directional_correct": 164,
+        "matrix_5": [
+          [
+            5,
+            87,
+            113,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            99,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            3,
+            9,
+            2
+          ],
+          [
+            0,
+            0,
+            129,
+            40,
+            0
+          ],
+          [
+            0,
+            0,
+            63,
+            26,
+            2
+          ]
+        ],
+        "exact_accuracy": 8.78,
+        "directional_accuracy": 28.23,
+        "macro_f1": 8.82,
+        "macro_f1_3": 29.31,
+        "plp_f1": 2.9,
+        "vus_f1": 1.42,
+        "blb_f1": 18.43
+      },
+      "Metabolic Disorders": {
+        "count": 1094,
+        "exact_correct": 38,
+        "directional_correct": 205,
+        "matrix_5": [
+          [
+            16,
+            155,
+            388,
+            0,
+            0
+          ],
+          [
+            3,
+            17,
+            449,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            32,
+            3,
+            1
+          ],
+          [
+            0,
+            0,
+            14,
+            8,
+            1
+          ]
+        ],
+        "exact_accuracy": 3.47,
+        "directional_accuracy": 18.74,
+        "macro_f1": 6.09,
+        "macro_f1_3": 21.76,
+        "plp_f1": 5.42,
+        "vus_f1": 0.22,
+        "blb_f1": 9.69
+      },
+      "Cardiovascular Disorders": {
+        "count": 133,
+        "exact_correct": 3,
+        "directional_correct": 36,
+        "matrix_5": [
+          [
+            2,
+            26,
+            40,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            47,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            6,
+            5,
+            0
+          ]
+        ],
+        "exact_accuracy": 2.26,
+        "directional_accuracy": 27.07,
+        "macro_f1": 5.27,
+        "macro_f1_3": 50.35,
+        "plp_f1": 2.85,
+        "vus_f1": 0,
+        "blb_f1": 7.69
+      },
+      "Hematologic Disorders": {
+        "count": 298,
+        "exact_correct": 12,
+        "directional_correct": 69,
+        "matrix_5": [
+          [
+            4,
+            55,
+            88,
+            6,
+            2
+          ],
+          [
+            0,
+            5,
+            111,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            15,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            5,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 4.03,
+        "directional_accuracy": 23.15,
+        "macro_f1": 6.12,
+        "macro_f1_3": 18.97,
+        "plp_f1": 5.33,
+        "vus_f1": 1.79,
+        "blb_f1": 9.09
+      },
+      "Immunodeficiency Disorders": {
+        "count": 80,
+        "exact_correct": 5,
+        "directional_correct": 18,
+        "matrix_5": [
+          [
+            0,
+            13,
+            22,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            37,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 6.25,
+        "directional_accuracy": 22.5,
+        "macro_f1": 16.76,
+        "macro_f1_3": 31.79,
+        "plp_f1": 1.93,
+        "vus_f1": 6.06,
+        "blb_f1": 28.57
+      },
+      "Neurodevelopmental Disorders": {
+        "count": 182,
+        "exact_correct": 6,
+        "directional_correct": 36,
+        "matrix_5": [
+          [
+            1,
+            6,
+            35,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            25,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            34,
+            3,
+            8
+          ],
+          [
+            0,
+            0,
+            50,
+            16,
+            2
+          ]
+        ],
+        "exact_accuracy": 3.3,
+        "directional_accuracy": 19.78,
+        "macro_f1": 4.73,
+        "macro_f1_3": 29.35,
+        "plp_f1": 2.33,
+        "vus_f1": 0,
+        "blb_f1": 7.14
+      },
+      "Neuromuscular Disorders": {
+        "count": 169,
+        "exact_correct": 4,
+        "directional_correct": 25,
+        "matrix_5": [
+          [
+            0,
+            21,
+            61,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            63,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            15,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 2.37,
+        "directional_accuracy": 14.79,
+        "macro_f1": 5.73,
+        "macro_f1_3": 16.58,
+        "plp_f1": 0.0,
+        "vus_f1": 1.37,
+        "blb_f1": 13.63
+      },
+      "Ophthalmologic Disorders": {
+        "count": 98,
+        "exact_correct": 2,
+        "directional_correct": 10,
+        "matrix_5": [
+          [
+            0,
+            8,
+            39,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            41,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 2.04,
+        "directional_accuracy": 10.2,
+        "macro_f1": 5.98,
+        "macro_f1_3": 12.79,
+        "plp_f1": 1.96,
+        "vus_f1": 0,
+        "blb_f1": 10.0
+      },
+      "Hearing Disorders": {
+        "count": 79,
+        "exact_correct": 2,
+        "directional_correct": 12,
+        "matrix_5": [
+          [
+            1,
+            4,
+            33,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            31,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            6
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 2.53,
+        "directional_accuracy": 15.19,
+        "macro_f1": 6.8,
+        "macro_f1_3": 47.84,
+        "plp_f1": 2.5,
+        "vus_f1": 0,
+        "blb_f1": 11.11
+      },
+      "RASopathies": {
+        "count": 153,
+        "exact_correct": 8,
+        "directional_correct": 36,
+        "matrix_5": [
+          [
+            4,
+            24,
+            55,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            17,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            17,
+            1,
+            4
+          ],
+          [
+            0,
+            0,
+            28,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 5.23,
+        "directional_accuracy": 23.53,
+        "macro_f1": 6.02,
+        "macro_f1_3": 22.45,
+        "plp_f1": 6.93,
+        "vus_f1": 1.68,
+        "blb_f1": 7.29
+      },
+      "Vascular Disorders": {
+        "count": 16,
+        "exact_correct": 1,
+        "directional_correct": 4,
+        "matrix_5": [
+          [
+            0,
+            3,
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 6.25,
+        "directional_accuracy": 25.0,
+        "macro_f1": 22.22,
+        "macro_f1_3": 50.98,
+        "plp_f1": 0.0,
+        "vus_f1": 0,
+        "blb_f1": 33.34
+      },
+      "Epilepsy / Neurological": {
+        "count": 11,
+        "exact_correct": 0,
+        "directional_correct": 0,
+        "matrix_5": [
+          [
+            0,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            5,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 0.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 0.0,
         "plp_f1": 0.0,
         "vus_f1": 0,
         "blb_f1": 0.0
@@ -8510,6 +10008,35 @@
       "PS4": 512,
       "PVS1": 569
     },
+    "aiva_gemini_argon": {
+      "BA1": 107,
+      "BP1": 13,
+      "BP2": 17,
+      "BP3": 8,
+      "BP4": 289,
+      "BP5": 12,
+      "BP7": 134,
+      "BS1": 204,
+      "BS2": 69,
+      "BS3": 77,
+      "BS4": 3,
+      "PM1": 516,
+      "PM2": 2239,
+      "PM3": 635,
+      "PM4": 56,
+      "PM5": 536,
+      "PM6": 71,
+      "PP1": 340,
+      "PP2": 416,
+      "PP3": 1507,
+      "PP4": 836,
+      "PP5": 0,
+      "PS1": 45,
+      "PS2": 81,
+      "PS3": 660,
+      "PS4": 554,
+      "PVS1": 576
+    },
     "aiva_gpt_sol": {
       "BA1": 34,
       "BP1": 15,
@@ -8538,6 +10065,35 @@
       "PS3": 259,
       "PS4": 160,
       "PVS1": 464
+    },
+    "aiva_gpt_astra": {
+      "BA1": 39,
+      "BP1": 14,
+      "BP2": 12,
+      "BP3": 0,
+      "BP4": 226,
+      "BP5": 3,
+      "BP7": 77,
+      "BS1": 121,
+      "BS2": 9,
+      "BS3": 19,
+      "BS4": 0,
+      "PM1": 467,
+      "PM2": 1614,
+      "PM3": 184,
+      "PM4": 53,
+      "PM5": 137,
+      "PM6": 50,
+      "PP1": 60,
+      "PP2": 414,
+      "PP3": 1467,
+      "PP4": 79,
+      "PP5": 0,
+      "PS1": 8,
+      "PS2": 7,
+      "PS3": 248,
+      "PS4": 157,
+      "PVS1": 437
     },
     "baseline_bias": {
       "BA1": 14,
@@ -9145,6 +10701,25 @@
         }
       ]
     },
+    "aiva_gemini_argon": {
+      "false_pathogenic_count": 0,
+      "false_benign_count": 1,
+      "top_false_pathogenic": [],
+      "top_false_benign": [
+        {
+          "id": "3c258d22-e521-4dfc-87a5-9bba7aaf7206",
+          "gene": "ATM",
+          "variant": "NM_000051.4(ATM):c.6807G>A (p.Gln2269=)",
+          "disease": "ATM-related cancer predisposition",
+          "ground_truth": "Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "BP4",
+            "BP7"
+          ]
+        }
+      ]
+    },
     "aiva_gpt_sol": {
       "false_pathogenic_count": 0,
       "false_benign_count": 13,
@@ -9270,6 +10845,141 @@
           "gene": "F8",
           "variant": "NM_000132.4(F8):c.5303G>A (p.Arg1768His)",
           "disease": "hemophilia A",
+          "ground_truth": "Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "PP3",
+            "BS1"
+          ]
+        }
+      ]
+    },
+    "aiva_gpt_astra": {
+      "false_pathogenic_count": 0,
+      "false_benign_count": 14,
+      "top_false_pathogenic": [],
+      "top_false_benign": [
+        {
+          "id": "a3a44624-d639-4324-a887-81890dc4927c",
+          "gene": "OTOF",
+          "variant": "NM_194248.2(OTOF):c.5098G>C",
+          "disease": "nonsyndromic genetic deafness",
+          "ground_truth": "Pathogenic",
+          "predicted": "Benign",
+          "criteria": [
+            "BA1",
+            "BS1",
+            "PP3"
+          ]
+        },
+        {
+          "id": "3c258d22-e521-4dfc-87a5-9bba7aaf7206",
+          "gene": "ATM",
+          "variant": "NM_000051.4(ATM):c.6807G>A (p.Gln2269=)",
+          "disease": "ATM-related cancer predisposition",
+          "ground_truth": "Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "BP4",
+            "BP7"
+          ]
+        },
+        {
+          "id": "1a22d5d2-0724-4358-8520-7a45806690cb",
+          "gene": "PAH",
+          "variant": "NM_000277.3(PAH):c.516G>T (p.Gln172His)",
+          "disease": "phenylketonuria",
+          "ground_truth": "Likely Pathogenic",
+          "predicted": "Benign",
+          "criteria": [
+            "PP3",
+            "BA1",
+            "BS1"
+          ]
+        },
+        {
+          "id": "0b0cd308-4e86-4727-9fb9-c9120a58828c",
+          "gene": "UBE3A",
+          "variant": "NM_130838.1(UBE3A):c.2503C>T (p.Leu835Phe)",
+          "disease": "Angelman syndrome",
+          "ground_truth": "Likely Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "PP3",
+            "BS1"
+          ]
+        },
+        {
+          "id": "f61eb051-8b88-40ab-83be-8229d724edd6",
+          "gene": "TCF4",
+          "variant": "NM_001083962.2(TCF4):c.1774G>A (p.Gly592Ser)",
+          "disease": "Pitt-Hopkins syndrome",
+          "ground_truth": "Likely Pathogenic",
+          "predicted": "Benign",
+          "criteria": [
+            "BA1",
+            "PM1",
+            "PP3"
+          ]
+        },
+        {
+          "id": "57ee28b4-485e-499c-ac29-4702ddc55d99",
+          "gene": "F9",
+          "variant": "NM_001313913.2:c.86C>T",
+          "disease": "hemophilia B",
+          "ground_truth": "Likely Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "BS1",
+            "PP3"
+          ]
+        },
+        {
+          "id": "178efdc9-7922-4e7d-8479-352a42eedd02",
+          "gene": "F9",
+          "variant": "NM_000133.4(F9):c.224G>A (p.Arg75Gln)",
+          "disease": "hemophilia B",
+          "ground_truth": "Pathogenic",
+          "predicted": "Benign",
+          "criteria": [
+            "PP3",
+            "BA1",
+            "BS1"
+          ]
+        },
+        {
+          "id": "36950276-dd4c-48f7-ba60-d0c1aa45b4d6",
+          "gene": "F9",
+          "variant": "NM_000133.3(F9):c.316G>A (p.Gly106Ser)",
+          "disease": "hemophilia B",
+          "ground_truth": "Pathogenic",
+          "predicted": "Benign",
+          "criteria": [
+            "PS4",
+            "PM1",
+            "PP3",
+            "BA1",
+            "BS1"
+          ]
+        },
+        {
+          "id": "45aad5b1-fcb9-4818-8df5-a5b8fe03662b",
+          "gene": "F9",
+          "variant": "NM_001313913.2:c.1121G>A",
+          "disease": "hemophilia B",
+          "ground_truth": "Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "PS4",
+            "PP3",
+            "BS1"
+          ]
+        },
+        {
+          "id": "34515d58-87f3-4b05-9308-5a3ca86ded96",
+          "gene": "F9",
+          "variant": "NM_000133.4(F9):c.1304G>A (p.Cys435Tyr)",
+          "disease": "hemophilia B",
           "ground_truth": "Pathogenic",
           "predicted": "Likely Benign",
           "criteria": [
@@ -10776,6 +12486,32 @@
         "confidence": "high"
       }
     ],
+    "aiva_gemini_argon": [
+      {
+        "id": "3c258d22-e521-4dfc-87a5-9bba7aaf7206",
+        "direction": "P\u2192B",
+        "gene": "ATM",
+        "variant": "NM_000051.4(ATM):c.6807G>A (p.Gln2269=)",
+        "disease": "ATM-related cancer predisposition",
+        "category": "Cancer Predisposition",
+        "expert_panel": "Hereditary Breast, Ovarian and Pancreatic Cancer VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PVS1",
+          "PM3_Supporting",
+          "PM2_Supporting",
+          "PM5_Supporting"
+        ],
+        "expert_points": 11,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "BP4",
+          "BP7"
+        ],
+        "model_points": -2,
+        "confidence": "high"
+      }
+    ],
     "aiva_gpt_sol": [
       {
         "id": "a3a44624-d639-4324-a887-81890dc4927c",
@@ -11102,6 +12838,356 @@
           "BS1"
         ],
         "model_points": null,
+        "confidence": "low"
+      }
+    ],
+    "aiva_gpt_astra": [
+      {
+        "id": "a3a44624-d639-4324-a887-81890dc4927c",
+        "direction": "P\u2192B",
+        "gene": "OTOF",
+        "variant": "NM_194248.2(OTOF):c.5098G>C",
+        "disease": "nonsyndromic genetic deafness",
+        "category": "Hearing Disorders",
+        "expert_panel": "Hearing Loss VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP1_Strong",
+          "PM3_Very",
+          "PP3",
+          "PP4"
+        ],
+        "expert_points": 14,
+        "predicted": "Benign",
+        "model_criteria": [
+          "BA1",
+          "BS1",
+          "PP3"
+        ],
+        "model_points": -15,
+        "confidence": "medium"
+      },
+      {
+        "id": "3c258d22-e521-4dfc-87a5-9bba7aaf7206",
+        "direction": "P\u2192B",
+        "gene": "ATM",
+        "variant": "NM_000051.4(ATM):c.6807G>A (p.Gln2269=)",
+        "disease": "ATM-related cancer predisposition",
+        "category": "Cancer Predisposition",
+        "expert_panel": "Hereditary Breast, Ovarian and Pancreatic Cancer VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PVS1",
+          "PM3_Supporting",
+          "PM2_Supporting",
+          "PM5_Supporting"
+        ],
+        "expert_points": 11,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "BP4",
+          "BP7"
+        ],
+        "model_points": -2,
+        "confidence": "low"
+      },
+      {
+        "id": "1a22d5d2-0724-4358-8520-7a45806690cb",
+        "direction": "P\u2192B",
+        "gene": "PAH",
+        "variant": "NM_000277.3(PAH):c.516G>T (p.Gln172His)",
+        "disease": "phenylketonuria",
+        "category": "Metabolic Disorders",
+        "expert_panel": "Phenylketonuria VCEP",
+        "ground_truth": "Likely Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM3_Strong"
+        ],
+        "expert_points": 6,
+        "predicted": "Benign",
+        "model_criteria": [
+          "PP3",
+          "BA1",
+          "BS1"
+        ],
+        "model_points": -10,
+        "confidence": "medium"
+      },
+      {
+        "id": "0b0cd308-4e86-4727-9fb9-c9120a58828c",
+        "direction": "P\u2192B",
+        "gene": "UBE3A",
+        "variant": "NM_130838.1(UBE3A):c.2503C>T (p.Leu835Phe)",
+        "disease": "Angelman syndrome",
+        "category": "Neurodevelopmental Disorders",
+        "expert_panel": "Rett and Angelman-like Disorders VCEP",
+        "ground_truth": "Likely Pathogenic",
+        "expert_criteria": [
+          "PM2_Supporting",
+          "PS4_Supporting",
+          "PP1_Moderate",
+          "PP3",
+          "PP4"
+        ],
+        "expert_points": 6,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      },
+      {
+        "id": "f61eb051-8b88-40ab-83be-8229d724edd6",
+        "direction": "P\u2192B",
+        "gene": "TCF4",
+        "variant": "NM_001083962.2(TCF4):c.1774G>A (p.Gly592Ser)",
+        "disease": "Pitt-Hopkins syndrome",
+        "category": "Neurodevelopmental Disorders",
+        "expert_panel": "Rett and Angelman-like Disorders VCEP",
+        "ground_truth": "Likely Pathogenic",
+        "expert_criteria": [
+          "PS2",
+          "PM1",
+          "PP1"
+        ],
+        "expert_points": 7,
+        "predicted": "Benign",
+        "model_criteria": [
+          "BA1",
+          "PM1",
+          "PP3"
+        ],
+        "model_points": -5,
+        "confidence": "low"
+      },
+      {
+        "id": "57ee28b4-485e-499c-ac29-4702ddc55d99",
+        "direction": "P\u2192B",
+        "gene": "F9",
+        "variant": "NM_001313913.2:c.86C>T",
+        "disease": "hemophilia B",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Likely Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS4_Moderate",
+          "PP3"
+        ],
+        "expert_points": 6,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "BS1",
+          "PP3"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      },
+      {
+        "id": "178efdc9-7922-4e7d-8479-352a42eedd02",
+        "direction": "P\u2192B",
+        "gene": "F9",
+        "variant": "NM_000133.4(F9):c.224G>A (p.Arg75Gln)",
+        "disease": "hemophilia B",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PS4_Very",
+          "PM2_Supporting",
+          "PP3"
+        ],
+        "expert_points": 12,
+        "predicted": "Benign",
+        "model_criteria": [
+          "PP3",
+          "BA1",
+          "BS1"
+        ],
+        "model_points": -11,
+        "confidence": "low"
+      },
+      {
+        "id": "36950276-dd4c-48f7-ba60-d0c1aa45b4d6",
+        "direction": "P\u2192B",
+        "gene": "F9",
+        "variant": "NM_000133.3(F9):c.316G>A (p.Gly106Ser)",
+        "disease": "hemophilia B",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PS4",
+          "PM1",
+          "PP1",
+          "PP3"
+        ],
+        "expert_points": 10,
+        "predicted": "Benign",
+        "model_criteria": [
+          "PS4",
+          "PM1",
+          "PP3",
+          "BA1",
+          "BS1"
+        ],
+        "model_points": -7,
+        "confidence": "low"
+      },
+      {
+        "id": "45aad5b1-fcb9-4818-8df5-a5b8fe03662b",
+        "direction": "P\u2192B",
+        "gene": "F9",
+        "variant": "NM_001313913.2:c.1121G>A",
+        "disease": "hemophilia B",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS4",
+          "PP3"
+        ],
+        "expert_points": 8,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PS4",
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -2,
+        "confidence": "low"
+      },
+      {
+        "id": "34515d58-87f3-4b05-9308-5a3ca86ded96",
+        "direction": "P\u2192B",
+        "gene": "F9",
+        "variant": "NM_000133.4(F9):c.1304G>A (p.Cys435Tyr)",
+        "disease": "hemophilia B",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PM2_Supporting",
+          "PS4",
+          "PP1",
+          "PP3",
+          "PP4"
+        ],
+        "expert_points": 8,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      },
+      {
+        "id": "a2b52c30-02cc-49a6-9a79-849230686deb",
+        "direction": "P\u2192B",
+        "gene": "F8",
+        "variant": "NM_000132.3(F8):c.5822A>G (p.Asn1941Ser)",
+        "disease": "hemophilia A",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS3",
+          "PS4",
+          "PP1",
+          "PP3"
+        ],
+        "expert_points": 13,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      },
+      {
+        "id": "4f3c8b67-eb47-4289-b4da-2951df274143",
+        "direction": "P\u2192B",
+        "gene": "F8",
+        "variant": "NM_000132.4(F8):c.5303G>A (p.Arg1768His)",
+        "disease": "hemophilia A",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS3",
+          "PS4",
+          "PP3"
+        ],
+        "expert_points": 12,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      },
+      {
+        "id": "bc8dc28d-54fd-4af4-95fd-9e395c0344e4",
+        "direction": "P\u2192B",
+        "gene": "F8",
+        "variant": "NM_000132.4:c.1899G>T",
+        "disease": "hemophilia A",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS4",
+          "PP1",
+          "PP3"
+        ],
+        "expert_points": 9,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "BS1",
+          "PP3"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      },
+      {
+        "id": "97530a61-603a-4523-afe2-1c7c833609ed",
+        "direction": "P\u2192B",
+        "gene": "F8",
+        "variant": "NM_000132.3(F8):c.1094A>G (p.Tyr365Cys)",
+        "disease": "hemophilia A",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PS4",
+          "PM1",
+          "PP3"
+        ],
+        "expert_points": 9,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -3,
         "confidence": "low"
       }
     ],
@@ -12715,10 +14801,20 @@
         "dir_pct": 82.3,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 49.8,
+        "dir_pct": 63.6,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 72.4,
         "dir_pct": 77.8,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 72.1,
+        "dir_pct": 75.6,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 20.7,
@@ -12772,10 +14868,20 @@
         "dir_pct": 73.9,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 39.7,
+        "dir_pct": 51.4,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 74.3,
         "dir_pct": 78.3,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 79.2,
+        "dir_pct": 80.9,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 21.9,
@@ -12829,10 +14935,20 @@
         "dir_pct": 61.2,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 31.9,
+        "dir_pct": 37.7,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 70.2,
         "dir_pct": 73.6,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 80.4,
+        "dir_pct": 81.4,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 25.8,
@@ -12886,10 +15002,20 @@
         "dir_pct": 66.3,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 33.3,
+        "dir_pct": 48.2,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 60.8,
         "dir_pct": 68.0,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 67.0,
+        "dir_pct": 68.7,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 21.8,
@@ -12943,10 +15069,20 @@
         "dir_pct": 66.7,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 32.4,
+        "dir_pct": 44.3,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 64.2,
         "dir_pct": 71.4,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 71.9,
+        "dir_pct": 73.4,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 21.1,
@@ -13000,10 +15136,20 @@
         "dir_pct": 62.7,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 31.0,
+        "dir_pct": 41.2,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 62.7,
         "dir_pct": 70.1,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 72.9,
+        "dir_pct": 74.2,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 19.9,
@@ -13057,10 +15203,20 @@
         "dir_pct": 76.4,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 44.7,
+        "dir_pct": 70.9,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 44.1,
         "dir_pct": 55.7,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 29.6,
+        "dir_pct": 40.8,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 35.3,
@@ -13114,10 +15270,20 @@
         "dir_pct": 100.0,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 61.7,
+        "dir_pct": 75.3,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 57.4,
         "dir_pct": 65.5,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 38.1,
+        "dir_pct": 47.8,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 31.8,
@@ -13127,6 +15293,73 @@
       "baseline_intervar": {
         "exact_pct": 30.3,
         "dir_pct": 46.4,
+        "overlap": 2894
+      }
+    },
+    "aiva_gemini_argon": {
+      "aiva_opus_rerun": {
+        "exact_pct": 49.8,
+        "dir_pct": 63.6,
+        "overlap": 2894
+      },
+      "aiva_sonnet_rerun": {
+        "exact_pct": 39.7,
+        "dir_pct": 51.4,
+        "overlap": 2894
+      },
+      "aiva_haiku_rerun": {
+        "exact_pct": 31.9,
+        "dir_pct": 37.7,
+        "overlap": 2894
+      },
+      "claude_code_opus": {
+        "exact_pct": 33.3,
+        "dir_pct": 48.2,
+        "overlap": 2894
+      },
+      "claude_code_sonnet": {
+        "exact_pct": 32.4,
+        "dir_pct": 44.3,
+        "overlap": 2894
+      },
+      "claude_code_haiku": {
+        "exact_pct": 31.0,
+        "dir_pct": 41.2,
+        "overlap": 2894
+      },
+      "aiva_gemini_pro": {
+        "exact_pct": 44.7,
+        "dir_pct": 70.9,
+        "overlap": 2894
+      },
+      "aiva_gemini_flash": {
+        "exact_pct": 61.7,
+        "dir_pct": 75.3,
+        "overlap": 2894
+      },
+      "aiva_gemini_argon": {
+        "exact_pct": 100.0,
+        "dir_pct": 100.0,
+        "overlap": 2894
+      },
+      "aiva_gpt_sol": {
+        "exact_pct": 37.0,
+        "dir_pct": 46.9,
+        "overlap": 2894
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 37.0,
+        "dir_pct": 45.8,
+        "overlap": 2894
+      },
+      "baseline_bias": {
+        "exact_pct": 33.6,
+        "dir_pct": 63.5,
+        "overlap": 2894
+      },
+      "baseline_intervar": {
+        "exact_pct": 32.6,
+        "dir_pct": 49.0,
         "overlap": 2894
       }
     },
@@ -13171,10 +15404,20 @@
         "dir_pct": 65.5,
         "overlap": 8387
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 37.0,
+        "dir_pct": 46.9,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 100.0,
         "dir_pct": 100.0,
         "overlap": 8387
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 89.5,
+        "dir_pct": 90.5,
+        "overlap": 2894
       },
       "baseline_bias": {
         "exact_pct": 22.4,
@@ -13184,6 +15427,73 @@
       "baseline_intervar": {
         "exact_pct": 55.5,
         "dir_pct": 57.7,
+        "overlap": 2894
+      }
+    },
+    "aiva_gpt_astra": {
+      "aiva_opus_rerun": {
+        "exact_pct": 72.1,
+        "dir_pct": 75.6,
+        "overlap": 2894
+      },
+      "aiva_sonnet_rerun": {
+        "exact_pct": 79.2,
+        "dir_pct": 80.9,
+        "overlap": 2894
+      },
+      "aiva_haiku_rerun": {
+        "exact_pct": 80.4,
+        "dir_pct": 81.4,
+        "overlap": 2894
+      },
+      "claude_code_opus": {
+        "exact_pct": 67.0,
+        "dir_pct": 68.7,
+        "overlap": 2894
+      },
+      "claude_code_sonnet": {
+        "exact_pct": 71.9,
+        "dir_pct": 73.4,
+        "overlap": 2894
+      },
+      "claude_code_haiku": {
+        "exact_pct": 72.9,
+        "dir_pct": 74.2,
+        "overlap": 2894
+      },
+      "aiva_gemini_pro": {
+        "exact_pct": 29.6,
+        "dir_pct": 40.8,
+        "overlap": 2894
+      },
+      "aiva_gemini_flash": {
+        "exact_pct": 38.1,
+        "dir_pct": 47.8,
+        "overlap": 2894
+      },
+      "aiva_gemini_argon": {
+        "exact_pct": 37.0,
+        "dir_pct": 45.8,
+        "overlap": 2894
+      },
+      "aiva_gpt_sol": {
+        "exact_pct": 89.5,
+        "dir_pct": 90.5,
+        "overlap": 2894
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 100.0,
+        "dir_pct": 100.0,
+        "overlap": 2894
+      },
+      "baseline_bias": {
+        "exact_pct": 24.0,
+        "dir_pct": 34.6,
+        "overlap": 2894
+      },
+      "baseline_intervar": {
+        "exact_pct": 55.8,
+        "dir_pct": 57.9,
         "overlap": 2894
       }
     },
@@ -13228,9 +15538,19 @@
         "dir_pct": 59.1,
         "overlap": 2894
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 33.6,
+        "dir_pct": 63.5,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 22.4,
         "dir_pct": 33.2,
+        "overlap": 2894
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 24.0,
+        "dir_pct": 34.6,
         "overlap": 2894
       },
       "baseline_bias": {
@@ -13285,9 +15605,19 @@
         "dir_pct": 46.4,
         "overlap": 2894
       },
+      "aiva_gemini_argon": {
+        "exact_pct": 32.6,
+        "dir_pct": 49.0,
+        "overlap": 2894
+      },
       "aiva_gpt_sol": {
         "exact_pct": 55.5,
         "dir_pct": 57.7,
+        "overlap": 2894
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 55.8,
+        "dir_pct": 57.9,
         "overlap": 2894
       },
       "baseline_bias": {
@@ -48061,9 +50391,1068 @@
       "claude_code_haiku": "11122122120222222221103221222122222112202122212222221102122222222222222222222212000021022222222222221312222323222222322223222332311112113202122211212222122122322232222222222222212111222232233322222221212223222323222222222222122223131111221112323123113221121311322122210122311113121222231223213211111212002222321232133131232222222232223222222222232122222222122211222133221323222222232222222212222222222222223232222222222222111121111121221212222222221222222221221212212222222212222222232222222222222222222222223222222222222222222222222222211222222222222222222222222222222111112122211221222222222222222222111222212122222222122222222222222221222222212122121112211122221222222212222122121211222120222221222211221112213222222222222222232223322122222222222222222222222222222222222222222222222222222222221112122222222222222222222222122222222212222222222222222222222222212222222222222122222222222012101102100111211122221222222222222222222222222222222222222222222222222222222222222222221122122212222222221132212122322222221222222222222222222222222222223312222221222112231212122222122222222221222222212222221211222222202222222222122222110121221222222222221121212021220221222021222121222312122210021002212222221222232222222221220221222222122202222222222221212322122212221222112112211222222221111212111222222122112222212221222222222210221222222222222222222221313123221212122222121212211212221222112112212212221122122022233121222222222223222222222222222222222222222222222222322202222222222222002222222222222222222222233221022321222222222222223232222222322222222322322322222222222323222232232222222222222232222322222222233223222222222222222222222222222222233222232222322312222222212232222222222223222322222222222322232222332232322222222222222222222222222122123222222222222222221223322222222222222223023222232022222222222222222122222231222222222222222222222222222122222221111222222321222112222221223221212222222112221221022221221222222222222222222221122222212222222222112221122121122222212211212221122211122222112221022222222222202212222212212212222112132212222212222222112111222111112222212022222222112122212222212111212221131222222223032222222223222222222222222221211221222221111221222222222222222222221222222212222222211222212321232222223222222222333222322222222222222222222222221222112122222222222222111222222222222222222222221222222122222121222111122222022223222223121222222222222222222222222222222222222233332222221221122121122211224222111112222122122222232222222221331113131312321212222222222222211111222222222222222222222222222222222222222222222222222233322222222212222122222222222222222222222222222222322222322202232212222222222222122202323332222222222222222221111212212121212011112222222221222222222333321222222222332322322222022122222223222222222232222222222323232222222122222222231122122232222322222222211222122222223222222221222222221212222221222221222222222222232222221222212222222222222222222222",
       "aiva_gemini_pro": "10122022110102222310003210222022222002301010201222200102012011100001111110131110000010000112143012011302320304222220212032020320100002013202002011012111032021302122100001102000000000211330033330000000201223000203210112200012122020020011110100322103003211111301222122200023210102020222320222202200111202002220330222022031231220112121223230121100122021011222021100200133320313023422232122222212132222220000222030003000330121101121000121010100113321110201120000110101101010200100011020131100111111011001101103114011112200111112211110111201110111111001120033222222222110111000101101000101120010011210020121001010102111100110112112011212122101220201100012021000200100030103120011111022020210120020222020002201200002102221022211112223223223312020022102121021121221211222221202102221211122010222112012200000112212322011222012100211122211110222211211211022022220211100221121212222111012212112102002010102000110211012111122212202012222011221211022222212221221212211220100210010101201201102011010001010010032113022201211210011111211311221210111110110122303111110211012321101021111011111111110111122101211110111121111101211201011121010000111110021111112111020212201100110212120210000220302121001020001002101000001120102100111111220201022002302103122021021102222122211220112111112011222112220101202011222002021201212111120221212111101110111101000011111111111313033310301131112111101100110111202001011102102121011012021112120002000020114101101113010010200011200111101001011222100111100011011000130100112011112010111043000003300220020111110133044033200402222223222422334022323232343322243332202234233423220241432410000042004001311102323212333224331411103343133120011320313011102102211110030311003000300100000101301230110433343301201111112020211101100000000102313222122221211000022300100111121011201004003032001020011001001101000121231101101101000101001001000111121112110000211211310111000111110114201102020110002110111021011111110101102111111112221011011100140110120101111010010001101101100100110011210020100002120010102101111001001022101201201102101031101121101001121001000011000000111100011211112102010011111102000111201110200104003030022220014213000001000000100100100121100000210100111111221122101110011210101111211100212103300131210124001100203343000430001000021110110010000000002012010023232111211001102121010121032022221220312101032202020112001122012100034232312140223222222220233324200003330200000000023240210311210121010021010244222101101111122022222242222004220331103130302320312222222222042111110320121202110003220021011320110210101100001200000100032200013020001000103301412121201222110120200010012400002211000321101220122202200021201403333030013121221211110101211100110101001111300301101001120303243300022331300330302310023000121113223004132220022224222222224323322200120200022040020021143222322022222200200022232222322212310202222000101100330011310001021122122030002000011002111024100001011000111",
       "aiva_gemini_flash": "10110122121011102320114111112021111101211120122212111021101001221100021100022010110120110010123203020312312314111221312034231410211011104112110100102120132121304212100000003002112000302320243220110100201424202403310212210001011010120100110000424013003200010400233031301044200004020212420332132311000303212421420322124040341300113234424331222221243022001132122210210033321223222232242122233211222223220011322140114011440022111100111000011100202401000200020010120212210020200000102010240222202212120011212222022010212210111111211221101011121012111212220234444434343221101200202212120001010000000000120111111100001111010110000121100112011001200202100100110010211001031014000110111111111011010012022011002110100212012010112120011214332314321121141202032122210122121112022012000020220222012011122000201100122222022021122021012221112220200022200202220021112212202001212112211122111122122210222111101212011110211121121222202022221221221222210221222222222221212222220001210100101201000112100111111022010144013122312212411022211222302231210222212220022212210221220102341212112022122122222210222022210211221211022122212122402022221021111120201232221200201120201221121211222221210012100322111121131110013100011001020000010001200120210222102211214021021020112211222202120112002111001211122221101111101111100111110111201111212210122111111112121101111111110000302124300411241122111102111110100102001101111112111110001111213120112000020023110112223111012200020100011102102000312210211011110220110140110203011001011212244002023401321120001000043043023000212222222323422222032222222234222222222222242222222220022222200200132002112421102222222222222221221222222122020012332202221203122222210020311003200400110000010412141201343333322202122200212220222202211121012213122210220222100133300101111131112100103003040112011012000011001201021132110211101100210201200001111211101110022112200310110021111110212202202221220221012200220010210211101102111112122110202021220140111020211002221210202112222122120212211122010202221020022211102112002111012200121220102202231102111212012011201022011220220211222112112112222221212212221222202220000012003002041133331004313010102000100111111001032101111320210202202241123220201021212111110210111323104400040310134110000202444100440020011100110122221111102012201200013132101102220001112011101031010021110301001233102212101102211211200443244313030223443243324332233311113331221111111132341311320121021110021001344332001001011032133333243332214330330012030313330303333332333243101000221120203021103210212221220212122102111001002101011032300002030001011012301412112112032110032310011112210001211122222202320122101110122321412432020103011111011111111211111121211111011311401110101221313424410024342301440403412034101001223333013043332042422434332333343333311230300133040030033343234433223233300310033332344233313301313344211222102422220401000001212222040004012000011101002111002002000212",
+      "aiva_gemini_argon": "10110123110011101211114111121111112011211020112113111012111021202110022200022010111120110010143002020302321313111210313033131310200101004122103100102101132121302022110100113111011101312240043241110001200223002403222221110002021001120100210000222013003210010300222020201022200002020322230222122200000202112221230222124040241210203032424342222121243212002131011121101133321224222232232122222211232222220011222240002002441000111101101000220101103401000100122000120202212020100000122010240220222221022110212224012120222211211122211021101211221220112212220243222232343221221000201111110000010010010100010111001100011011000210101101100211011001100200110101110011210000131012000110112122011110020111222010002100200202002011111110011214323314310121142212020120100010201212222001010012210211011221002000111111113212013122211021111220111010221120201012020010012112210110202110010121202112120100212111111112111111110121201222221002021121212221211000221102110211211222200001220100112001001002001110002010020144013120211212211120111212402232201221221210122303112111211112241212120220121111212211220222210101101211222112112121400222232012111101221240202200101111211221222211222121110010100322011122130110013100020001040100010001000021201212101211114022030030112221122211120201112101001221111201101111101111100121212121011211212110111111121111102000011111110000414134411412141222111112211110101122112111102112101120101121013120002010020114110111113112112101012200011202102010211112111011111111221240210002011111221112044002123401301132121121044043233110302224432222423422122223244222222232222222224242422220142322300000032002110210002223422432222422320004432122240012322302221213012221110030311003011402000000000410240011442234412212112200210120010102121101002303112222212221100133301201111131111120104103140012011021000001001201021130211101100000011101201101011212002112022220200310101002212210202102201101100012022202220110110011202001121110211111101022120142110020002000211220002111221122110212011101222102222020020112102012001121122200102200112202032121221221101120001220011000021121020111111122201221121121221222021100000122004004041133230114213110110210001121211001132001111200011110022231222202200211213011111210200203214401040321034012100203444220340111000000111112122111000112001200013122211101200011112011100021120221110311011230012012101002010211000434233413031222343232434232333411113331311111111034341211310110030010011000234332000001011033133333343333113330330003030313421203333333333233100000320120212111103211112122211211111101212001112101001022200012031011010012211212121111022220022210000102400011211101322012210112202100022212412433030024211211111211111211001120111011012311411110101231213434411024442311441414422034200212123333224044321043432434333333343433300030301133040030033423324443132323301300032233343333203310203324001222102430022301101121222121040004010210010101014110111110010112",
       "aiva_gpt_sol": "21121122121222222222224221222122222012212122222222222222112122222222222111222122222221222222242223221222222223222221312222230221211112112222122211212221022021312222212112222222222112322222222222222222222222222222222222221222122122121211222111222023113210221310222122212122211122121222221222222211210212222222222222222121232222224232222342232222233012222222122221212122221222222222222222222222222222222222222222212212222222122222221220221222223232221222222211232322213222202211222421243221322222222221212222122122222221211122221221122211222222112222221243222242343222222201212222220121122221221211222222111212212122211222011222211222122121222222112112120011211022221222212211222122121211221122232222222212221222202222222222222223223323222222222212222222222222222222222222122222222222122222122222221222222222222122222222212222122222222122222222222222122222222122222222212222222222222222222122222222221222222222222222222222222222222222221222222222222222222222222212222222222222221212022201222122220122212122212222221222222222222222222222222222222212222221222112221212222222122222222221222222212222220200222222202222222222222222122221221222222222221221212221222222222222221212221222222122222221212221122222232222222121222220222222112221212122222222212222122212221222112201211222222221121222221222222222212222212221221222222212121222222121122222222122212122211412242222222222211222221222222212202222221122122222222222212211122222222222222222122212222222122222222222222222222222222222221222222222122221222222122122222212222122221221222222222222222222222222222222222222222222322232222222222222222222222322311221232223112221222223222222223222322222232022221122322312211212022222211222422113212322211212222322231221332234322222222222222222222222222122112214222222222222221223322222222232222222122122124222222122221222212222122232221222221111222222221222122222222220222222212322122222222222222210222222221122222222221112220222212122222222212222221122222242221121002112222222212212222222221222222222022222222220022221222222122211122201222222222202232222222224221222222222222220222222222122222222222221121222222002222211122222124214242222222123222222222211122221211222222221111221221222222232222222222222223212222222222222212212122222222222112212222211222120122122221222222222102222002022122222222222220222222212222222221222221222221240222220212122222222211223233323032222222222222222223222223332322222222134342322321221131121122112333332111112222133233333333333213331332113232323422223333333333333211111222222222222222222222222222222222212222222212222212242222122221222222222222222222222222222122222212112212111222222222212221222222222222322222224233244222222222221212222212221212211112322322221221232222233321124222221221222222222223222222423224244222222222222222223222222222222222222231222232222222322222222222222122232222322222221222222221222322422222222122222222222221112122220211112112102122112101222",
+      "aiva_gpt_astra": "11121222121222222221224221222122222111212122222222222222122121222222122111222122212221222222242223221222222223222222322222232222211112112222123211212222022121312222211122222222222112322222222222222222222222222222222222221222222122121122222011222023113211121311222022212223221122222222221222222211111222222222221222122122232222224232424342232222243022222232122221212122221222222222222222222222222222222122222221212212222222212222221222222222223432221232222221232222213222242212232421243222322222122211212224122122222211211122221221122211222222112222222243222242343222222212212222221221222210122212122222111212212121112222121222112221222221222222111112121112211120121222211211222122121211221122232222222222121222222222222222222223223323222022222212222222222222222222222222122222222222122222222212222122222222222122222222222222222222221122222222222122122222212121222222212222222222222222222122222222221222222222222222222222222222222222221222222222222222222222222212222222222222211212012201222222121122212122212222221222222222222222222222222221222212222221212112221212122222122222222220222222212222220200222222202222222222222222222222222222222222222222222222222222222222222222221222222122222221222221221222232222222121222221222222112221222222222222212222122212221222112112221222222222221222211222222222212222112221222222222212121212202221122222222121212122221422242222122202221222222222122212212222221222212222223221202211022222222222222222122212222222122222222222222222222122222222221222222222122212222222222122222212222122221221222222222222222222222222222222222222222222322232222222222222222222222322321221232223122221222223222222223222322222232122222122322312211212022222211122422202202222222212211322231221232334222222222222222222222222222122112224222222222222222223322212222222222222222122124222221122211222222222122232221221221111212222221222222222222220222222211322121222222222222212221222221122221222221112222222212212222222212221211122221242221121002112222222212212222202221222222222222222222222022222222212222211122201222222222202232222221224221222222222222220222222222222222222222221121222222202222221122122124224241232222222222222222211122221211111222221211221221222222232222222222222223212222222222223214212222221222222122212222211222220121122221222222222102122222222112222222222222212222221222222122222222222212232222222222122222222212223233313132222222222222222223222223332222222222134342322321221132121122111333332111212222033133333333333213332332223232323422223333333333333212122222222222222222222222222222222222222222122212212212232222122221212222222222222222222222222222222212112212111222222222212322222222222222322222224232224222222222222111212222221212222122322322222222222222233321222222221222222222222222222243423224244222222222222222222222222222222222223232222232232222322222222221212122222222222222221222223221222322422222222222222222222222114122220212212112112222122201222",
       "baseline_bias": "02201104100001000402004000101000122220400220011004002220001111202102102200240000200002000001044012022424420402200400224044042310322200224102202022022121022022202222000000004000000000200430023222001212221244000404222220200000221102042022002220424224224202202422444231220223222224242402342434014422222424002220440344043232243400004042404442221000044200000020021222000043440404042423122000242202342222121000222040002102222011202012200002122200102420022201111002110101202212200101101022121222210022100100000002102101221411100100200200110220122100100002222042222222444001002222221022222022000000020002320000022000022202000000200000000000011002200200020000002222022200042004000020002212200022020201021002000122000222024020000220000003224404200002221100030000000000000100000000002001110111000000110000100000002201002000021011000000001100200121000100100000011120100000200000101000000021110011111020000001000000102220020100102111201110212111000221222011101101000110000000000100001000002202000020000000002000024221302022410010000100401121200000000010023424000000400222222020200101010000221200210011100000100100100000000121201011241102020202010032010000212022022200112022222020000022200214112122022202102200000012030000000002000032020000200200023120042232023400233220022000220220222100000000222000220020220022200000020002002002000020002000000000000000000002414024402420040020202021022020000020220220022220002200200000002102003000121004010010004002101011100010102110001000402000110000001000000240000004000000000000034002022422210020000000044044044000402224424242444224224422242424222144232444224244442242240442400100044124000400102244404442224442420204444044042011440404001002002122000040400004000400000000000400240000442242400202001000000100000020020010004404000010000000020032301000000040000222014013040021200000000000020000000030000000000000000002100100200200000002222020001402000210020002004002020000000000000001000012002000000000000000100000000000020040000000220000000202200001101022020002200022200000221002000200202000200000000220021022100200240020000000000020220222000222220000020022100011220222222200022222002002200100004004040244240004204200000000000000022002040000200300000000000220224000010001110100000100002202022400020400042000000204444000420000022011010100010000002002222211014031202221212120212011123031102220011312010223111212112112222222211444244404242222322244243244243402222342422222220022222222322222222202202020224224002220002222022232342222004222242224222222322222222222222222022222240121002001002100100020400000100002022000202000001032400014040210000002211214001000012101102222000004410000031000430002200021202101121212424444040000000000002202222220202222222222220420400022002242404244422224442200440404402042000200012243004044200042444424424424434422200020200142030020022224443424142424400400022224224442212200404422000202000442022200000120022122020000002212002222204212122102012222",
       "baseline_intervar": "22122223110112111322223112212212222221201221102113222202111111111022102112221122000022021122223222222322221322222222222222222322222202222202222122222111032021222222211111112111221222211331232332122212222223111223222222222112222222022022212222333223220322202322222221320322222223232322222222202222222322002322232222022232222222122122223232122211122211112222022222211232320313223222222222322202322223221112222221112112232111202212200222212221212322122212112122222222222222211121111112132222222222222222222222223222222222222222222222222322222222222222232132233322222222212222222022222122111111122212211221022211122212121221212211211121121122211211121211222222222222222122111122122222222222221212222210212222222222112222222222222223223323221020022121121002122111111112122202112111222122111222112111222221212212112121222222211222022222222222211211111111122221212111221222112212122221112222222102222122222222122222222222221222222222122222222222222222121211212222122120222222222222222222222221111111111022223222202222220222222222322220221222211221123112221220211222322222222222022222202222222220202222222222222222202111211111232212020212110121111111112012121222212110111011111122211222222221020001102222122222232222222222220222222222022202222222232232222222022222222222222222222222222222222222222222222022202222222222222222222220222222222111112222222112303033221221022222222232202223222232222221222122122221222011222022112111122113111111123212211211133211221111111121221221121221111112221131111122212122111121123212022222222122111211123232232211212222332222233223222223233223332232222222223233322222222322311212232123111321121222222222223222321112333122222122331302122112102222111121222113111311111111111321131111331132311111111111111111111111121011002212111221211121121112211111111221111212013112132222212112221212221222111220111212111111112212211111321212211121222221212212221202121110210111121222211221122112221212132231211111111212212211112111121131111121112111011222211112202121212222211222222111122122021211222121002200121221202122112202332122211201221111211221122111221232212022222222211222222222222122220322222111112112032122220113213211111111111110122112231110202312211211122221222221220222212201112222200210222311131211123111111213323111221221122211222222121122122222222023222222222222202222222222222222222222220222222223222222222002122222111223233211212222222222222222222223233332222222222212312222332232232323210120222222111121112222022222222222112221332122232232322222222222222322112223212221222221112122122122222221111212220221222222222222221212222212122122212222222222122221222222212212211111222201221222211222222222022210322333122122122221112222222222212222222022221212222122112231222333222223222211322312311122011222222223212022211122222222222222222222211121211122121122122221222222112222111211122222222222222222212222120202222332122310222222122221221112112222222222223222222222212222"
+    }
+  },
+  "ranking_data": {
+    "metadata": {
+      "title": "RareDx Bench: Variant Ranking",
+      "subtitle": "Gene prioritization benchmark across 1,396 simulated rare-disease patient cases",
+      "total_cohort": 1396,
+      "categories": [
+        "known_gene_disease",
+        "known_gene_known_disease",
+        "known_gene_new_disease",
+        "new_gene_known_disease",
+        "new_gene_new_disease"
+      ],
+      "category_labels": {
+        "known_gene_disease": "Established cases (known gene & disease)",
+        "known_gene_known_disease": "Known gene, known disease (extended KG)",
+        "known_gene_new_disease": "Known gene, new disease association",
+        "new_gene_known_disease": "Novel gene, known disease",
+        "new_gene_new_disease": "Novel gene & novel disease"
+      },
+      "category_counts": {
+        "known_gene_disease": 422,
+        "known_gene_known_disease": 234,
+        "known_gene_new_disease": 244,
+        "new_gene_known_disease": 246,
+        "new_gene_new_disease": 250
+      }
+    },
+    "models": [
+      {
+        "key": "aiva_ranking",
+        "name": "AIVA",
+        "short_name": "AIVA",
+        "family": "AIVA",
+        "provider": "Mamidi Health",
+        "type": "AIVA agent",
+        "section": "aiva",
+        "total_cohort": 1396,
+        "evaluated_count": 1396,
+        "color": "#BD3027",
+        "color_dark": "#D04438",
+        "top1_pct": 66.69,
+        "top3_pct": 83.88,
+        "top5_pct": 87.82,
+        "top10_pct": 92.05,
+        "top20_pct": 94.41,
+        "mrr": 0.7611,
+        "ndcg10": 0.7989,
+        "median_rank": 1.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 422,
+            "top1": 319,
+            "top1_pct": 75.59,
+            "top3": 386,
+            "top3_pct": 91.47,
+            "top5": 396,
+            "top5_pct": 93.84,
+            "top10": 406,
+            "top10_pct": 96.21,
+            "top20": 407,
+            "top20_pct": 96.45,
+            "mrr": 0.8372,
+            "gene_absent": 15,
+            "gene_absent_pct": 3.55,
+            "ndcg10": 0.8681,
+            "median_rank": 1.0
+          },
+          "known_gene_known_disease": {
+            "n": 234,
+            "top1": 142,
+            "top1_pct": 60.68,
+            "top3": 173,
+            "top3_pct": 73.93,
+            "top5": 182,
+            "top5_pct": 77.78,
+            "top10": 197,
+            "top10_pct": 84.19,
+            "top20": 202,
+            "top20_pct": 86.32,
+            "mrr": 0.6846,
+            "gene_absent": 32,
+            "gene_absent_pct": 13.68,
+            "ndcg10": 0.7214,
+            "median_rank": 1.0
+          },
+          "known_gene_new_disease": {
+            "n": 244,
+            "top1": 151,
+            "top1_pct": 61.89,
+            "top3": 207,
+            "top3_pct": 84.84,
+            "top5": 219,
+            "top5_pct": 89.75,
+            "top10": 226,
+            "top10_pct": 92.62,
+            "top20": 231,
+            "top20_pct": 94.67,
+            "mrr": 0.7385,
+            "gene_absent": 13,
+            "gene_absent_pct": 5.33,
+            "ndcg10": 0.784,
+            "median_rank": 1.0
+          },
+          "new_gene_known_disease": {
+            "n": 246,
+            "top1": 165,
+            "top1_pct": 67.07,
+            "top3": 207,
+            "top3_pct": 84.15,
+            "top5": 220,
+            "top5_pct": 89.43,
+            "top10": 233,
+            "top10_pct": 94.72,
+            "top20": 244,
+            "top20_pct": 99.19,
+            "mrr": 0.772,
+            "gene_absent": 2,
+            "gene_absent_pct": 0.81,
+            "ndcg10": 0.8122,
+            "median_rank": 1.0
+          },
+          "new_gene_new_disease": {
+            "n": 250,
+            "top1": 154,
+            "top1_pct": 61.6,
+            "top3": 198,
+            "top3_pct": 79.2,
+            "top5": 209,
+            "top5_pct": 83.6,
+            "top10": 223,
+            "top10_pct": 89.2,
+            "top20": 234,
+            "top20_pct": 93.6,
+            "mrr": 0.7156,
+            "gene_absent": 16,
+            "gene_absent_pct": 6.4,
+            "ndcg10": 0.7562,
+            "median_rank": 1.0
+          }
+        }
+      },
+      {
+        "key": "haiku_ranking",
+        "name": "Haiku 5.5",
+        "short_name": "Haiku 5.5",
+        "family": "Claude",
+        "provider": "Anthropic",
+        "type": "Claude agent",
+        "section": "agent",
+        "total_cohort": 1396,
+        "evaluated_count": 1396,
+        "color": "#6C8645",
+        "color_dark": "#6C8645",
+        "top1_pct": 60.32,
+        "top3_pct": 75.86,
+        "top5_pct": 82.02,
+        "top10_pct": 90.97,
+        "top20_pct": 98.35,
+        "mrr": 0.7041,
+        "ndcg10": 0.7491,
+        "median_rank": 1.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 422,
+            "top1": 323,
+            "top1_pct": 76.54,
+            "top3": 368,
+            "top3_pct": 87.2,
+            "top5": 390,
+            "top5_pct": 92.42,
+            "top10": 410,
+            "top10_pct": 97.16,
+            "top20": 419,
+            "top20_pct": 99.29,
+            "mrr": 0.834,
+            "gene_absent": 2,
+            "gene_absent_pct": 0.47,
+            "ndcg10": 0.8661,
+            "median_rank": 1.0
+          },
+          "known_gene_known_disease": {
+            "n": 234,
+            "top1": 122,
+            "top1_pct": 52.14,
+            "top3": 162,
+            "top3_pct": 69.23,
+            "top5": 175,
+            "top5_pct": 74.79,
+            "top10": 199,
+            "top10_pct": 85.04,
+            "top20": 223,
+            "top20_pct": 95.3,
+            "mrr": 0.6314,
+            "gene_absent": 10,
+            "gene_absent_pct": 4.27,
+            "ndcg10": 0.6782,
+            "median_rank": 1.0
+          },
+          "known_gene_new_disease": {
+            "n": 244,
+            "top1": 152,
+            "top1_pct": 62.3,
+            "top3": 208,
+            "top3_pct": 85.25,
+            "top5": 220,
+            "top5_pct": 90.16,
+            "top10": 234,
+            "top10_pct": 95.9,
+            "top20": 243,
+            "top20_pct": 99.59,
+            "mrr": 0.7501,
+            "gene_absent": 1,
+            "gene_absent_pct": 0.41,
+            "ndcg10": 0.7993,
+            "median_rank": 1.0
+          },
+          "new_gene_known_disease": {
+            "n": 246,
+            "top1": 118,
+            "top1_pct": 47.97,
+            "top3": 157,
+            "top3_pct": 63.82,
+            "top5": 175,
+            "top5_pct": 71.14,
+            "top10": 212,
+            "top10_pct": 86.18,
+            "top20": 246,
+            "top20_pct": 100.0,
+            "mrr": 0.5952,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "ndcg10": 0.6498,
+            "median_rank": 2.0
+          },
+          "new_gene_new_disease": {
+            "n": 250,
+            "top1": 127,
+            "top1_pct": 50.8,
+            "top3": 164,
+            "top3_pct": 65.6,
+            "top5": 185,
+            "top5_pct": 74.0,
+            "top10": 215,
+            "top10_pct": 86.0,
+            "top20": 242,
+            "top20_pct": 96.8,
+            "mrr": 0.6153,
+            "gene_absent": 7,
+            "gene_absent_pct": 2.8,
+            "ndcg10": 0.6666,
+            "median_rank": 1.0
+          }
+        }
+      },
+      {
+        "key": "lirical_ranking",
+        "name": "LIRICAL",
+        "short_name": "LIRICAL",
+        "family": "LIRICAL",
+        "provider": "Rule-based",
+        "type": "Phenotype likelihood",
+        "section": "automated",
+        "total_cohort": 1396,
+        "evaluated_count": 1396,
+        "color": "#046C9A",
+        "color_dark": "#237CAB",
+        "top1_pct": 59.53,
+        "top3_pct": 74.64,
+        "top5_pct": 80.01,
+        "top10_pct": 84.89,
+        "top20_pct": 86.39,
+        "mrr": 0.6813,
+        "ndcg10": 0.7211,
+        "median_rank": 1.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 422,
+            "top1": 268,
+            "top1_pct": 63.51,
+            "top3": 346,
+            "top3_pct": 81.99,
+            "top5": 363,
+            "top5_pct": 86.02,
+            "top10": 381,
+            "top10_pct": 90.28,
+            "top20": 386,
+            "top20_pct": 91.47,
+            "mrr": 0.7329,
+            "gene_absent": 36,
+            "gene_absent_pct": 8.53,
+            "ndcg10": 0.7739,
+            "median_rank": 1.0
+          },
+          "known_gene_known_disease": {
+            "n": 234,
+            "top1": 105,
+            "top1_pct": 44.87,
+            "top3": 133,
+            "top3_pct": 56.84,
+            "top5": 149,
+            "top5_pct": 63.68,
+            "top10": 165,
+            "top10_pct": 70.51,
+            "top20": 166,
+            "top20_pct": 70.94,
+            "mrr": 0.5225,
+            "gene_absent": 68,
+            "gene_absent_pct": 29.06,
+            "ndcg10": 0.5658,
+            "median_rank": 1.0
+          },
+          "known_gene_new_disease": {
+            "n": 244,
+            "top1": 174,
+            "top1_pct": 71.31,
+            "top3": 204,
+            "top3_pct": 83.61,
+            "top5": 212,
+            "top5_pct": 86.89,
+            "top10": 214,
+            "top10_pct": 87.7,
+            "top20": 214,
+            "top20_pct": 87.7,
+            "mrr": 0.7783,
+            "gene_absent": 30,
+            "gene_absent_pct": 12.3,
+            "ndcg10": 0.803,
+            "median_rank": 1.0
+          },
+          "new_gene_known_disease": {
+            "n": 246,
+            "top1": 110,
+            "top1_pct": 44.72,
+            "top3": 154,
+            "top3_pct": 62.6,
+            "top5": 176,
+            "top5_pct": 71.54,
+            "top10": 195,
+            "top10_pct": 79.27,
+            "top20": 206,
+            "top20_pct": 83.74,
+            "mrr": 0.5584,
+            "gene_absent": 40,
+            "gene_absent_pct": 16.26,
+            "ndcg10": 0.6119,
+            "median_rank": 1.0
+          },
+          "new_gene_new_disease": {
+            "n": 250,
+            "top1": 174,
+            "top1_pct": 69.6,
+            "top3": 205,
+            "top3_pct": 82.0,
+            "top5": 217,
+            "top5_pct": 86.8,
+            "top10": 230,
+            "top10_pct": 92.0,
+            "top20": 234,
+            "top20_pct": 93.6,
+            "mrr": 0.7693,
+            "gene_absent": 16,
+            "gene_absent_pct": 6.4,
+            "ndcg10": 0.8047,
+            "median_rank": 1.0
+          }
+        }
+      },
+      {
+        "key": "clinprior_ranking",
+        "name": "ClinPrior",
+        "short_name": "ClinPrior",
+        "family": "ClinPrior",
+        "provider": "Rule-based",
+        "type": "Network propagation",
+        "section": "automated",
+        "total_cohort": 1396,
+        "evaluated_count": 1396,
+        "color": "#E1AF00",
+        "color_dark": "#E1AF00",
+        "top1_pct": 47.28,
+        "top3_pct": 59.89,
+        "top5_pct": 65.69,
+        "top10_pct": 72.56,
+        "top20_pct": 77.44,
+        "mrr": 0.5582,
+        "ndcg10": 0.5938,
+        "median_rank": 2.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 422,
+            "top1": 155,
+            "top1_pct": 36.73,
+            "top3": 205,
+            "top3_pct": 48.58,
+            "top5": 238,
+            "top5_pct": 56.4,
+            "top10": 270,
+            "top10_pct": 63.98,
+            "top20": 303,
+            "top20_pct": 71.8,
+            "mrr": 0.457,
+            "gene_absent": 1,
+            "gene_absent_pct": 0.24,
+            "ndcg10": 0.4941,
+            "median_rank": 4.0
+          },
+          "known_gene_known_disease": {
+            "n": 234,
+            "top1": 75,
+            "top1_pct": 32.05,
+            "top3": 110,
+            "top3_pct": 47.01,
+            "top5": 128,
+            "top5_pct": 54.7,
+            "top10": 148,
+            "top10_pct": 63.25,
+            "top20": 157,
+            "top20_pct": 67.09,
+            "mrr": 0.4228,
+            "gene_absent": 3,
+            "gene_absent_pct": 1.28,
+            "ndcg10": 0.4685,
+            "median_rank": 4.0
+          },
+          "known_gene_new_disease": {
+            "n": 244,
+            "top1": 112,
+            "top1_pct": 45.9,
+            "top3": 145,
+            "top3_pct": 59.43,
+            "top5": 154,
+            "top5_pct": 63.11,
+            "top10": 171,
+            "top10_pct": 70.08,
+            "top20": 187,
+            "top20_pct": 76.64,
+            "mrr": 0.5471,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "ndcg10": 0.5777,
+            "median_rank": 2.0
+          },
+          "new_gene_known_disease": {
+            "n": 246,
+            "top1": 129,
+            "top1_pct": 52.44,
+            "top3": 171,
+            "top3_pct": 69.51,
+            "top5": 187,
+            "top5_pct": 76.02,
+            "top10": 203,
+            "top10_pct": 82.52,
+            "top20": 209,
+            "top20_pct": 84.96,
+            "mrr": 0.6292,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "ndcg10": 0.6741,
+            "median_rank": 1.0
+          },
+          "new_gene_new_disease": {
+            "n": 250,
+            "top1": 189,
+            "top1_pct": 75.6,
+            "top3": 205,
+            "top3_pct": 82.0,
+            "top5": 210,
+            "top5_pct": 84.0,
+            "top10": 221,
+            "top10_pct": 88.4,
+            "top20": 225,
+            "top20_pct": 90.0,
+            "mrr": 0.797,
+            "gene_absent": 16,
+            "gene_absent_pct": 6.4,
+            "ndcg10": 0.8162,
+            "median_rank": 1.0
+          }
+        }
+      },
+      {
+        "key": "exomiser_ranking",
+        "name": "Exomiser",
+        "short_name": "Exomiser",
+        "family": "Exomiser",
+        "provider": "Rule-based",
+        "type": "Cross-species phenotype",
+        "section": "automated",
+        "total_cohort": 1396,
+        "evaluated_count": 1396,
+        "color": "#79402E",
+        "color_dark": "#A26552",
+        "top1_pct": 28.37,
+        "top3_pct": 39.97,
+        "top5_pct": 44.2,
+        "top10_pct": 66.91,
+        "top20_pct": 89.97,
+        "mrr": 0.393,
+        "ndcg10": 0.4423,
+        "median_rank": 6.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 422,
+            "top1": 164,
+            "top1_pct": 38.86,
+            "top3": 229,
+            "top3_pct": 54.27,
+            "top5": 244,
+            "top5_pct": 57.82,
+            "top10": 325,
+            "top10_pct": 77.01,
+            "top20": 387,
+            "top20_pct": 91.71,
+            "mrr": 0.5054,
+            "gene_absent": 31,
+            "gene_absent_pct": 7.35,
+            "ndcg10": 0.5578,
+            "median_rank": 2.0
+          },
+          "known_gene_known_disease": {
+            "n": 234,
+            "top1": 76,
+            "top1_pct": 32.48,
+            "top3": 99,
+            "top3_pct": 42.31,
+            "top5": 109,
+            "top5_pct": 46.58,
+            "top10": 142,
+            "top10_pct": 60.68,
+            "top20": 180,
+            "top20_pct": 76.92,
+            "mrr": 0.4085,
+            "gene_absent": 54,
+            "gene_absent_pct": 23.08,
+            "ndcg10": 0.445,
+            "median_rank": 2.0
+          },
+          "known_gene_new_disease": {
+            "n": 244,
+            "top1": 83,
+            "top1_pct": 34.02,
+            "top3": 126,
+            "top3_pct": 51.64,
+            "top5": 142,
+            "top5_pct": 58.2,
+            "top10": 184,
+            "top10_pct": 75.41,
+            "top20": 220,
+            "top20_pct": 90.16,
+            "mrr": 0.4704,
+            "gene_absent": 24,
+            "gene_absent_pct": 9.84,
+            "ndcg10": 0.5283,
+            "median_rank": 2.0
+          },
+          "new_gene_known_disease": {
+            "n": 246,
+            "top1": 51,
+            "top1_pct": 20.73,
+            "top3": 76,
+            "top3_pct": 30.89,
+            "top5": 88,
+            "top5_pct": 35.77,
+            "top10": 160,
+            "top10_pct": 65.04,
+            "top20": 237,
+            "top20_pct": 96.34,
+            "mrr": 0.3235,
+            "gene_absent": 6,
+            "gene_absent_pct": 2.44,
+            "ndcg10": 0.3783,
+            "median_rank": 8.0
+          },
+          "new_gene_new_disease": {
+            "n": 250,
+            "top1": 22,
+            "top1_pct": 8.8,
+            "top3": 28,
+            "top3_pct": 11.2,
+            "top5": 34,
+            "top5_pct": 13.6,
+            "top10": 123,
+            "top10_pct": 49.2,
+            "top20": 232,
+            "top20_pct": 92.8,
+            "mrr": 0.1818,
+            "gene_absent": 16,
+            "gene_absent_pct": 6.4,
+            "ndcg10": 0.2241,
+            "median_rank": 10.0
+          }
+        }
+      }
+    ],
+    "categories_data": {
+      "aiva_ranking": {
+        "known_gene_disease": {
+          "n": 422,
+          "top1": 319,
+          "top1_pct": 75.59,
+          "top3": 386,
+          "top3_pct": 91.47,
+          "top5": 396,
+          "top5_pct": 93.84,
+          "top10": 406,
+          "top10_pct": 96.21,
+          "top20": 407,
+          "top20_pct": 96.45,
+          "mrr": 0.8372,
+          "gene_absent": 15,
+          "gene_absent_pct": 3.55,
+          "ndcg10": 0.8681,
+          "median_rank": 1.0
+        },
+        "known_gene_known_disease": {
+          "n": 234,
+          "top1": 142,
+          "top1_pct": 60.68,
+          "top3": 173,
+          "top3_pct": 73.93,
+          "top5": 182,
+          "top5_pct": 77.78,
+          "top10": 197,
+          "top10_pct": 84.19,
+          "top20": 202,
+          "top20_pct": 86.32,
+          "mrr": 0.6846,
+          "gene_absent": 32,
+          "gene_absent_pct": 13.68,
+          "ndcg10": 0.7214,
+          "median_rank": 1.0
+        },
+        "known_gene_new_disease": {
+          "n": 244,
+          "top1": 151,
+          "top1_pct": 61.89,
+          "top3": 207,
+          "top3_pct": 84.84,
+          "top5": 219,
+          "top5_pct": 89.75,
+          "top10": 226,
+          "top10_pct": 92.62,
+          "top20": 231,
+          "top20_pct": 94.67,
+          "mrr": 0.7385,
+          "gene_absent": 13,
+          "gene_absent_pct": 5.33,
+          "ndcg10": 0.784,
+          "median_rank": 1.0
+        },
+        "new_gene_known_disease": {
+          "n": 246,
+          "top1": 165,
+          "top1_pct": 67.07,
+          "top3": 207,
+          "top3_pct": 84.15,
+          "top5": 220,
+          "top5_pct": 89.43,
+          "top10": 233,
+          "top10_pct": 94.72,
+          "top20": 244,
+          "top20_pct": 99.19,
+          "mrr": 0.772,
+          "gene_absent": 2,
+          "gene_absent_pct": 0.81,
+          "ndcg10": 0.8122,
+          "median_rank": 1.0
+        },
+        "new_gene_new_disease": {
+          "n": 250,
+          "top1": 154,
+          "top1_pct": 61.6,
+          "top3": 198,
+          "top3_pct": 79.2,
+          "top5": 209,
+          "top5_pct": 83.6,
+          "top10": 223,
+          "top10_pct": 89.2,
+          "top20": 234,
+          "top20_pct": 93.6,
+          "mrr": 0.7156,
+          "gene_absent": 16,
+          "gene_absent_pct": 6.4,
+          "ndcg10": 0.7562,
+          "median_rank": 1.0
+        }
+      },
+      "haiku_ranking": {
+        "known_gene_disease": {
+          "n": 422,
+          "top1": 323,
+          "top1_pct": 76.54,
+          "top3": 368,
+          "top3_pct": 87.2,
+          "top5": 390,
+          "top5_pct": 92.42,
+          "top10": 410,
+          "top10_pct": 97.16,
+          "top20": 419,
+          "top20_pct": 99.29,
+          "mrr": 0.834,
+          "gene_absent": 2,
+          "gene_absent_pct": 0.47,
+          "ndcg10": 0.8661,
+          "median_rank": 1.0
+        },
+        "known_gene_known_disease": {
+          "n": 234,
+          "top1": 122,
+          "top1_pct": 52.14,
+          "top3": 162,
+          "top3_pct": 69.23,
+          "top5": 175,
+          "top5_pct": 74.79,
+          "top10": 199,
+          "top10_pct": 85.04,
+          "top20": 223,
+          "top20_pct": 95.3,
+          "mrr": 0.6314,
+          "gene_absent": 10,
+          "gene_absent_pct": 4.27,
+          "ndcg10": 0.6782,
+          "median_rank": 1.0
+        },
+        "known_gene_new_disease": {
+          "n": 244,
+          "top1": 152,
+          "top1_pct": 62.3,
+          "top3": 208,
+          "top3_pct": 85.25,
+          "top5": 220,
+          "top5_pct": 90.16,
+          "top10": 234,
+          "top10_pct": 95.9,
+          "top20": 243,
+          "top20_pct": 99.59,
+          "mrr": 0.7501,
+          "gene_absent": 1,
+          "gene_absent_pct": 0.41,
+          "ndcg10": 0.7993,
+          "median_rank": 1.0
+        },
+        "new_gene_known_disease": {
+          "n": 246,
+          "top1": 118,
+          "top1_pct": 47.97,
+          "top3": 157,
+          "top3_pct": 63.82,
+          "top5": 175,
+          "top5_pct": 71.14,
+          "top10": 212,
+          "top10_pct": 86.18,
+          "top20": 246,
+          "top20_pct": 100.0,
+          "mrr": 0.5952,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "ndcg10": 0.6498,
+          "median_rank": 2.0
+        },
+        "new_gene_new_disease": {
+          "n": 250,
+          "top1": 127,
+          "top1_pct": 50.8,
+          "top3": 164,
+          "top3_pct": 65.6,
+          "top5": 185,
+          "top5_pct": 74.0,
+          "top10": 215,
+          "top10_pct": 86.0,
+          "top20": 242,
+          "top20_pct": 96.8,
+          "mrr": 0.6153,
+          "gene_absent": 7,
+          "gene_absent_pct": 2.8,
+          "ndcg10": 0.6666,
+          "median_rank": 1.0
+        }
+      },
+      "lirical_ranking": {
+        "known_gene_disease": {
+          "n": 422,
+          "top1": 268,
+          "top1_pct": 63.51,
+          "top3": 346,
+          "top3_pct": 81.99,
+          "top5": 363,
+          "top5_pct": 86.02,
+          "top10": 381,
+          "top10_pct": 90.28,
+          "top20": 386,
+          "top20_pct": 91.47,
+          "mrr": 0.7329,
+          "gene_absent": 36,
+          "gene_absent_pct": 8.53,
+          "ndcg10": 0.7739,
+          "median_rank": 1.0
+        },
+        "known_gene_known_disease": {
+          "n": 234,
+          "top1": 105,
+          "top1_pct": 44.87,
+          "top3": 133,
+          "top3_pct": 56.84,
+          "top5": 149,
+          "top5_pct": 63.68,
+          "top10": 165,
+          "top10_pct": 70.51,
+          "top20": 166,
+          "top20_pct": 70.94,
+          "mrr": 0.5225,
+          "gene_absent": 68,
+          "gene_absent_pct": 29.06,
+          "ndcg10": 0.5658,
+          "median_rank": 1.0
+        },
+        "known_gene_new_disease": {
+          "n": 244,
+          "top1": 174,
+          "top1_pct": 71.31,
+          "top3": 204,
+          "top3_pct": 83.61,
+          "top5": 212,
+          "top5_pct": 86.89,
+          "top10": 214,
+          "top10_pct": 87.7,
+          "top20": 214,
+          "top20_pct": 87.7,
+          "mrr": 0.7783,
+          "gene_absent": 30,
+          "gene_absent_pct": 12.3,
+          "ndcg10": 0.803,
+          "median_rank": 1.0
+        },
+        "new_gene_known_disease": {
+          "n": 246,
+          "top1": 110,
+          "top1_pct": 44.72,
+          "top3": 154,
+          "top3_pct": 62.6,
+          "top5": 176,
+          "top5_pct": 71.54,
+          "top10": 195,
+          "top10_pct": 79.27,
+          "top20": 206,
+          "top20_pct": 83.74,
+          "mrr": 0.5584,
+          "gene_absent": 40,
+          "gene_absent_pct": 16.26,
+          "ndcg10": 0.6119,
+          "median_rank": 1.0
+        },
+        "new_gene_new_disease": {
+          "n": 250,
+          "top1": 174,
+          "top1_pct": 69.6,
+          "top3": 205,
+          "top3_pct": 82.0,
+          "top5": 217,
+          "top5_pct": 86.8,
+          "top10": 230,
+          "top10_pct": 92.0,
+          "top20": 234,
+          "top20_pct": 93.6,
+          "mrr": 0.7693,
+          "gene_absent": 16,
+          "gene_absent_pct": 6.4,
+          "ndcg10": 0.8047,
+          "median_rank": 1.0
+        }
+      },
+      "clinprior_ranking": {
+        "known_gene_disease": {
+          "n": 422,
+          "top1": 155,
+          "top1_pct": 36.73,
+          "top3": 205,
+          "top3_pct": 48.58,
+          "top5": 238,
+          "top5_pct": 56.4,
+          "top10": 270,
+          "top10_pct": 63.98,
+          "top20": 303,
+          "top20_pct": 71.8,
+          "mrr": 0.457,
+          "gene_absent": 1,
+          "gene_absent_pct": 0.24,
+          "ndcg10": 0.4941,
+          "median_rank": 4.0
+        },
+        "known_gene_known_disease": {
+          "n": 234,
+          "top1": 75,
+          "top1_pct": 32.05,
+          "top3": 110,
+          "top3_pct": 47.01,
+          "top5": 128,
+          "top5_pct": 54.7,
+          "top10": 148,
+          "top10_pct": 63.25,
+          "top20": 157,
+          "top20_pct": 67.09,
+          "mrr": 0.4228,
+          "gene_absent": 3,
+          "gene_absent_pct": 1.28,
+          "ndcg10": 0.4685,
+          "median_rank": 4.0
+        },
+        "known_gene_new_disease": {
+          "n": 244,
+          "top1": 112,
+          "top1_pct": 45.9,
+          "top3": 145,
+          "top3_pct": 59.43,
+          "top5": 154,
+          "top5_pct": 63.11,
+          "top10": 171,
+          "top10_pct": 70.08,
+          "top20": 187,
+          "top20_pct": 76.64,
+          "mrr": 0.5471,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "ndcg10": 0.5777,
+          "median_rank": 2.0
+        },
+        "new_gene_known_disease": {
+          "n": 246,
+          "top1": 129,
+          "top1_pct": 52.44,
+          "top3": 171,
+          "top3_pct": 69.51,
+          "top5": 187,
+          "top5_pct": 76.02,
+          "top10": 203,
+          "top10_pct": 82.52,
+          "top20": 209,
+          "top20_pct": 84.96,
+          "mrr": 0.6292,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "ndcg10": 0.6741,
+          "median_rank": 1.0
+        },
+        "new_gene_new_disease": {
+          "n": 250,
+          "top1": 189,
+          "top1_pct": 75.6,
+          "top3": 205,
+          "top3_pct": 82.0,
+          "top5": 210,
+          "top5_pct": 84.0,
+          "top10": 221,
+          "top10_pct": 88.4,
+          "top20": 225,
+          "top20_pct": 90.0,
+          "mrr": 0.797,
+          "gene_absent": 16,
+          "gene_absent_pct": 6.4,
+          "ndcg10": 0.8162,
+          "median_rank": 1.0
+        }
+      },
+      "exomiser_ranking": {
+        "known_gene_disease": {
+          "n": 422,
+          "top1": 164,
+          "top1_pct": 38.86,
+          "top3": 229,
+          "top3_pct": 54.27,
+          "top5": 244,
+          "top5_pct": 57.82,
+          "top10": 325,
+          "top10_pct": 77.01,
+          "top20": 387,
+          "top20_pct": 91.71,
+          "mrr": 0.5054,
+          "gene_absent": 31,
+          "gene_absent_pct": 7.35,
+          "ndcg10": 0.5578,
+          "median_rank": 2.0
+        },
+        "known_gene_known_disease": {
+          "n": 234,
+          "top1": 76,
+          "top1_pct": 32.48,
+          "top3": 99,
+          "top3_pct": 42.31,
+          "top5": 109,
+          "top5_pct": 46.58,
+          "top10": 142,
+          "top10_pct": 60.68,
+          "top20": 180,
+          "top20_pct": 76.92,
+          "mrr": 0.4085,
+          "gene_absent": 54,
+          "gene_absent_pct": 23.08,
+          "ndcg10": 0.445,
+          "median_rank": 2.0
+        },
+        "known_gene_new_disease": {
+          "n": 244,
+          "top1": 83,
+          "top1_pct": 34.02,
+          "top3": 126,
+          "top3_pct": 51.64,
+          "top5": 142,
+          "top5_pct": 58.2,
+          "top10": 184,
+          "top10_pct": 75.41,
+          "top20": 220,
+          "top20_pct": 90.16,
+          "mrr": 0.4704,
+          "gene_absent": 24,
+          "gene_absent_pct": 9.84,
+          "ndcg10": 0.5283,
+          "median_rank": 2.0
+        },
+        "new_gene_known_disease": {
+          "n": 246,
+          "top1": 51,
+          "top1_pct": 20.73,
+          "top3": 76,
+          "top3_pct": 30.89,
+          "top5": 88,
+          "top5_pct": 35.77,
+          "top10": 160,
+          "top10_pct": 65.04,
+          "top20": 237,
+          "top20_pct": 96.34,
+          "mrr": 0.3235,
+          "gene_absent": 6,
+          "gene_absent_pct": 2.44,
+          "ndcg10": 0.3783,
+          "median_rank": 8.0
+        },
+        "new_gene_new_disease": {
+          "n": 250,
+          "top1": 22,
+          "top1_pct": 8.8,
+          "top3": 28,
+          "top3_pct": 11.2,
+          "top5": 34,
+          "top5_pct": 13.6,
+          "top10": 123,
+          "top10_pct": 49.2,
+          "top20": 232,
+          "top20_pct": 92.8,
+          "mrr": 0.1818,
+          "gene_absent": 16,
+          "gene_absent_pct": 6.4,
+          "ndcg10": 0.2241,
+          "median_rank": 10.0
+        }
+      }
     }
   }
 }

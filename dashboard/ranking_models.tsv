@@ -1,0 +1,6 @@
+# key	name	provider	method	path	format	color	color_dark	status	section
+aiva_ranking	AIVA	Mamidi Health	AIVA agent	results/ranking/Results_AIVA/aiva_ranking_predictions.jsonl	jsonl	#BD3027	#D04438	active	aiva
+haiku_ranking	Haiku 5.5	Anthropic	Claude agent	results/ranking/Results_Claude_Haiku_5_5/haiku_ranking_predictions.jsonl	jsonl	#6C8645	#6C8645	active	agent
+lirical_ranking	LIRICAL	Rule-based	Phenotype likelihood	results/ranking/Results_LIRICAL/lirical_rankings.jsonl	jsonl	#046C9A	#237CAB	active	automated
+clinprior_ranking	ClinPrior	Rule-based	Network propagation	results/ranking/Results_ClinPrior/clinprior_rankings.jsonl	jsonl	#E1AF00	#E1AF00	active	automated
+exomiser_ranking	Exomiser	Rule-based	Cross-species phenotype	results/ranking/Results_Exomiser/exomiser_rankings.jsonl	jsonl	#79402E	#A26552	active	automated
