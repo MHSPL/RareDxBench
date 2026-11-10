@@ -162,8 +162,10 @@ def build_ranking_data(repo_root: Path) -> dict:
         tool_metrics = csv_metrics.get(name, {})
         if not tool_metrics and name == "Haiku 5.5":
             tool_metrics = csv_metrics.get("Haiku 5.5", {})
-        if not tool_metrics and name == "AIVA":
-            tool_metrics = csv_metrics.get("AIVA", {})
+        if not tool_metrics and name == "Sonnet 5.5":
+            tool_metrics = csv_metrics.get("Sonnet 5.5", {})
+        if not tool_metrics and name in ("Gemini 3 Pro", "AIVA"):
+            tool_metrics = csv_metrics.get("Gemini 3 Pro") or csv_metrics.get("AIVA", {})
 
         if not tool_metrics and file_path.exists():
             computed = compute_jsonl_metrics(file_path)
@@ -184,12 +186,13 @@ def build_ranking_data(repo_root: Path) -> dict:
             "key": key,
             "name": name,
             "short_name": name,
-            "family": name if row["provider"] == "Rule-based" else ("Claude" if "Haiku" in name else "AIVA"),
+            "family": row["provider"] if row["provider"] in ("Anthropic", "Google", "OpenAI", "Rule-based") else "Other",
             "provider": row["provider"],
             "type": row["method"],
             "section": row.get("section", "automated"),
             "total_cohort": 1396,
             "evaluated_count": overall.get("n", 1396),
+            "is_full": True,
             "color": row.get("color", "#7FC0C6"),
             "color_dark": row.get("color_dark", row.get("color", "#7FC0C6")),
             "top1_pct": overall.get("top1_pct", 0.0),
