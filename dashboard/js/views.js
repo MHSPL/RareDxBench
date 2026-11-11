@@ -36,19 +36,20 @@
     seg("cmModeSeg", state.cmMode, (v) => { state.cmMode = v; renderConfusion(); });
     $("cmSub").textContent = `${state.cmMode === "count" ? "Cells are variant counts, shaded by share of the row." : "Cells are the percentage of the row."} Red cells are cross-direction errors (B/LB called P/LP, or the reverse).`;
     renderShownPicker("cm");
-    const ms = shownModels("cm");
+    // Leaderboard order: by section, ranked by overall F1 on the leaderboard's scale
+    const ms = bySection(lbColumns(shownModels("cm"), state.lbScale === "3").cols).flatMap(([, g]) => g);
     $("cmGrid").innerHTML = ms.map((m) => `<div><p class="cm-title">${mname(m, ms)}</p>${confusionTable(m)}</div>`).join("");
   }
 
   // ---------- criteria ----------
-  // Criteria down the side (grouped by evidence strength), models across (grouped
-  // by section, as on the leaderboard). Dot area is the share of evaluated variants
-  // citing the criterion, on one scale for both panels; rust for pathogenic
-  // evidence, green for benign.
+  // Criteria down the side (grouped by evidence strength), models across in the
+  // leaderboard's column order (by section, ranked by overall F1 on the leaderboard's
+  // scale). Dot area is the share of evaluated variants citing the criterion, on one
+  // scale for both panels; rust for pathogenic evidence, green for benign.
   const CG_R = 13;
   function renderCriteria() {
     renderShownPicker("crit");
-    const groups = bySection(shownModels("crit"));
+    const groups = bySection(lbColumns(shownModels("crit"), state.lbScale === "3").cols);
     const order = groups.flatMap(([, ms]) => ms);
     const groupStart = new Set(groups.slice(1).map(([, ms]) => ms[0].key));
     const gs = (m) => (groupStart.has(m.key) ? " lbt-gs" : "");
@@ -180,7 +181,8 @@
 
   function hashQuery() {
     const q = [];
-    if (state.tab === "leaderboard" && state.lbScale !== "3") q.push("s=" + state.lbScale);
+    // The confusion and criteria tabs order their models by the leaderboard scale, so their links keep it too
+    if (PICKER_OF[state.tab] && state.lbScale !== "3") q.push("s=" + state.lbScale);
     const p = PICKER_OF[state.tab];
     if (p && state[SHOWN[p].col]) q.push("show=" + state[SHOWN[p].col].map(encodeURIComponent).join(","));
     return q.length ? "?" + q.join("&") : "";
