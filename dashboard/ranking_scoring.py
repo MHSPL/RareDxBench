@@ -25,11 +25,11 @@ CATEGORY_LABELS = {
 }
 
 CATEGORY_COUNTS = {
-    "known_gene_disease": 422,
-    "known_gene_known_disease": 234,
-    "known_gene_new_disease": 244,
-    "new_gene_known_disease": 246,
-    "new_gene_new_disease": 250
+    "known_gene_disease": 100,
+    "known_gene_known_disease": 100,
+    "known_gene_new_disease": 100,
+    "new_gene_known_disease": 100,
+    "new_gene_new_disease": 100
 }
 
 
@@ -95,6 +95,12 @@ def compute_jsonl_metrics(jsonl_path: Path) -> dict:
             rank = item.get("rank_of_true_gene")
             if rank is None and "rank" in item:
                 rank = item["rank"]
+            if rank is None and "lirical_rank" in item:
+                rank = item["lirical_rank"]
+            if rank is None and "clinprior_rank" in item:
+                rank = item["clinprior_rank"]
+            if rank is None and "exomiser_rank" in item:
+                rank = item["exomiser_rank"]
             bc = item.get("broad_category")
             if not bc:
                 # Fallback to category
@@ -190,9 +196,9 @@ def build_ranking_data(repo_root: Path) -> dict:
             "provider": row["provider"],
             "type": row["method"],
             "section": row.get("section", "automated"),
-            "total_cohort": 1396,
-            "evaluated_count": overall.get("n", 1396),
-            "is_full": True,
+            "total_cohort": 500,
+            "evaluated_count": overall.get("n", 500),
+            "is_full": overall.get("n", 0) >= 500,
             "color": row.get("color", "#7FC0C6"),
             "color_dark": row.get("color_dark", row.get("color", "#7FC0C6")),
             "top1_pct": overall.get("top1_pct", 0.0),
@@ -222,8 +228,8 @@ def build_ranking_data(repo_root: Path) -> dict:
     return {
         "metadata": {
             "title": "RareDx Bench: Variant Ranking",
-            "subtitle": "Gene prioritization benchmark across 1,396 simulated rare-disease patient cases",
-            "total_cohort": 1396,
+            "subtitle": "Gene prioritization benchmark across 500 category-stratified rare-disease patient cases",
+            "total_cohort": 500,
             "categories": CATEGORY_ORDER,
             "category_labels": CATEGORY_LABELS,
             "category_counts": CATEGORY_COUNTS
