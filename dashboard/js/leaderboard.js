@@ -141,31 +141,33 @@
     new_gene_new_disease: "Novel gene & novel disease"
   };
   const RK_CAT_COUNTS = {
-    known_gene_disease: 422,
-    known_gene_known_disease: 234,
-    known_gene_new_disease: 244,
-    new_gene_known_disease: 246,
-    new_gene_new_disease: 250
+    known_gene_disease: 100,
+    known_gene_known_disease: 100,
+    known_gene_new_disease: 100,
+    new_gene_known_disease: 100,
+    new_gene_new_disease: 100
   };
 
   function rankingOverallRows() {
+    const totalN = D.ranking_data?.metadata?.total_cohort || 500;
     return [
-      { label: "Recall@1 (Top-1 accuracy)", n: 1396, get: (m) => m.top1_pct, strong: true },
-      { label: "Recall@5 (Top-5)", n: 1396, get: (m) => m.top5_pct, indent: true },
-      { label: "Recall@10 (Top-10)", n: 1396, get: (m) => m.top10_pct, indent: true },
-      { label: "Recall@20 (Top-20)", n: 1396, get: (m) => m.top20_pct, indent: true },
-      { label: "Mean Reciprocal Rank (MRR)", n: 1396, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
-      { label: "NDCG@10", n: 1396, get: (m) => m.ndcg10, fmt: (v) => Number(v).toFixed(4) },
-      { label: "Median Rank", n: 1396, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
+      { label: "Recall@1 (Top-1 accuracy)", n: totalN, get: (m) => m.top1_pct, strong: true },
+      { label: "Recall@5 (Top-5)", n: totalN, get: (m) => m.top5_pct, indent: true },
+      { label: "Recall@10 (Top-10)", n: totalN, get: (m) => m.top10_pct, indent: true },
+      { label: "Recall@20 (Top-20)", n: totalN, get: (m) => m.top20_pct, indent: true },
+      { label: "Mean Reciprocal Rank (MRR)", n: totalN, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
+      { label: "NDCG@10", n: totalN, get: (m) => m.ndcg10, fmt: (v) => Number(v).toFixed(4) },
+      { label: "Median Rank", n: totalN, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
     ];
   }
 
   function rankingCatRows(metricKey, suffix = "", fmt = null) {
-    const maxN = 422;
+    const counts = (D.ranking_data && D.ranking_data.metadata && D.ranking_data.metadata.category_counts) || RK_CAT_COUNTS;
+    const maxN = Math.max(...Object.values(counts)) || 100;
     return Object.keys(RK_CAT_LABELS).map((cat) => ({
       label: RK_CAT_LABELS[cat],
-      n: RK_CAT_COUNTS[cat],
-      bar: RK_CAT_COUNTS[cat] / maxN,
+      n: counts[cat] || 100,
+      bar: (counts[cat] || 100) / maxN,
       get: (m) => (m.per_category?.[cat] ? m.per_category[cat][metricKey] : null),
       fmt: fmt || ((v) => f1(v) + suffix)
     }));

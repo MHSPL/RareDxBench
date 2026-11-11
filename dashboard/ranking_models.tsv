@@ -1,8 +1,8 @@
 # key	name	provider	method	path	format	color	color_dark	status	section
-aiva_opus	Opus 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Opus_5_5/opus_500_predictions.jsonl	jsonl	#BD3027	#D04438	active	aiva
+# aiva_opus	Opus 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Opus_5_5/opus_500_predictions.jsonl	jsonl	#BD3027	#D04438	active	aiva
 aiva_sonnet	Sonnet 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Sonnet_5_5/sonnet_500_predictions.jsonl	jsonl	#046C9A	#237CAB	active	aiva
 aiva_gemini_pro	Gemini 3 Pro	Google	AIVA agent	results/ranking/Results_Gemini_3_Pro/gemini_pro_500_predictions.jsonl	jsonl	#E1AF00	#E1AF00	active	aiva
-aiva_gpt_sol	GPT-6.1 Sol	OpenAI	AIVA agent	results/ranking/Results_GPT_6_1_Sol/sol_500_predictions.jsonl	jsonl	#0A9F9D	#0A9F9D	active	aiva
+# aiva_gpt_sol	GPT-6.1 Sol	OpenAI	AIVA agent	results/ranking/Results_GPT_6_1_Sol/sol_500_predictions.jsonl	jsonl	#0A9F9D	#0A9F9D	active	aiva
 aiva_haiku	Haiku 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Haiku_5_5/haiku_500_predictions.jsonl	jsonl	#6C8645	#6C8645	active	aiva
 baseline_lirical	LIRICAL	Rule-based	Phenotype likelihood	results/ranking/Results_LIRICAL/lirical_500_predictions.jsonl	jsonl	#5785C1	#5785C1	active	automated
 baseline_clinprior	ClinPrior	Rule-based	Network propagation	results/ranking/Results_ClinPrior/clinprior_500_predictions.jsonl	jsonl	#BD3027	#D04438	active	automated
