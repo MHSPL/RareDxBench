@@ -74,6 +74,18 @@ BROAD_CATEGORIES = [
 ]
 
 
+def is_fatal_billing_error(status_code: int, text: str) -> bool:
+    """Detect strict billing lockout (HTTP 402 or billing error markers)."""
+    if status_code == 402:
+        return True
+    lower = text.lower()
+    billing_markers = [
+        "insufficient_quota", "out_of_credits", "billing account",
+        "payment required", "exceeded your current quota", "billing_not_active"
+    ]
+    return any(m in lower for m in billing_markers)
+
+
 def normalize_symbol(gene: str) -> str:
     """Extract and normalize HGNC symbol from string."""
     if not gene:
@@ -185,19 +197,27 @@ async def call_aiva(client: httpx.AsyncClient, api_url: str, api_key: str, model
         try:
             async with client.stream("POST", api_url, data=data, headers=headers, timeout=180.0) as resp:
                 if resp.status_code == 429:
-                    delay = 10 * attempt
-                    print(f"  [429 Rate Limit] Backing off {delay}s (attempt {attempt}/{max_retries})...", file=sys.stderr)
+                    delay = 15 * attempt
+                    print(f"  [429 Rate Limit] Backing off {delay}s (attempt {attempt}/{max_retries})...", file=sys.stderr, flush=True)
                     await asyncio.sleep(delay)
                     continue
 
+                if is_fatal_billing_error(resp.status_code, ""):
+                    body = (await resp.aread()).decode("utf-8", errors="replace")
+                    print(f"FATAL BILLING ERROR (HTTP {resp.status_code}): {body[:300]}", file=sys.stderr, flush=True)
+                    raise SystemExit(f"Fatal billing error (HTTP {resp.status_code}): {body[:200]}")
+
                 if 500 <= resp.status_code < 600:
                     delay = 5 * attempt
-                    print(f"  [HTTP {resp.status_code}] Retrying in {delay}s (attempt {attempt}/{max_retries})...", file=sys.stderr)
+                    print(f"  [HTTP {resp.status_code}] Retrying in {delay}s (attempt {attempt}/{max_retries})...", file=sys.stderr, flush=True)
                     await asyncio.sleep(delay)
                     continue
 
                 if resp.status_code != 200:
                     body = (await resp.aread()).decode("utf-8", errors="replace")
+                    if is_fatal_billing_error(resp.status_code, body):
+                        print(f"FATAL BILLING ERROR (HTTP {resp.status_code}): {body[:300]}", file=sys.stderr, flush=True)
+                        raise SystemExit(f"Fatal billing error (HTTP {resp.status_code}): {body[:200]}")
                     print(f"  API error {resp.status_code}: {body[:300]}", file=sys.stderr)
                     return None
 

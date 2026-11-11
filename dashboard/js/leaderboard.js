@@ -178,7 +178,7 @@
     $("ovRankSub").innerHTML = `Recall@K and Mean Reciprocal Rank (MRR) across rare disease cases for all ${rkCols.length} models and baselines. Models run through AIVA (Sonnet 5.5, Gemini 3 Pro, Haiku 5.5) are compared against automated phenotype tools. The best value in each row is shaded in that model's colour.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">See the full ranking leaderboard</button> for category breakdowns.</span>`;
     $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
     drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows()]], false, "Cases");
-    $("ovRankNote").innerHTML = "MRR denominator is n_total (cases where true gene was absent contribute 0). Sonnet 5.5 was scored on n=500 stratified cases (100 per category); other models were scored on the full n=1,396 cohort. Recall@K is the percentage of cases where the true causal gene was ranked &le; K.";
+    $("ovRankNote").innerHTML = "MRR denominator is n_total (cases where true gene was absent contribute 0). Sonnet 5.5 and Gemini 3 Pro were scored on n=500 stratified cases (100 per category); other models were scored on the full n=1,396 cohort. Recall@K is the percentage of cases where the true causal gene was ranked &le; K.";
   }
 
   function renderRanking() {
@@ -197,7 +197,7 @@
     drawLbTable($("rkTable"), rkCols, rkCols, sections, false, "Cases");
     $("rkNote").innerHTML = [
       "MRR denominator is n_total (cases where true gene was absent contribute 0).",
-      "Sonnet 5.5 was evaluated on a category-stratified sample of 500 cases (100 per category, seed=42); Gemini 3 Pro, Haiku 5.5, LIRICAL, ClinPrior and Exomiser were evaluated on the full 1,396-patient cohort.",
+      "Sonnet 5.5 and Gemini 3 Pro were evaluated on a category-stratified sample of 500 cases (100 per category, seed=42); Haiku 5.5, LIRICAL, ClinPrior and Exomiser were evaluated on the full 1,396-patient cohort.",
       "Categories test model generalisation from established gene-disease pairs to novel diseases and entirely novel disease genes without existing KG connections.",
       "Recall@K is the percentage of cases where the true causal gene was ranked &le; K."
     ].join("<br>");
