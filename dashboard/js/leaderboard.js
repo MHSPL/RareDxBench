@@ -141,15 +141,15 @@
     new_gene_new_disease: "Novel gene & novel disease"
   };
   const RK_CAT_COUNTS = {
-    known_gene_disease: 100,
-    known_gene_known_disease: 100,
-    known_gene_new_disease: 100,
-    new_gene_known_disease: 100,
-    new_gene_new_disease: 100
+    known_gene_disease: 422,
+    known_gene_known_disease: 234,
+    known_gene_new_disease: 244,
+    new_gene_known_disease: 246,
+    new_gene_new_disease: 250
   };
 
   function rankingOverallRows() {
-    const totalN = D.ranking_data?.metadata?.total_cohort || 500;
+    const totalN = D.ranking_data?.metadata?.total_cohort || 1396;
     return [
       { label: "Recall@1 (Top-1 accuracy)", n: totalN, get: (m) => m.top1_pct, strong: true },
       { label: "Recall@5 (Top-5)", n: totalN, get: (m) => m.top5_pct, indent: true },
@@ -180,7 +180,8 @@
     $("ovRankSub").innerHTML = `Recall@K and Mean Reciprocal Rank (MRR) across rare disease cases for all ${rkCols.length} models and baselines. Models run through AIVA (Sonnet 5.5, Gemini 3 Pro, Haiku 5.5) are compared against automated phenotype tools. The best value in each row is shaded in that model's colour.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">See the full ranking leaderboard</button> for category breakdowns.</span>`;
     $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
     drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows()]], false, "Cases");
-    $("ovRankNote").innerHTML = "MRR denominator is n_total (cases where true gene was absent contribute 0). All models were evaluated on the canonical n=500 category-stratified cohort (100 per category, seed=42). Recall@K is the percentage of cases where the true causal gene was ranked &le; K.";
+    const nCohort = D.ranking_data?.metadata?.total_cohort || 1396;
+    $("ovRankNote").innerHTML = `MRR denominator is n_total (cases where true gene was absent contribute 0). All models were evaluated across all ${nCohort} rare-disease patient cases. Recall@K is the percentage of cases where the true causal gene was ranked &le; K.`;
   }
 
   function renderRanking() {
@@ -188,7 +189,7 @@
     if (!rk || !rk.models || !rk.models.length || !$("rkTable")) return;
     const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
     $("rkTitle").textContent = "Variant ranking: Gene prioritization across rare disease cases";
-    $("rkSub").innerHTML = "Recall@K and Mean Reciprocal Rank (MRR) across simulated rare-disease patient cases, evaluated overall and across 5 gene and disease familiarity categories. Models run through the AIVA agent (Claude Sonnet 5.5, Gemini 3 Pro, Claude Haiku 5.5) are compared against classical rule-based phenotype tools (LIRICAL, ClinPrior, Exomiser). The best value in each row is shaded in that model's colour.";
+    $("rkSub").innerHTML = "Recall@K and Mean Reciprocal Rank (MRR) across simulated rare-disease patient cases, evaluated overall and across 5 gene and disease familiarity categories. Models run through the AIVA agent (GPT-6.1 Sol, Claude Sonnet 5.5, Claude Opus 5.5, Gemini 3 Pro, Claude Haiku 5.5) are compared against classical rule-based phenotype tools (LIRICAL, ClinPrior, Exomiser). The best value in each row is shaded in that model's colour.";
 
     const sections = [
       ["Overall performance", rankingOverallRows()],
@@ -197,9 +198,10 @@
       ["Mean Reciprocal Rank (MRR) by category", rankingCatRows("mrr", "", (v) => Number(v).toFixed(4))]
     ];
     drawLbTable($("rkTable"), rkCols, rkCols, sections, false, "Cases");
+    const rkCohort = D.ranking_data?.metadata?.total_cohort || 1396;
     $("rkNote").innerHTML = [
       "MRR denominator is n_total (cases where true gene was absent contribute 0).",
-      "All models were evaluated on the canonical category-stratified sample of 500 cases (100 per category, seed=42).",
+      `All models were evaluated across all ${rkCohort} rare-disease patient cases.`,
       "Categories test model generalisation from established gene-disease pairs to novel diseases and entirely novel disease genes without existing KG connections.",
       "Recall@K is the percentage of cases where the true causal gene was ranked &le; K."
     ].join("<br>");

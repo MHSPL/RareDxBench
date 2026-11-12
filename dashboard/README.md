@@ -36,7 +36,7 @@ Three sections: **Overall** (`#overall`), **Variant Classification**
 classification leaderboard cut to its Overall, P/LP, VUS and B/LB rows
 (3-class, every model, no model links or filters), paired with the variant
 ranking snapshot displaying Recall@1, Recall@5, Recall@10, Recall@20, MRR,
-NDCG@10 and Median Rank across the canonical 500 category-stratified rare disease cases.
+NDCG@10 and Median Rank across all 1,396 rare disease cases.
 
 **Variant Ranking** (`#ranking`) presents the full gene prioritization
 leaderboard with overall performance and category breakdowns across five
