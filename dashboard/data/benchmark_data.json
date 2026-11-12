@@ -2,7 +2,7 @@
   "metadata": {
     "title": "RareDx Bench",
     "subtitle": "An open rare disease diagnostics benchmark for any AI model or classical tool, scored against ClinGen expert classifications",
-    "evaluation_date": "November 11, 2026",
+    "evaluation_date": "November 12, 2026",
     "total_variants": 2894,
     "categories": [
       "Cancer Predisposition",
