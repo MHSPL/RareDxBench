@@ -1,0 +1,63 @@
+{
+  "model": "anthropic/claude-sonnet-5-5",
+  "ablation": "hpo+vcf+genes+disease",
+  "n_evaluated": 500,
+  "sample_stratified": true,
+  "metrics": {
+    "n_patients": 500,
+    "no_prediction": 0,
+    "retention_rate": 0.984,
+    "mrr": 0.8304,
+    "ndcg@10": 0.8569,
+    "mean_rank": 1.95,
+    "median_rank": 1.0,
+    "recall@1": 0.76,
+    "recall@5": 0.912,
+    "recall@10": 0.948,
+    "recall@20": 0.984,
+    "recall@50": 0.984,
+    "per_category": {
+      "new_gene_known_disease": {
+        "n": 100,
+        "recall@1": 0.72,
+        "recall@5": 0.86,
+        "recall@10": 0.95,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "known_gene_new_disease": {
+        "n": 100,
+        "recall@1": 0.79,
+        "recall@5": 0.98,
+        "recall@10": 0.99,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "known_gene_disease": {
+        "n": 100,
+        "recall@1": 0.87,
+        "recall@5": 0.97,
+        "recall@10": 0.98,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "new_gene_new_disease": {
+        "n": 100,
+        "recall@1": 0.67,
+        "recall@5": 0.89,
+        "recall@10": 0.92,
+        "recall@20": 0.99,
+        "recall@50": 0.99
+      },
+      "known_gene_known_disease": {
+        "n": 100,
+        "recall@1": 0.75,
+        "recall@5": 0.86,
+        "recall@10": 0.9,
+        "recall@20": 0.93,
+        "recall@50": 0.93
+      }
+    }
+  },
+  "timestamp": "2026-11-11T13:46:24.869276+00:00"
+}

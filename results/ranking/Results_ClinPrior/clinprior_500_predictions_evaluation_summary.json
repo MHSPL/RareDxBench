@@ -1,0 +1,62 @@
+{
+  "model": "clinprior",
+  "n_evaluated": 500,
+  "sample_stratified": true,
+  "metrics": {
+    "n_patients": 500,
+    "no_prediction": 9,
+    "retention_rate": 0.982,
+    "mrr": 0.5508,
+    "ndcg@10": 0.5876,
+    "mean_rank": 317.1,
+    "median_rank": 2.0,
+    "recall@1": 0.46,
+    "recall@5": 0.66,
+    "recall@10": 0.724,
+    "recall@20": 0.778,
+    "recall@50": 0.828,
+    "per_category": {
+      "known_gene_disease": {
+        "n": 100,
+        "recall@1": 0.33,
+        "recall@5": 0.62,
+        "recall@10": 0.69,
+        "recall@20": 0.77,
+        "recall@50": 0.84
+      },
+      "known_gene_known_disease": {
+        "n": 100,
+        "recall@1": 0.29,
+        "recall@5": 0.54,
+        "recall@10": 0.59,
+        "recall@20": 0.66,
+        "recall@50": 0.71
+      },
+      "known_gene_new_disease": {
+        "n": 100,
+        "recall@1": 0.44,
+        "recall@5": 0.63,
+        "recall@10": 0.69,
+        "recall@20": 0.77,
+        "recall@50": 0.83
+      },
+      "new_gene_known_disease": {
+        "n": 100,
+        "recall@1": 0.5,
+        "recall@5": 0.68,
+        "recall@10": 0.77,
+        "recall@20": 0.8,
+        "recall@50": 0.86
+      },
+      "new_gene_new_disease": {
+        "n": 100,
+        "recall@1": 0.74,
+        "recall@5": 0.83,
+        "recall@10": 0.88,
+        "recall@20": 0.89,
+        "recall@50": 0.9
+      }
+    }
+  },
+  "timestamp": "2026-11-10T21:00:00+00:00"
+}

@@ -20,6 +20,7 @@ venv/
 !data/*/*.json
 !results/*/**/*.jsonl
 !results/*/**/*.json
+!results/ranking/*.csv
 !dashboard/data/*.json
 results/classification/Results_Claude_Sonnet_5_5_Analysis_rerun/partial_1454/
 

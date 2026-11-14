@@ -168,7 +168,7 @@
     confusion: renderConfusion,
     criteria: renderCriteria,
     overall: renderOverall,
-    ranking: () => {}
+    ranking: renderRanking
   };
   // Overall and Ranking are single-view sections; every other tab belongs to Classification.
   const sectionOf = (tab) => (tab === "ranking" || tab === "overall" ? tab : "classification");
