@@ -186,7 +186,9 @@
   function renderRanking() {
     const rk = D.ranking_data;
     if (!rk || !rk.models || !rk.models.length || !$("rkTable")) return;
-    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
+    renderShownPicker("rk");
+    const shown = rkShown();
+    const rkCols = shown.slice().sort((a, b) => b.mrr - a.mrr);
     $("rkTitle").textContent = "Variant ranking: 311 challenge cases";
     $("rkSub").innerHTML = "Recall@K and Mean Reciprocal Rank (MRR) across 311 hard & discriminative rare disease patient cases. Best in row is highlighted.";
 
@@ -194,7 +196,11 @@
       ["Overall performance", rankingOverallRows()],
       ["Recall@1 by disease & gene familiarity category", rankingCatRows("top1_pct")]
     ];
-    drawLbTable($("rkTable"), rkCols, rkCols, sections, false, "Cases");
+    if (!rkCols.length) {
+      $("rkTable").innerHTML = `<tbody><tr><td class="empty">No models selected. Choose models above.</td></tr></tbody>`;
+    } else {
+      drawLbTable($("rkTable"), rkCols, rkCols, sections, false, "Cases");
+    }
     $("rkNote").innerHTML = "Recall@K: percentage of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
   }
 

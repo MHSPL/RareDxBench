@@ -170,6 +170,25 @@
     toast(`Downloaded ${int(t.rows.length)} variants with calls from ${ms.length} models.`);
   }
 
+  // ---------- ranking cases CSV ----------
+  // Every 311 challenge case with causal gene and model ranks.
+  function downloadCasesCsv() {
+    const t = D.ranking_data?.cases_table;
+    if (!t || !t.rows || !t.rows.length) { toast("Ranking cases data is not available in this build."); return; }
+    const rkModels = (D.ranking_data.models || []).filter((m) => t.ranks && t.ranks[m.key]);
+    const head = [...t.columns, ...rkModels.map((m) => m.name)];
+    const lines = [head.map(csvCell).join(",")];
+    t.rows.forEach((r, i) => {
+      const modelRanks = rkModels.map((m) => {
+        const val = t.ranks[m.key] ? t.ranks[m.key][i] : null;
+        return val == null ? "" : val;
+      });
+      lines.push([...r, ...modelRanks].map(csvCell).join(","));
+    });
+    download(new Blob([lines.join("\r\n") + "\r\n"], { type: "text/csv" }), `raredxbench-ranking-cases-${t.rows.length}.csv`);
+    toast(`Downloaded ${int(t.rows.length)} ranking cases with ranks from ${rkModels.length} models.`);
+  }
+
   // ---------- tabs & URL ----------
   const RENDER = {
     leaderboard: renderLeaderboard,
@@ -190,7 +209,7 @@
   function hashQuery() {
     const q = [];
     // The confusion and criteria tabs order their models by the leaderboard scale, so their links keep it too
-    if (PICKER_OF[state.tab] && state.lbScale !== "2") q.push("s=" + state.lbScale);
+    if (PICKER_OF[state.tab] && state.tab !== "ranking" && state.lbScale !== "2") q.push("s=" + state.lbScale);
     const p = PICKER_OF[state.tab];
     if (p && state[SHOWN[p].col]) q.push("show=" + state[SHOWN[p].col].map(encodeURIComponent).join(","));
     return q.length ? "?" + q.join("&") : "";
@@ -206,8 +225,9 @@
     if (h.s === "2" || h.s === "3" || h.s === "4" || h.s === "5") state.lbScale = (h.s === "4" || h.s === "5") ? "4" : "2";
     const p = PICKER_OF[h.tab];
     if (p) {
+      const pool = modelPool(p);
       const keys = (h.show || "").split(",").filter((k) => byKey(k));
-      state[SHOWN[p].col] = keys.length && keys.length < D.models.length ? keys : null;
+      state[SHOWN[p].col] = keys.length && keys.length < pool.length ? keys : null;
     }
     state.tab = RENDER[h.tab] ? h.tab : "overall";
   }

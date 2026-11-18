@@ -75,14 +75,29 @@
           <button type="button" class="btn picker-btn" id="critAllBtn" hidden>Show all</button>
         </div>
       </div>
+      <div class="vt rk-only" data-for="ranking">
+        <div class="lb-pick">
+          <div class="picker">
+            <button type="button" class="btn picker-btn" id="rkPickBtn" aria-haspopup="true" aria-expanded="false">Choose models</button>
+            <div class="picker-pop" id="rkPickPop" hidden>
+              <input type="search" id="rkPickQ" placeholder="Search models" aria-label="Search models">
+              <div class="picker-list" id="rkPickList"></div>
+              <p class="picker-note">The ranking leaderboard shows only the selected models.</p>
+            </div>
+          </div>
+          <button type="button" class="btn picker-btn" id="rkAllBtn" hidden>Show all</button>
+        </div>
+      </div>
     </div>
-    <nav class="tabs" role="tablist" aria-label="Classification views">
-      <button class="tab" role="tab" data-tab="leaderboard">Leaderboard</button>
-      <button class="tab" role="tab" data-tab="confusion">Confusion matrices</button>
-      <button class="tab" role="tab" data-tab="criteria">ACMG criteria</button>
+    <nav class="tabs" role="tablist" aria-label="Views">
+      <button class="tab cls-only" role="tab" data-tab="leaderboard">Leaderboard</button>
+      <button class="tab cls-only" role="tab" data-tab="confusion">Confusion matrices</button>
+      <button class="tab cls-only" role="tab" data-tab="criteria">ACMG criteria</button>
+      <button class="tab rk-only" role="tab" data-tab="ranking">Leaderboard</button>
     </nav>
     <div class="bench-actions">
       <button class="btn btn-icon cls-only" id="csvBtn" type="button" title="Every benchmark variant with the expert classification and each model's call"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>Variants CSV</button>
+      <button class="btn btn-icon rk-only" id="rkCsvBtn" type="button" title="Download 311 ranking benchmark cases with causal gene and model ranks"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>Cases CSV</button>
     </div>
   </div>
 </div>
@@ -252,6 +267,7 @@ window.BENCHMARK_DATA = __BENCHMARK_DATA__;
   document.querySelectorAll(".tab").forEach((b) => (b.onclick = () => setTab(b.dataset.tab)));
   document.querySelectorAll(".section-tab").forEach((b) => (b.onclick = () => setTab(b.dataset.section === "classification" ? state.clsTab || "leaderboard" : b.dataset.section)));
   $("csvBtn").onclick = downloadVariantsCsv;
+  if ($("rkCsvBtn")) $("rkCsvBtn").onclick = downloadCasesCsv;
   window.addEventListener("hashchange", () => { applyHash(); pruneShown(); setTab(state.tab); });
   let resizeT;
   window.addEventListener("resize", () => { clearTimeout(resizeT); resizeT = setTimeout(() => { if (RENDER[state.tab]) RENDER[state.tab](); }, 150); });

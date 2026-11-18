@@ -252,6 +252,98 @@ def build_ranking_data(repo_root: Path) -> dict:
 
     models_311.sort(key=lambda m: m["mrr"], reverse=True)
 
+    # -------------------------------------------------------------------------
+    # 2. BUILD 311 CASES TABLE FOR CSV EXPORT
+    # -------------------------------------------------------------------------
+    ans_path = repo_root / "data" / "ranking" / "ranking_answers_311.jsonl"
+    ans_rows_by_pid = {}
+    if ans_path.exists():
+        with open(ans_path, "r", encoding="utf-8") as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                item = json.loads(line)
+                pid = item.get("id") or item.get("patient_id")
+                if pid is not None:
+                    ans_rows_by_pid[int(pid)] = item
+
+    tier_rows_by_pid = {int(r["patient_id"]): r for r in tiers_rows if int(r["patient_id"]) in pids_311}
+
+    model_ranks_map = {m["key"]: {} for m in registry}
+    for row in registry:
+        key = row["key"]
+        rel_path = row["path"]
+        file_path = repo_root / rel_path
+        if file_path.exists():
+            with open(file_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    item = json.loads(line)
+                    pid = item.get("patient_id") or item.get("id")
+                    if pid is not None:
+                        pid = int(pid)
+                        if pid in pids_311:
+                            rank = item.get("rank_of_true_gene")
+                            if rank is None and "rank" in item: rank = item["rank"]
+                            if rank is None and "lirical_rank" in item: rank = item["lirical_rank"]
+                            if rank is None and "clinprior_rank" in item: rank = item["clinprior_rank"]
+                            if rank is None and "exomiser_rank" in item: rank = item["exomiser_rank"]
+                            if rank is not None:
+                                try:
+                                    model_ranks_map[key][pid] = int(rank)
+                                except (ValueError, TypeError):
+                                    pass
+        if key in TIERS_COL_MAP:
+            col = TIERS_COL_MAP[key]
+            for pid in pids_311:
+                if pid in tier_rows_by_pid and tier_rows_by_pid[pid].get(col):
+                    try:
+                        val = int(tier_rows_by_pid[pid][col])
+                        if pid not in model_ranks_map[key]:
+                            model_ranks_map[key][pid] = val
+                    except (ValueError, TypeError):
+                        pass
+
+    cases_columns = [
+        "patient_id",
+        "disease_id",
+        "category",
+        "curated_tier",
+        "true_gene_symbol",
+        "true_gene_ensg",
+        "candidate_gene_count"
+    ]
+    cases_rows = []
+    sorted_pids = sorted(list(pids_311))
+    for pid in sorted_pids:
+        tr = tier_rows_by_pid.get(pid, {})
+        ar = ans_rows_by_pid.get(pid, {})
+        bc = tr.get("broad_category") or ar.get("broad_category", "")
+        cat_label = CATEGORY_LABELS.get(bc, bc)
+        cand_genes = ar.get("all_candidate_genes", [])
+        cand_count = len(cand_genes) if cand_genes else (len(ar.get("distractor_genes", {})) + 1 if "distractor_genes" in ar else None)
+        cases_rows.append([
+            pid,
+            tr.get("disease_id") or ar.get("disease_id", ""),
+            cat_label,
+            tr.get("curated_tier", ""),
+            tr.get("true_gene_symbol", ""),
+            tr.get("true_gene_ensg", ""),
+            cand_count
+        ])
+
+    cases_ranks = {
+        m["key"]: [model_ranks_map[m["key"]].get(pid) for pid in sorted_pids]
+        for m in models_311
+    }
+
+    cases_table = {
+        "columns": cases_columns,
+        "rows": cases_rows,
+        "ranks": cases_ranks
+    }
+
     return {
         "metadata": {
             "title": "RareDx Bench: Variant Ranking",
@@ -263,4 +355,5 @@ def build_ranking_data(repo_root: Path) -> dict:
         },
         "models": models_311,
         "categories_data": categories_311,
+        "cases_table": cases_table,
     }

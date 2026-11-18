@@ -33,9 +33,14 @@
 
 /* Leaderboard landing */
 
-/* Overall and Ranking sections hide the classification chrome */
-body[data-section="ranking"] .tab-bar, body[data-section="ranking"] .cls-only, body[data-section="ranking"] #archivedNote,
-body[data-section="overall"] .tab-bar, body[data-section="overall"] .cls-only { display: none; }
+/* Overall section hides the view bar chrome */
+body[data-section="overall"] .tab-bar { display: none; }
+
+/* Section chrome visibility */
+body[data-section="ranking"] .cls-only,
+body[data-section="overall"] .cls-only,
+body[data-section="ranking"] #archivedNote { display: none; }
+body:not([data-section="ranking"]) .rk-only { display: none; }
 .ov-link { appearance: none; border: 0; background: none; padding: 0; color: var(--accent); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .ov-link:hover { color: color-mix(in srgb, var(--accent) 80%, #000); }
 .rank-empty { padding: 48px 24px; text-align: center; }
