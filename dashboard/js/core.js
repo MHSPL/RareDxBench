@@ -1,7 +1,7 @@
   let D = window.BENCHMARK_DATA;
-  const LABELS = ["Pathogenic", "Likely Pathogenic", "Uncertain Significance", "Likely Benign", "Benign"];
+  const LABELS = ["Pathogenic", "Likely Pathogenic", "Likely Benign", "Benign"];
   const ABBR = { "Pathogenic": "P", "Likely Pathogenic": "LP", "Uncertain Significance": "VUS", "Likely Benign": "LB", "Benign": "B" };
-  const DIR_LABEL = { pathogenic: "P/LP", vus: "VUS", benign: "B/LB" };
+  const DIR_LABEL = { pathogenic: "P/LP", benign: "B/LB" };
   const FAMILY_SHORT = {};
   const PROVIDER_ORDER = ["Anthropic", "OpenAI", "Google", "Rule-based", "Other"];
   // [code, definition, short label shown beside the code]
@@ -46,11 +46,10 @@
 
   const state = {
     tab: "overall", clsTab: "leaderboard",
-    scatterScale: "3", lbScale: "3", lbCols: null,
+    scatterScale: "2", lbScale: "2", lbCols: null,
     cmCols: null, critCols: null,
-    cmScale: "5", cmMode: "count",
-    agree: "dir_pct",
-    rkCohort: "challenge_311", ovRkCohort: "challenge_311"
+    cmScale: "4", cmMode: "count",
+    agree: "dir_pct"
   };
 
   // ---------- helpers ----------
@@ -117,7 +116,7 @@
     $("sfYear").textContent = String(new Date().getFullYear());
     // The note under the figures only appears when a model is carried over from an earlier build.
     const archived = D.models.filter((m) => m.archived);
-    $("archivedNote").innerHTML = archived.length ? `${archived.map((m) => esc(m.name)).join(" and ")} ${archived.length > 1 ? "are" : "is"} carried over from an earlier build because the raw results are not in this repository; variant-level comparisons with later runs are unavailable for ${archived.length > 1 ? "them" : "it"}.` : "";
+    $("archivedNote").innerHTML = archived.length ? "* Carried over from an earlier build without raw variant-level results." : "";
   }
 
   // ---------- model selection ----------
@@ -152,12 +151,14 @@
   const sectionLabel = (m) => SECTIONS.find(([k]) => k === sectionKey(m))[1];
   const bySection = (models) => SECTIONS.map(([k, label]) => [label, models.filter((m) => sectionKey(m) === k), k]).filter(([, ms]) => ms.length);
 
-  const collapse3 = (m5) => {
-    const idx = [0, 0, 1, 2, 2];
-    const out = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    m5.forEach((row, i) => row.forEach((v, j) => (out[idx[i]][idx[j]] += v)));
+  const collapse2 = (m4) => {
+    const rowIdx = [0, 0, 1, 1];
+    const colIdx = [0, 0, 1, 1, 2];
+    const out = [[0, 0, 0], [0, 0, 0]];
+    m4.forEach((row, i) => row.forEach((v, j) => (out[rowIdx[i]][colIdx[j]] += v)));
     return out;
   };
+  const collapse3 = collapse2;
 
   const per1k = (m) => (m.evaluated_count ? (m.critical_error_count / m.evaluated_count) * 1000 : 0);
   const metricVal = (m, k) => (k === "per1k" ? per1k(m) : m[k] ?? 0);

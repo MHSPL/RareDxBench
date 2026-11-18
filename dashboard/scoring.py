@@ -11,6 +11,23 @@ from scripts.categories import CATEGORY_ORDER
 from scripts.metrics import get_direction, calculate_class_metrics, calculate_direction_metrics, calculate_macro_f1
 from dashboard.loaders import criterion_points
 
+CLASSIFICATION_LABELS_4 = [
+    "Pathogenic",
+    "Likely Pathogenic",
+    "Likely Benign",
+    "Benign",
+]
+DIRECTION_LABELS_2 = ["pathogenic", "benign"]
+
+CLASSIFICATION_LABELS_COLS = [
+    "Pathogenic",
+    "Likely Pathogenic",
+    "Likely Benign",
+    "Benign",
+    "Uncertain Significance",
+]
+DIRECTION_LABELS_COLS = ["pathogenic", "benign", "vus"]
+
 ALL_CRITERIA = sorted({
     "PVS1", "PS1", "PS2", "PS3", "PS4",
     "PM1", "PM2", "PM3", "PM4", "PM5", "PM6",
@@ -20,29 +37,32 @@ ALL_CRITERIA = sorted({
 })
 
 
-def macro_f1_directional(gt_3: list[str], pred_3: list[str]) -> float:
-    """Macro F1 over the three directions present in the ground truth."""
-    m = calculate_direction_metrics(gt_3, pred_3, DIRECTION_LABELS)
-    f1s = [m[d.lower()]["f1"] for d in DIRECTION_LABELS if m.get(d.lower(), {}).get("support", 0) > 0]
+def macro_f1_directional(gt_2: list[str], pred_2: list[str]) -> float:
+    """Macro F1 over the two directions (pathogenic, benign)."""
+    m = calculate_direction_metrics(gt_2, pred_2, DIRECTION_LABELS_2)
+    f1s = [m[d.lower()]["f1"] for d in DIRECTION_LABELS_2 if m.get(d.lower(), {}).get("support", 0) > 0]
     return sum(f1s) / len(f1s) if f1s else 0.0
 
 
-def confusion_5(gt_5, pred_5):
-    cm = [[0] * 5 for _ in range(5)]
-    for g, p in zip(gt_5, pred_5):
-        if g in CLASSIFICATION_LABELS and p in CLASSIFICATION_LABELS:
-            cm[CLASSIFICATION_LABELS.index(g)][CLASSIFICATION_LABELS.index(p)] += 1
+def confusion_5(gt_4, pred_5):
+    # 4 expert rows (P, LP, LB, B), 5 model columns (P, LP, LB, B, VUS non-calls)
+    cm = [[0] * len(CLASSIFICATION_LABELS_COLS) for _ in range(len(CLASSIFICATION_LABELS_4))]
+    for g, p in zip(gt_4, pred_5):
+        if g in CLASSIFICATION_LABELS_4 and p in CLASSIFICATION_LABELS_COLS:
+            cm[CLASSIFICATION_LABELS_4.index(g)][CLASSIFICATION_LABELS_COLS.index(p)] += 1
     return cm
 
 
-def confusion_3(gt_3, pred_3):
-    cm = [[0] * 3 for _ in range(3)]
-    d_lower_labels = [d.lower() for d in DIRECTION_LABELS]
-    for g, p in zip(gt_3, pred_3):
+def confusion_3(gt_2, pred_2):
+    # 2 expert rows (pathogenic, benign), 3 model columns (pathogenic, benign, vus non-calls)
+    cm = [[0] * len(DIRECTION_LABELS_COLS) for _ in range(len(DIRECTION_LABELS_2))]
+    d_lower_cols = [d.lower() for d in DIRECTION_LABELS_COLS]
+    d_lower_rows = [d.lower() for d in DIRECTION_LABELS_2]
+    for g, p in zip(gt_2, pred_2):
         g_low = (g or "").lower()
         p_low = (p or "").lower()
-        if g_low in d_lower_labels and p_low in d_lower_labels:
-            cm[d_lower_labels.index(g_low)][d_lower_labels.index(p_low)] += 1
+        if g_low in d_lower_rows and p_low in d_lower_cols:
+            cm[d_lower_rows.index(g_low)][d_lower_cols.index(p_low)] += 1
     return cm
 
 
@@ -68,12 +88,15 @@ def _pct(metrics: dict, key: str) -> float:
 
 def model_summary(m_key, m_info, gt_5, pred_5, gt_3, pred_3, n_eval, total_cohort, false_pathogenic, false_benign, avg_time):
     exact_matches = sum(1 for g, p in zip(gt_5, pred_5) if g == p and g != "")
-    directional_matches = sum(1 for g, p in zip(gt_3, pred_3) if g == p and g in DIRECTION_LABELS)
+    directional_matches = sum(1 for g, p in zip(gt_3, pred_3) if g == p and g in DIRECTION_LABELS_2)
 
-    per_class_5 = calculate_class_metrics(gt_5, pred_5, CLASSIFICATION_LABELS)
-    per_class_3 = calculate_direction_metrics(gt_3, pred_3, DIRECTION_LABELS)
-    valid_3_f1s = [per_class_3[d.lower()]["f1"] for d in DIRECTION_LABELS if per_class_3.get(d.lower(), {}).get("support", 0) > 0]
+    per_class_5 = calculate_class_metrics(gt_5, pred_5, CLASSIFICATION_LABELS_4)
+    per_class_3 = calculate_direction_metrics(gt_3, pred_3, DIRECTION_LABELS_2)
+    valid_3_f1s = [per_class_3[d.lower()]["f1"] for d in DIRECTION_LABELS_2 if per_class_3.get(d.lower(), {}).get("support", 0) > 0]
     total_critical = false_pathogenic + false_benign
+
+    macro_4 = round(calculate_macro_f1(per_class_5) * 100, 2)
+    macro_2 = round((sum(valid_3_f1s) / len(valid_3_f1s) * 100) if valid_3_f1s else 0, 2)
 
     return {
         "key": m_key,
@@ -91,8 +114,10 @@ def model_summary(m_key, m_info, gt_5, pred_5, gt_3, pred_3, n_eval, total_cohor
         "coverage_pct": round(n_eval / total_cohort * 100, 1),
         "exact_accuracy": round(exact_matches / n_eval * 100, 2),
         "directional_accuracy": round(directional_matches / n_eval * 100, 2),
-        "macro_f1_5": round(calculate_macro_f1(per_class_5) * 100, 2),
-        "macro_f1_3": round((sum(valid_3_f1s) / len(valid_3_f1s) * 100) if valid_3_f1s else 0, 2),
+        "macro_f1_5": macro_4,
+        "macro_f1_4": macro_4,
+        "macro_f1_3": macro_2,
+        "macro_f1_2": macro_2,
         "critical_error_count": total_critical,
         "critical_error_rate": round(total_critical / n_eval * 100, 2),
         "false_pathogenic_count": false_pathogenic,
@@ -108,7 +133,7 @@ def model_summary(m_key, m_info, gt_5, pred_5, gt_3, pred_3, n_eval, total_cohor
                 "fp": per_class_5[c]["false_positives"],
                 "fn": per_class_5[c]["false_negatives"],
             }
-            for c in CLASSIFICATION_LABELS
+            for c in CLASSIFICATION_LABELS_4
         },
         "per_class_3": {
             d: {
@@ -117,7 +142,7 @@ def model_summary(m_key, m_info, gt_5, pred_5, gt_3, pred_3, n_eval, total_cohor
                 "f1": _pct(per_class_3.get(d.lower(), {}), "f1"),
                 "support": per_class_3.get(d.lower(), {}).get("support", 0),
             }
-            for d in DIRECTION_LABELS
+            for d in DIRECTION_LABELS_2
         },
     }
 
@@ -134,8 +159,8 @@ def category_breakdown(evaluated_ids, unified_dict, preds) -> dict:
         c_pred3 = [get_direction(p) for p in c_pred]
 
         c_exact = sum(1 for g, p in zip(c_gt, c_pred) if g == p)
-        c_dir = sum(1 for g, p in zip(c_gt3, c_pred3) if g == p)
-        c_m = calculate_class_metrics(c_gt, c_pred, CLASSIFICATION_LABELS)
+        c_dir = sum(1 for g, p in zip(c_gt3, c_pred3) if g == p and g in DIRECTION_LABELS_2)
+        c_m = calculate_class_metrics(c_gt, c_pred, CLASSIFICATION_LABELS_4)
 
         cat_metrics[cat] = {
             "count": len(c_vids),
@@ -147,7 +172,6 @@ def category_breakdown(evaluated_ids, unified_dict, preds) -> dict:
             "macro_f1": round(calculate_macro_f1(c_m) * 100, 2),
             "macro_f1_3": round(macro_f1_directional(c_gt3, c_pred3) * 100, 2),
             "plp_f1": round((c_m["Pathogenic"]["f1"] + c_m["Likely Pathogenic"]["f1"]) / 2 * 100, 2),
-            "vus_f1": round(c_m["Uncertain Significance"]["f1"] * 100, 2),
             "blb_f1": round((c_m["Benign"]["f1"] + c_m["Likely Benign"]["f1"]) / 2 * 100, 2),
         }
     return cat_metrics
@@ -218,8 +242,10 @@ def score_model(m_key, m_info, preds, unified_dict, total_cohort):
         "confusion": {
             "matrix_5": confusion_5(gt_5, pred_5),
             "matrix_3": confusion_3(gt_3, pred_3),
-            "labels_5": CLASSIFICATION_LABELS,
-            "labels_3": DIRECTION_LABELS,
+            "labels_5": CLASSIFICATION_LABELS_4,
+            "labels_3": DIRECTION_LABELS_2,
+            "col_labels_5": CLASSIFICATION_LABELS_COLS,
+            "col_labels_3": DIRECTION_LABELS_COLS,
         },
         "categories": category_breakdown(evaluated_ids, unified_dict, preds),
         "cross": [cross_record(v, "B→P", unified_dict, preds) for v in false_pathogenic_ids]

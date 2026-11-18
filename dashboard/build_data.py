@@ -40,8 +40,10 @@ def build_dashboard_dataset():
     unified_path = CLASSIFICATION_ANSWERS
     print(f"Loading Ground Truth & Baselines from {unified_path}...")
     unified_dict = load_unified_data(unified_path)
+    # Filter to definitive variants only: exclude ground-truth VUS (Uncertain Significance)
+    unified_dict = {vid: v for vid, v in unified_dict.items() if v["ground_truth"] != "Uncertain Significance"}
     total_cohort = len(unified_dict)
-    print(f"Loaded {total_cohort} ClinGen expert curated variants.")
+    print(f"Loaded {total_cohort} ClinGen expert curated definitive variants (excluded 32 VUS ground-truth variants).")
 
     models_info, missing = discover_model_files(REPO_ROOT)
     print(f"Discovered {len(models_info)} models and baselines:")
@@ -104,8 +106,8 @@ def build_dashboard_dataset():
             "evaluation_date": datetime.now().strftime("%B %d, %Y"),
             "total_variants": total_cohort,
             "categories": CATEGORY_ORDER,
-            "classification_labels": CLASSIFICATION_LABELS,
-            "direction_labels": DIRECTION_LABELS,
+            "classification_labels": ["Pathogenic", "Likely Pathogenic", "Likely Benign", "Benign"],
+            "direction_labels": ["pathogenic", "benign"],
         },
         "models": models_summary,
         "confusion_matrices": models_confusion,

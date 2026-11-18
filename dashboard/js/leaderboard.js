@@ -1,20 +1,21 @@
   // ---------- leaderboard table (shared by the Overall tab and the Leaderboard tab) ----------
   const LB_SMALL_N = 100;
-  const overallKeyOf = (three) => (three ? "macro_f1_3" : "macro_f1_5");
+  const overallKeyOf = (two) => (two === true || two === "2" || two === "3" ? "macro_f1_3" : "macro_f1_5");
 
   // Columns: ranked models (near-full coverage) by overall F1, then partial runs.
-  function lbColumns(models, three) {
-    const k = overallKeyOf(three);
+  function lbColumns(models, two) {
+    const k = overallKeyOf(two);
     const ranked = models.filter(isFull).sort((a, b) => b[k] - a[k]);
     const partial = models.filter((m) => !isFull(m)).sort((a, b) => b[k] - a[k]);
     return { ranked, partial, cols: [...ranked, ...partial] };
   }
 
-  // The Overall row followed by one row per expert class (P/LP, VUS, B/LB or the five ACMG classes).
-  function lbClassRows(cols, three) {
-    const overallKey = overallKeyOf(three);
-    const classRows = three
-      ? [["pathogenic", "P/LP", "Pathogenic or likely pathogenic"], ["vus", "VUS", "Uncertain significance"], ["benign", "B/LB", "Benign or likely benign"]]
+  // The Overall row followed by one row per expert class (P/LP and B/LB directional, or the four ACMG classes).
+  function lbClassRows(cols, two) {
+    const isTwo = two === true || two === "2" || two === "3";
+    const overallKey = overallKeyOf(isTwo);
+    const classRows = isTwo
+      ? [["pathogenic", "P/LP", "Pathogenic or likely pathogenic"], ["benign", "B/LB", "Benign or likely benign"]]
           .map(([k, abbr, label]) => ({ label, abbr, n: (cols[0].per_class_3[k] || {}).support, get: (m) => (m.per_class_3 || {})[k]?.f1, f1: true, indent: true }))
       : LABELS.map((l) => ({ label: l, abbr: ABBR[l], n: (cols[0].per_class_5[l] || {}).support, get: (m) => (m.per_class_5 || {})[l]?.f1, f1: true, indent: true }));
     const overall = { label: "Overall", n: D.metadata.total_variants, get: (m) => m[overallKey], f1: true, strong: true };
@@ -24,8 +25,8 @@
   // Notes on partial runs and models that skipped variants.
   function lbCoverageNotes(ranked, partial) {
     return [
-      partial.length ? `* ${partial.map((m) => esc(m.short_name)).join(", ")} ${partial.length > 1 ? "were" : "was"} scored on part of the cohort, so ${partial.length > 1 ? "they are" : "it is"} not ranked and not eligible for best-in-row.` : "",
-      ranked.filter((m) => !isComplete(m)).map((m) => `${esc(m.short_name)} returned no call for ${int(m.total_cohort - m.evaluated_count)} variant${m.total_cohort - m.evaluated_count === 1 ? "" : "s"}; it is ranked on the ${int(m.evaluated_count)} it classified.`).join("<br>")
+      partial.length ? "* Partial runs scored on a subset of variants; not ranked." : "",
+      ranked.some((m) => !isComplete(m)) ? "Some models returned no-call for a fraction of variants and are scored on classified variants only." : ""
     ];
   }
 
@@ -84,14 +85,14 @@
     seg("lbScaleSeg", state.lbScale, (v) => { state.lbScale = v; renderLeaderboard(); writeHash(); });
     // One scale for every leaderboard figure: table, scatter and agreement heatmap.
     state.scatterScale = state.lbScale;
-    state.agree = state.lbScale === "5" ? "exact_pct" : "dir_pct";
-    const three = state.lbScale === "3";
-    const { ranked, partial, cols } = lbColumns(lbShown(), three);
-    $("lbTitle").textContent = `F1 score by expert classification and disease category, ${three ? "3-class" : "5-class"}`;
-    $("lbSub").innerHTML = (three
-      ? "Macro F1 against the ClinGen expert classification, across P/LP, VUS and B/LB, in percent."
-      : "Macro F1 against the ClinGen expert classification, across the five ACMG classes, in percent.") +
-      ` The best value in each row is shaded in that model's colour.${state.lbCols ? " Ranks and highlights are among the models shown." : ""}<span class="ui-hint"> Select a model name to open its confusion matrices.</span>`;
+    state.agree = (state.lbScale === "4" || state.lbScale === "5") ? "exact_pct" : "dir_pct";
+    const two = state.lbScale === "2" || state.lbScale === "3";
+    const { ranked, partial, cols } = lbColumns(lbShown(), two);
+    $("lbTitle").textContent = `Classification leaderboard (${two ? "2-class" : "4-class"})`;
+    $("lbSub").innerHTML = (two
+      ? "Macro F1 against ClinGen expert classifications across P/LP and B/LB."
+      : "Macro F1 against ClinGen expert classifications across 4 definitive ACMG classes.") +
+      `<span class="ui-hint"> Select a model to open its confusion matrix.</span>`;
 
     renderLbScatter(cols);
     renderAgreeHeat();
@@ -99,7 +100,7 @@
     if (!cols.length) { drawLbTable($("lbTable"), cols, ranked, []); $("lbNote").innerHTML = ""; return; }
 
     // Rows: F1 rows are shaded on one shared scale; other measures are not
-    const catKey = three ? "macro_f1_3" : "macro_f1";
+    const catKey = two ? "macro_f1_3" : "macro_f1";
     const cats = categoriesWithData().sort((a, b) => catCount(b) - catCount(a));
     const maxCat = Math.max(1, ...cats.map(catCount));
     const catRows = cats.map((c) => ({
@@ -110,23 +111,23 @@
       { label: "Cross-direction errors per 1,000 variants", get: per1k, low: true, fmt: (v) => v.toFixed(2) }
     ];
     drawLbTable($("lbTable"), cols, ranked, [
-      ["By expert classification", lbClassRows(cols, three)],
+      ["By expert classification", lbClassRows(cols, two)],
       ["By disease category (ClinGen expert panel)", catRows],
       ["Safety", safetyRows]
     ]);
     $("lbNote").innerHTML = [
       ...lbCoverageNotes(ranked, partial),
-      cats.some((c) => catCount(c) < LB_SMALL_N) ? `† Fewer than ${LB_SMALL_N} variants; F1 on small categories varies widely.` : "",
-      "Cross-direction errors: a benign or likely benign variant called pathogenic or likely pathogenic, or the reverse."
+      cats.some((c) => catCount(c) < LB_SMALL_N) ? `† Fewer than ${LB_SMALL_N} variants.` : "",
+      "Cross-direction errors: B/LB called P/LP, or reverse."
     ].filter(Boolean).join("<br>");
   }
 
   // ---------- overall ----------
-  // A snapshot of each benchmark. Classification: every model, 3-class, Overall plus P/LP, VUS and B/LB.
+  // A snapshot of each benchmark. Classification: every model, 2-class, Overall plus P/LP and B/LB.
   function renderOverall() {
     const { ranked, partial, cols } = lbColumns(D.models.slice(), true);
-    $("ovSub").innerHTML = `Macro F1 against the ClinGen expert classification, across P/LP, VUS and B/LB, in percent, for all ${D.models.length} models. The best value in each row is shaded in that model's colour.<span class="ui-hint"> <button type="button" class="ov-link" id="ovFull">See the full leaderboard</button> for disease categories, safety and model filters.</span>`;
-    $("ovFull").onclick = () => { state.lbCols = null; state.lbScale = "3"; setTab("leaderboard"); window.scrollTo({ top: 0 }); };
+    $("ovSub").innerHTML = `Macro F1 against ClinGen expert classifications (P/LP vs B/LB).<span class="ui-hint"> <button type="button" class="ov-link" id="ovFull">Full leaderboard</button></span>`;
+    $("ovFull").onclick = () => { state.lbCols = null; state.lbScale = "2"; setTab("leaderboard"); window.scrollTo({ top: 0 }); };
     drawLbTable($("ovTable"), cols, ranked, [[null, cols.length ? lbClassRows(cols, true) : []]], false);
     $("ovNote").innerHTML = lbCoverageNotes(ranked, partial).filter(Boolean).join("<br>");
     renderOverallRanking();
@@ -141,35 +142,27 @@
     new_gene_new_disease: "Novel gene & novel disease"
   };
   const RK_CAT_COUNTS = {
-    known_gene_disease: 422,
-    known_gene_known_disease: 234,
-    known_gene_new_disease: 244,
-    new_gene_known_disease: 246,
-    new_gene_new_disease: 250
+    known_gene_disease: 54,
+    known_gene_known_disease: 74,
+    known_gene_new_disease: 41,
+    new_gene_known_disease: 74,
+    new_gene_new_disease: 68
   };
 
-  function getRankingCohort(key) {
-    if (D.ranking_data?.cohorts && D.ranking_data.cohorts[key]) {
-      return D.ranking_data.cohorts[key];
-    }
-    return D.ranking_data || {};
-  }
-
-  function rankingOverallRows(cohort) {
-    const totalN = cohort?.total_cohort || D.ranking_data?.metadata?.total_cohort || 311;
+  function rankingOverallRows() {
+    const totalN = D.ranking_data?.metadata?.total_cohort || 311;
     return [
       { label: "Recall@1 (Top-1 accuracy)", n: totalN, get: (m) => m.top1_pct, strong: true },
       { label: "Recall@5 (Top-5)", n: totalN, get: (m) => m.top5_pct, indent: true },
       { label: "Recall@10 (Top-10)", n: totalN, get: (m) => m.top10_pct, indent: true },
-      { label: "Recall@20 (Top-20)", n: totalN, get: (m) => m.top20_pct, indent: true },
       { label: "Mean Reciprocal Rank (MRR)", n: totalN, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
       { label: "NDCG@10", n: totalN, get: (m) => m.ndcg10, fmt: (v) => Number(v).toFixed(4) },
       { label: "Median Rank", n: totalN, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
     ];
   }
 
-  function rankingCatRows(cohort, metricKey, suffix = "", fmt = null) {
-    const counts = cohort?.category_counts || (D.ranking_data && D.ranking_data.metadata && D.ranking_data.metadata.category_counts) || RK_CAT_COUNTS;
+  function rankingCatRows(metricKey, suffix = "", fmt = null) {
+    const counts = (D.ranking_data && D.ranking_data.metadata && D.ranking_data.metadata.category_counts) || RK_CAT_COUNTS;
     const maxN = Math.max(...Object.values(counts)) || 100;
     return Object.keys(RK_CAT_LABELS).map((cat) => ({
       label: RK_CAT_LABELS[cat],
@@ -181,63 +174,45 @@
   }
 
   function renderOverallRanking() {
-    const rkKey = state.ovRkCohort || D.ranking_data?.metadata?.default_cohort || "challenge_311";
-    const cohort = getRankingCohort(rkKey);
-    const models = cohort?.models || D.ranking_data?.models || [];
-    if (!models.length || !$("ovRankTable")) return;
-    const rkCols = models.slice().sort((a, b) => (b.is_full - a.is_full) || (b.mrr - a.mrr));
-    if ($("ovCohortSeg")) {
-      seg("ovCohortSeg", rkKey, (v) => { state.ovRkCohort = v; renderOverallRanking(); });
-    }
-    const cohortTitle = cohort.title || "Variant ranking: Gene prioritization across rare disease cases";
-    $("ovRankSub").innerHTML = `Recall@K and Mean Reciprocal Rank (MRR) for all ${rkCols.length} models and baselines on the <strong>${esc(cohortTitle)}</strong>. The best value in each row is shaded in that model's colour.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">See the full ranking leaderboard</button> for category breakdowns.</span>`;
+    const rk = D.ranking_data;
+    if (!rk || !rk.models || !rk.models.length || !$("ovRankTable")) return;
+    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
+    $("ovRankSub").innerHTML = `Recall@K and MRR across 311 rare disease challenge cases.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">Full ranking leaderboard</button></span>`;
     $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
-    drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows(cohort)]], false, "Cases");
-    const nCohort = cohort.total_cohort || D.ranking_data?.metadata?.total_cohort || 311;
-    $("ovRankNote").innerHTML = `MRR denominator is n_total (cases where true gene was absent contribute 0). Scored on ${nCohort} patient cases. Recall@K is the percentage of cases where the true causal gene was ranked &le; K.`;
+    drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows()]], false, "Cases");
+    $("ovRankNote").innerHTML = "Recall@K: share of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
   }
 
   function renderRanking() {
-    const rkKey = state.rkCohort || D.ranking_data?.metadata?.default_cohort || "challenge_311";
-    const cohort = getRankingCohort(rkKey);
-    const models = cohort?.models || D.ranking_data?.models || [];
-    if (!models.length || !$("rkTable")) return;
-    const rkCols = models.slice().sort((a, b) => (b.is_full - a.is_full) || (b.mrr - a.mrr));
-    if ($("rkCohortSeg")) {
-      seg("rkCohortSeg", rkKey, (v) => { state.rkCohort = v; renderRanking(); });
-    }
-    $("rkTitle").textContent = cohort.title || "Variant ranking: Gene prioritization across rare disease cases";
-    $("rkSub").innerHTML = (cohort.subtitle || "Recall@K and Mean Reciprocal Rank (MRR) across simulated rare-disease patient cases, evaluated overall and across 5 gene and disease familiarity categories.") + " The best value in each row is shaded in that model's colour.";
+    const rk = D.ranking_data;
+    if (!rk || !rk.models || !rk.models.length || !$("rkTable")) return;
+    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
+    $("rkTitle").textContent = "Variant ranking: 311 challenge cases";
+    $("rkSub").innerHTML = "Recall@K and Mean Reciprocal Rank (MRR) across 311 hard & discriminative rare disease patient cases. Best in row is highlighted.";
 
     const sections = [
-      ["Overall performance", rankingOverallRows(cohort)],
-      ["Recall@1 by disease & gene familiarity category", rankingCatRows(cohort, "top1_pct")],
-      ["Recall@5 by disease & gene familiarity category", rankingCatRows(cohort, "top5_pct")],
-      ["Mean Reciprocal Rank (MRR) by category", rankingCatRows(cohort, "mrr", "", (v) => Number(v).toFixed(4))]
+      ["Overall performance", rankingOverallRows()],
+      ["Recall@1 by disease & gene familiarity category", rankingCatRows("top1_pct")]
     ];
     drawLbTable($("rkTable"), rkCols, rkCols, sections, false, "Cases");
-    const rkCohort = cohort.total_cohort || D.ranking_data?.metadata?.total_cohort || 311;
-    $("rkNote").innerHTML = [
-      "MRR denominator is n_total (cases where true gene was absent contribute 0).",
-      `Evaluated across ${rkCohort} rare-disease patient cases.`,
-      "Categories test model generalisation from established gene-disease pairs to novel diseases and entirely novel disease genes without existing KG connections.",
-      "Recall@K is the percentage of cases where the true causal gene was ranked &le; K."
-    ].join("<br>");
+    $("rkNote").innerHTML = "Recall@K: percentage of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
   }
 
   // Accuracy against safety: score across, cross-direction errors up (inverted).
   const SCATTER_X = {
-    "5": { key: "macro_f1_5", label: "Macro F1, 5-class" },
-    "3": { key: "macro_f1_3", label: "Macro F1, 3-class" }
+    "4": { key: "macro_f1_5", label: "Macro F1, 4-class" },
+    "5": { key: "macro_f1_5", label: "Macro F1, 4-class" },
+    "2": { key: "macro_f1_3", label: "Macro F1, 2-class" },
+    "3": { key: "macro_f1_3", label: "Macro F1, 2-class" }
   };
 
   function renderLbScatter(models) {
     const ax = SCATTER_X[state.scatterScale];
-    $("scTitle").textContent = `Accuracy against safety: ${ax.label}`;
+    $("scTitle").textContent = `Accuracy vs Safety: ${ax.label}`;
     const scored = models.every(isFull)
       ? ` Every model was scored on all ${int(D.metadata.total_variants)} variants.`
       : " Hollow dots were scored on part of the cohort.";
-    $("scSub").innerHTML = `The table's Overall row against cross-direction errors per 1,000 variants; up and to the right is better.${scored}<span class="ui-hint"> Hover a dot for its values; select it to open the model.</span>`;
+    $("scSub").innerHTML = `Overall F1 against cross-direction errors per 1,000 variants (up and right is better).${scored}<span class="ui-hint"> Hover a dot for values; select to open model.</span>`;
     const box = $("lbScatter");
     if (!models.length) { box.innerHTML = `<p class="empty">No models for this filter.</p>`; return; }
     const W = Math.max(300, box.clientWidth || 1000);
@@ -289,7 +264,7 @@
     const unlabelled = narrow ? pts : pts.filter((p) => !p.lab);
     const key = unlabelled.length ? `<div class="legend sc-key">${models.map((m) => `<span>${mname(m, models)}${isFull(m) ? "" : "*"}</span>`).join("")}</div>` : "";
     box.innerHTML = key + `<svg class="scatter" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(ax.label)} against cross-direction errors for each model">${out.join("")}</svg>` +
-      (models.some((m) => !isFull(m)) ? `<p class="note">* Scored on part of the cohort, not ranked.</p>` : "");
+      (models.some((m) => !isFull(m)) ? `<p class="note">* Partial run; not ranked.</p>` : "");
   }
 
   function setupLbScatter() {
@@ -306,4 +281,3 @@
     setTab("confusion");
     window.scrollTo({ top: 0 });
   }
-

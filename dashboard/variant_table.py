@@ -26,9 +26,10 @@ def build_variant_table(unified_dict: dict, model_predictions: dict, model_keys:
         rows.append([vid, u["gene"], u["variation"], u["variant_key"], u["disease"], u["category"], u["expert_panel"],
                      u["ground_truth"], " ".join(u["criteria_met_raw"]),
                      sum(criterion_points(c) for c in u["criteria_met_raw"])])
-    code = {label: str(i) for i, label in enumerate(CLASSIFICATION_LABELS)}
+    labels = ["Pathogenic", "Likely Pathogenic", "Likely Benign", "Benign", "Uncertain Significance"]
+    code = {label: str(i) for i, label in enumerate(labels)}
     calls = {}
     for k in model_keys:
         preds = model_predictions[k]
         calls[k] = "".join(code.get(preds[vid]["prediction"], NO_CALL) if vid in preds else NO_CALL for vid in ids)
-    return {"columns": VARIANT_COLUMNS, "labels": CLASSIFICATION_LABELS, "rows": rows, "calls": calls}
+    return {"columns": VARIANT_COLUMNS, "labels": labels, "rows": rows, "calls": calls}

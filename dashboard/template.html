@@ -46,7 +46,7 @@
           <button type="button" class="btn picker-btn" id="lbAllBtn" hidden>Show all</button>
         </div>
         <div class="seg" id="lbScaleSeg" role="group" aria-label="Classification scale for every leaderboard figure">
-          <button data-v="3" type="button">3-class</button><button data-v="5" type="button">5-class</button>
+          <button data-v="2" type="button">2-class</button><button data-v="4" type="button">4-class</button>
         </div>
       </div>
       <div class="vt" data-for="confusion">
@@ -95,7 +95,7 @@
     <div class="card fig-main lb-card" data-static>
       <div class="card-head">
         <div>
-          <h3>Variant classification: F1 score by expert classification, 3-class</h3>
+          <h3>Variant classification</h3>
           <p id="ovSub"></p>
         </div>
       </div>
@@ -105,12 +105,8 @@
     <div class="card fig-main lb-card" data-static>
       <div class="card-head">
         <div>
-          <h3>Variant ranking: Gene prioritization across rare disease cases</h3>
+          <h3>Variant ranking</h3>
           <p id="ovRankSub"></p>
-        </div>
-        <div class="seg" id="ovCohortSeg" role="group" aria-label="Ranking evaluation cohort">
-          <button data-v="challenge_311" type="button" aria-pressed="true">311 Challenge</button>
-          <button data-v="full_1396" type="button">Full (1,396)</button>
         </div>
       </div>
       <div class="table-wrap"><table id="ovRankTable" class="lbt"></table></div>
@@ -160,7 +156,7 @@
         <div><h3>Confusion matrices</h3><p id="cmSub"></p></div>
         <div class="controls">
           <div class="seg" id="cmScaleSeg" role="group" aria-label="Class granularity">
-            <button data-v="5" type="button">5-class</button><button data-v="3" type="button">3-class</button>
+            <button data-v="4" type="button">4-class</button><button data-v="2" type="button">2-class</button>
           </div>
           <div class="seg" id="cmModeSeg" role="group" aria-label="Cell values">
             <button data-v="count" type="button">Counts</button><button data-v="pct" type="button">Row %</button>
@@ -176,7 +172,7 @@
     <h2 class="sr-only">ACMG/AMP criteria invoked</h2>
     <div class="card fig-main" data-static>
       <div class="card-head">
-        <div><h3>Criteria cited, pathogenic and benign evidence</h3><p>Share of variants for which each model cited a criterion, with strength modifiers collapsed (PM2_Supporting counts as PM2). Dot area is the share, on one scale for every criterion.<span class="ui-hint"> Hover a dot for the variant count.</span></p></div>
+        <div><h3>ACMG criteria invoked</h3><p>Share of variants citing each criterion.<span class="ui-hint"> Hover a dot for variant count.</span></p></div>
         <div class="cg-key" id="critKey" aria-hidden="true"></div>
       </div>
       <div class="table-wrap"><table class="lbt cg" id="critGrid"></table></div>
@@ -189,12 +185,8 @@
     <div class="card fig-main lb-card" data-static>
       <div class="card-head">
         <div>
-          <h3 id="rkTitle">Variant ranking: Gene prioritization across rare disease cases</h3>
+          <h3 id="rkTitle">Variant ranking (311 cases)</h3>
           <p id="rkSub"></p>
-        </div>
-        <div class="seg" id="rkCohortSeg" role="group" aria-label="Ranking evaluation cohort">
-          <button data-v="challenge_311" type="button" aria-pressed="true">311 Challenge Cohort</button>
-          <button data-v="full_1396" type="button">Full Cohort (1,396)</button>
         </div>
       </div>
       <div class="table-wrap"><table id="rkTable" class="lbt"></table></div>

@@ -24,14 +24,6 @@ CATEGORY_LABELS = {
     "new_gene_new_disease": "Novel gene & novel disease"
 }
 
-CATEGORY_COUNTS_FULL = {
-    "known_gene_disease": 422,
-    "known_gene_known_disease": 234,
-    "known_gene_new_disease": 244,
-    "new_gene_known_disease": 246,
-    "new_gene_new_disease": 250
-}
-
 CATEGORY_COUNTS_311 = {
     "known_gene_disease": 54,
     "known_gene_known_disease": 74,
@@ -177,8 +169,6 @@ def compute_jsonl_metrics(jsonl_path: Path, patient_filter: set = None) -> dict:
 def build_ranking_data(repo_root: Path) -> dict:
     """Build the ranking benchmark dataset to embed into benchmark_data.json."""
     registry = read_ranking_registry(repo_root)
-    csv_path = repo_root / "results" / "ranking" / "comparison_metrics.csv"
-    csv_metrics = load_csv_metrics(csv_path)
 
     challenge_path = repo_root / "data" / "ranking" / "selected_311_patients.json"
     pids_311 = set()
@@ -262,99 +252,15 @@ def build_ranking_data(repo_root: Path) -> dict:
 
     models_311.sort(key=lambda m: m["mrr"], reverse=True)
 
-    # -------------------------------------------------------------------------
-    # 2. BUILD FULL 1,396 COHORT
-    # -------------------------------------------------------------------------
-    models_1396 = []
-    categories_1396 = {}
-
-    for row in registry:
-        key = row["key"]
-        name = row["name"]
-        rel_path = row["path"]
-        file_path = repo_root / rel_path
-
-        tool_metrics = csv_metrics.get(name, {})
-        if not tool_metrics and name in ("Gemini 3 Pro", "AIVA"):
-            tool_metrics = csv_metrics.get("Gemini 3 Pro") or csv_metrics.get("AIVA", {})
-
-        is_full_eval = bool(tool_metrics)
-        if not tool_metrics and file_path.exists():
-            computed = compute_jsonl_metrics(file_path)
-            if computed:
-                tool_metrics = computed
-                is_full_eval = tool_metrics.get("OVERALL", {}).get("n", 0) >= 1396
-
-        overall = tool_metrics.get("OVERALL", {})
-        if not overall:
-            continue
-
-        model_obj = {
-            "key": key,
-            "name": name,
-            "short_name": name,
-            "family": row["provider"] if row["provider"] in ("Anthropic", "Google", "OpenAI", "Rule-based") else "Other",
-            "provider": row["provider"],
-            "type": row["method"],
-            "section": row.get("section", "automated"),
-            "total_cohort": 1396,
-            "evaluated_count": overall.get("n", 1396),
-            "is_full": is_full_eval,
-            "color": row.get("color", "#7FC0C6"),
-            "color_dark": row.get("color_dark", row.get("color", "#7FC0C6")),
-            "top1_pct": overall.get("top1_pct", 0.0),
-            "top3_pct": overall.get("top3_pct", 0.0),
-            "top5_pct": overall.get("top5_pct", 0.0),
-            "top10_pct": overall.get("top10_pct", 0.0),
-            "top20_pct": overall.get("top20_pct", 0.0),
-            "mrr": overall.get("mrr", 0.0),
-            "ndcg10": overall.get("ndcg10", 0.0),
-            "median_rank": overall.get("median_rank", 1.0),
-            "per_category": {}
-        }
-        cat_dict = {}
-        for cat in CATEGORY_ORDER:
-            c_metrics = tool_metrics.get(cat, {})
-            if c_metrics:
-                model_obj["per_category"][cat] = c_metrics
-                cat_dict[cat] = c_metrics
-
-        models_1396.append(model_obj)
-        categories_1396[key] = cat_dict
-
-    models_1396.sort(key=lambda m: (m["is_full"], m["mrr"]), reverse=True)
-
     return {
         "metadata": {
             "title": "RareDx Bench: Variant Ranking",
-            "subtitle": "Gene prioritization benchmark across rare disease patient cases",
+            "subtitle": "Gene prioritization across 311 rare disease challenge cases",
             "total_cohort": 311,
-            "default_cohort": "challenge_311",
             "categories": CATEGORY_ORDER,
             "category_labels": CATEGORY_LABELS,
             "category_counts": CATEGORY_COUNTS_311,
-            "category_counts_full": CATEGORY_COUNTS_FULL,
-            "category_counts_311": CATEGORY_COUNTS_311
         },
-        "cohorts": {
-            "challenge_311": {
-                "title": "311 Challenge Benchmark (Hard & Discriminative Cases)",
-                "subtitle": "Direct head-to-head evaluation across all 12 frontier LLMs and classical phenotype tools on the 311 hardest discriminative cases",
-                "total_cohort": 311,
-                "category_counts": CATEGORY_COUNTS_311,
-                "models": models_311,
-                "categories_data": categories_311
-            },
-            "full_1396": {
-                "title": "Full Cohort (1,396 Cases)",
-                "subtitle": "Gene prioritization benchmark across all 1,396 simulated rare disease patient cases",
-                "total_cohort": 1396,
-                "category_counts": CATEGORY_COUNTS_FULL,
-                "models": models_1396,
-                "categories_data": categories_1396
-            }
-        },
-        # Default payload exposes the 311 challenge cohort where all 12 models participate:
         "models": models_311,
-        "categories_data": categories_311
+        "categories_data": categories_311,
     }
