@@ -49,7 +49,8 @@
     scatterScale: "3", lbScale: "3", lbCols: null,
     cmCols: null, critCols: null,
     cmScale: "5", cmMode: "count",
-    agree: "dir_pct"
+    agree: "dir_pct",
+    rkCohort: "challenge_311", ovRkCohort: "challenge_311"
   };
 
   // ---------- helpers ----------

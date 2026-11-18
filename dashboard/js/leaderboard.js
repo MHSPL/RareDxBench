@@ -148,8 +148,15 @@
     new_gene_new_disease: 250
   };
 
-  function rankingOverallRows() {
-    const totalN = D.ranking_data?.metadata?.total_cohort || 1396;
+  function getRankingCohort(key) {
+    if (D.ranking_data?.cohorts && D.ranking_data.cohorts[key]) {
+      return D.ranking_data.cohorts[key];
+    }
+    return D.ranking_data || {};
+  }
+
+  function rankingOverallRows(cohort) {
+    const totalN = cohort?.total_cohort || D.ranking_data?.metadata?.total_cohort || 311;
     return [
       { label: "Recall@1 (Top-1 accuracy)", n: totalN, get: (m) => m.top1_pct, strong: true },
       { label: "Recall@5 (Top-5)", n: totalN, get: (m) => m.top5_pct, indent: true },
@@ -161,8 +168,8 @@
     ];
   }
 
-  function rankingCatRows(metricKey, suffix = "", fmt = null) {
-    const counts = (D.ranking_data && D.ranking_data.metadata && D.ranking_data.metadata.category_counts) || RK_CAT_COUNTS;
+  function rankingCatRows(cohort, metricKey, suffix = "", fmt = null) {
+    const counts = cohort?.category_counts || (D.ranking_data && D.ranking_data.metadata && D.ranking_data.metadata.category_counts) || RK_CAT_COUNTS;
     const maxN = Math.max(...Object.values(counts)) || 100;
     return Object.keys(RK_CAT_LABELS).map((cat) => ({
       label: RK_CAT_LABELS[cat],
@@ -174,34 +181,45 @@
   }
 
   function renderOverallRanking() {
-    const rk = D.ranking_data;
-    if (!rk || !rk.models || !rk.models.length || !$("ovRankTable")) return;
-    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
-    $("ovRankSub").innerHTML = `Recall@K and Mean Reciprocal Rank (MRR) across rare disease cases for all ${rkCols.length} models and baselines. Models run through AIVA (Sonnet 5.5, Gemini 3 Pro, Haiku 5.5) are compared against automated phenotype tools. The best value in each row is shaded in that model's colour.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">See the full ranking leaderboard</button> for category breakdowns.</span>`;
+    const rkKey = state.ovRkCohort || D.ranking_data?.metadata?.default_cohort || "challenge_311";
+    const cohort = getRankingCohort(rkKey);
+    const models = cohort?.models || D.ranking_data?.models || [];
+    if (!models.length || !$("ovRankTable")) return;
+    const rkCols = models.slice().sort((a, b) => (b.is_full - a.is_full) || (b.mrr - a.mrr));
+    if ($("ovCohortSeg")) {
+      seg("ovCohortSeg", rkKey, (v) => { state.ovRkCohort = v; renderOverallRanking(); });
+    }
+    const cohortTitle = cohort.title || "Variant ranking: Gene prioritization across rare disease cases";
+    $("ovRankSub").innerHTML = `Recall@K and Mean Reciprocal Rank (MRR) for all ${rkCols.length} models and baselines on the <strong>${esc(cohortTitle)}</strong>. The best value in each row is shaded in that model's colour.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">See the full ranking leaderboard</button> for category breakdowns.</span>`;
     $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
-    drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows()]], false, "Cases");
-    const nCohort = D.ranking_data?.metadata?.total_cohort || 1396;
-    $("ovRankNote").innerHTML = `MRR denominator is n_total (cases where true gene was absent contribute 0). All models were evaluated across all ${nCohort} rare-disease patient cases. Recall@K is the percentage of cases where the true causal gene was ranked &le; K.`;
+    drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows(cohort)]], false, "Cases");
+    const nCohort = cohort.total_cohort || D.ranking_data?.metadata?.total_cohort || 311;
+    $("ovRankNote").innerHTML = `MRR denominator is n_total (cases where true gene was absent contribute 0). Scored on ${nCohort} patient cases. Recall@K is the percentage of cases where the true causal gene was ranked &le; K.`;
   }
 
   function renderRanking() {
-    const rk = D.ranking_data;
-    if (!rk || !rk.models || !rk.models.length || !$("rkTable")) return;
-    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
-    $("rkTitle").textContent = "Variant ranking: Gene prioritization across rare disease cases";
-    $("rkSub").innerHTML = "Recall@K and Mean Reciprocal Rank (MRR) across simulated rare-disease patient cases, evaluated overall and across 5 gene and disease familiarity categories. Models run through the AIVA agent (GPT-6.1 Sol, Claude Sonnet 5.5, Claude Opus 5.5, Gemini 3 Pro, Claude Haiku 5.5) are compared against classical rule-based phenotype tools (LIRICAL, ClinPrior, Exomiser). The best value in each row is shaded in that model's colour.";
+    const rkKey = state.rkCohort || D.ranking_data?.metadata?.default_cohort || "challenge_311";
+    const cohort = getRankingCohort(rkKey);
+    const models = cohort?.models || D.ranking_data?.models || [];
+    if (!models.length || !$("rkTable")) return;
+    const rkCols = models.slice().sort((a, b) => (b.is_full - a.is_full) || (b.mrr - a.mrr));
+    if ($("rkCohortSeg")) {
+      seg("rkCohortSeg", rkKey, (v) => { state.rkCohort = v; renderRanking(); });
+    }
+    $("rkTitle").textContent = cohort.title || "Variant ranking: Gene prioritization across rare disease cases";
+    $("rkSub").innerHTML = (cohort.subtitle || "Recall@K and Mean Reciprocal Rank (MRR) across simulated rare-disease patient cases, evaluated overall and across 5 gene and disease familiarity categories.") + " The best value in each row is shaded in that model's colour.";
 
     const sections = [
-      ["Overall performance", rankingOverallRows()],
-      ["Recall@1 by disease & gene familiarity category", rankingCatRows("top1_pct")],
-      ["Recall@5 by disease & gene familiarity category", rankingCatRows("top5_pct")],
-      ["Mean Reciprocal Rank (MRR) by category", rankingCatRows("mrr", "", (v) => Number(v).toFixed(4))]
+      ["Overall performance", rankingOverallRows(cohort)],
+      ["Recall@1 by disease & gene familiarity category", rankingCatRows(cohort, "top1_pct")],
+      ["Recall@5 by disease & gene familiarity category", rankingCatRows(cohort, "top5_pct")],
+      ["Mean Reciprocal Rank (MRR) by category", rankingCatRows(cohort, "mrr", "", (v) => Number(v).toFixed(4))]
     ];
     drawLbTable($("rkTable"), rkCols, rkCols, sections, false, "Cases");
-    const rkCohort = D.ranking_data?.metadata?.total_cohort || 1396;
+    const rkCohort = cohort.total_cohort || D.ranking_data?.metadata?.total_cohort || 311;
     $("rkNote").innerHTML = [
       "MRR denominator is n_total (cases where true gene was absent contribute 0).",
-      `All models were evaluated across all ${rkCohort} rare-disease patient cases.`,
+      `Evaluated across ${rkCohort} rare-disease patient cases.`,
       "Categories test model generalisation from established gene-disease pairs to novel diseases and entirely novel disease genes without existing KG connections.",
       "Recall@K is the percentage of cases where the true causal gene was ranked &le; K."
     ].join("<br>");
