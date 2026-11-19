@@ -1,0 +1,64 @@
+{
+  "model": "openai/gpt-6-astra",
+  "label": "GPT-6 Astra",
+  "ablation": "hpo+vcf+genes+disease",
+  "cohort": "311_hard_discriminative_subset",
+  "n_evaluated": 311,
+  "metrics": {
+    "n_patients": 311,
+    "no_prediction": 0,
+    "retention_rate": 0.9518,
+    "mrr": 0.7714,
+    "ndcg@10": 0.8004,
+    "mean_rank": 2.26,
+    "median_rank": 1.0,
+    "recall@1": 0.6881,
+    "recall@5": 0.8746,
+    "recall@10": 0.9003,
+    "recall@20": 0.9453,
+    "recall@50": 0.9518,
+    "per_category": {
+      "new_gene_known_disease": {
+        "n": 74,
+        "recall@1": 0.6892,
+        "recall@5": 0.9459,
+        "recall@10": 0.973,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "new_gene_new_disease": {
+        "n": 68,
+        "recall@1": 0.8382,
+        "recall@5": 0.9559,
+        "recall@10": 0.9559,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "known_gene_disease": {
+        "n": 54,
+        "recall@1": 0.6852,
+        "recall@5": 0.9074,
+        "recall@10": 0.9259,
+        "recall@20": 0.9815,
+        "recall@50": 0.9815
+      },
+      "known_gene_known_disease": {
+        "n": 74,
+        "recall@1": 0.5541,
+        "recall@5": 0.6757,
+        "recall@10": 0.7162,
+        "recall@20": 0.7838,
+        "recall@50": 0.8108
+      },
+      "known_gene_new_disease": {
+        "n": 41,
+        "recall@1": 0.6829,
+        "recall@5": 0.9268,
+        "recall@10": 0.9756,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      }
+    }
+  },
+  "timestamp": "2026-11-16T17:14:14.924856+00:00"
+}

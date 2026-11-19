@@ -8,36 +8,40 @@
   function confusionTable(m) {
     const cm = D.confusion_matrices[m.key];
     if (!cm) return `<p class="empty">No confusion matrix for this model.</p>`;
-    const five = state.cmScale === "5";
-    const mat = five ? cm.matrix_5 : collapse3(cm.matrix_5);
-    const labels = five ? LABELS.map((l) => ABBR[l]) : ["P/LP", "VUS", "B/LB"];
-    const full = five ? LABELS : ["Pathogenic or likely pathogenic", "Uncertain significance", "Benign or likely benign"];
-    const dirOf = (i) => (five ? ["p", "p", "v", "b", "b"] : ["p", "v", "b"])[i];
-    const cell = window.matchMedia("(max-width: 640px)").matches ? (five ? 44 : 64) : (five ? 52 : 72);
+    const four = state.cmScale === "4" || state.cmScale === "5";
+    const mat = four ? cm.matrix_5 : cm.matrix_3;
+    const rowLabels = four ? ["P", "LP", "LB", "B"] : ["P/LP", "B/LB"];
+    const colLabels = four ? ["P", "LP", "LB", "B", "VUS"] : ["P/LP", "B/LB", "VUS"];
+    const fullRow = four ? LABELS : ["Pathogenic or likely pathogenic", "Benign or likely benign"];
+    const fullCol = four ? [...LABELS, "Uncertain significance (non-call)"] : ["Pathogenic or likely pathogenic", "Benign or likely benign", "Uncertain significance (non-call)"];
+    const dirOfRow = (i) => (four ? ["p", "p", "b", "b"] : ["p", "b"])[i];
+    const dirOfCol = (j) => (four ? ["p", "p", "b", "b", "v"] : ["p", "b", "v"])[j];
+    const cell = window.matchMedia("(max-width: 640px)").matches ? (four ? 44 : 64) : (four ? 52 : 72);
     const ylabH = mat.length * cell;
     const ylab = `<td class="cm-ylab" rowspan="${mat.length}"><svg width="16" height="${ylabH}" aria-hidden="true"><text transform="translate(12 ${ylabH / 2}) rotate(-90)" text-anchor="middle">Expert classification</text></svg></td>`;
     // Model calls run along the bottom, like an x axis: labels, then the axis title.
-    const foot = `<tfoot><tr><th colspan="2"></th>${labels.map((l, j) => `<th class="colh" scope="col"${tipAttr(full[j])}><span class="cm-lab">${esc(l)}</span></th>`).join("")}</tr>` +
-      `<tr><th colspan="2"></th><th class="cm-axt" colspan="${labels.length}">Model call</th></tr></tfoot>`;
+    const foot = `<tfoot><tr><th colspan="2"></th>${colLabels.map((l, j) => `<th class="colh" scope="col"${tipAttr(fullCol[j])}><span class="cm-lab">${esc(l)}</span></th>`).join("")}</tr>` +
+      `<tr><th colspan="2"></th><th class="cm-axt" colspan="${colLabels.length}">Model call</th></tr></tfoot>`;
     const body = mat.map((row, i) => {
       const sum = row.reduce((a, b) => a + b, 0);
-      return `<tr>${i === 0 ? ylab : ""}<td class="rowh"${tipAttr(full[i])}><span class="cm-lab">${esc(labels[i])}</span></td>${row.map((v, j) => {
+      return `<tr>${i === 0 ? ylab : ""}<td class="rowh"${tipAttr(fullRow[i])}><span class="cm-lab">${esc(rowLabels[i])}</span></td>${row.map((v, j) => {
         const share = sum ? v / sum : 0;
-        const x = (dirOf(i) === "p" && dirOf(j) === "b") || (dirOf(i) === "b" && dirOf(j) === "p");
+        const x = (dirOfRow(i) === "p" && dirOfCol(j) === "b") || (dirOfRow(i) === "b" && dirOfCol(j) === "p");
         const shown = state.cmMode === "count" ? int(v) : (share * 100).toFixed(1);
-        return `<td class="h${i === j ? " diag" : ""}${x && v > 0 ? " xdir" : ""}" style="${x && v > 0 ? "" : heatStyle(share)}"${tipAttr(`${fullName(m)}\nExpert: ${full[i]}\nModel: ${full[j]}\n${int(v)} variants, ${(share * 100).toFixed(1)}% of row${x && v > 0 ? "\nCross-direction error" : ""}`)}>${shown}</td>`;
+        return `<td class="h${i === j ? " diag" : ""}${x && v > 0 ? " xdir" : ""}" style="${x && v > 0 ? "" : heatStyle(share)}"${tipAttr(`${fullName(m)}\nExpert: ${fullRow[i]}\nModel: ${fullCol[j]}\n${int(v)} variants, ${(share * 100).toFixed(1)}% of row${x && v > 0 ? "\nCross-direction error" : ""}`)}>${shown}</td>`;
       }).join("")}</tr>`;
     }).join("");
-    return `<div class="table-wrap"><table class="heat cm${five ? "" : " cm3"}" style="--cm-cell:${cell}px" aria-label="${esc(fullName(m))}: rows are the expert classification, columns the model call"><tbody>${body}</tbody>${foot}</table></div>`;
+    return `<div class="table-wrap"><table class="heat cm${four ? "" : " cm3"}" style="--cm-cell:${cell}px" aria-label="${esc(fullName(m))}: rows are the expert classification, columns the model call"><tbody>${body}</tbody>${foot}</table></div>`;
   }
 
   function renderConfusion() {
     seg("cmScaleSeg", state.cmScale, (v) => { state.cmScale = v; renderConfusion(); });
     seg("cmModeSeg", state.cmMode, (v) => { state.cmMode = v; renderConfusion(); });
-    $("cmSub").textContent = `${state.cmMode === "count" ? "Cells are variant counts, shaded by share of the row." : "Cells are the percentage of the row."} Red cells are cross-direction errors (B/LB called P/LP, or the reverse).`;
+    $("cmSub").textContent = `${state.cmMode === "count" ? "Counts" : "Row %"} shaded by share of row. Red cells indicate cross-direction errors.`;
     renderShownPicker("cm");
     // Leaderboard order: by section, ranked by overall F1 on the leaderboard's scale
-    const ms = bySection(lbColumns(shownModels("cm"), state.lbScale === "3").cols).flatMap(([, g]) => g);
+    const two = state.lbScale === "2" || state.lbScale === "3";
+    const ms = bySection(lbColumns(shownModels("cm"), two).cols).flatMap(([, g]) => g);
     $("cmGrid").innerHTML = ms.map((m) => `<div><p class="cm-title">${mname(m, ms)}</p>${confusionTable(m)}</div>`).join("");
   }
 
@@ -49,13 +53,17 @@
   const CG_R = 13;
   function renderCriteria() {
     renderShownPicker("crit");
-    const groups = bySection(lbColumns(shownModels("crit"), state.lbScale === "3").cols);
+    const two = state.lbScale === "2" || state.lbScale === "3";
+    const groups = bySection(lbColumns(shownModels("crit"), two).cols);
     const order = groups.flatMap(([, ms]) => ms);
-    const groupStart = new Set(groups.slice(1).map(([, ms]) => ms[0].key));
+    const groupStart = new Set(groups.slice(D.clingen_criteria ? 0 : 1).map(([, ms]) => ms[0].key));
     const gs = (m) => (groupStart.has(m.key) ? " lbt-gs" : "");
-    const share = (m, c) => (D.criteria_data[m.key] ? ((D.criteria_data[m.key][c] || 0) / (m.evaluated_count || 1)) * 100 : null);
+    // ClinGen expert ground truth: a pseudo model column ahead of the models, over the whole cohort
+    const truth = D.clingen_criteria ? { key: "__clingen", evaluated_count: D.metadata.total_variants, truth: true } : null;
+    const counts = (m) => (m.truth ? D.clingen_criteria : D.criteria_data[m.key]);
+    const share = (m, c) => (counts(m) ? ((counts(m)[c] || 0) / (m.evaluated_count || 1)) * 100 : null);
     const all = [...CRITERIA.pathogenic, ...CRITERIA.benign];
-    const max = Math.max(1, ...all.flatMap(([c]) => order.map((m) => share(m, c) || 0)));
+    const max = Math.max(1, ...all.flatMap(([c]) => (truth ? [truth, ...order] : order).map((m) => share(m, c) || 0)));
     const radius = (v) => (v > 0 ? Math.max(1.5, CG_R * Math.sqrt(v / max)) : 0);
     const dot = (v, color) => {
       const d = n2(2 * radius(v));
@@ -67,25 +75,29 @@
 
     const table = $("critGrid");
     if (!order.length) { table.innerHTML = `<tbody><tr><td class="empty">No models selected.</td></tr></tbody>`; return; }
-    const span = order.length + 1;
-    const head = `<thead><tr class="lbt-groups"><th class="lbt-first"></th>${groups.map(([g, ms, k], i) => `<th colspan="${ms.length}" class="lbt-group${i ? " lbt-gs" : ""}"${tipAttr(SECTION_TIP[k])}>${esc(g)}</th>`).join("")}</tr>` +
-      `<tr><th class="lbt-first">Criterion</th>${order.map((m) => `<th class="lbt-model${gs(m)}"${tipAttr(fullName(m))}><span class="lbt-label">${swatch(m)}${esc(m.short_name)}</span><br><span class="lbt-meta">${esc(providerOf(m))}</span></th>`).join("")}</tr></thead>`;
+    const span = order.length + 1 + (truth ? 1 : 0);
+    const truthHead = truth ? `<th class="lbt-model"${tipAttr("ClinGen expert panel criteria, all " + int(truth.evaluated_count) + " benchmark variants")}><span class="lbt-label">ClinGen</span><br><span class="lbt-meta">ground truth</span></th>` : "";
+    const head = `<thead><tr class="lbt-groups"><th class="lbt-first"></th>${truth ? `<th class="lbt-group"></th>` : ""}${groups.map(([g, ms, k], i) => `<th colspan="${ms.length}" class="lbt-group${i || truth ? " lbt-gs" : ""}"${tipAttr(SECTION_TIP[k])}>${esc(g)}</th>`).join("")}</tr>` +
+      `<tr><th class="lbt-first">Criterion</th>${truthHead}${order.map((m) => {
+        const inGroup = groups.find(([, ms]) => ms.some((x) => x.key === m.key))?.[1] || order;
+        return `<th class="lbt-model${gs(m)}"${tipAttr(fullName(m))}><span class="lbt-label">${swatch(m)}${esc(nameIn(m, inGroup))}</span><br><span class="lbt-meta">${esc(providerOf(m))}</span></th>`;
+      }).join("")}</tr></thead>`;
 
     const draw = (compact) => {
       const body = [["Pathogenic evidence", CRITERIA.pathogenic, "var(--tier-p)"], ["Benign evidence", CRITERIA.benign, "var(--tier-b)"]].map(([title, list, color]) => {
         let rows = `<tr class="lbt-sec"><td class="lbt-first" colspan="${span}">${title}</td></tr>`;
         let strength = null;
-        list.forEach(([c, def, short]) => {
+        list.forEach(([c, def]) => {
           if (strengthOf(c) !== strength) {
             strength = strengthOf(c);
             rows += `<tr class="cg-str"><td class="lbt-first" colspan="${span}">${strength}</td></tr>`;
           }
-          rows += `<tr><td class="lbt-first cg-label"${tipAttr(`${c}: ${def}`)}><span class="cg-code mono">${c}</span> <span class="cg-def">${esc(short)}</span></td>${order.map((m) => {
+          rows += `<tr><td class="lbt-first cg-label"${tipAttr(`${c}: ${def}`)}><span class="cg-code mono">${c}</span></td>${(truth ? [truth, ...order] : order).map((m) => {
             const v = share(m, c);
             if (v == null) return `<td class="cg-c na${gs(m)}"${tipAttr(`${fullName(m)}: no criteria recorded`)}>—</td>`;
-            const n = D.criteria_data[m.key][c] || 0;
+            const n = counts(m)[c] || 0;
             const txt = v === 0 ? "" : v < 0.1 ? "<0.1" : v.toFixed(1);
-            return `<td class="cg-c${gs(m)}"${tipAttr(`${c} · ${fullName(m)}\n${int(n)} variants, ${v.toFixed(1)}% of evaluated\n${def}`)}><span class="cg-cell">${dot(v, color)}${compact ? "" : `<span class="cg-v">${txt}</span>`}</span></td>`;
+            return `<td class="cg-c${gs(m)}"${tipAttr(`${c} · ${m.truth ? "ClinGen expert panels" : fullName(m)}\n${int(n)} variants, ${v.toFixed(1)}% of evaluated\n${def}`)}><span class="cg-cell">${dot(v, color)}${compact ? "" : `<span class="cg-v">${txt}</span>`}</span></td>`;
           }).join("")}</tr>`;
         });
         return rows;
@@ -104,7 +116,7 @@
   // section, then provider, then rank, so models of one family sit together.
   const AGREE_PROVIDERS = ["Google", "OpenAI", "Anthropic"];
   function renderAgreeHeat() {
-    const overallKey = state.lbScale === "3" ? "macro_f1_3" : "macro_f1_5";
+    const overallKey = (state.lbScale === "2" || state.lbScale === "3") ? "macro_f1_3" : "macro_f1_5";
     const shown = lbShown();
     const pool = shown.filter((m) => D.concordance[m.key]).sort((a, b) => (isFull(b) - isFull(a)) || b[overallKey] - a[overallKey]);
     const missing = shown.filter((m) => !D.concordance[m.key]);
@@ -112,9 +124,9 @@
     const provOrder = (m) => { const i = AGREE_PROVIDERS.indexOf(m.family); return i < 0 ? AGREE_PROVIDERS.length : i; };
     const models = bySection(pool).flatMap(([, ms]) => [...ms].sort((a, b) => provOrder(a) - provOrder(b)));
     const exact = state.agree === "exact_pct";
-    $("agreeTitle").textContent = `Agreement between classifiers, ${exact ? "same 5-class call" : "same direction (P/LP, VUS, B/LB)"}`;
-    $("agreeSub").textContent = "Share of variants on which two classifiers make the same call, regardless of the expert classification. Models are grouped by section, then provider.";
-    $("agreeNote").textContent = missing.length ? `Not shown: ${missing.map((m) => m.short_name).join(", ")}, carried over from an earlier build without variant-level results.` : "";
+    $("agreeTitle").textContent = `Classifier agreement (${exact ? "4-class" : "2-direction"})`;
+    $("agreeSub").textContent = "Share of variants where two classifiers make the same call.";
+    $("agreeNote").textContent = missing.length ? "* Excludes models without variant-level predictions." : "";
     const table = $("agreeHeat");
     if (models.length < 2) {
       table.innerHTML = `<tbody><tr><td class="empty">Show at least two models to compare their calls.</td></tr></tbody>`;
@@ -162,16 +174,37 @@
     toast(`Downloaded ${int(t.rows.length)} variants with calls from ${ms.length} models.`);
   }
 
+  // ---------- ranking cases CSV ----------
+  // Every 311 challenge case with causal gene and model ranks.
+  function downloadCasesCsv() {
+    const t = D.ranking_data?.cases_table;
+    if (!t || !t.rows || !t.rows.length) { toast("Ranking cases data is not available in this build."); return; }
+    const rkModels = (D.ranking_data.models || []).filter((m) => t.ranks && t.ranks[m.key]);
+    const head = [...t.columns, ...rkModels.map((m) => m.name)];
+    const lines = [head.map(csvCell).join(",")];
+    t.rows.forEach((r, i) => {
+      const modelRanks = rkModels.map((m) => {
+        const val = t.ranks[m.key] ? t.ranks[m.key][i] : null;
+        return val == null ? "" : val;
+      });
+      lines.push([...r, ...modelRanks].map(csvCell).join(","));
+    });
+    download(new Blob([lines.join("\r\n") + "\r\n"], { type: "text/csv" }), `raredxbench-ranking-cases-${t.rows.length}.csv`);
+    toast(`Downloaded ${int(t.rows.length)} ranking cases with ranks from ${rkModels.length} models.`);
+  }
+
   // ---------- tabs & URL ----------
   const RENDER = {
     leaderboard: renderLeaderboard,
+    categories: renderCategories,
     confusion: renderConfusion,
     criteria: renderCriteria,
     overall: renderOverall,
-    ranking: () => {}
+    ranking: renderRanking,
+    distractors: renderDistractors
   };
-  // Overall and Ranking are single-view sections; every other tab belongs to Classification.
-  const sectionOf = (tab) => (tab === "ranking" || tab === "overall" ? tab : "classification");
+  // Overall is a single view; Ranking has two tabs; every other tab belongs to Classification.
+  const sectionOf = (tab) => (tab === "ranking" || tab === "distractors" ? "ranking" : tab === "overall" ? tab : "classification");
 
   function readHash() {
     const [tab, q] = location.hash.slice(1).split("?");
@@ -182,7 +215,7 @@
   function hashQuery() {
     const q = [];
     // The confusion and criteria tabs order their models by the leaderboard scale, so their links keep it too
-    if (PICKER_OF[state.tab] && state.lbScale !== "3") q.push("s=" + state.lbScale);
+    if (PICKER_OF[state.tab] && state.tab !== "ranking" && state.tab !== "distractors" && state.lbScale !== "2") q.push("s=" + state.lbScale);
     const p = PICKER_OF[state.tab];
     if (p && state[SHOWN[p].col]) q.push("show=" + state[SHOWN[p].col].map(encodeURIComponent).join(","));
     return q.length ? "?" + q.join("&") : "";
@@ -195,11 +228,12 @@
 
   function applyHash() {
     const h = readHash();
-    if (h.s === "3" || h.s === "5") state.lbScale = h.s;
+    if (h.s === "2" || h.s === "3" || h.s === "4" || h.s === "5") state.lbScale = (h.s === "4" || h.s === "5") ? "4" : "2";
     const p = PICKER_OF[h.tab];
     if (p) {
+      const pool = modelPool(p);
       const keys = (h.show || "").split(",").filter((k) => byKey(k));
-      state[SHOWN[p].col] = keys.length && keys.length < D.models.length ? keys : null;
+      state[SHOWN[p].col] = keys.length && keys.length < pool.length ? keys : null;
     }
     state.tab = RENDER[h.tab] ? h.tab : "overall";
   }
@@ -209,6 +243,7 @@
     state.tab = tab;
     const section = sectionOf(tab);
     if (section === "classification") state.clsTab = tab;
+    if (section === "ranking") state.rkTab = tab;
     document.body.dataset.tab = tab;
     document.body.dataset.section = section;
     document.querySelectorAll(".section-tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.section === section)));

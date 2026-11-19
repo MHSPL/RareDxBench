@@ -31,8 +31,8 @@ CLASSIFICATION_ANSWERS = CLASSIFICATION_DATA_DIR / "erepo_bias_intervar_merged.j
 RESULTS_DIR = BASE_DIR / "scratch"
 
 # AIVA API Configuration
-AIVA_API_URL = os.getenv("AIVA_API_URL", "http://localhost:8000")
-AIVA_API_TOKEN = os.getenv("AIVA_API_TOKEN", "")
+AIVA_API_URL = os.getenv("AIVA_API_URL", "https://api.aivaportal.com")
+AIVA_API_TOKEN = os.getenv("AIVA_API_TOKEN") or os.getenv("AIVA_API_KEY", "")
 
 # Classification settings
 DEFAULT_ASSEMBLY = os.getenv("DEFAULT_ASSEMBLY", "GRCh37")  # eRepo baseline is GRCh37 (hg19)

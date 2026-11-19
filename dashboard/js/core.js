@@ -1,10 +1,10 @@
   let D = window.BENCHMARK_DATA;
-  const LABELS = ["Pathogenic", "Likely Pathogenic", "Uncertain Significance", "Likely Benign", "Benign"];
+  const LABELS = ["Pathogenic", "Likely Pathogenic", "Likely Benign", "Benign"];
   const ABBR = { "Pathogenic": "P", "Likely Pathogenic": "LP", "Uncertain Significance": "VUS", "Likely Benign": "LB", "Benign": "B" };
-  const DIR_LABEL = { pathogenic: "P/LP", vus: "VUS", benign: "B/LB" };
+  const DIR_LABEL = { pathogenic: "P/LP", benign: "B/LB" };
   const FAMILY_SHORT = {};
   const PROVIDER_ORDER = ["Anthropic", "OpenAI", "Google", "Rule-based", "Other"];
-  // [code, definition, short label shown beside the code]
+  // [code, definition shown on hover, short label (unused in the grid)]
   const CRITERIA = {
     pathogenic: [
       ["PVS1", "Null variant in a gene where loss of function is a known mechanism", "Null variant, loss-of-function gene"],
@@ -46,9 +46,9 @@
 
   const state = {
     tab: "overall", clsTab: "leaderboard",
-    scatterScale: "3", lbScale: "3", lbCols: null,
-    cmCols: null, critCols: null,
-    cmScale: "5", cmMode: "count",
+    scatterScale: "2", lbScale: "2", lbCols: null,
+    cmCols: null, critCols: null, rkCols: null, dxCols: null, rkTab: "ranking",
+    cmScale: "4", cmMode: "count",
     agree: "dir_pct"
   };
 
@@ -59,7 +59,7 @@
   const pct = (v) => (v == null || isNaN(v) ? "—" : Number(v).toFixed(1) + "%");
   const int = (v) => Number(v || 0).toLocaleString("en-US");
   const signed = (v, d = 1) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d);
-  const byKey = (k) => D.models.find((m) => m.key === k);
+  const byKey = (k) => D.models.find((m) => m.key === k) || (D.ranking_data?.models || []).find((m) => m.key === k);
   // Ranked when at least 99% of the cohort was scored; the rest are partial runs
   const FULL_COVERAGE = 0.99;
   const isFull = (m) => m.evaluated_count >= FULL_COVERAGE * m.total_cohort;
@@ -116,7 +116,7 @@
     $("sfYear").textContent = String(new Date().getFullYear());
     // The note under the figures only appears when a model is carried over from an earlier build.
     const archived = D.models.filter((m) => m.archived);
-    $("archivedNote").innerHTML = archived.length ? `${archived.map((m) => esc(m.name)).join(" and ")} ${archived.length > 1 ? "are" : "is"} carried over from an earlier build because the raw results are not in this repository; variant-level comparisons with later runs are unavailable for ${archived.length > 1 ? "them" : "it"}.` : "";
+    $("archivedNote").innerHTML = archived.length ? "* Carried over from an earlier build without raw variant-level results." : "";
   }
 
   // ---------- model selection ----------
@@ -140,9 +140,9 @@
     const methods = new Set(D.models.filter((x) => providerOf(x) === p).map((x) => methodShort(x.type)));
     return methods.size > 1 ? `${p} · ${methodShort(m.type)}` : p;
   }
-  // Leaderboard sections: AIVA runs, other agents (Claude Code, Antigravity, ...), automated rule-based pipelines
-  const SECTIONS = [["aiva", "AIVA"], ["agent", "Agents"], ["automated", "Automated"]];
-  const SECTION_TIP = { aiva: "Models run through the AIVA agent", agent: "General-purpose agents such as Claude Code or Antigravity", automated: "Rule-based ACMG classification pipelines" };
+  // Leaderboard sections: AIVA runs, Claude app runs (Claude Code, ...), automated rule-based pipelines
+  const SECTIONS = [["aiva", "AIVA"], ["agent", "Claude app"], ["automated", "Automated"]];
+  const SECTION_TIP = { aiva: "Models run through the AIVA agent", agent: "Models run through the Claude app, such as Claude Code", automated: "Rule-based ACMG classification pipelines" };
   const sectionKey = (m) => {
     if (SECTIONS.some(([k]) => k === m.section)) return m.section;
     if (m.family === "Rule-based" || /rules/i.test(m.type || "")) return "automated";
@@ -151,39 +151,50 @@
   const sectionLabel = (m) => SECTIONS.find(([k]) => k === sectionKey(m))[1];
   const bySection = (models) => SECTIONS.map(([k, label]) => [label, models.filter((m) => sectionKey(m) === k), k]).filter(([, ms]) => ms.length);
 
-  const collapse3 = (m5) => {
-    const idx = [0, 0, 1, 2, 2];
-    const out = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    m5.forEach((row, i) => row.forEach((v, j) => (out[idx[i]][idx[j]] += v)));
+  const collapse2 = (m4) => {
+    const rowIdx = [0, 0, 1, 1];
+    const colIdx = [0, 0, 1, 1, 2];
+    const out = [[0, 0, 0], [0, 0, 0]];
+    m4.forEach((row, i) => row.forEach((v, j) => (out[rowIdx[i]][colIdx[j]] += v)));
     return out;
   };
+  const collapse3 = collapse2;
 
   const per1k = (m) => (m.evaluated_count ? (m.critical_error_count / m.evaluated_count) * 1000 : 0);
   const metricVal = (m, k) => (k === "per1k" ? per1k(m) : m[k] ?? 0);
   const metricTxt = (m, k) => (k === "per1k" ? per1k(m).toFixed(2) : f1(m[k]));
 
-  // Show/hide model pickers for the leaderboard ("lb") and confusion ("cm") tabs.
-  // state.lbCols / state.cmCols hold the shown keys; null means all models.
+  // Show/hide model pickers for the leaderboard ("lb"), confusion ("cm"), criteria ("crit") and ranking ("rk") tabs.
+  // state.lbCols / state.cmCols / state.rkCols hold the shown keys; null means all models.
   const SHOWN = {
-    lb: { col: "lbCols", where: "the leaderboard", render: () => renderLeaderboard() },
+    lb: { col: "lbCols", where: "the leaderboard", render: () => (state.tab === "categories" ? renderCategories() : renderLeaderboard()) },
     cm: { col: "cmCols", where: "the confusion matrices", render: () => renderConfusion() },
-    crit: { col: "critCols", where: "the criteria charts", render: () => renderCriteria() }
+    crit: { col: "critCols", where: "the criteria charts", render: () => renderCriteria() },
+    rk: { col: "rkCols", where: "the ranking leaderboard", render: () => renderRanking() },
+    dx: { col: "dxCols", where: "the distractor charts", render: () => renderDistractors() }
   };
-  const PICKER_OF = { leaderboard: "lb", confusion: "cm", criteria: "crit" };
+  const PICKER_OF = { leaderboard: "lb", categories: "lb", confusion: "cm", criteria: "crit", ranking: "rk", distractors: "dx" };
+  const modelPool = (p) => (p === "rk" ? (D.ranking_data?.models || []) : p === "dx" ? dxModels() : D.models);
   // Drop keys of models that no longer exist; an emptied selection falls back to all.
   function pruneShown() {
-    Object.values(SHOWN).forEach(({ col }) => {
+    Object.entries(SHOWN).forEach(([p, { col }]) => {
       if (!state[col]) return;
-      const valid = state[col].filter((k) => byKey(k));
-      state[col] = valid.length && valid.length < D.models.length ? valid : null;
+      const pool = modelPool(p);
+      const valid = state[col].filter((k) => pool.some((m) => m.key === k));
+      state[col] = valid.length && valid.length < pool.length ? valid : null;
     });
   }
-  const shownModels = (p) => (state[SHOWN[p].col] ? D.models.filter((m) => state[SHOWN[p].col].includes(m.key)) : D.models.slice());
+  const shownModels = (p) => {
+    const pool = modelPool(p);
+    return state[SHOWN[p].col] ? pool.filter((m) => state[SHOWN[p].col].includes(m.key)) : pool.slice();
+  };
   const lbShown = () => shownModels("lb");
+  const rkShown = () => shownModels("rk");
 
   function setShown(p, keys) {
-    const valid = keys.filter((k) => byKey(k));
-    state[SHOWN[p].col] = !valid.length || valid.length === D.models.length ? null : valid;
+    const pool = modelPool(p);
+    const valid = keys.filter((k) => pool.some((m) => m.key === k));
+    state[SHOWN[p].col] = !valid.length || valid.length === pool.length ? null : valid;
     SHOWN[p].render();
     writeHash();
   }
@@ -197,13 +208,14 @@
   }
 
   function renderShownPicker(p) {
+    const pool = modelPool(p);
     const shown = shownModels(p);
     const all = !state[SHOWN[p].col];
     $(p + "AllBtn").hidden = all;
-    $(p + "PickBtn").textContent = all ? `All ${D.models.length} models` : `${shown.length} of ${D.models.length} models`;
+    $(p + "PickBtn").textContent = all ? `All ${pool.length} models` : `${shown.length} of ${pool.length} models`;
     const q = ($(p + "PickQ").value || "").trim().toLowerCase();
     const keys = shown.map((m) => m.key);
-    const list = D.models.filter((m) => !q || `${m.name} ${m.family} ${m.type}`.toLowerCase().includes(q));
+    const list = pool.filter((m) => !q || `${m.name} ${m.family} ${m.type}`.toLowerCase().includes(q));
     const listEl = $(p + "PickList");
     listEl.innerHTML = bySection(list).map(([g, ms]) => {
       const allOn = ms.every((m) => keys.includes(m.key));

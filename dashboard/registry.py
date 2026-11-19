@@ -16,8 +16,8 @@ results file. Columns (tab-separated):
     color_dark  optional colour for the dark theme; empty takes the PALETTE
                 pair of `color`, else `color` itself
     status      active, or removed to hide the model
-    section     leaderboard section: aiva (AIVA agent runs), agent (other
-                agents such as Claude Code or Antigravity) or automated
+    section     leaderboard section: aiva (AIVA agent runs), agent (Claude
+                app runs such as Claude Code) or automated
                 (rule-based pipelines); empty derives it from provider/method
 """
 

@@ -16,6 +16,7 @@ metrics, concordance), variant_table.py, archive.py (archived model carry-over).
 
 import json
 import sys
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -29,9 +30,10 @@ from dashboard.loaders import (  # noqa: F401  (re-exported)
     get_vcep_category, load_unified_data, discover_model_files,
     STRENGTH_WORDS, with_strength, criterion_points, load_model_predictions,
 )
-from dashboard.scoring import macro_f1_directional, score_model, concordance  # noqa: F401
+from dashboard.scoring import ALL_CRITERIA, macro_f1_directional, score_model, concordance  # noqa: F401
 from dashboard.variant_table import VARIANT_COLUMNS, NO_CALL, build_variant_table  # noqa: F401
 from dashboard.archive import load_previous_dataset, carry_over_archived_models  # noqa: F401
+from dashboard.ranking_scoring import build_ranking_data
 
 
 def build_dashboard_dataset():
@@ -39,8 +41,14 @@ def build_dashboard_dataset():
     unified_path = CLASSIFICATION_ANSWERS
     print(f"Loading Ground Truth & Baselines from {unified_path}...")
     unified_dict = load_unified_data(unified_path)
+    # Filter to definitive variants only: exclude ground-truth VUS (Uncertain Significance)
+    unified_dict = {vid: v for vid, v in unified_dict.items() if v["ground_truth"] != "Uncertain Significance"}
     total_cohort = len(unified_dict)
-    print(f"Loaded {total_cohort} ClinGen expert curated variants.")
+    print(f"Loaded {total_cohort} ClinGen expert curated definitive variants (excluded 32 VUS ground-truth variants).")
+
+    # ClinGen expert criteria counts over the whole cohort (the ground truth column of the criteria grid)
+    clingen_counter = Counter(c for v in unified_dict.values() for c in set(v["criteria_met"]) if c)
+    clingen_criteria = {c: clingen_counter.get(c, 0) for c in ALL_CRITERIA}
 
     models_info, missing = discover_model_files(REPO_ROOT)
     print(f"Discovered {len(models_info)} models and baselines:")
@@ -88,6 +96,12 @@ def build_dashboard_dataset():
     variant_table = build_variant_table(unified_dict, model_predictions, model_keys)
 
     # -------------------------------------------------------------------------
+    # VARIANT RANKING BENCHMARK
+    # -------------------------------------------------------------------------
+    ranking_data = build_ranking_data(REPO_ROOT)
+    print(f"Loaded variant ranking benchmark: {len(ranking_data['models'])} models.")
+
+    # -------------------------------------------------------------------------
     # FINAL ASSEMBLED DASHBOARD PAYLOAD
     # -------------------------------------------------------------------------
     payload = {
@@ -97,17 +111,19 @@ def build_dashboard_dataset():
             "evaluation_date": datetime.now().strftime("%B %d, %Y"),
             "total_variants": total_cohort,
             "categories": CATEGORY_ORDER,
-            "classification_labels": CLASSIFICATION_LABELS,
-            "direction_labels": DIRECTION_LABELS,
+            "classification_labels": ["Pathogenic", "Likely Pathogenic", "Likely Benign", "Benign"],
+            "direction_labels": ["pathogenic", "benign"],
         },
         "models": models_summary,
         "confusion_matrices": models_confusion,
         "categories_data": models_categories,
         "criteria_data": models_criteria,
+        "clingen_criteria": clingen_criteria,
         "safety_data": models_safety,
         "cross_direction": models_cross,
         "concordance": concordance_matrix,
         "variant_table": variant_table,
+        "ranking_data": ranking_data,
     }
 
     carry_over_archived_models(payload, missing)

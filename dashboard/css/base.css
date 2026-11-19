@@ -97,8 +97,11 @@ button, input, select { font: inherit; color: inherit; }
 .view-tools { grid-column: 1; grid-row: 1; justify-self: start; min-width: 0; }
 .vt { display: none; align-items: center; gap: 8px; }
 body[data-tab="leaderboard"] .vt[data-for="leaderboard"],
+body[data-tab="categories"] .vt[data-for="leaderboard"],
 body[data-tab="confusion"] .vt[data-for="confusion"],
-body[data-tab="criteria"] .vt[data-for="criteria"] { display: flex; }
+body[data-tab="criteria"] .vt[data-for="criteria"],
+body[data-tab="ranking"] .vt[data-for="ranking"],
+body[data-tab="distractors"] .vt[data-for="distractors"] { display: flex; }
 .vt .lb-pick { display: flex; align-items: center; gap: 8px; }
 .vt .picker-btn {
   display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; font-size: 14px; line-height: 20px;
