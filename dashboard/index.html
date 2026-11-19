@@ -498,6 +498,12 @@ th.selcol { color: var(--text); }
 .ov-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; }
 .ov-grid > .card.fig-main + .card { margin-top: 0; }
 @media (max-width: 1100px) { .ov-grid { grid-template-columns: minmax(0, 1fr); } }
+.ov-intro { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 22px; }
+.ov-intro h3 { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+.ov-intro h4 { margin: 0; font-size: 15px; font-weight: 700; }
+.ov-intro p { margin: 6px 0 0; color: var(--text-2); font-size: 14px; max-width: 120ch; }
+.ov-intro-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 16px; }
+@media (max-width: 1100px) { .ov-intro-cols { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
 table.ovt { font-size: 14px; width: 100%; border-collapse: separate; border-spacing: 0; }
 table.ovt th, table.ovt td { padding: 7px 8px; border-bottom: 1px solid var(--grid); }
 table.ovt thead th { border-bottom: 1.5px solid var(--text-2); font-size: 13px; font-weight: 600; color: var(--text-2); vertical-align: bottom; }
@@ -640,6 +646,7 @@ table.ovt tr.ovt-sec th { text-align: left; font-size: 13px; font-weight: 600; c
   <!-- OVERALL: a snapshot of each benchmark -->
   <section class="view" id="view-overall" role="tabpanel" hidden>
     <h2 class="sr-only">Overall</h2>
+    <div class="ov-intro" id="ovIntro"></div>
     <div class="ov-grid">
     <div class="card fig-main lb-card" data-static>
       <div class="card-head">
@@ -1254,6 +1261,14 @@ window.BENCHMARK_DATA = {"metadata":{"title":"RareDx Bench","subtitle":"An open 
   // A snapshot of each benchmark. Classification: every model, 2-class, Overall plus P/LP and B/LB.
   function renderOverall() {
     renderShownPicker("ov");
+    const nVar = int(D.metadata.total_variants);
+    const nCases = int(D.ranking_data?.metadata?.total_cohort || 311);
+    $("ovIntro").innerHTML = `<h3>What RareDx Bench measures</h3>` +
+      `<p>RareDx Bench tests how well AI models and automated tools handle two core rare disease genetics tasks. Models are scored on one or both tasks, and the tables below give a snapshot of each. Use Choose models above to compare a subset.</p>` +
+      `<div class="ov-intro-cols">` +
+      `<div><h4>Variant classification</h4><p>Given a genetic variant, can the model tell pathogenic and likely pathogenic variants from benign and likely benign ones? Calls are checked against ClinGen expert panel classifications on ${nVar} variants. Scores are macro F1 (higher is better), shown overall and for each side. The Leaderboard tab also offers a 4 class view.</p></div>` +
+      `<div><h4>Variant ranking</h4><p>Given a patient case, can the model rank candidate genes so the true causal gene comes first? ${nCases} challenge cases span established gene and disease pairs through novel genes with novel diseases. Scores are Recall@K, Mean Reciprocal Rank and Median Rank.</p></div>` +
+      `</div>`;
     const { ranked, partial, cols } = lbColumns(ovKeep(D.models), true);
     $("ovSub").innerHTML = `Macro F1 against ClinGen expert classifications (P/LP vs B/LB).<span class="ui-hint"> <button type="button" class="ov-link" id="ovFull">Full leaderboard</button></span>`;
     $("ovFull").onclick = () => { state.lbCols = null; state.lbScale = "2"; setTab("leaderboard"); window.scrollTo({ top: 0 }); };

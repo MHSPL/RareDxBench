@@ -168,6 +168,14 @@
   // A snapshot of each benchmark. Classification: every model, 2-class, Overall plus P/LP and B/LB.
   function renderOverall() {
     renderShownPicker("ov");
+    const nVar = int(D.metadata.total_variants);
+    const nCases = int(D.ranking_data?.metadata?.total_cohort || 311);
+    $("ovIntro").innerHTML = `<h3>What RareDx Bench measures</h3>` +
+      `<p>RareDx Bench tests how well AI models and automated tools handle two core rare disease genetics tasks. Models are scored on one or both tasks, and the tables below give a snapshot of each. Use Choose models above to compare a subset.</p>` +
+      `<div class="ov-intro-cols">` +
+      `<div><h4>Variant classification</h4><p>Given a genetic variant, can the model tell pathogenic and likely pathogenic variants from benign and likely benign ones? Calls are checked against ClinGen expert panel classifications on ${nVar} variants. Scores are macro F1 (higher is better), shown overall and for each side. The Leaderboard tab also offers a 4 class view.</p></div>` +
+      `<div><h4>Variant ranking</h4><p>Given a patient case, can the model rank candidate genes so the true causal gene comes first? ${nCases} challenge cases span established gene and disease pairs through novel genes with novel diseases. Scores are Recall@K, Mean Reciprocal Rank and Median Rank.</p></div>` +
+      `</div>`;
     const { ranked, partial, cols } = lbColumns(ovKeep(D.models), true);
     $("ovSub").innerHTML = `Macro F1 against ClinGen expert classifications (P/LP vs B/LB).<span class="ui-hint"> <button type="button" class="ov-link" id="ovFull">Full leaderboard</button></span>`;
     $("ovFull").onclick = () => { state.lbCols = null; state.lbScale = "2"; setTab("leaderboard"); window.scrollTo({ top: 0 }); };

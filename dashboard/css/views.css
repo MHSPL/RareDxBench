@@ -230,6 +230,12 @@ th.selcol { color: var(--text); }
 .ov-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; }
 .ov-grid > .card.fig-main + .card { margin-top: 0; }
 @media (max-width: 1100px) { .ov-grid { grid-template-columns: minmax(0, 1fr); } }
+.ov-intro { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 22px; }
+.ov-intro h3 { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+.ov-intro h4 { margin: 0; font-size: 15px; font-weight: 700; }
+.ov-intro p { margin: 6px 0 0; color: var(--text-2); font-size: 14px; max-width: 120ch; }
+.ov-intro-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 16px; }
+@media (max-width: 1100px) { .ov-intro-cols { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
 table.ovt { font-size: 14px; width: 100%; border-collapse: separate; border-spacing: 0; }
 table.ovt th, table.ovt td { padding: 7px 8px; border-bottom: 1px solid var(--grid); }
 table.ovt thead th { border-bottom: 1.5px solid var(--text-2); font-size: 13px; font-weight: 600; color: var(--text-2); vertical-align: bottom; }
