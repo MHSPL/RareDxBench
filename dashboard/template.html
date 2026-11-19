@@ -33,6 +33,19 @@
 <div class="tab-bar">
   <div class="wrap viewrow">
     <div class="view-tools">
+      <div class="vt" data-for="overall">
+        <div class="lb-pick">
+          <div class="picker">
+            <button type="button" class="btn picker-btn" id="ovPickBtn" aria-haspopup="true" aria-expanded="false">Choose models</button>
+            <div class="picker-pop" id="ovPickPop" hidden>
+              <input type="search" id="ovPickQ" placeholder="Search models" aria-label="Search models">
+              <div class="picker-list" id="ovPickList"></div>
+              <p class="picker-note">Both Overall tables show only the selected models.</p>
+            </div>
+          </div>
+          <button type="button" class="btn picker-btn" id="ovAllBtn" hidden>Show all</button>
+        </div>
+      </div>
       <div class="vt" data-for="leaderboard">
         <div class="lb-pick">
           <div class="picker">

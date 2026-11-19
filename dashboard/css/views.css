@@ -33,8 +33,9 @@
 
 /* Leaderboard landing */
 
-/* Overall section hides the view bar chrome */
-body[data-section="overall"] .tab-bar { display: none; }
+/* Overall keeps only the model picker in the view bar */
+body[data-section="overall"] .tabs,
+body[data-section="overall"] .bench-actions { display: none; }
 
 /* Section chrome visibility */
 body[data-section="ranking"] .cls-only,

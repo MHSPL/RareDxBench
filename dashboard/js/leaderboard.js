@@ -167,10 +167,12 @@
   // ---------- overall ----------
   // A snapshot of each benchmark. Classification: every model, 2-class, Overall plus P/LP and B/LB.
   function renderOverall() {
-    const { ranked, partial, cols } = lbColumns(D.models.slice(), true);
+    renderShownPicker("ov");
+    const { ranked, partial, cols } = lbColumns(ovKeep(D.models), true);
     $("ovSub").innerHTML = `Macro F1 against ClinGen expert classifications (P/LP vs B/LB).<span class="ui-hint"> <button type="button" class="ov-link" id="ovFull">Full leaderboard</button></span>`;
     $("ovFull").onclick = () => { state.lbCols = null; state.lbScale = "2"; setTab("leaderboard"); window.scrollTo({ top: 0 }); };
     drawOverallTable($("ovTable"), cols, ranked, cols.length ? lbClassRows(cols, true) : [], { countText: `${int(D.metadata.total_variants)} variants` });
+    if (!cols.length) $("ovTable").innerHTML = `<tbody><tr><td class="empty">None of the selected models were run on this benchmark.</td></tr></tbody>`;
     $("ovNote").innerHTML = lbCoverageNotes(ranked, partial).filter(Boolean).join("<br>");
     renderOverallRanking();
   }
@@ -235,10 +237,11 @@
   function renderOverallRanking() {
     const rk = D.ranking_data;
     if (!rk || !rk.models || !rk.models.length || !$("ovRankTable")) return;
-    const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
+    const rkCols = ovKeep(rk.models).sort((a, b) => b.mrr - a.mrr);
     $("ovRankSub").innerHTML = `${defTerm("Recall@K", "recall1")} and ${defTerm("MRR", "mrr")} across 311 rare disease challenge cases.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">Full ranking leaderboard</button></span>`;
     $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
     drawOverallTable($("ovRankTable"), rkCols, rkCols, rankingOverallRows(), { countText: `${int(D.ranking_data?.metadata?.total_cohort || 311)} cases` });
+    if (!rkCols.length) $("ovRankTable").innerHTML = `<tbody><tr><td class="empty">None of the selected models were run on this benchmark.</td></tr></tbody>`;
     $("ovRankNote").innerHTML = `${defTerm("Recall@K", "recall1")}: share of cases where causal gene ranked &le; K. ${defTerm("MRR", "mrr")} scores how near the top the causal gene lands. Hover a column heading for its definition. Denominator is 311 total cases.`;
   }
 

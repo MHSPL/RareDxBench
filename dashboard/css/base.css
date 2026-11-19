@@ -96,6 +96,7 @@ button, input, select { font: inherit; color: inherit; }
 /* Each view's own controls (model selection, scale) sit at the left of the strip */
 .view-tools { grid-column: 1; grid-row: 1; justify-self: start; min-width: 0; }
 .vt { display: none; align-items: center; gap: 8px; }
+body[data-tab="overall"] .vt[data-for="overall"],
 body[data-tab="leaderboard"] .vt[data-for="leaderboard"],
 body[data-tab="categories"] .vt[data-for="leaderboard"],
 body[data-tab="confusion"] .vt[data-for="confusion"],

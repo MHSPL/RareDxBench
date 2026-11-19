@@ -215,7 +215,7 @@
   function hashQuery() {
     const q = [];
     // The confusion and criteria tabs order their models by the leaderboard scale, so their links keep it too
-    if (PICKER_OF[state.tab] && state.tab !== "ranking" && state.tab !== "distractors" && state.lbScale !== "2") q.push("s=" + state.lbScale);
+    if (PICKER_OF[state.tab] && !["ranking", "distractors", "overall"].includes(state.tab) && state.lbScale !== "2") q.push("s=" + state.lbScale);
     const p = PICKER_OF[state.tab];
     if (p && state[SHOWN[p].col]) q.push("show=" + state[SHOWN[p].col].map(encodeURIComponent).join(","));
     return q.length ? "?" + q.join("&") : "";
@@ -232,7 +232,7 @@
     const p = PICKER_OF[h.tab];
     if (p) {
       const pool = modelPool(p);
-      const keys = (h.show || "").split(",").filter((k) => byKey(k));
+      const keys = (h.show || "").split(",").filter((k) => pool.some((m) => pickId(p, m) === k));
       state[SHOWN[p].col] = keys.length && keys.length < pool.length ? keys : null;
     }
     state.tab = RENDER[h.tab] ? h.tab : "overall";

@@ -47,7 +47,7 @@
   const state = {
     tab: "overall", clsTab: "leaderboard",
     scatterScale: "2", lbScale: "2", lbCols: null,
-    cmCols: null, critCols: null, rkCols: null, dxCols: null, rkTab: "ranking",
+    cmCols: null, critCols: null, rkCols: null, dxCols: null, ovCols: null, rkTab: "ranking",
     cmScale: "4", cmMode: "count",
     agree: "dir_pct"
   };
@@ -171,36 +171,50 @@
     cm: { col: "cmCols", where: "the confusion matrices", render: () => renderConfusion() },
     crit: { col: "critCols", where: "the criteria charts", render: () => renderCriteria() },
     rk: { col: "rkCols", where: "the ranking leaderboard", render: () => renderRanking() },
-    dx: { col: "dxCols", where: "the distractor charts", render: () => renderDistractors() }
+    dx: { col: "dxCols", where: "the distractor charts", render: () => renderDistractors() },
+    ov: { col: "ovCols", where: "the overall page", render: () => renderOverall() }
   };
-  const PICKER_OF = { leaderboard: "lb", categories: "lb", confusion: "cm", criteria: "crit", ranking: "rk", distractors: "dx" };
-  const modelPool = (p) => (p === "rk" ? (D.ranking_data?.models || []) : p === "dx" ? dxModels() : D.models);
+  const PICKER_OF = { leaderboard: "lb", categories: "lb", confusion: "cm", criteria: "crit", ranking: "rk", distractors: "dx", overall: "ov" };
+  // The Overall page spans both benchmarks, whose model keys differ (aiva_opus_rerun and aiva_opus),
+  // so its picker identifies a model by section and name, e.g. "aiva|Opus 5.5".
+  const ovId = (m) => `${sectionKey(m)}|${m.name}`;
+  const pickId = (p, m) => (p === "ov" ? ovId(m) : m.key);
+  function overallPool() {
+    const seen = new Set();
+    return [...D.models, ...(D.ranking_data?.models || [])].filter((m) => !seen.has(ovId(m)) && seen.add(ovId(m)));
+  }
+  const modelPool = (p) => (p === "rk" ? (D.ranking_data?.models || []) : p === "dx" ? dxModels() : p === "ov" ? overallPool() : D.models);
   // Drop keys of models that no longer exist; an emptied selection falls back to all.
   function pruneShown() {
     Object.entries(SHOWN).forEach(([p, { col }]) => {
       if (!state[col]) return;
       const pool = modelPool(p);
-      const valid = state[col].filter((k) => pool.some((m) => m.key === k));
+      const valid = state[col].filter((k) => pool.some((m) => pickId(p, m) === k));
       state[col] = valid.length && valid.length < pool.length ? valid : null;
     });
   }
   const shownModels = (p) => {
     const pool = modelPool(p);
-    return state[SHOWN[p].col] ? pool.filter((m) => state[SHOWN[p].col].includes(m.key)) : pool.slice();
+    return state[SHOWN[p].col] ? pool.filter((m) => state[SHOWN[p].col].includes(pickId(p, m))) : pool.slice();
   };
   const lbShown = () => shownModels("lb");
   const rkShown = () => shownModels("rk");
+  // Models of one benchmark that the Overall picker keeps
+  const ovKeep = (models) => {
+    const ids = state.ovCols;
+    return ids ? models.filter((m) => ids.includes(ovId(m))) : models.slice();
+  };
 
   function setShown(p, keys) {
     const pool = modelPool(p);
-    const valid = keys.filter((k) => pool.some((m) => m.key === k));
+    const valid = keys.filter((k) => pool.some((m) => pickId(p, m) === k));
     state[SHOWN[p].col] = !valid.length || valid.length === pool.length ? null : valid;
     SHOWN[p].render();
     writeHash();
   }
 
   function toggleShown(p, key) {
-    const cur = shownModels(p).map((m) => m.key);
+    const cur = shownModels(p).map((m) => pickId(p, m));
     if (cur.includes(key)) {
       if (cur.length === 1) { toast("Keep at least one model."); return; }
       setShown(p, cur.filter((k) => k !== key));
@@ -214,18 +228,18 @@
     $(p + "AllBtn").hidden = all;
     $(p + "PickBtn").textContent = all ? `All ${pool.length} models` : `${shown.length} of ${pool.length} models`;
     const q = ($(p + "PickQ").value || "").trim().toLowerCase();
-    const keys = shown.map((m) => m.key);
+    const keys = shown.map((m) => pickId(p, m));
     const list = pool.filter((m) => !q || `${m.name} ${m.family} ${m.type}`.toLowerCase().includes(q));
     const listEl = $(p + "PickList");
     listEl.innerHTML = bySection(list).map(([g, ms]) => {
-      const allOn = ms.every((m) => keys.includes(m.key));
+      const allOn = ms.every((m) => keys.includes(pickId(p, m)));
       return `<div class="pk-group"><div class="pk-head"><span>${esc(g)}</span><button type="button" class="pk-all" data-group="${esc(g)}">${allOn ? "Clear" : "Select all"}</button></div>${ms.map((m) =>
-        `<label class="pk-item"><input type="checkbox" data-key="${esc(m.key)}"${keys.includes(m.key) ? " checked" : ""}>${swatch(m)}<span>${esc(m.name)}</span><small>${esc(m.type)}${isFull(m) ? "" : " · subset"}</small></label>`).join("")}</div>`;
+        `<label class="pk-item"><input type="checkbox" data-key="${esc(pickId(p, m))}"${keys.includes(pickId(p, m)) ? " checked" : ""}>${swatch(m)}<span>${esc(m.name)}</span><small>${esc(m.type)}${isFull(m) ? "" : " · subset"}</small></label>`).join("")}</div>`;
     }).join("") || `<p class="empty">No models match.</p>`;
     listEl.querySelectorAll("input[data-key]").forEach((c) => c.onchange = () => toggleShown(p, c.dataset.key));
     listEl.querySelectorAll(".pk-all").forEach((b) => b.onclick = () => {
-      const ms = list.filter((m) => sectionLabel(m) === b.dataset.group).map((m) => m.key);
-      const cur = shownModels(p).map((m) => m.key);
+      const ms = list.filter((m) => sectionLabel(m) === b.dataset.group).map((m) => pickId(p, m));
+      const cur = shownModels(p).map((m) => pickId(p, m));
       if (ms.every((k) => cur.includes(k))) {
         const rest = cur.filter((k) => !ms.includes(k));
         if (!rest.length) { toast("Keep at least one model."); return; }
