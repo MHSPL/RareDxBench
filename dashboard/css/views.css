@@ -139,6 +139,7 @@ td.lbt-n.small { color: var(--muted); }
 .lbt-row { font-weight: 500; }
 td.lbt-first.indent { padding-left: 22px; }
 .lbt-row .tier { margin-right: 8px; }
+.def-term { cursor: help; text-decoration: underline dotted; text-decoration-color: var(--muted); text-underline-offset: 3px; }
 .lbt-dag { color: var(--muted); font-weight: 600; margin-left: 2px; }
 tr.lbt-small .lbt-row { color: var(--text-2); }
 tr.lbt-overall td { font-size: 15px; }

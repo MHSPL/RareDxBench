@@ -4,7 +4,6 @@ Scoring and data assembly for the RareDx Bench variant ranking benchmark.
 
 import csv
 import json
-import math
 from pathlib import Path
 from collections import defaultdict
 
@@ -98,7 +97,6 @@ def load_csv_metrics(csv_path: Path) -> dict:
                 "mrr": float(row["mrr"]),
                 "gene_absent": int(row.get("gene_absent", 0)),
                 "gene_absent_pct": float(row.get("gene_absent_pct", 0.0)),
-                "ndcg10": float(row.get("ndcg10", 0.0)),
                 "median_rank": float(row.get("median_rank", 1.0))
             }
     return data
@@ -118,7 +116,6 @@ def compute_metrics_from_ranks(cats: dict[str, list[int | None]]) -> dict:
         top20 = sum(1 for r in ranks if r is not None and r <= 20)
         absent = sum(1 for r in ranks if r is None)
         mrr = sum(1.0 / r for r in ranks if r is not None and r > 0) / n
-        ndcg10 = sum((1.0 / math.log2(r + 1)) for r in ranks if r is not None and 1 <= r <= 10) / n
         found = sorted([r for r in ranks if r is not None])
         med = float(found[len(found) // 2]) if found else 1.0
         results[cat_name] = {
@@ -136,7 +133,6 @@ def compute_metrics_from_ranks(cats: dict[str, list[int | None]]) -> dict:
             "mrr": round(mrr, 4),
             "gene_absent": absent,
             "gene_absent_pct": round(absent * 100.0 / n, 2),
-            "ndcg10": round(ndcg10, 4),
             "median_rank": med
         }
     return results
@@ -287,7 +283,6 @@ def build_ranking_data(repo_root: Path) -> dict:
             "top10_pct": overall.get("top10_pct", 0.0),
             "top20_pct": overall.get("top20_pct", 0.0),
             "mrr": overall.get("mrr", 0.0),
-            "ndcg10": overall.get("ndcg10", 0.0),
             "median_rank": overall.get("median_rank", 1.0),
             "per_category": {}
         }

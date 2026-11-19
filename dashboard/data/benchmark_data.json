@@ -49642,7 +49642,6 @@
         "top10_pct": 99.68,
         "top20_pct": 100.0,
         "mrr": 0.9753,
-        "ndcg10": 0.9806,
         "median_rank": 1.0,
         "per_category": {
           "known_gene_disease": {
@@ -49660,7 +49659,6 @@
             "mrr": 0.9815,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.9863,
             "median_rank": 1.0
           },
           "known_gene_known_disease": {
@@ -49678,7 +49676,6 @@
             "mrr": 0.9572,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.9632,
             "median_rank": 1.0
           },
           "known_gene_new_disease": {
@@ -49696,7 +49693,6 @@
             "mrr": 1.0,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 1.0,
             "median_rank": 1.0
           },
           "new_gene_known_disease": {
@@ -49714,7 +49710,6 @@
             "mrr": 1.0,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 1.0,
             "median_rank": 1.0
           },
           "new_gene_new_disease": {
@@ -49732,7 +49727,6 @@
             "mrr": 0.9485,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.962,
             "median_rank": 1.0
           }
         }
@@ -49756,7 +49750,6 @@
         "top10_pct": 98.39,
         "top20_pct": 100.0,
         "mrr": 0.9509,
-        "ndcg10": 0.9584,
         "median_rank": 1.0,
         "per_category": {
           "known_gene_disease": {
@@ -49774,7 +49767,6 @@
             "mrr": 0.9308,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.9428,
             "median_rank": 1.0
           },
           "known_gene_known_disease": {
@@ -49792,7 +49784,6 @@
             "mrr": 0.9434,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.941,
             "median_rank": 1.0
           },
           "known_gene_new_disease": {
@@ -49810,7 +49801,6 @@
             "mrr": 0.9878,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.991,
             "median_rank": 1.0
           },
           "new_gene_known_disease": {
@@ -49828,7 +49818,6 @@
             "mrr": 0.9413,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.9558,
             "median_rank": 1.0
           },
           "new_gene_new_disease": {
@@ -49846,7 +49835,6 @@
             "mrr": 0.9632,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.9729,
             "median_rank": 1.0
           }
         }
@@ -49870,7 +49858,6 @@
         "top10_pct": 98.71,
         "top20_pct": 100.0,
         "mrr": 0.8864,
-        "ndcg10": 0.9109,
         "median_rank": 1.0,
         "per_category": {
           "known_gene_disease": {
@@ -49888,7 +49875,6 @@
             "mrr": 0.8026,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.8458,
             "median_rank": 1.0
           },
           "known_gene_known_disease": {
@@ -49906,7 +49892,6 @@
             "mrr": 0.9123,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.93,
             "median_rank": 1.0
           },
           "known_gene_new_disease": {
@@ -49924,7 +49909,6 @@
             "mrr": 0.9146,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.937,
             "median_rank": 1.0
           },
           "new_gene_known_disease": {
@@ -49942,7 +49926,6 @@
             "mrr": 0.8418,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.873,
             "median_rank": 1.0
           },
           "new_gene_new_disease": {
@@ -49960,7 +49943,6 @@
             "mrr": 0.9564,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.9673,
             "median_rank": 1.0
           }
         }
@@ -49984,7 +49966,6 @@
         "top10_pct": 90.03,
         "top20_pct": 94.53,
         "mrr": 0.7714,
-        "ndcg10": 0.8004,
         "median_rank": 1.0,
         "per_category": {
           "known_gene_disease": {
@@ -50002,7 +49983,6 @@
             "mrr": 0.7775,
             "gene_absent": 1,
             "gene_absent_pct": 1.85,
-            "ndcg10": 0.8107,
             "median_rank": 1.0
           },
           "known_gene_known_disease": {
@@ -50020,7 +50000,6 @@
             "mrr": 0.6087,
             "gene_absent": 14,
             "gene_absent_pct": 18.92,
-            "ndcg10": 0.6299,
             "median_rank": 1.0
           },
           "known_gene_new_disease": {
@@ -50038,7 +50017,6 @@
             "mrr": 0.804,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.8452,
             "median_rank": 1.0
           },
           "new_gene_known_disease": {
@@ -50056,7 +50034,6 @@
             "mrr": 0.8019,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.8426,
             "median_rank": 1.0
           },
           "new_gene_new_disease": {
@@ -50074,7 +50051,6 @@
             "mrr": 0.8907,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.9046,
             "median_rank": 1.0
           }
         }
@@ -50098,7 +50074,6 @@
         "top10_pct": 87.46,
         "top20_pct": 95.18,
         "mrr": 0.6777,
-        "ndcg10": 0.7217,
         "median_rank": 1.0,
         "per_category": {
           "known_gene_disease": {
@@ -50116,7 +50091,6 @@
             "mrr": 0.6356,
             "gene_absent": 1,
             "gene_absent_pct": 1.85,
-            "ndcg10": 0.705,
             "median_rank": 2.0
           },
           "known_gene_known_disease": {
@@ -50134,7 +50108,6 @@
             "mrr": 0.5594,
             "gene_absent": 12,
             "gene_absent_pct": 16.22,
-            "ndcg10": 0.5921,
             "median_rank": 1.0
           },
           "known_gene_new_disease": {
@@ -50152,7 +50125,6 @@
             "mrr": 0.6675,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.7344,
             "median_rank": 2.0
           },
           "new_gene_known_disease": {
@@ -50170,7 +50142,6 @@
             "mrr": 0.7052,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.7565,
             "median_rank": 1.0
           },
           "new_gene_new_disease": {
@@ -50188,7 +50159,6 @@
             "mrr": 0.8161,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.8304,
             "median_rank": 1.0
           }
         }
@@ -50212,7 +50182,6 @@
         "top10_pct": 80.06,
         "top20_pct": 91.96,
         "mrr": 0.5249,
-        "ndcg10": 0.583,
         "median_rank": 2.0,
         "per_category": {
           "known_gene_disease": {
@@ -50230,7 +50199,6 @@
             "mrr": 0.6608,
             "gene_absent": 1,
             "gene_absent_pct": 1.85,
-            "ndcg10": 0.7263,
             "median_rank": 1.0
           },
           "known_gene_known_disease": {
@@ -50248,7 +50216,6 @@
             "mrr": 0.3793,
             "gene_absent": 23,
             "gene_absent_pct": 31.08,
-            "ndcg10": 0.4287,
             "median_rank": 2.0
           },
           "known_gene_new_disease": {
@@ -50266,7 +50233,6 @@
             "mrr": 0.634,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.6995,
             "median_rank": 2.0
           },
           "new_gene_known_disease": {
@@ -50284,7 +50250,6 @@
             "mrr": 0.4512,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.5244,
             "median_rank": 3.0
           },
           "new_gene_new_disease": {
@@ -50302,7 +50267,6 @@
             "mrr": 0.5899,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.6305,
             "median_rank": 2.0
           }
         }
@@ -50326,7 +50290,6 @@
         "top10_pct": 57.88,
         "top20_pct": 62.06,
         "mrr": 0.4322,
-        "ndcg10": 0.4632,
         "median_rank": 4.0,
         "per_category": {
           "known_gene_disease": {
@@ -50344,7 +50307,6 @@
             "mrr": 0.357,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.3974,
             "median_rank": 7.0
           },
           "known_gene_known_disease": {
@@ -50362,7 +50324,6 @@
             "mrr": 0.2563,
             "gene_absent": 3,
             "gene_absent_pct": 4.05,
-            "ndcg10": 0.2829,
             "median_rank": 43.0
           },
           "known_gene_new_disease": {
@@ -50380,7 +50341,6 @@
             "mrr": 0.3974,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.4192,
             "median_rank": 9.0
           },
           "new_gene_known_disease": {
@@ -50398,7 +50358,6 @@
             "mrr": 0.5146,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.5521,
             "median_rank": 2.0
           },
           "new_gene_new_disease": {
@@ -50416,7 +50375,6 @@
             "mrr": 0.6145,
             "gene_absent": 12,
             "gene_absent_pct": 17.65,
-            "ndcg10": 0.6413,
             "median_rank": 1.0
           }
         }
@@ -50440,7 +50398,6 @@
         "top10_pct": 80.06,
         "top20_pct": 92.93,
         "mrr": 0.4219,
-        "ndcg10": 0.5048,
         "median_rank": 3.0,
         "per_category": {
           "known_gene_disease": {
@@ -50458,7 +50415,6 @@
             "mrr": 0.5239,
             "gene_absent": 1,
             "gene_absent_pct": 1.85,
-            "ndcg10": 0.6242,
             "median_rank": 2.0
           },
           "known_gene_known_disease": {
@@ -50476,7 +50432,6 @@
             "mrr": 0.275,
             "gene_absent": 21,
             "gene_absent_pct": 28.38,
-            "ndcg10": 0.3365,
             "median_rank": 5.0
           },
           "known_gene_new_disease": {
@@ -50494,7 +50449,6 @@
             "mrr": 0.4962,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.6103,
             "median_rank": 2.0
           },
           "new_gene_known_disease": {
@@ -50512,7 +50466,6 @@
             "mrr": 0.342,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.4361,
             "median_rank": 6.0
           },
           "new_gene_new_disease": {
@@ -50530,7 +50483,6 @@
             "mrr": 0.5429,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.6045,
             "median_rank": 2.0
           }
         }
@@ -50554,7 +50506,6 @@
         "top10_pct": 78.78,
         "top20_pct": 95.82,
         "mrr": 0.4113,
-        "ndcg10": 0.4917,
         "median_rank": 3.0,
         "per_category": {
           "known_gene_disease": {
@@ -50572,7 +50523,6 @@
             "mrr": 0.5473,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.6316,
             "median_rank": 2.0
           },
           "known_gene_known_disease": {
@@ -50590,7 +50540,6 @@
             "mrr": 0.311,
             "gene_absent": 11,
             "gene_absent_pct": 14.86,
-            "ndcg10": 0.36,
             "median_rank": 5.0
           },
           "known_gene_new_disease": {
@@ -50608,7 +50557,6 @@
             "mrr": 0.5378,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.6436,
             "median_rank": 2.0
           },
           "new_gene_known_disease": {
@@ -50626,7 +50574,6 @@
             "mrr": 0.3654,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.4573,
             "median_rank": 6.0
           },
           "new_gene_new_disease": {
@@ -50644,7 +50591,6 @@
             "mrr": 0.3861,
             "gene_absent": 1,
             "gene_absent_pct": 1.47,
-            "ndcg10": 0.4698,
             "median_rank": 2.0
           }
         }
@@ -50668,7 +50614,6 @@
         "top10_pct": 74.92,
         "top20_pct": 92.6,
         "mrr": 0.3783,
-        "ndcg10": 0.4551,
         "median_rank": 3.0,
         "per_category": {
           "known_gene_disease": {
@@ -50686,7 +50631,6 @@
             "mrr": 0.5352,
             "gene_absent": 1,
             "gene_absent_pct": 1.85,
-            "ndcg10": 0.6217,
             "median_rank": 2.0
           },
           "known_gene_known_disease": {
@@ -50704,7 +50648,6 @@
             "mrr": 0.2894,
             "gene_absent": 21,
             "gene_absent_pct": 28.38,
-            "ndcg10": 0.3421,
             "median_rank": 4.0
           },
           "known_gene_new_disease": {
@@ -50722,7 +50665,6 @@
             "mrr": 0.5507,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.6377,
             "median_rank": 2.0
           },
           "new_gene_known_disease": {
@@ -50740,7 +50682,6 @@
             "mrr": 0.2832,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.3682,
             "median_rank": 8.0
           },
           "new_gene_new_disease": {
@@ -50758,7 +50699,6 @@
             "mrr": 0.3501,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.4303,
             "median_rank": 5.0
           }
         }
@@ -50782,7 +50722,6 @@
         "top10_pct": 64.63,
         "top20_pct": 68.49,
         "mrr": 0.3508,
-        "ndcg10": 0.4192,
         "median_rank": 3.0,
         "per_category": {
           "known_gene_disease": {
@@ -50800,7 +50739,6 @@
             "mrr": 0.4602,
             "gene_absent": 9,
             "gene_absent_pct": 16.67,
-            "ndcg10": 0.5451,
             "median_rank": 2.0
           },
           "known_gene_known_disease": {
@@ -50818,7 +50756,6 @@
             "mrr": 0.1877,
             "gene_absent": 41,
             "gene_absent_pct": 55.41,
-            "ndcg10": 0.2485,
             "median_rank": 3.0
           },
           "known_gene_new_disease": {
@@ -50836,7 +50773,6 @@
             "mrr": 0.4486,
             "gene_absent": 11,
             "gene_absent_pct": 26.83,
-            "ndcg10": 0.5182,
             "median_rank": 2.0
           },
           "new_gene_known_disease": {
@@ -50854,7 +50790,6 @@
             "mrr": 0.2679,
             "gene_absent": 25,
             "gene_absent_pct": 33.78,
-            "ndcg10": 0.3337,
             "median_rank": 3.0
           },
           "new_gene_new_disease": {
@@ -50872,7 +50807,6 @@
             "mrr": 0.4727,
             "gene_absent": 12,
             "gene_absent_pct": 17.65,
-            "ndcg10": 0.5383,
             "median_rank": 2.0
           }
         }
@@ -50896,7 +50830,6 @@
         "top10_pct": 74.92,
         "top20_pct": 84.89,
         "mrr": 0.3481,
-        "ndcg10": 0.4389,
         "median_rank": 3.0,
         "per_category": {
           "known_gene_disease": {
@@ -50914,7 +50847,6 @@
             "mrr": 0.4324,
             "gene_absent": 4,
             "gene_absent_pct": 7.41,
-            "ndcg10": 0.5462,
             "median_rank": 2.0
           },
           "known_gene_known_disease": {
@@ -50932,7 +50864,6 @@
             "mrr": 0.27,
             "gene_absent": 25,
             "gene_absent_pct": 33.78,
-            "ndcg10": 0.3433,
             "median_rank": 3.0
           },
           "known_gene_new_disease": {
@@ -50950,7 +50881,6 @@
             "mrr": 0.3318,
             "gene_absent": 3,
             "gene_absent_pct": 7.32,
-            "ndcg10": 0.4406,
             "median_rank": 3.0
           },
           "new_gene_known_disease": {
@@ -50968,7 +50898,6 @@
             "mrr": 0.4174,
             "gene_absent": 1,
             "gene_absent_pct": 1.35,
-            "ndcg10": 0.5101,
             "median_rank": 3.0
           },
           "new_gene_new_disease": {
@@ -50986,7 +50915,6 @@
             "mrr": 0.3005,
             "gene_absent": 14,
             "gene_absent_pct": 20.59,
-            "ndcg10": 0.3792,
             "median_rank": 4.0
           }
         }
@@ -51010,7 +50938,6 @@
         "top10_pct": 73.95,
         "top20_pct": 91.96,
         "mrr": 0.2883,
-        "ndcg10": 0.3842,
         "median_rank": 5.0,
         "per_category": {
           "known_gene_disease": {
@@ -51028,7 +50955,6 @@
             "mrr": 0.4006,
             "gene_absent": 1,
             "gene_absent_pct": 1.85,
-            "ndcg10": 0.5033,
             "median_rank": 3.0
           },
           "known_gene_known_disease": {
@@ -51046,7 +50972,6 @@
             "mrr": 0.2256,
             "gene_absent": 21,
             "gene_absent_pct": 28.38,
-            "ndcg10": 0.3021,
             "median_rank": 5.0
           },
           "known_gene_new_disease": {
@@ -51064,7 +50989,6 @@
             "mrr": 0.4382,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.5579,
             "median_rank": 3.0
           },
           "new_gene_known_disease": {
@@ -51082,7 +51006,6 @@
             "mrr": 0.2562,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.3634,
             "median_rank": 6.0
           },
           "new_gene_new_disease": {
@@ -51100,7 +51023,6 @@
             "mrr": 0.2118,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.2967,
             "median_rank": 8.0
           }
         }
@@ -51124,7 +51046,6 @@
         "top10_pct": 71.06,
         "top20_pct": 94.86,
         "mrr": 0.2765,
-        "ndcg10": 0.3662,
         "median_rank": 5.0,
         "per_category": {
           "known_gene_disease": {
@@ -51142,7 +51063,6 @@
             "mrr": 0.3195,
             "gene_absent": 1,
             "gene_absent_pct": 1.85,
-            "ndcg10": 0.4458,
             "median_rank": 4.0
           },
           "known_gene_known_disease": {
@@ -51160,7 +51080,6 @@
             "mrr": 0.2173,
             "gene_absent": 10,
             "gene_absent_pct": 13.51,
-            "ndcg10": 0.2957,
             "median_rank": 7.0
           },
           "known_gene_new_disease": {
@@ -51178,7 +51097,6 @@
             "mrr": 0.4345,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.538,
             "median_rank": 3.0
           },
           "new_gene_known_disease": {
@@ -51196,7 +51114,6 @@
             "mrr": 0.2652,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
-            "ndcg10": 0.3468,
             "median_rank": 7.0
           },
           "new_gene_new_disease": {
@@ -51214,7 +51131,6 @@
             "mrr": 0.2237,
             "gene_absent": 4,
             "gene_absent_pct": 5.88,
-            "ndcg10": 0.2972,
             "median_rank": 8.0
           }
         }
@@ -51238,7 +51154,6 @@
         "top10_pct": 53.7,
         "top20_pct": 80.06,
         "mrr": 0.2616,
-        "ndcg10": 0.3088,
         "median_rank": 8.0,
         "per_category": {
           "known_gene_disease": {
@@ -51256,7 +51171,6 @@
             "mrr": 0.383,
             "gene_absent": 7,
             "gene_absent_pct": 12.96,
-            "ndcg10": 0.4268,
             "median_rank": 6.0
           },
           "known_gene_known_disease": {
@@ -51274,7 +51188,6 @@
             "mrr": 0.2601,
             "gene_absent": 32,
             "gene_absent_pct": 43.24,
-            "ndcg10": 0.2808,
             "median_rank": 6.0
           },
           "known_gene_new_disease": {
@@ -51292,7 +51205,6 @@
             "mrr": 0.3102,
             "gene_absent": 6,
             "gene_absent_pct": 14.63,
-            "ndcg10": 0.3873,
             "median_rank": 4.0
           },
           "new_gene_known_disease": {
@@ -51310,7 +51222,6 @@
             "mrr": 0.2758,
             "gene_absent": 1,
             "gene_absent_pct": 1.35,
-            "ndcg10": 0.3498,
             "median_rank": 7.0
           },
           "new_gene_new_disease": {
@@ -51328,7 +51239,6 @@
             "mrr": 0.1222,
             "gene_absent": 12,
             "gene_absent_pct": 17.65,
-            "ndcg10": 0.1536,
             "median_rank": 11.0
           }
         }
@@ -51351,7 +51261,6 @@
           "mrr": 0.9815,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.9863,
           "median_rank": 1.0
         },
         "known_gene_known_disease": {
@@ -51369,7 +51278,6 @@
           "mrr": 0.9572,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.9632,
           "median_rank": 1.0
         },
         "known_gene_new_disease": {
@@ -51387,7 +51295,6 @@
           "mrr": 1.0,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 1.0,
           "median_rank": 1.0
         },
         "new_gene_known_disease": {
@@ -51405,7 +51312,6 @@
           "mrr": 1.0,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 1.0,
           "median_rank": 1.0
         },
         "new_gene_new_disease": {
@@ -51423,7 +51329,6 @@
           "mrr": 0.9485,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.962,
           "median_rank": 1.0
         }
       },
@@ -51443,7 +51348,6 @@
           "mrr": 0.9308,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.9428,
           "median_rank": 1.0
         },
         "known_gene_known_disease": {
@@ -51461,7 +51365,6 @@
           "mrr": 0.9434,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.941,
           "median_rank": 1.0
         },
         "known_gene_new_disease": {
@@ -51479,7 +51382,6 @@
           "mrr": 0.9878,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.991,
           "median_rank": 1.0
         },
         "new_gene_known_disease": {
@@ -51497,7 +51399,6 @@
           "mrr": 0.9413,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.9558,
           "median_rank": 1.0
         },
         "new_gene_new_disease": {
@@ -51515,7 +51416,6 @@
           "mrr": 0.9632,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.9729,
           "median_rank": 1.0
         }
       },
@@ -51535,7 +51435,6 @@
           "mrr": 0.8026,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.8458,
           "median_rank": 1.0
         },
         "known_gene_known_disease": {
@@ -51553,7 +51452,6 @@
           "mrr": 0.9123,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.93,
           "median_rank": 1.0
         },
         "known_gene_new_disease": {
@@ -51571,7 +51469,6 @@
           "mrr": 0.9146,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.937,
           "median_rank": 1.0
         },
         "new_gene_known_disease": {
@@ -51589,7 +51486,6 @@
           "mrr": 0.8418,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.873,
           "median_rank": 1.0
         },
         "new_gene_new_disease": {
@@ -51607,7 +51503,6 @@
           "mrr": 0.9564,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.9673,
           "median_rank": 1.0
         }
       },
@@ -51627,7 +51522,6 @@
           "mrr": 0.7775,
           "gene_absent": 1,
           "gene_absent_pct": 1.85,
-          "ndcg10": 0.8107,
           "median_rank": 1.0
         },
         "known_gene_known_disease": {
@@ -51645,7 +51539,6 @@
           "mrr": 0.6087,
           "gene_absent": 14,
           "gene_absent_pct": 18.92,
-          "ndcg10": 0.6299,
           "median_rank": 1.0
         },
         "known_gene_new_disease": {
@@ -51663,7 +51556,6 @@
           "mrr": 0.804,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.8452,
           "median_rank": 1.0
         },
         "new_gene_known_disease": {
@@ -51681,7 +51573,6 @@
           "mrr": 0.8019,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.8426,
           "median_rank": 1.0
         },
         "new_gene_new_disease": {
@@ -51699,7 +51590,6 @@
           "mrr": 0.8907,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.9046,
           "median_rank": 1.0
         }
       },
@@ -51719,7 +51609,6 @@
           "mrr": 0.6356,
           "gene_absent": 1,
           "gene_absent_pct": 1.85,
-          "ndcg10": 0.705,
           "median_rank": 2.0
         },
         "known_gene_known_disease": {
@@ -51737,7 +51626,6 @@
           "mrr": 0.5594,
           "gene_absent": 12,
           "gene_absent_pct": 16.22,
-          "ndcg10": 0.5921,
           "median_rank": 1.0
         },
         "known_gene_new_disease": {
@@ -51755,7 +51643,6 @@
           "mrr": 0.6675,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.7344,
           "median_rank": 2.0
         },
         "new_gene_known_disease": {
@@ -51773,7 +51660,6 @@
           "mrr": 0.7052,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.7565,
           "median_rank": 1.0
         },
         "new_gene_new_disease": {
@@ -51791,7 +51677,6 @@
           "mrr": 0.8161,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.8304,
           "median_rank": 1.0
         }
       },
@@ -51811,7 +51696,6 @@
           "mrr": 0.5473,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.6316,
           "median_rank": 2.0
         },
         "known_gene_known_disease": {
@@ -51829,7 +51713,6 @@
           "mrr": 0.311,
           "gene_absent": 11,
           "gene_absent_pct": 14.86,
-          "ndcg10": 0.36,
           "median_rank": 5.0
         },
         "known_gene_new_disease": {
@@ -51847,7 +51730,6 @@
           "mrr": 0.5378,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.6436,
           "median_rank": 2.0
         },
         "new_gene_known_disease": {
@@ -51865,7 +51747,6 @@
           "mrr": 0.3654,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.4573,
           "median_rank": 6.0
         },
         "new_gene_new_disease": {
@@ -51883,7 +51764,6 @@
           "mrr": 0.3861,
           "gene_absent": 1,
           "gene_absent_pct": 1.47,
-          "ndcg10": 0.4698,
           "median_rank": 2.0
         }
       },
@@ -51903,7 +51783,6 @@
           "mrr": 0.5239,
           "gene_absent": 1,
           "gene_absent_pct": 1.85,
-          "ndcg10": 0.6242,
           "median_rank": 2.0
         },
         "known_gene_known_disease": {
@@ -51921,7 +51800,6 @@
           "mrr": 0.275,
           "gene_absent": 21,
           "gene_absent_pct": 28.38,
-          "ndcg10": 0.3365,
           "median_rank": 5.0
         },
         "known_gene_new_disease": {
@@ -51939,7 +51817,6 @@
           "mrr": 0.4962,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.6103,
           "median_rank": 2.0
         },
         "new_gene_known_disease": {
@@ -51957,7 +51834,6 @@
           "mrr": 0.342,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.4361,
           "median_rank": 6.0
         },
         "new_gene_new_disease": {
@@ -51975,7 +51851,6 @@
           "mrr": 0.5429,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.6045,
           "median_rank": 2.0
         }
       },
@@ -51995,7 +51870,6 @@
           "mrr": 0.4324,
           "gene_absent": 4,
           "gene_absent_pct": 7.41,
-          "ndcg10": 0.5462,
           "median_rank": 2.0
         },
         "known_gene_known_disease": {
@@ -52013,7 +51887,6 @@
           "mrr": 0.27,
           "gene_absent": 25,
           "gene_absent_pct": 33.78,
-          "ndcg10": 0.3433,
           "median_rank": 3.0
         },
         "known_gene_new_disease": {
@@ -52031,7 +51904,6 @@
           "mrr": 0.3318,
           "gene_absent": 3,
           "gene_absent_pct": 7.32,
-          "ndcg10": 0.4406,
           "median_rank": 3.0
         },
         "new_gene_known_disease": {
@@ -52049,7 +51921,6 @@
           "mrr": 0.4174,
           "gene_absent": 1,
           "gene_absent_pct": 1.35,
-          "ndcg10": 0.5101,
           "median_rank": 3.0
         },
         "new_gene_new_disease": {
@@ -52067,7 +51938,6 @@
           "mrr": 0.3005,
           "gene_absent": 14,
           "gene_absent_pct": 20.59,
-          "ndcg10": 0.3792,
           "median_rank": 4.0
         }
       },
@@ -52087,7 +51957,6 @@
           "mrr": 0.3195,
           "gene_absent": 1,
           "gene_absent_pct": 1.85,
-          "ndcg10": 0.4458,
           "median_rank": 4.0
         },
         "known_gene_known_disease": {
@@ -52105,7 +51974,6 @@
           "mrr": 0.2173,
           "gene_absent": 10,
           "gene_absent_pct": 13.51,
-          "ndcg10": 0.2957,
           "median_rank": 7.0
         },
         "known_gene_new_disease": {
@@ -52123,7 +51991,6 @@
           "mrr": 0.4345,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.538,
           "median_rank": 3.0
         },
         "new_gene_known_disease": {
@@ -52141,7 +52008,6 @@
           "mrr": 0.2652,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.3468,
           "median_rank": 7.0
         },
         "new_gene_new_disease": {
@@ -52159,7 +52025,6 @@
           "mrr": 0.2237,
           "gene_absent": 4,
           "gene_absent_pct": 5.88,
-          "ndcg10": 0.2972,
           "median_rank": 8.0
         }
       },
@@ -52179,7 +52044,6 @@
           "mrr": 0.357,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.3974,
           "median_rank": 7.0
         },
         "known_gene_known_disease": {
@@ -52197,7 +52061,6 @@
           "mrr": 0.2563,
           "gene_absent": 3,
           "gene_absent_pct": 4.05,
-          "ndcg10": 0.2829,
           "median_rank": 43.0
         },
         "known_gene_new_disease": {
@@ -52215,7 +52078,6 @@
           "mrr": 0.3974,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.4192,
           "median_rank": 9.0
         },
         "new_gene_known_disease": {
@@ -52233,7 +52095,6 @@
           "mrr": 0.5146,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.5521,
           "median_rank": 2.0
         },
         "new_gene_new_disease": {
@@ -52251,7 +52112,6 @@
           "mrr": 0.6145,
           "gene_absent": 12,
           "gene_absent_pct": 17.65,
-          "ndcg10": 0.6413,
           "median_rank": 1.0
         }
       },
@@ -52271,7 +52131,6 @@
           "mrr": 0.4602,
           "gene_absent": 9,
           "gene_absent_pct": 16.67,
-          "ndcg10": 0.5451,
           "median_rank": 2.0
         },
         "known_gene_known_disease": {
@@ -52289,7 +52148,6 @@
           "mrr": 0.1877,
           "gene_absent": 41,
           "gene_absent_pct": 55.41,
-          "ndcg10": 0.2485,
           "median_rank": 3.0
         },
         "known_gene_new_disease": {
@@ -52307,7 +52165,6 @@
           "mrr": 0.4486,
           "gene_absent": 11,
           "gene_absent_pct": 26.83,
-          "ndcg10": 0.5182,
           "median_rank": 2.0
         },
         "new_gene_known_disease": {
@@ -52325,7 +52182,6 @@
           "mrr": 0.2679,
           "gene_absent": 25,
           "gene_absent_pct": 33.78,
-          "ndcg10": 0.3337,
           "median_rank": 3.0
         },
         "new_gene_new_disease": {
@@ -52343,7 +52199,6 @@
           "mrr": 0.4727,
           "gene_absent": 12,
           "gene_absent_pct": 17.65,
-          "ndcg10": 0.5383,
           "median_rank": 2.0
         }
       },
@@ -52363,7 +52218,6 @@
           "mrr": 0.383,
           "gene_absent": 7,
           "gene_absent_pct": 12.96,
-          "ndcg10": 0.4268,
           "median_rank": 6.0
         },
         "known_gene_known_disease": {
@@ -52381,7 +52235,6 @@
           "mrr": 0.2601,
           "gene_absent": 32,
           "gene_absent_pct": 43.24,
-          "ndcg10": 0.2808,
           "median_rank": 6.0
         },
         "known_gene_new_disease": {
@@ -52399,7 +52252,6 @@
           "mrr": 0.3102,
           "gene_absent": 6,
           "gene_absent_pct": 14.63,
-          "ndcg10": 0.3873,
           "median_rank": 4.0
         },
         "new_gene_known_disease": {
@@ -52417,7 +52269,6 @@
           "mrr": 0.2758,
           "gene_absent": 1,
           "gene_absent_pct": 1.35,
-          "ndcg10": 0.3498,
           "median_rank": 7.0
         },
         "new_gene_new_disease": {
@@ -52435,7 +52286,6 @@
           "mrr": 0.1222,
           "gene_absent": 12,
           "gene_absent_pct": 17.65,
-          "ndcg10": 0.1536,
           "median_rank": 11.0
         }
       },
@@ -52455,7 +52305,6 @@
           "mrr": 0.5352,
           "gene_absent": 1,
           "gene_absent_pct": 1.85,
-          "ndcg10": 0.6217,
           "median_rank": 2.0
         },
         "known_gene_known_disease": {
@@ -52473,7 +52322,6 @@
           "mrr": 0.2894,
           "gene_absent": 21,
           "gene_absent_pct": 28.38,
-          "ndcg10": 0.3421,
           "median_rank": 4.0
         },
         "known_gene_new_disease": {
@@ -52491,7 +52339,6 @@
           "mrr": 0.5507,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.6377,
           "median_rank": 2.0
         },
         "new_gene_known_disease": {
@@ -52509,7 +52356,6 @@
           "mrr": 0.2832,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.3682,
           "median_rank": 8.0
         },
         "new_gene_new_disease": {
@@ -52527,7 +52373,6 @@
           "mrr": 0.3501,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.4303,
           "median_rank": 5.0
         }
       },
@@ -52547,7 +52392,6 @@
           "mrr": 0.6608,
           "gene_absent": 1,
           "gene_absent_pct": 1.85,
-          "ndcg10": 0.7263,
           "median_rank": 1.0
         },
         "known_gene_known_disease": {
@@ -52565,7 +52409,6 @@
           "mrr": 0.3793,
           "gene_absent": 23,
           "gene_absent_pct": 31.08,
-          "ndcg10": 0.4287,
           "median_rank": 2.0
         },
         "known_gene_new_disease": {
@@ -52583,7 +52426,6 @@
           "mrr": 0.634,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.6995,
           "median_rank": 2.0
         },
         "new_gene_known_disease": {
@@ -52601,7 +52443,6 @@
           "mrr": 0.4512,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.5244,
           "median_rank": 3.0
         },
         "new_gene_new_disease": {
@@ -52619,7 +52460,6 @@
           "mrr": 0.5899,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.6305,
           "median_rank": 2.0
         }
       },
@@ -52639,7 +52479,6 @@
           "mrr": 0.4006,
           "gene_absent": 1,
           "gene_absent_pct": 1.85,
-          "ndcg10": 0.5033,
           "median_rank": 3.0
         },
         "known_gene_known_disease": {
@@ -52657,7 +52496,6 @@
           "mrr": 0.2256,
           "gene_absent": 21,
           "gene_absent_pct": 28.38,
-          "ndcg10": 0.3021,
           "median_rank": 5.0
         },
         "known_gene_new_disease": {
@@ -52675,7 +52513,6 @@
           "mrr": 0.4382,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.5579,
           "median_rank": 3.0
         },
         "new_gene_known_disease": {
@@ -52693,7 +52530,6 @@
           "mrr": 0.2562,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.3634,
           "median_rank": 6.0
         },
         "new_gene_new_disease": {
@@ -52711,7 +52547,6 @@
           "mrr": 0.2118,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
-          "ndcg10": 0.2967,
           "median_rank": 8.0
         }
       }

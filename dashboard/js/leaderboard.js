@@ -78,8 +78,8 @@
     const groupStart = new Set(groups.slice(1).map(([, rs]) => rs[0]));
     const gs = (r) => (titled && groupStart.has(r) ? " ovt-gs" : "");
     const mHead = (r) => {
-      const tip = `${r.label}${r.n != null ? `\nn = ${int(r.n)}` : ""}${r.small ? `\nFewer than ${LB_SMALL_N}: interpret with caution` : ""}`;
-      return `<th class="ovt-m${gs(r)}" scope="col"${tipAttr(tip)}>${r.abbr ? tierChip(r.abbr) : esc(r.short || r.label)}${r.small ? `<sup class="lbt-dag">\u2020</sup>` : ""}</th>`;
+      const tip = `${r.tip ? `${r.tip}\n\n` : ""}${r.label}${r.n != null ? `\nn = ${int(r.n)}` : ""}${r.small ? `\nFewer than ${LB_SMALL_N}: interpret with caution` : ""}`;
+      return `<th class="ovt-m${gs(r)}${r.tip ? " def-term" : ""}" scope="col"${tipAttr(tip)}>${r.abbr ? tierChip(r.abbr) : esc(r.short || r.label)}${r.small ? `<sup class="lbt-dag">\u2020</sup>` : ""}</th>`;
     };
     const groupHead = titled
       ? `<tr class="ovt-groups"><th class="ovt-rank"></th><th class="ovt-name"></th>${groups.map(([t, rs], i) => `<th colspan="${rs.length}" scope="colgroup" class="ovt-group${i ? " ovt-gs" : ""}">${esc(t || "")}</th>`).join("")}</tr>`
@@ -198,15 +198,24 @@
     new_gene_new_disease: 68
   };
 
+  // Plain language definitions shown on hover for the ranking metrics
+  const RK_DEFS = {
+    recall1: "Recall@1: share of cases where the causal gene was ranked first. Higher is better.",
+    recall5: "Recall@5: share of cases where the causal gene was ranked in the top 5. Higher is better.",
+    recall10: "Recall@10: share of cases where the causal gene was ranked in the top 10. Higher is better.",
+    mrr: "Mean Reciprocal Rank: the average of 1 divided by the rank of the causal gene. Rank 1 scores 1, rank 2 scores 0.5, rank 10 scores 0.1. Ranges from 0 to 1; higher is better and it rewards putting the causal gene near the top.",
+    median: "Median Rank: the middle rank of the causal gene across cases. Lower is better."
+  };
+  const defTerm = (text, key) => `<span class="def-term"${tipAttr(RK_DEFS[key])}>${text}</span>`;
+
   function rankingOverallRows() {
     const totalN = D.ranking_data?.metadata?.total_cohort || 311;
     return [
-      { label: "Recall@1 (Top-1 accuracy)", short: "Recall@1", n: totalN, get: (m) => m.top1_pct, strong: true },
-      { label: "Recall@5 (Top-5)", short: "Recall@5", n: totalN, get: (m) => m.top5_pct, indent: true },
-      { label: "Recall@10 (Top-10)", short: "Recall@10", n: totalN, get: (m) => m.top10_pct, indent: true },
-      { label: "Mean Reciprocal Rank (MRR)", short: "MRR", n: totalN, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
-      { label: "NDCG@10", short: "NDCG@10", n: totalN, get: (m) => m.ndcg10, fmt: (v) => Number(v).toFixed(4) },
-      { label: "Median Rank", short: "Median rank", n: totalN, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
+      { label: "Recall@1 (Top-1 accuracy)", short: "Recall@1", tip: RK_DEFS.recall1, n: totalN, get: (m) => m.top1_pct, strong: true },
+      { label: "Recall@5 (Top-5)", short: "Recall@5", tip: RK_DEFS.recall5, n: totalN, get: (m) => m.top5_pct, indent: true },
+      { label: "Recall@10 (Top-10)", short: "Recall@10", tip: RK_DEFS.recall10, n: totalN, get: (m) => m.top10_pct, indent: true },
+      { label: "Mean Reciprocal Rank (MRR)", short: "MRR", tip: RK_DEFS.mrr, n: totalN, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
+      { label: "Median Rank", short: "Median rank", tip: RK_DEFS.median, n: totalN, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
     ];
   }
 
@@ -227,10 +236,10 @@
     const rk = D.ranking_data;
     if (!rk || !rk.models || !rk.models.length || !$("ovRankTable")) return;
     const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
-    $("ovRankSub").innerHTML = `Recall@K and MRR across 311 rare disease challenge cases.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">Full ranking leaderboard</button></span>`;
+    $("ovRankSub").innerHTML = `${defTerm("Recall@K", "recall1")} and ${defTerm("MRR", "mrr")} across 311 rare disease challenge cases.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">Full ranking leaderboard</button></span>`;
     $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
     drawOverallTable($("ovRankTable"), rkCols, rkCols, rankingOverallRows(), { countText: `${int(D.ranking_data?.metadata?.total_cohort || 311)} cases` });
-    $("ovRankNote").innerHTML = "Recall@K: share of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
+    $("ovRankNote").innerHTML = `${defTerm("Recall@K", "recall1")}: share of cases where causal gene ranked &le; K. ${defTerm("MRR", "mrr")} scores how near the top the causal gene lands. Hover a column heading for its definition. Denominator is 311 total cases.`;
   }
 
   function renderRanking() {
@@ -240,7 +249,7 @@
     const shown = rkShown();
     const rkCols = shown.slice().sort((a, b) => b.mrr - a.mrr);
     $("rkTitle").textContent = "Variant ranking: 311 challenge cases";
-    $("rkSub").innerHTML = "Recall@K and Mean Reciprocal Rank (MRR) across 311 hard & discriminative rare disease patient cases. Best in row is highlighted.";
+    $("rkSub").innerHTML = `${defTerm("Recall@K", "recall1")} and ${defTerm("Mean Reciprocal Rank (MRR)", "mrr")} across 311 hard & discriminative rare disease patient cases. Best in row is highlighted. Hover a metric name for its definition.`;
 
     const sections = [
       ["Overall performance", rankingOverallRows()],
@@ -251,7 +260,7 @@
     } else {
       drawOverallTable($("rkTable"), rkCols, rkCols, sections, { countText: `${int(rk.metadata?.total_cohort || 311)} cases` });
     }
-    $("rkNote").innerHTML = "Recall@K: percentage of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
+    $("rkNote").innerHTML = `${defTerm("Recall@K", "recall1")}: percentage of cases where causal gene ranked &le; K. ${defTerm("MRR", "mrr")} scores how near the top the causal gene lands. Denominator is 311 total cases.`;
   }
 
   // ---------- why not top 1 ----------
