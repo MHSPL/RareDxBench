@@ -40,16 +40,20 @@ def parse_response(obj):
 
 
 def main():
-    pids = [int(x) for x in json.load(open(REPO / "data/ranking/selected_311_patients.json"))["patient_ids"]]
+    with open(REPO / "data/ranking/selected_311_patients.json") as f:
+        pids = [int(x) for x in json.load(f)["patient_ids"]]
     answers = {}
-    for line in open(REPO / "data/ranking/ranking_answers_311.jsonl"):
-        if line.strip():
-            a = json.loads(line)
-            answers[int(a["id"])] = a
-    tiers = {int(r["patient_id"]): r for r in csv.DictReader(open(REPO / "results/ranking/curated_ranking_tiers.tsv"), delimiter="\t")}
+    with open(REPO / "data/ranking/ranking_answers_311.jsonl") as f:
+        for line in f:
+            if line.strip():
+                a = json.loads(line)
+                answers[int(a["id"])] = a
+    with open(REPO / "results/ranking/curated_ranking_tiers.tsv") as f:
+        tiers = {int(r["patient_id"]): r for r in csv.DictReader(f, delimiter="\t")}
 
     for key, folder, fname, model_id in MODELS:
-        raw = json.load(open(SRC / fname))
+        with open(SRC / fname) as f:
+            raw = json.load(f)
         by_pid = {int(r["id"]): r for r in raw} if isinstance(raw, list) else {int(k): v for k, v in raw.items()}
         out_dir = REPO / "results" / "ranking" / f"Results_Claude_Code_{folder}"
         out_dir.mkdir(parents=True, exist_ok=True)

@@ -254,7 +254,7 @@
     $("rkNote").innerHTML = "Recall@K: percentage of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
   }
 
-  // ---------- distractor genes ----------
+  // ---------- why not top 1 ----------
   // For each model, the type of gene ranked first in the cases where the causal gene was not first.
   const DX_COLORS = {
     pathogenic_pheno_irrel: "#B8322A", phenotype_distractor: "#E07B1A", unlabelled: "#8E9AA0",
@@ -263,7 +263,7 @@
   };
   const dxModels = () => (D.ranking_data?.models || []).filter((m) => D.ranking_data.distractor_data?.[m.key]);
 
-  // Distractor types down the side, models across (by section, ranked by MRR). Dot area is the
+  // Gene types down the side, models across (by section, ranked by MRR). Dot area is the
   // share of a model's non first cases where that type of gene took first place, on one scale.
   function renderDistractors() {
     const rk = D.ranking_data;
@@ -273,7 +273,6 @@
     const groups = bySection(shownModels("dx").sort((a, b) => b.mrr - a.mrr));
     const order = groups.flatMap(([, ms]) => ms);
     const gs = (i) => (i === 0 ? "" : " lbt-gs");
-    $("dxTitle").textContent = "Why the causal gene was not ranked first";
     $("dxSub").innerHTML = `The type of gene ranked first instead of the causal gene. Dot area is the share of each model's misses.<span class="ui-hint"> Hover a dot for the case count.</span>`;
     const data = (m) => rk.distractor_data[m.key];
     const share = (m, t) => (data(m).non_top1 ? ((data(m).counts[t] || 0) * 100) / data(m).non_top1 : 0);

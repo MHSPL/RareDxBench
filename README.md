@@ -22,10 +22,8 @@ Run your model on the input file, then score it against the answers, matched by 
 
 | File | Contents |
 |------|----------|
-| `ranking_input.jsonl` | Input: age of onset, positive and negative HPO terms, candidate genes and variants |
 | `ranking_prompts.jsonl` | Input: the same cases as a ready-to-send prompt |
 | `ranking_answers.jsonl` | Answers: causal gene, labeled distractor genes and phenotypes, categories |
-| `ranking_raw.jsonl` | Inputs, prompt and answers together in one record per case |
 
 ## Start the dashboard server
 

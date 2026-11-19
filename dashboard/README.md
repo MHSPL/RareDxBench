@@ -42,21 +42,22 @@ NDCG@10 and Median Rank across all 1,396 rare disease cases.
 leaderboard with overall performance and category breakdowns across five
 biological difficulty tiers (established gene-disease pairs, known gene with
 extended KG, known gene with new disease, novel gene with known disease, and
-novel gene with novel disease). Models are grouped into AIVA, Claude app (Claude Haiku 5.5),
+novel gene with novel disease). Models are grouped into AIVA, Claude app (Claude Code Opus, Sonnet and Haiku 5.5),
 and Automated tools (LIRICAL, ClinPrior, Exomiser).
 
 Variant Ranking has two tabs: **Leaderboard** and **Why not top 1**. The
-second draws one bar chart per model: in the cases where the causal gene is not
+second is a dot grid with gene types down the side and models across: in the cases where the causal gene is not
 ranked first, the distractor type (from `data/ranking/ranking_answers_311.jsonl`)
 of the gene that took first place. A top gene that is not one of the case's
 candidate genes is shown as "Not labelled". Models without a ranked gene list
 (Gemini 3 Pro, LIRICAL, ClinPrior, Exomiser) are not shown.
 
-Variant Classification has three tabs:
+Variant Classification has four tabs:
 
 - **Leaderboard**: F1 by expert class and disease category with models
   grouped by section (AIVA, Claude app, Automated), the accuracy-against-safety
   scatter, and the pairwise agreement heatmap. "Choose models" filters all three.
+- **Disease categories**: F1 for each model by disease category.
 - **Confusion matrices**: per model, with precision and recall by class.
 - **ACMG criteria**: share of variants citing each criterion, pathogenic
   evidence above benign evidence.
@@ -85,7 +86,8 @@ call.
    | status | `active`, or `removed` to hide the model |
    | section | leaderboard section: `aiva`, `agent` (Claude app runs such as Claude Code) or `automated` (rule-based); empty derives it |
 
-3. Rebuild and commit:
+3. Rebuild and commit (ranking models are listed in `ranking_models.tsv` instead, with
+   predictions made by `scripts/convert_claude_code_ranking.py` for Claude Code runs):
 
    ```bash
    python scripts/update_dashboard.py
