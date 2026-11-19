@@ -32,6 +32,18 @@ CATEGORY_COUNTS_311 = {
     "new_gene_new_disease": 68
 }
 
+# Distractor types in the answers file, in chart order; "unlabelled" is a top gene that is not a candidate gene
+DISTRACTOR_TYPES = [
+    ("pathogenic_pheno_irrel", "Pathogenic but phenotype irrelevant"),
+    ("phenotype_distractor", "Phenotype distractor"),
+    ("unlabelled", "Not labelled (background or hallucinated)"),
+    ("universal_distractor", "Universal distractor"),
+    ("tissue_distractor", "Tissue distractor"),
+    ("non_syndromic_phenotype", "Nonsyndromic phenotype gene"),
+    ("common_fp", "Common false positive"),
+    ("insufficient_explanatory", "Insufficient explanatory"),
+]
+
 TIERS_COL_MAP = {
     "aiva_gpt_sol": "sol_rank",
     "aiva_sonnet": "sonnet_rank",
@@ -164,6 +176,45 @@ def compute_jsonl_metrics(jsonl_path: Path, patient_filter: set = None) -> dict:
                 cats[bc].append(rank)
 
     return compute_metrics_from_ranks(cats)
+
+
+def symbol_to_gene_id(variants: list[dict]) -> dict:
+    """Map gene symbol -> gene id for one case; some variants have the two fields swapped."""
+    out = {}
+    for v in variants:
+        gid, sym = str(v.get("gene_id", "")), str(v.get("gene_symbol", ""))
+        if not gid.startswith("ENSG") and sym.startswith("ENSG"):
+            gid, sym = sym, gid
+        out[sym] = gid
+    return out
+
+
+def compute_distractor_breakdown(file_path: Path, answers: dict, inputs: dict, pids: set) -> dict | None:
+    """For cases where the true gene is not ranked first, count the type of the gene ranked first."""
+    if not file_path.exists():
+        return None
+    counts = defaultdict(int)
+    scored = 0
+    with open(file_path, "r", encoding="utf-8") as f:
+        for line in f:
+            if not line.strip():
+                continue
+            item = json.loads(line)
+            pid = item.get("patient_id") or item.get("id")
+            predicted = item.get("predicted")
+            if pid is None or int(pid) not in pids or not predicted:
+                continue
+            pid = int(pid)
+            scored += 1
+            if item.get("rank_of_true_gene") == 1 or pid not in answers:
+                continue
+            top = predicted[0]
+            gene_id = symbol_to_gene_id(inputs.get(pid, {}).get("variants", [])).get(top, top)
+            tags = answers[pid].get("distractor_genes", {}).get(gene_id)
+            counts[tags[0].split(".")[0] if tags else "unlabelled"] += 1
+    if not scored:
+        return None
+    return {"cases": scored, "non_top1": sum(counts.values()), "counts": dict(counts)}
 
 
 def build_ranking_data(repo_root: Path) -> dict:
@@ -344,6 +395,25 @@ def build_ranking_data(repo_root: Path) -> dict:
         "ranks": cases_ranks
     }
 
+    # -------------------------------------------------------------------------
+    # 3. DISTRACTOR TYPE OF THE TOP-RANKED GENE WHEN THE TRUE GENE IS NOT FIRST
+    # -------------------------------------------------------------------------
+    inputs_by_pid = {}
+    inp_path = repo_root / "data" / "ranking" / "ranking_input_311.jsonl"
+    if inp_path.exists():
+        with open(inp_path, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    item = json.loads(line)
+                    inputs_by_pid[int(item["id"])] = item
+    distractor_data = {}
+    for row in registry:
+        if row["key"] not in categories_311:
+            continue
+        res = compute_distractor_breakdown(repo_root / row["path"], ans_rows_by_pid, inputs_by_pid, pids_311)
+        if res:
+            distractor_data[row["key"]] = res
+
     return {
         "metadata": {
             "title": "RareDx Bench: Variant Ranking",
@@ -352,8 +422,10 @@ def build_ranking_data(repo_root: Path) -> dict:
             "categories": CATEGORY_ORDER,
             "category_labels": CATEGORY_LABELS,
             "category_counts": CATEGORY_COUNTS_311,
+            "distractor_types": [[k, label] for k, label in DISTRACTOR_TYPES],
         },
         "models": models_311,
         "categories_data": categories_311,
         "cases_table": cases_table,
+        "distractor_data": distractor_data,
     }

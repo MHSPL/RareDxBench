@@ -4,7 +4,7 @@
   const DIR_LABEL = { pathogenic: "P/LP", benign: "B/LB" };
   const FAMILY_SHORT = {};
   const PROVIDER_ORDER = ["Anthropic", "OpenAI", "Google", "Rule-based", "Other"];
-  // [code, definition, short label shown beside the code]
+  // [code, definition shown on hover, short label (unused in the grid)]
   const CRITERIA = {
     pathogenic: [
       ["PVS1", "Null variant in a gene where loss of function is a known mechanism", "Null variant, loss-of-function gene"],
@@ -47,7 +47,7 @@
   const state = {
     tab: "overall", clsTab: "leaderboard",
     scatterScale: "2", lbScale: "2", lbCols: null,
-    cmCols: null, critCols: null, rkCols: null,
+    cmCols: null, critCols: null, rkCols: null, dxCols: null, rkTab: "ranking",
     cmScale: "4", cmMode: "count",
     agree: "dir_pct"
   };
@@ -140,9 +140,9 @@
     const methods = new Set(D.models.filter((x) => providerOf(x) === p).map((x) => methodShort(x.type)));
     return methods.size > 1 ? `${p} · ${methodShort(m.type)}` : p;
   }
-  // Leaderboard sections: AIVA runs, other agents (Claude Code, Antigravity, ...), automated rule-based pipelines
-  const SECTIONS = [["aiva", "AIVA"], ["agent", "Agents"], ["automated", "Automated"]];
-  const SECTION_TIP = { aiva: "Models run through the AIVA agent", agent: "General-purpose agents such as Claude Code or Antigravity", automated: "Rule-based ACMG classification pipelines" };
+  // Leaderboard sections: AIVA runs, Claude app runs (Claude Code, ...), automated rule-based pipelines
+  const SECTIONS = [["aiva", "AIVA"], ["agent", "Claude app"], ["automated", "Automated"]];
+  const SECTION_TIP = { aiva: "Models run through the AIVA agent", agent: "Models run through the Claude app, such as Claude Code", automated: "Rule-based ACMG classification pipelines" };
   const sectionKey = (m) => {
     if (SECTIONS.some(([k]) => k === m.section)) return m.section;
     if (m.family === "Rule-based" || /rules/i.test(m.type || "")) return "automated";
@@ -167,13 +167,14 @@
   // Show/hide model pickers for the leaderboard ("lb"), confusion ("cm"), criteria ("crit") and ranking ("rk") tabs.
   // state.lbCols / state.cmCols / state.rkCols hold the shown keys; null means all models.
   const SHOWN = {
-    lb: { col: "lbCols", where: "the leaderboard", render: () => renderLeaderboard() },
+    lb: { col: "lbCols", where: "the leaderboard", render: () => (state.tab === "categories" ? renderCategories() : renderLeaderboard()) },
     cm: { col: "cmCols", where: "the confusion matrices", render: () => renderConfusion() },
     crit: { col: "critCols", where: "the criteria charts", render: () => renderCriteria() },
-    rk: { col: "rkCols", where: "the ranking leaderboard", render: () => renderRanking() }
+    rk: { col: "rkCols", where: "the ranking leaderboard", render: () => renderRanking() },
+    dx: { col: "dxCols", where: "the distractor charts", render: () => renderDistractors() }
   };
-  const PICKER_OF = { leaderboard: "lb", confusion: "cm", criteria: "crit", ranking: "rk" };
-  const modelPool = (p) => (p === "rk" ? (D.ranking_data?.models || []) : D.models);
+  const PICKER_OF = { leaderboard: "lb", categories: "lb", confusion: "cm", criteria: "crit", ranking: "rk", distractors: "dx" };
+  const modelPool = (p) => (p === "rk" ? (D.ranking_data?.models || []) : p === "dx" ? dxModels() : D.models);
   // Drop keys of models that no longer exist; an emptied selection falls back to all.
   function pruneShown() {
     Object.entries(SHOWN).forEach(([p, { col }]) => {

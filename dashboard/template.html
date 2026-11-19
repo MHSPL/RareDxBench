@@ -75,6 +75,19 @@
           <button type="button" class="btn picker-btn" id="critAllBtn" hidden>Show all</button>
         </div>
       </div>
+      <div class="vt rk-only" data-for="distractors">
+        <div class="lb-pick">
+          <div class="picker">
+            <button type="button" class="btn picker-btn" id="dxPickBtn" aria-haspopup="true" aria-expanded="false">Choose models</button>
+            <div class="picker-pop" id="dxPickPop" hidden>
+              <input type="search" id="dxPickQ" placeholder="Search models" aria-label="Search models">
+              <div class="picker-list" id="dxPickList"></div>
+              <p class="picker-note">The Why not top 1 chart shows only the selected models.</p>
+            </div>
+          </div>
+          <button type="button" class="btn picker-btn" id="dxAllBtn" hidden>Show all</button>
+        </div>
+      </div>
       <div class="vt rk-only" data-for="ranking">
         <div class="lb-pick">
           <div class="picker">
@@ -91,9 +104,11 @@
     </div>
     <nav class="tabs" role="tablist" aria-label="Views">
       <button class="tab cls-only" role="tab" data-tab="leaderboard">Leaderboard</button>
+      <button class="tab cls-only" role="tab" data-tab="categories">Disease categories</button>
       <button class="tab cls-only" role="tab" data-tab="confusion">Confusion matrices</button>
       <button class="tab cls-only" role="tab" data-tab="criteria">ACMG criteria</button>
       <button class="tab rk-only" role="tab" data-tab="ranking">Leaderboard</button>
+      <button class="tab rk-only" role="tab" data-tab="distractors">Why not top 1</button>
     </nav>
     <div class="bench-actions">
       <button class="btn btn-icon cls-only" id="csvBtn" type="button" title="Every benchmark variant with the expert classification and each model's call"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>Variants CSV</button>
@@ -107,6 +122,7 @@
   <!-- OVERALL: a snapshot of each benchmark -->
   <section class="view" id="view-overall" role="tabpanel" hidden>
     <h2 class="sr-only">Overall</h2>
+    <div class="ov-grid">
     <div class="card fig-main lb-card" data-static>
       <div class="card-head">
         <div>
@@ -114,7 +130,7 @@
           <p id="ovSub"></p>
         </div>
       </div>
-      <div class="table-wrap"><table id="ovTable" class="lbt"></table></div>
+      <div class="table-wrap"><table id="ovTable" class="ovt"></table></div>
       <p class="note" id="ovNote"></p>
     </div>
     <div class="card fig-main lb-card" data-static>
@@ -124,8 +140,9 @@
           <p id="ovRankSub"></p>
         </div>
       </div>
-      <div class="table-wrap"><table id="ovRankTable" class="lbt"></table></div>
+      <div class="table-wrap"><table id="ovRankTable" class="ovt"></table></div>
       <p class="note" id="ovRankNote"></p>
+    </div>
     </div>
   </section>
 
@@ -139,7 +156,7 @@
           <p id="lbSub"></p>
         </div>
       </div>
-      <div class="table-wrap"><table id="lbTable" class="lbt"></table></div>
+      <div class="table-wrap"><table id="lbTable" class="ovt"></table></div>
       <p class="note" id="lbNote"></p>
     </div>
     <div class="card" id="lbScatterCard" data-static>
@@ -160,6 +177,21 @@
       </div>
       <div class="table-wrap"><table class="heat" id="agreeHeat"></table></div>
       <p class="note" id="agreeNote"></p>
+    </div>
+  </section>
+
+  <!-- DISEASE CATEGORIES -->
+  <section class="view" id="view-categories" role="tabpanel" hidden>
+    <h2 class="sr-only">Disease categories</h2>
+    <div class="card fig-main lb-card" data-static>
+      <div class="card-head">
+        <div>
+          <h3 id="catTitle"></h3>
+          <p id="catSub"></p>
+        </div>
+      </div>
+      <div class="table-wrap"><table id="catTable" class="lbt"></table></div>
+      <p class="note" id="catNote"></p>
     </div>
   </section>
 
@@ -187,7 +219,7 @@
     <h2 class="sr-only">ACMG/AMP criteria invoked</h2>
     <div class="card fig-main" data-static>
       <div class="card-head">
-        <div><h3>ACMG criteria invoked</h3><p>Share of variants citing each criterion.<span class="ui-hint"> Hover a dot for variant count.</span></p></div>
+        <div><h3>ACMG criteria invoked</h3><p>Share of variants citing each criterion.<span class="ui-hint"> Hover a criterion for its definition, or a dot for the variant count.</span></p></div>
         <div class="cg-key" id="critKey" aria-hidden="true"></div>
       </div>
       <div class="table-wrap"><table class="lbt cg" id="critGrid"></table></div>
@@ -204,8 +236,24 @@
           <p id="rkSub"></p>
         </div>
       </div>
-      <div class="table-wrap"><table id="rkTable" class="lbt"></table></div>
+      <div class="table-wrap"><table id="rkTable" class="ovt"></table></div>
       <p class="note" id="rkNote"></p>
+    </div>
+  </section>
+
+  <!-- DISTRACTOR GENES -->
+  <section class="view" id="view-distractors" role="tabpanel" hidden>
+    <h2 class="sr-only">Why the causal gene was not ranked first</h2>
+    <div class="card fig-main" data-static>
+      <div class="card-head">
+        <div>
+          <h3 id="dxTitle">Why the causal gene was not ranked first</h3>
+          <p id="dxSub"></p>
+        </div>
+        <div class="cg-key" id="dxKey" aria-hidden="true"></div>
+      </div>
+      <div class="table-wrap"><table class="lbt cg" id="dxGrid"></table></div>
+      <p class="note" id="dxNote"></p>
     </div>
   </section>
 
@@ -265,7 +313,7 @@ window.BENCHMARK_DATA = __BENCHMARK_DATA__;
   // @include js/figure-files.js
   // ---------- wiring ----------
   document.querySelectorAll(".tab").forEach((b) => (b.onclick = () => setTab(b.dataset.tab)));
-  document.querySelectorAll(".section-tab").forEach((b) => (b.onclick = () => setTab(b.dataset.section === "classification" ? state.clsTab || "leaderboard" : b.dataset.section)));
+  document.querySelectorAll(".section-tab").forEach((b) => (b.onclick = () => setTab(b.dataset.section === "classification" ? state.clsTab || "leaderboard" : b.dataset.section === "ranking" ? state.rkTab || "ranking" : b.dataset.section)));
   $("csvBtn").onclick = downloadVariantsCsv;
   if ($("rkCsvBtn")) $("rkCsvBtn").onclick = downloadCasesCsv;
   window.addEventListener("hashchange", () => { applyHash(); pruneShown(); setTab(state.tab); });

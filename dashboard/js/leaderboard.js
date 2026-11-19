@@ -30,54 +30,82 @@
     ];
   }
 
-  // Measures down the side, models across grouped by section. sections: [title or null, rows].
-  // With links, each model name opens that model's confusion matrices.
-  function drawLbTable(table, cols, ranked, sections, links = true, countLabel = "Variants") {
+  // Measures down the side, models across grouped by section.
+  function drawLbTable(table, cols, ranked, rows) {
     if (!cols.length) { table.innerHTML = `<tbody><tr><td class="empty">No models selected.</td></tr></tbody>`; return; }
-
-    // Columns grouped by section, in rank order within each
     const groups = bySection(cols);
     const order = groups.flatMap(([, ms]) => ms);
     const groupStart = new Set(groups.slice(1).map(([, ms]) => ms[0].key));
     const gs = (m) => (groupStart.has(m.key) ? " lbt-gs" : "");
     const rankOf = (m) => (isFull(m) ? ranked.indexOf(m) + 1 : null);
-    const SMALL_N = LB_SMALL_N;
-
     const groupHead = `<tr class="lbt-groups"><th class="lbt-first" colspan="2"></th>${groups.map(([g, ms, k], i) => `<th colspan="${ms.length}" class="lbt-group${i ? " lbt-gs" : ""}"${tipAttr(SECTION_TIP[k])}>${esc(g)}</th>`).join("")}</tr>`;
-    const head = `<thead>${groupHead}<tr><th class="lbt-first">Measure</th><th class="lbt-nh">${countLabel}</th>${order.map((m) => {
+    const head = `<thead>${groupHead}<tr><th class="lbt-first">Category</th><th class="lbt-nh">Variants</th>${order.map((m) => {
       const r = rankOf(m);
-      // Name, then provider and method (e.g. "Anthropic · AIVA agent"); the column group already shows the section
-      const tip = tipAttr(`${m.name}\n${[providerOf(m), m.type].filter(Boolean).join(" · ")}${isComplete(m) ? "" : `\nScored on ${int(m.evaluated_count)} of ${int(m.total_cohort)} variants${isFull(m) ? "" : "; not ranked"}`}${links ? "\nSelect to open its analysis" : ""}`);
+      const tip = tipAttr(`${m.name}\n${[providerOf(m), m.type].filter(Boolean).join(" \u00b7 ")}${isComplete(m) ? "" : `\nScored on ${int(m.evaluated_count)} of ${int(m.total_cohort)} variants${isFull(m) ? "" : "; not ranked"}`}\nSelect to open its analysis`);
       const inner = `
         <span class="lbt-rank">${r ? "#" + r : "not ranked"}</span>
         <span class="lbt-label">${swatch(m)}${esc(m.short_name)}${isFull(m) ? "" : "*"}</span>
-        <span class="lbt-meta">${esc(providerOf(m))}${isComplete(m) ? "" : ` · n=${int(m.evaluated_count)}`}</span>`;
-      return `<th class="lbt-model${gs(m)}">${links
-        ? `<button type="button" class="lbt-name" data-key="${esc(m.key)}"${tip}>${inner}</button>`
-        : `<div class="lbt-name lbt-static"${tip}>${inner}</div>`}</th>`;
+        <span class="lbt-meta">${esc(providerOf(m))}${isComplete(m) ? "" : ` \u00b7 n=${int(m.evaluated_count)}`}</span>`;
+      return `<th class="lbt-model${gs(m)}"><button type="button" class="lbt-name" data-key="${esc(m.key)}"${tip}>${inner}</button></th>`;
     }).join("")}</tr></thead>`;
-
     const rowHtml = (r) => {
-      const rankedVals = order.filter(isFull).map((m) => r.get(m)).filter((v) => v != null);
-      const bestVal = !rankedVals.length ? null : (r.low ? Math.min(...rankedVals) : Math.max(...rankedVals));
-      const fmt = r.fmt || ((v) => f1(v));
-      const label = `<td class="lbt-first${r.indent ? " indent" : ""}"><span class="lbt-row">${r.abbr ? tierChip(r.abbr) : ""}${esc(r.label)}${r.small ? `<sup class="lbt-dag"${tipAttr(`Fewer than ${SMALL_N} variants: interpret with caution`)}>†</sup>` : ""}</span></td>`;
-      const n = r.n != null
-        ? `<td class="lbt-n${r.small ? " small" : ""}"><span class="lbt-nv">${int(r.n)}</span>${r.bar != null ? `<span class="lbt-nbar"><span style="width:${Math.max(2, r.bar * 100)}%"></span></span>` : ""}</td>`
-        : `<td class="lbt-n"></td>`;
-      return `<tr class="${r.strong ? "lbt-overall" : ""}${r.small ? " lbt-small" : ""}">${label}${n}${order.map((m) => {
+      const vals = order.filter(isFull).map((m) => r.get(m)).filter((v) => v != null);
+      const bestVal = vals.length ? Math.max(...vals) : null;
+      const label = `<td class="lbt-first"><span class="lbt-row">${esc(r.label)}${r.small ? `<sup class="lbt-dag"${tipAttr(`Fewer than ${LB_SMALL_N} variants: interpret with caution`)}>\u2020</sup>` : ""}</span></td>`;
+      const n = `<td class="lbt-n${r.small ? " small" : ""}"><span class="lbt-nv">${int(r.n)}</span><span class="lbt-nbar"><span style="width:${Math.max(2, r.bar * 100)}%"></span></span></td>`;
+      return `<tr${r.small ? ' class="lbt-small"' : ""}>${label}${n}${order.map((m) => {
         const v = r.get(m);
-        if (v == null) return `<td class="lbt-v na${gs(m)}">—</td>`;
+        if (v == null) return `<td class="lbt-v na${gs(m)}">\u2014</td>`;
         const isBest = bestVal != null && isFull(m) && Math.abs(v - bestVal) < 1e-9;
-        // The best value in each row is tinted in the winning model's colour
         const tint = isBest ? ` style="background:color-mix(in srgb, ${m.color} var(--best-mix), var(--surface))"` : "";
-        return `<td class="lbt-v${gs(m)}${isBest ? " best" : ""}${isFull(m) ? "" : " partial"}"${tint}${tipAttr(`${fullName(m)}\n${r.label}${r.f1 ? " F1" : ""}: ${fmt(v)}${r.fmt ? "" : "%"}${r.n != null ? `\nn = ${int(r.n)} variants` : ""}${isBest ? "\nBest in row" : ""}`)}>${fmt(v)}</td>`;
+        return `<td class="lbt-v${gs(m)}${isBest ? " best" : ""}${isFull(m) ? "" : " partial"}"${tint}${tipAttr(`${fullName(m)}\n${r.label} F1: ${f1(v)}%\nn = ${int(r.n)} variants${isBest ? "\nBest in row" : ""}`)}>${f1(v)}</td>`;
       }).join("")}</tr>`;
     };
-    const span = order.length + 2;
-    const body = sections.map(([title, rows]) => (title ? `<tr class="lbt-sec"><td class="lbt-first" colspan="${span}">${title}</td></tr>` : "") + rows.map(rowHtml).join("")).join("");
-    table.innerHTML = head + `<tbody>${body}</tbody>`;
+    table.innerHTML = head + `<tbody>${rows.map(rowHtml).join("")}</tbody>`;
     table.querySelectorAll(".lbt-name").forEach((b) => b.onclick = () => openAnalysis(b.dataset.key));
+  }
+
+  // Leaderboard tables: models down the side (grouped by section, ranked), measures across.
+  // groups: [[title, rows]] where each row is {label, short, abbr, get, fmt, low, n, small, strong}.
+  // opts.links: each model name opens that model's confusion matrices. opts.countText: header over the model column.
+  function drawOverallTable(table, cols, ranked, groups, opts = {}) {
+    const { links = false, countText = "" } = opts;
+    // A flat row list is a single untitled group
+    if (groups.length && !Array.isArray(groups[0])) groups = [[null, groups]];
+    const rows = groups.flatMap(([, rs]) => rs);
+    if (!cols.length || !rows.length) { table.innerHTML = `<tbody><tr><td class="empty">No models.</td></tr></tbody>`; return; }
+    const titled = groups.some(([t]) => t);
+    const groupStart = new Set(groups.slice(1).map(([, rs]) => rs[0]));
+    const gs = (r) => (titled && groupStart.has(r) ? " ovt-gs" : "");
+    const mHead = (r) => {
+      const tip = `${r.label}${r.n != null ? `\nn = ${int(r.n)}` : ""}${r.small ? `\nFewer than ${LB_SMALL_N}: interpret with caution` : ""}`;
+      return `<th class="ovt-m${gs(r)}" scope="col"${tipAttr(tip)}>${r.abbr ? tierChip(r.abbr) : esc(r.short || r.label)}${r.small ? `<sup class="lbt-dag">\u2020</sup>` : ""}</th>`;
+    };
+    const groupHead = titled
+      ? `<tr class="ovt-groups"><th class="ovt-rank"></th><th class="ovt-name"></th>${groups.map(([t, rs], i) => `<th colspan="${rs.length}" scope="colgroup" class="ovt-group${i ? " ovt-gs" : ""}">${esc(t || "")}</th>`).join("")}</tr>`
+      : "";
+    const best = rows.map((r) => {
+      const vals = cols.filter(isFull).map((m) => r.get(m)).filter((v) => v != null);
+      return !vals.length ? null : (r.low ? Math.min(...vals) : Math.max(...vals));
+    });
+    const rowFor = (m) => {
+      const rk = isFull(m) ? ranked.indexOf(m) + 1 : null;
+      const tip = tipAttr(`${fullName(m)}\n${[providerOf(m), m.type].filter(Boolean).join(" \u00b7 ")}${isComplete(m) ? "" : `\nScored on ${int(m.evaluated_count)} of ${int(m.total_cohort)}${isFull(m) ? "" : "; not ranked"}`}${links ? "\nSelect to open its analysis" : ""}`);
+      const inner = `<span class="ovt-label">${swatch(m)}${esc(nameIn(m, cols))}${isFull(m) ? "" : "*"}</span><span class="lbt-meta">${esc(providerOf(m))} \u00b7 ${esc(methodShort(m.type))}${isComplete(m) ? "" : ` \u00b7 n=${int(m.evaluated_count)}`}</span>`;
+      const cells = rows.map((r, i) => {
+        const v = r.get(m);
+        if (v == null) return `<td class="lbt-v na${gs(r)}">\u2014</td>`;
+        const isBest = best[i] != null && isFull(m) && Math.abs(v - best[i]) < 1e-9;
+        const tint = isBest ? ` style="background:color-mix(in srgb, ${m.color} var(--best-mix), var(--surface))"` : "";
+        const fmt = r.fmt || ((x) => f1(x));
+        return `<td class="lbt-v${gs(r)}${isBest ? " best" : ""}${isFull(m) ? "" : " partial"}"${tint}${tipAttr(`${fullName(m)}\n${r.label}${r.f1 ? " F1" : ""}: ${fmt(v)}${r.fmt ? "" : "%"}${r.n != null ? `\nn = ${int(r.n)}` : ""}${isBest ? "\nBest in column" : ""}`)}>${fmt(v)}</td>`;
+      }).join("");
+      return `<tr><td class="ovt-rank">${rk ? "#" + rk : ""}</td><th class="ovt-name" scope="row"${tip}>${links ? `<button type="button" class="lbt-name ovt-link" data-key="${esc(m.key)}">${inner}</button>` : inner}</th>${cells}</tr>`;
+    };
+    const span = rows.length + 2;
+    const body = bySection(cols).map(([label, ms, k]) => `<tr class="ovt-sec"><th colspan="${span}" scope="colgroup"${tipAttr(SECTION_TIP[k])}>${esc(label)}</th></tr>${ms.map(rowFor).join("")}`).join("");
+    table.innerHTML = `<thead>${groupHead}<tr><th class="ovt-rank"></th><th class="ovt-name">${esc(countText)}</th>${rows.map(mHead).join("")}</tr></thead><tbody>${body}</tbody>`;
+    if (links) table.querySelectorAll(".ovt-link").forEach((b) => b.onclick = () => openAnalysis(b.dataset.key));
   }
 
   function renderLeaderboard() {
@@ -92,33 +120,47 @@
     $("lbSub").innerHTML = (two
       ? "Macro F1 against ClinGen expert classifications across P/LP and B/LB."
       : "Macro F1 against ClinGen expert classifications across 4 definitive ACMG classes.") +
-      `<span class="ui-hint"> Select a model to open its confusion matrix.</span>`;
+      `<span class="ui-hint"> Select a model to open its confusion matrix. </span><button type="button" class="ov-link" id="lbCatLink">By disease category</button>`;
+    $("lbCatLink").onclick = () => { setTab("categories"); window.scrollTo({ top: 0 }); };
 
     renderLbScatter(cols);
     renderAgreeHeat();
 
-    if (!cols.length) { drawLbTable($("lbTable"), cols, ranked, []); $("lbNote").innerHTML = ""; return; }
+    if (!cols.length) { drawOverallTable($("lbTable"), cols, ranked, []); $("lbNote").innerHTML = ""; return; }
 
-    // Rows: F1 rows are shaded on one shared scale; other measures are not
+    const safetyRows = [
+      { label: "Cross-direction errors per 1,000 variants", short: "Errors per 1,000", get: per1k, low: true, fmt: (v) => v.toFixed(2) }
+    ];
+    drawOverallTable($("lbTable"), cols, ranked, [
+      ["By expert classification", lbClassRows(cols, two)],
+      ["Safety", safetyRows]
+    ], { links: true, countText: `${int(D.metadata.total_variants)} variants` });
+    $("lbNote").innerHTML = [
+      ...lbCoverageNotes(ranked, partial),
+      "Cross-direction errors: B/LB called P/LP, or reverse."
+    ].filter(Boolean).join("<br>");
+  }
+
+  // ---------- disease categories ----------
+  // Categories down the side, models across (by section, ranked by overall F1 on the leaderboard scale).
+  function renderCategories() {
+    renderShownPicker("lb");
+    seg("lbScaleSeg", state.lbScale, (v) => { state.lbScale = v; renderCategories(); writeHash(); });
+    const two = state.lbScale === "2" || state.lbScale === "3";
+    const { ranked, partial, cols } = lbColumns(lbShown(), two);
+    $("catTitle").textContent = `F1 by disease category (${two ? "2-class" : "4-class"})`;
+    $("catSub").innerHTML = `Macro F1 within each ClinGen expert panel category. Best in row is highlighted.<span class="ui-hint"> Select a model to open its confusion matrix.</span>`;
     const catKey = two ? "macro_f1_3" : "macro_f1";
     const cats = categoriesWithData().sort((a, b) => catCount(b) - catCount(a));
     const maxCat = Math.max(1, ...cats.map(catCount));
-    const catRows = cats.map((c) => ({
-      label: c, n: catCount(c), bar: catCount(c) / maxCat, small: catCount(c) < LB_SMALL_N, f1: true,
+    const rows = cats.map((c) => ({
+      label: c, short: c.replace(/ Disorders$/, ""), n: catCount(c), small: catCount(c) < LB_SMALL_N, f1: true,
       get: (m) => { const r = (D.categories_data[m.key] || {})[c]; return r && r.count ? r[catKey] : null; }
     }));
-    const safetyRows = [
-      { label: "Cross-direction errors per 1,000 variants", get: per1k, low: true, fmt: (v) => v.toFixed(2) }
-    ];
-    drawLbTable($("lbTable"), cols, ranked, [
-      ["By expert classification", lbClassRows(cols, two)],
-      ["By disease category (ClinGen expert panel)", catRows],
-      ["Safety", safetyRows]
-    ]);
-    $("lbNote").innerHTML = [
+    drawLbTable($("catTable"), cols, ranked, rows);
+    $("catNote").innerHTML = [
       ...lbCoverageNotes(ranked, partial),
-      cats.some((c) => catCount(c) < LB_SMALL_N) ? `† Fewer than ${LB_SMALL_N} variants.` : "",
-      "Cross-direction errors: B/LB called P/LP, or reverse."
+      cats.some((c) => catCount(c) < LB_SMALL_N) ? `\u2020 Fewer than ${LB_SMALL_N} variants.` : ""
     ].filter(Boolean).join("<br>");
   }
 
@@ -128,7 +170,7 @@
     const { ranked, partial, cols } = lbColumns(D.models.slice(), true);
     $("ovSub").innerHTML = `Macro F1 against ClinGen expert classifications (P/LP vs B/LB).<span class="ui-hint"> <button type="button" class="ov-link" id="ovFull">Full leaderboard</button></span>`;
     $("ovFull").onclick = () => { state.lbCols = null; state.lbScale = "2"; setTab("leaderboard"); window.scrollTo({ top: 0 }); };
-    drawLbTable($("ovTable"), cols, ranked, [[null, cols.length ? lbClassRows(cols, true) : []]], false);
+    drawOverallTable($("ovTable"), cols, ranked, cols.length ? lbClassRows(cols, true) : [], { countText: `${int(D.metadata.total_variants)} variants` });
     $("ovNote").innerHTML = lbCoverageNotes(ranked, partial).filter(Boolean).join("<br>");
     renderOverallRanking();
   }
@@ -141,6 +183,13 @@
     new_gene_known_disease: "Novel gene, known disease",
     new_gene_new_disease: "Novel gene & novel disease"
   };
+  const RK_CAT_SHORT = {
+    known_gene_disease: "Established",
+    known_gene_known_disease: "Known gene, known disease",
+    known_gene_new_disease: "Known gene, new disease",
+    new_gene_known_disease: "Novel gene, known disease",
+    new_gene_new_disease: "Novel gene & disease"
+  };
   const RK_CAT_COUNTS = {
     known_gene_disease: 54,
     known_gene_known_disease: 74,
@@ -152,12 +201,12 @@
   function rankingOverallRows() {
     const totalN = D.ranking_data?.metadata?.total_cohort || 311;
     return [
-      { label: "Recall@1 (Top-1 accuracy)", n: totalN, get: (m) => m.top1_pct, strong: true },
-      { label: "Recall@5 (Top-5)", n: totalN, get: (m) => m.top5_pct, indent: true },
-      { label: "Recall@10 (Top-10)", n: totalN, get: (m) => m.top10_pct, indent: true },
-      { label: "Mean Reciprocal Rank (MRR)", n: totalN, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
-      { label: "NDCG@10", n: totalN, get: (m) => m.ndcg10, fmt: (v) => Number(v).toFixed(4) },
-      { label: "Median Rank", n: totalN, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
+      { label: "Recall@1 (Top-1 accuracy)", short: "Recall@1", n: totalN, get: (m) => m.top1_pct, strong: true },
+      { label: "Recall@5 (Top-5)", short: "Recall@5", n: totalN, get: (m) => m.top5_pct, indent: true },
+      { label: "Recall@10 (Top-10)", short: "Recall@10", n: totalN, get: (m) => m.top10_pct, indent: true },
+      { label: "Mean Reciprocal Rank (MRR)", short: "MRR", n: totalN, get: (m) => m.mrr, fmt: (v) => Number(v).toFixed(4), strong: true },
+      { label: "NDCG@10", short: "NDCG@10", n: totalN, get: (m) => m.ndcg10, fmt: (v) => Number(v).toFixed(4) },
+      { label: "Median Rank", short: "Median rank", n: totalN, get: (m) => m.median_rank, fmt: (v) => Number(v).toFixed(0), low: true }
     ];
   }
 
@@ -166,6 +215,7 @@
     const maxN = Math.max(...Object.values(counts)) || 100;
     return Object.keys(RK_CAT_LABELS).map((cat) => ({
       label: RK_CAT_LABELS[cat],
+      short: RK_CAT_SHORT[cat],
       n: counts[cat] || 100,
       bar: (counts[cat] || 100) / maxN,
       get: (m) => (m.per_category?.[cat] ? m.per_category[cat][metricKey] : null),
@@ -179,7 +229,7 @@
     const rkCols = rk.models.slice().sort((a, b) => b.mrr - a.mrr);
     $("ovRankSub").innerHTML = `Recall@K and MRR across 311 rare disease challenge cases.<span class="ui-hint"> <button type="button" class="ov-link" id="ovRankFull">Full ranking leaderboard</button></span>`;
     $("ovRankFull").onclick = () => { setTab("ranking"); window.scrollTo({ top: 0 }); };
-    drawLbTable($("ovRankTable"), rkCols, rkCols, [[null, rankingOverallRows()]], false, "Cases");
+    drawOverallTable($("ovRankTable"), rkCols, rkCols, rankingOverallRows(), { countText: `${int(D.ranking_data?.metadata?.total_cohort || 311)} cases` });
     $("ovRankNote").innerHTML = "Recall@K: share of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
   }
 
@@ -199,9 +249,62 @@
     if (!rkCols.length) {
       $("rkTable").innerHTML = `<tbody><tr><td class="empty">No models selected. Choose models above.</td></tr></tbody>`;
     } else {
-      drawLbTable($("rkTable"), rkCols, rkCols, sections, false, "Cases");
+      drawOverallTable($("rkTable"), rkCols, rkCols, sections, { countText: `${int(rk.metadata?.total_cohort || 311)} cases` });
     }
     $("rkNote").innerHTML = "Recall@K: percentage of cases where causal gene ranked &le; K. MRR denominator is 311 total cases.";
+  }
+
+  // ---------- distractor genes ----------
+  // For each model, the type of gene ranked first in the cases where the causal gene was not first.
+  const DX_COLORS = {
+    pathogenic_pheno_irrel: "#B8322A", phenotype_distractor: "#E07B1A", unlabelled: "#8E9AA0",
+    universal_distractor: "#7B3FA0", tissue_distractor: "#2C73B0", non_syndromic_phenotype: "#2BA55A",
+    common_fp: "#D9442E", insufficient_explanatory: "#C23B5E"
+  };
+  const dxModels = () => (D.ranking_data?.models || []).filter((m) => D.ranking_data.distractor_data?.[m.key]);
+
+  // Distractor types down the side, models across (by section, ranked by MRR). Dot area is the
+  // share of a model's non first cases where that type of gene took first place, on one scale.
+  function renderDistractors() {
+    const rk = D.ranking_data;
+    if (!dxModels().length || !$("dxGrid")) return;
+    renderShownPicker("dx");
+    const types = rk.metadata.distractor_types || [];
+    const groups = bySection(shownModels("dx").sort((a, b) => b.mrr - a.mrr));
+    const order = groups.flatMap(([, ms]) => ms);
+    const gs = (i) => (i === 0 ? "" : " lbt-gs");
+    $("dxTitle").textContent = "Why the causal gene was not ranked first";
+    $("dxSub").innerHTML = `The type of gene ranked first instead of the causal gene. Dot area is the share of each model's misses.<span class="ui-hint"> Hover a dot for the case count.</span>`;
+    const data = (m) => rk.distractor_data[m.key];
+    const share = (m, t) => (data(m).non_top1 ? ((data(m).counts[t] || 0) * 100) / data(m).non_top1 : 0);
+    const max = Math.max(1, ...order.flatMap((m) => types.map(([t]) => share(m, t))));
+    const dot = (v, color) => {
+      const d = n2(2 * Math.max(v > 0 ? 1.5 : 0, CG_R * Math.sqrt(v / max)));
+      return `<span class="cg-dot-box">${d ? `<span class="cg-dot" style="width:${d}px;height:${d}px;background:${color}"></span>` : `<span class="cg-dot cg-zero"></span>`}</span>`;
+    };
+    const keys = [5, 10, 25, 50].filter((k) => k <= max).slice(-3);
+    $("dxKey").innerHTML = keys.map((k) => `<span>${dot(k, "var(--text-2)")}${k}%</span>`).join("");
+    const table = $("dxGrid");
+    if (!order.length) { table.innerHTML = `<tbody><tr><td class="empty">No models selected.</td></tr></tbody>`; return; }
+    // The first model of each section starts a group; the leading section needs no divider
+    const starts = new Set(groups.map(([, ms]) => ms[0].key));
+    const cls = (m, i) => (i > 0 && starts.has(m.key) ? " lbt-gs" : "");
+    const head = `<thead><tr class="lbt-groups"><th class="lbt-first"></th>${groups.map(([g, ms, k], i) => `<th colspan="${ms.length}" class="lbt-group${gs(i)}"${tipAttr(SECTION_TIP[k])}>${esc(g)}</th>`).join("")}</tr>` +
+      `<tr><th class="lbt-first">Top ranked gene</th>${order.map((m, i) => `<th class="lbt-model${cls(m, i)}"${tipAttr(fullName(m))}><span class="lbt-label">${swatch(m)}${esc(nameIn(m, order))}</span><br><span class="lbt-meta">N = ${int(data(m).non_top1)}</span></th>`).join("")}</tr></thead>`;
+    const draw = (compact) => {
+      const body = types.map(([t, label]) => `<tr><td class="lbt-first cg-label"><span class="cg-code">${esc(label)}</span></td>${order.map((m, i) => {
+        const n = data(m).counts[t] || 0, v = share(m, t);
+        const txt = v === 0 ? "" : v < 0.1 ? "<0.1" : v.toFixed(1);
+        return `<td class="cg-c${cls(m, i)}"${tipAttr(`${label} · ${fullName(m)}\n${int(n)} of ${int(data(m).non_top1)} cases, ${v.toFixed(1)}%`)}><span class="cg-cell">${dot(v, DX_COLORS[t] || "#8E9AA0")}${compact ? "" : `<span class="cg-v">${txt}</span>`}</span></td>`;
+      }).join("")}</tr>`).join("");
+      table.innerHTML = head + `<tbody>${body}</tbody>`;
+      table.classList.toggle("compact", compact);
+    };
+    draw(false);
+    const wrap = table.parentElement;
+    if (wrap.scrollWidth > wrap.clientWidth + 1) draw(true);
+    const skipped = (rk.models || []).length - dxModels().length;
+    $("dxNote").textContent = "N is the number of cases where the causal gene was not ranked first. Not labelled means the top gene was not among the case's candidate genes." + (skipped > 0 ? ` ${skipped} models without a ranked gene list are not shown.` : "");
   }
 
   // Accuracy against safety: score across, cross-direction errors up (inverted).

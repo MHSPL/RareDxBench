@@ -56,11 +56,14 @@
     const two = state.lbScale === "2" || state.lbScale === "3";
     const groups = bySection(lbColumns(shownModels("crit"), two).cols);
     const order = groups.flatMap(([, ms]) => ms);
-    const groupStart = new Set(groups.slice(1).map(([, ms]) => ms[0].key));
+    const groupStart = new Set(groups.slice(D.clingen_criteria ? 0 : 1).map(([, ms]) => ms[0].key));
     const gs = (m) => (groupStart.has(m.key) ? " lbt-gs" : "");
-    const share = (m, c) => (D.criteria_data[m.key] ? ((D.criteria_data[m.key][c] || 0) / (m.evaluated_count || 1)) * 100 : null);
+    // ClinGen expert ground truth: a pseudo model column ahead of the models, over the whole cohort
+    const truth = D.clingen_criteria ? { key: "__clingen", evaluated_count: D.metadata.total_variants, truth: true } : null;
+    const counts = (m) => (m.truth ? D.clingen_criteria : D.criteria_data[m.key]);
+    const share = (m, c) => (counts(m) ? ((counts(m)[c] || 0) / (m.evaluated_count || 1)) * 100 : null);
     const all = [...CRITERIA.pathogenic, ...CRITERIA.benign];
-    const max = Math.max(1, ...all.flatMap(([c]) => order.map((m) => share(m, c) || 0)));
+    const max = Math.max(1, ...all.flatMap(([c]) => (truth ? [truth, ...order] : order).map((m) => share(m, c) || 0)));
     const radius = (v) => (v > 0 ? Math.max(1.5, CG_R * Math.sqrt(v / max)) : 0);
     const dot = (v, color) => {
       const d = n2(2 * radius(v));
@@ -72,9 +75,10 @@
 
     const table = $("critGrid");
     if (!order.length) { table.innerHTML = `<tbody><tr><td class="empty">No models selected.</td></tr></tbody>`; return; }
-    const span = order.length + 1;
-    const head = `<thead><tr class="lbt-groups"><th class="lbt-first"></th>${groups.map(([g, ms, k], i) => `<th colspan="${ms.length}" class="lbt-group${i ? " lbt-gs" : ""}"${tipAttr(SECTION_TIP[k])}>${esc(g)}</th>`).join("")}</tr>` +
-      `<tr><th class="lbt-first">Criterion</th>${order.map((m) => {
+    const span = order.length + 1 + (truth ? 1 : 0);
+    const truthHead = truth ? `<th class="lbt-model"${tipAttr("ClinGen expert panel criteria, all " + int(truth.evaluated_count) + " benchmark variants")}><span class="lbt-label">ClinGen</span><br><span class="lbt-meta">ground truth</span></th>` : "";
+    const head = `<thead><tr class="lbt-groups"><th class="lbt-first"></th>${truth ? `<th class="lbt-group"></th>` : ""}${groups.map(([g, ms, k], i) => `<th colspan="${ms.length}" class="lbt-group${i || truth ? " lbt-gs" : ""}"${tipAttr(SECTION_TIP[k])}>${esc(g)}</th>`).join("")}</tr>` +
+      `<tr><th class="lbt-first">Criterion</th>${truthHead}${order.map((m) => {
         const inGroup = groups.find(([, ms]) => ms.some((x) => x.key === m.key))?.[1] || order;
         return `<th class="lbt-model${gs(m)}"${tipAttr(fullName(m))}><span class="lbt-label">${swatch(m)}${esc(nameIn(m, inGroup))}</span><br><span class="lbt-meta">${esc(providerOf(m))}</span></th>`;
       }).join("")}</tr></thead>`;
@@ -83,17 +87,17 @@
       const body = [["Pathogenic evidence", CRITERIA.pathogenic, "var(--tier-p)"], ["Benign evidence", CRITERIA.benign, "var(--tier-b)"]].map(([title, list, color]) => {
         let rows = `<tr class="lbt-sec"><td class="lbt-first" colspan="${span}">${title}</td></tr>`;
         let strength = null;
-        list.forEach(([c, def, short]) => {
+        list.forEach(([c, def]) => {
           if (strengthOf(c) !== strength) {
             strength = strengthOf(c);
             rows += `<tr class="cg-str"><td class="lbt-first" colspan="${span}">${strength}</td></tr>`;
           }
-          rows += `<tr><td class="lbt-first cg-label"${tipAttr(`${c}: ${def}`)}><span class="cg-code mono">${c}</span> <span class="cg-def">${esc(short)}</span></td>${order.map((m) => {
+          rows += `<tr><td class="lbt-first cg-label"${tipAttr(`${c}: ${def}`)}><span class="cg-code mono">${c}</span></td>${(truth ? [truth, ...order] : order).map((m) => {
             const v = share(m, c);
             if (v == null) return `<td class="cg-c na${gs(m)}"${tipAttr(`${fullName(m)}: no criteria recorded`)}>—</td>`;
-            const n = D.criteria_data[m.key][c] || 0;
+            const n = counts(m)[c] || 0;
             const txt = v === 0 ? "" : v < 0.1 ? "<0.1" : v.toFixed(1);
-            return `<td class="cg-c${gs(m)}"${tipAttr(`${c} · ${fullName(m)}\n${int(n)} variants, ${v.toFixed(1)}% of evaluated\n${def}`)}><span class="cg-cell">${dot(v, color)}${compact ? "" : `<span class="cg-v">${txt}</span>`}</span></td>`;
+            return `<td class="cg-c${gs(m)}"${tipAttr(`${c} · ${m.truth ? "ClinGen expert panels" : fullName(m)}\n${int(n)} variants, ${v.toFixed(1)}% of evaluated\n${def}`)}><span class="cg-cell">${dot(v, color)}${compact ? "" : `<span class="cg-v">${txt}</span>`}</span></td>`;
           }).join("")}</tr>`;
         });
         return rows;
@@ -192,13 +196,15 @@
   // ---------- tabs & URL ----------
   const RENDER = {
     leaderboard: renderLeaderboard,
+    categories: renderCategories,
     confusion: renderConfusion,
     criteria: renderCriteria,
     overall: renderOverall,
-    ranking: renderRanking
+    ranking: renderRanking,
+    distractors: renderDistractors
   };
-  // Overall and Ranking are single-view sections; every other tab belongs to Classification.
-  const sectionOf = (tab) => (tab === "ranking" || tab === "overall" ? tab : "classification");
+  // Overall is a single view; Ranking has two tabs; every other tab belongs to Classification.
+  const sectionOf = (tab) => (tab === "ranking" || tab === "distractors" ? "ranking" : tab === "overall" ? tab : "classification");
 
   function readHash() {
     const [tab, q] = location.hash.slice(1).split("?");
@@ -209,7 +215,7 @@
   function hashQuery() {
     const q = [];
     // The confusion and criteria tabs order their models by the leaderboard scale, so their links keep it too
-    if (PICKER_OF[state.tab] && state.tab !== "ranking" && state.lbScale !== "2") q.push("s=" + state.lbScale);
+    if (PICKER_OF[state.tab] && state.tab !== "ranking" && state.tab !== "distractors" && state.lbScale !== "2") q.push("s=" + state.lbScale);
     const p = PICKER_OF[state.tab];
     if (p && state[SHOWN[p].col]) q.push("show=" + state[SHOWN[p].col].map(encodeURIComponent).join(","));
     return q.length ? "?" + q.join("&") : "";
@@ -237,6 +243,7 @@
     state.tab = tab;
     const section = sectionOf(tab);
     if (section === "classification") state.clsTab = tab;
+    if (section === "ranking") state.rkTab = tab;
     document.body.dataset.tab = tab;
     document.body.dataset.section = section;
     document.querySelectorAll(".section-tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.section === section)));

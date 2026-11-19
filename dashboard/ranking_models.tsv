@@ -11,3 +11,6 @@ aiva_haiku	Haiku 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Haiku_5
 baseline_clinprior	ClinPrior	Rule-based	Network propagation	results/ranking/Results_ClinPrior/clinprior_rankings.jsonl	jsonl	#BD3027	#D04438	active	automated
 baseline_lirical	LIRICAL	Rule-based	Phenotype likelihood	results/ranking/Results_LIRICAL/lirical_rankings.jsonl	jsonl	#5785C1	#5785C1	active	automated
 baseline_exomiser	Exomiser	Rule-based	Cross-species phenotype	results/ranking/Results_Exomiser/exomiser_rankings.jsonl	jsonl	#79402E	#A26552	active	automated
+claude_code_sonnet	Sonnet 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Sonnet_5_5/claude_code_sonnet_311_predictions.jsonl	jsonl	#7FC0C6	#7FC0C6	active	agent
+claude_code_opus	Opus 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Opus_5_5/claude_code_opus_311_predictions.jsonl	jsonl	#FD6467	#FD6467	active	agent
+claude_code_haiku	Haiku 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Haiku_5_5/claude_code_haiku_311_predictions.jsonl	jsonl	#D8A499	#D8A499	active	agent
