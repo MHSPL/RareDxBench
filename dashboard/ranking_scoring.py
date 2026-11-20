@@ -47,7 +47,6 @@ TIERS_COL_MAP = {
     "aiva_gpt_sol": "sol_rank",
     "aiva_sonnet": "sonnet_rank",
     "aiva_opus": "opus_rank",
-    "aiva_gemini_pro": "gemini_rank",
     "aiva_haiku": "haiku_rank",
     "baseline_lirical": "lirical_rank",
     "baseline_clinprior": "clinprior_rank",

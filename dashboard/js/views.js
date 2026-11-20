@@ -34,13 +34,54 @@
     return `<div class="table-wrap"><table class="heat cm${four ? "" : " cm3"}" style="--cm-cell:${cell}px" aria-label="${esc(fullName(m))}: rows are the expert classification, columns the model call"><tbody>${body}</tbody>${foot}</table></div>`;
   }
 
+  // One bar per model and expert direction: the share called the right way, uncertain (VUS) or the opposite way
+  const CM_PARTS = [["ok", "Right direction"], ["vus", "Uncertain (VUS)"], ["bad", "Opposite direction"]];
+  function confusionOverview(ms) {
+    const rows = [
+      { exp: "P/LP", full: "pathogenic or likely pathogenic", i: 0, ok: 0, bad: 1 },
+      { exp: "B/LB", full: "benign or likely benign", i: 1, ok: 1, bad: 0 }
+    ];
+    const nOf = (r) => Math.max(0, ...ms.map((m) => (D.confusion_matrices[m.key]?.matrix_3?.[r.i] || []).reduce((a, b) => a + b, 0)));
+    const bar = (m, r) => {
+      const row = D.confusion_matrices[m.key]?.matrix_3?.[r.i];
+      if (!row) return `<div class="ocm-bar"></div>`;
+      const sum = row.reduce((a, b) => a + b, 0);
+      const vals = { ok: row[r.ok], vus: row[2], bad: row[r.bad] };
+      const called = { ok: `Called ${r.exp}`, vus: "Called uncertain (VUS)", bad: `Called ${r.exp === "P/LP" ? "B/LB" : "P/LP"} (cross-direction error)` };
+      const segs = CM_PARTS.map(([k]) => {
+        const share = sum ? vals[k] / sum : 0;
+        if (!vals[k]) return "";
+        return `<span class="ocm-${k}" style="width:${(share * 100).toFixed(2)}%"${tipAttr(`${fullName(m)}\nExpert: ${r.exp}\n${called[k]}: ${int(vals[k])} variants, ${(share * 100).toFixed(1)}% of ${int(sum)}`)}>${share >= 0.09 ? Math.round(share * 100) + "%" : ""}</span>`;
+      }).join("");
+      return `<div class="ocm-bar" role="img" aria-label="${esc(`${fullName(m)}, expert ${r.exp}: ` + CM_PARTS.map(([k, l]) => `${l} ${sum ? ((vals[k] / sum) * 100).toFixed(1) : 0}%`).join(", "))}">${segs}</div>`;
+    };
+    const legend = `<div class="ocm-legend">${CM_PARTS.map(([k, l]) => `<span><i class="ocm-${k}"></i>${l}</span>`).join("")}</div>`;
+    const head = `<div class="ocm-head"><span></span>${rows.map((r) => `<span>Expert: ${r.exp} <small>${int(nOf(r))} variants</small></span>`).join("")}</div>`;
+    const body = bySection(ms).map(([label, g]) => `<div class="ocm-sec">${esc(label)}</div>` +
+      g.map((m) => `<div class="ocm-row"><div class="ocm-name">${mname(m, ms)}</div>${rows.map((r) => bar(m, r)).join("")}</div>`).join("")).join("");
+    return `${legend}${head}${body}`;
+  }
+
   function renderConfusion() {
+    const overview = state.cmView !== "matrix";
+    seg("cmViewSeg", state.cmView, (v) => { state.cmView = v; renderConfusion(); });
     seg("cmScaleSeg", state.cmScale, (v) => { state.cmScale = v; renderConfusion(); });
     seg("cmModeSeg", state.cmMode, (v) => { state.cmMode = v; renderConfusion(); });
-    $("cmSub").textContent = `${state.cmMode === "count" ? "Counts" : "Row %"} shaded by share of row. Red cells indicate cross-direction errors.`;
-    renderShownPicker("cm");
+    // The overview shows every model; only the matrices need the picker and the scale and value controls
+    $("cmOverview").hidden = !overview;
+    $("cmGrid").hidden = overview;
+    $("cmScaleSeg").hidden = $("cmModeSeg").hidden = overview;
+    const pick = document.querySelector('.vt[data-for="confusion"] .lb-pick');
+    if (pick) pick.style.display = overview ? "none" : "";
     // Leaderboard order: by section, ranked by overall F1 on the leaderboard's scale
     const two = state.lbScale === "2" || state.lbScale === "3";
+    if (overview) {
+      $("cmSub").textContent = "What each model called for the variants the experts classed as pathogenic or likely pathogenic (left) and benign or likely benign (right). Red marks calls in the opposite direction.";
+      $("cmOverview").innerHTML = confusionOverview(bySection(lbColumns(D.models, two).cols).flatMap(([, g]) => g));
+      return;
+    }
+    $("cmSub").textContent = `${state.cmMode === "count" ? "Counts" : "Row %"} shaded by share of row. Red cells indicate cross-direction errors.`;
+    renderShownPicker("cm");
     const ms = bySection(lbColumns(shownModels("cm"), two).cols).flatMap(([, g]) => g);
     $("cmGrid").innerHTML = ms.map((m) => `<div><p class="cm-title">${mname(m, ms)}</p>${confusionTable(m)}</div>`).join("");
   }

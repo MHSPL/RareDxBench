@@ -144,7 +144,7 @@
     const parts = ["raredxbench", card.querySelector(".card-head h3").textContent];
     const p = card.querySelector("#cmGrid") ? "cm" : card.querySelector("#critGrid") ? "crit" : null;
     if (p && state[SHOWN[p].col]) parts.push(shownModels(p).map((m) => m.short_name).join(" vs "));
-    if (card.querySelector("#cmGrid")) parts.push(state.cmScale + "-class", state.cmMode === "count" ? "counts" : "row-pct");
+    if (card.querySelector("#cmGrid")) parts.push(...(state.cmView === "matrix" ? [state.cmScale + "-class", state.cmMode === "count" ? "counts" : "row-pct"] : ["overview"]));
     if (card.querySelector("#agreeHeat")) parts.push(state.agree === "exact_pct" ? "exact" : "directional");
     return slug(parts.join(" ")).slice(0, 140).replace(/-$/, "");
   }

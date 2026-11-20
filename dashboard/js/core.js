@@ -48,7 +48,7 @@
     tab: "overall", clsTab: "leaderboard",
     scatterScale: "2", lbScale: "2", lbCols: null,
     cmCols: null, critCols: null, rkCols: null, dxCols: null, ovCols: null, rkTab: "ranking",
-    cmScale: "4", cmMode: "count",
+    cmView: "overview", cmScale: "2", cmMode: "count",
     agree: "dir_pct"
   };
 

@@ -21,7 +21,7 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from config import CLASSIFICATION_DATA_DIR, CLASSIFICATION_ANSWERS
+from config import CLASSIFICATION_DATA_DIR, CLASSIFICATION_ANSWERS_EXTENDED
 from scripts.bias_parsers import (  # noqa: F401  (re-exported)
     HG19_NC_TO_CHROM, NC_TO_CHROM, chrom_num_to_name, vcf_to_annovar_key, vcf_to_annovar_keys,
     parse_hg19_coord, parse_intervar_classification, parse_intervar_predictions,
@@ -44,7 +44,7 @@ def create_unified_dataset_reproduce(erepo_path, intervar_path, bias_path, vcf_p
     print(f"Reproducing unified dataset using VCF {vcf_path}...")
     
     # Align IDs with the benchmark file so its variants keep their IDs
-    original_benchmark_path = CLASSIFICATION_ANSWERS
+    original_benchmark_path = CLASSIFICATION_ANSWERS_EXTENDED
     alignment_map, original_ids = load_id_alignment_map(original_benchmark_path)
     print(f"  Loaded {len(original_ids)} original IDs for alignment")
 
@@ -302,7 +302,7 @@ def create_unified_dataset_reproduce(erepo_path, intervar_path, bias_path, vcf_p
 def main():
     parser = argparse.ArgumentParser(description="Parse BIAS-2015 supplementary data")
     # The full cohort goes to its own file: data/classification/erepo_bias_intervar_merged.jsonl is the
-    # 2,894-variant benchmark set, which this script must not overwrite.
+    # trimmed benchmark set, which this script must not overwrite.
     parser.add_argument("--output", default="erepo_bias_intervar_full.jsonl", help="Output filename (in data/classification/)")
     parser.add_argument("--max-variants", type=int, default=None, help="Maximum number of variants to output")
     parser.add_argument("--source-dir", help="Directory holding the unzipped BIAS-2015 supplementary "

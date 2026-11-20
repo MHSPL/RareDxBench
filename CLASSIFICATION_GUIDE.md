@@ -11,7 +11,7 @@ reads nothing at view time.
 
 ```mermaid
 flowchart TD
-    A["Benchmark: data/classification/erepo_bias_intervar_merged.jsonl (2,894 variants)"] --> B["scripts/classify.py (resumes; retry loop)"]
+    A["Benchmark: data/classification/erepo_bias_intervar_merged.jsonl (497 variants)"] --> B["scripts/classify.py (resumes; retry loop)"]
     B --> C["results/classification/Results_<Model>_Analysis/<model>_full.jsonl"]
     C --> D["Row in dashboard/models.tsv"]
     D --> E["python scripts/update_dashboard.py"]
@@ -21,7 +21,7 @@ flowchart TD
 ```
 
 `build_data.py` scores every model against the ClinGen expert classification
-of the 2,894 benchmark variants in that file (how they were chosen:
+of the 497 benchmark variants in that file (how they were chosen:
 [dashboard/README.md](dashboard/README.md#benchmark-variant-set)). A run on that
 file covers exactly the variants the dashboard ranks.
 

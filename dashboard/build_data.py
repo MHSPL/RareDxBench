@@ -88,7 +88,9 @@ def build_dashboard_dataset():
     # PAIRWISE MODEL CONCORDANCE
     # -------------------------------------------------------------------------
     model_keys = [m["key"] for m in models_summary]
-    concordance_matrix = concordance(model_predictions, model_keys)
+    # Only the benchmark variants: result files can hold the whole cohort
+    bench_predictions = {k: {vid: p for vid, p in preds.items() if vid in unified_dict} for k, preds in model_predictions.items()}
+    concordance_matrix = concordance(bench_predictions, model_keys)
 
     # -------------------------------------------------------------------------
     # EVERY BENCHMARK VARIANT WITH EACH MODEL'S CALL (the page's CSV download)

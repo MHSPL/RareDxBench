@@ -9,7 +9,7 @@ Run your model on the input file, then score it against the answers, matched by 
 
 ### Variant Classification (`data/classification/`)
 
-2,894 ClinGen eRepo variants with expert panel classifications.
+497 ClinGen eRepo variants with expert panel classifications, the hardest ones: none of 8 reference classifiers called exactly right (the dashboard scores 494 of them: 3 have an Uncertain Significance expert label). The broader 2,894 variant set (at most 3 of 11) is kept as `*_extended.jsonl` files in the same folder.
 
 | File | Contents |
 |------|----------|

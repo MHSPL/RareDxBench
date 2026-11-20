@@ -5,7 +5,7 @@ aiva_haiku_rerun	Haiku 5.5	Anthropic	AIVA agent	results/classification/Results_C
 claude_code_opus	Opus 5.5	Anthropic	Claude Code	results/classification/Claude_code_results/acmg_classifications_manual_opus.json	json_array	#FD6467		active
 claude_code_sonnet	Sonnet 5.5	Anthropic	Claude Code	results/classification/Claude_code_results/acmg_classifications_manual_sonnet.json	json_array	#7FC0C6		active
 claude_code_haiku	Haiku 5.5	Anthropic	Claude Code	results/classification/Claude_code_results/acmg_classifications_manual_Haiku.json	json_array	#D8A499		active
-aiva_gemini_pro	Gemini 3 Pro	Google	AIVA agent	results/classification/Results_Gemini_Pro_Analysis/classifications_google_gemini-3-pro-preview_combined.jsonl	jsonl	#E1AF00		active
+aiva_gemini_pro	Gemini 3 Pro	Google	AIVA agent	results/classification/Results_Gemini_Pro_Analysis/classifications_google_gemini-3-pro-preview_combined.jsonl	jsonl	#E1AF00		removed
 aiva_gemini_flash	Gemini 3.8 Flash	Google	AIVA agent	results/classification/Results_Gemini_3_8_Flash_Analysis/gemini_flash_full.jsonl	jsonl	#C27D38		active
 aiva_gemini_argon	Gemini 4 Argon	Google	AIVA agent	results/classification/Results_Gemini_4_Argon_Analysis/argon_full.jsonl	jsonl	#184f95	#4f86d0	active
 aiva_gemini_hydrogen	Gemini 4 Hydrogen	Google	AIVA agent	results/classification/Results_Gemini_4_Hydrogen_Analysis/hydrogen_full.jsonl	jsonl	#3B9AB2		active

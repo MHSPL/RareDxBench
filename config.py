@@ -27,6 +27,12 @@ RANKING_RESULTS_DIR = BASE_DIR / "results" / "ranking"
 CLASSIFICATION_INPUT = CLASSIFICATION_DATA_DIR / "aiva_bench_input.jsonl"
 CLASSIFICATION_ANSWERS = CLASSIFICATION_DATA_DIR / "erepo_bias_intervar_merged.jsonl"
 
+# The extended set: every variant at most 3 of 11 reference classifiers got right.
+# The benchmark above is the subset of it that none of 8 reference classifiers got right
+# (scripts/select_hard_variants.py).
+CLASSIFICATION_INPUT_EXTENDED = CLASSIFICATION_DATA_DIR / "aiva_bench_input_extended.jsonl"
+CLASSIFICATION_ANSWERS_EXTENDED = CLASSIFICATION_DATA_DIR / "erepo_bias_intervar_merged_extended.jsonl"
+
 # Ad-hoc runs and analyses (git-ignored)
 RESULTS_DIR = BASE_DIR / "scratch"
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Overnight classification of the 2,894 benchmark variants with Gemini 4 Hydrogen
+Overnight classification of the benchmark variants with Gemini 4 Hydrogen
 (google/gemini-4-hydrogen). The run logic lives in scripts/overnight_runner.py.
 
 Usage:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Shared overnight runner: classifies the frozen 2,894-variant benchmark
+Shared overnight runner: classifies the frozen benchmark
 (data/classification/aiva_bench_input.jsonl) with one model through the AIVA
 API, appending one JSON line per attempt to the model's results file.
 

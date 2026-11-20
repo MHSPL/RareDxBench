@@ -68,9 +68,3 @@ scripts/plot_final_extracted_metrics.py
 scripts/recover_from_traces.py
 scripts/sample_by_category.py
 
-# ─── Misplaced / duplicate figure exports under the Gemini Pro run ───
-results/classification/Results_Gemini_Pro_Analysis/other_models/
-results/classification/Results_Gemini_Pro_Analysis/figures/*.png
-results/classification/Results_Gemini_Pro_Analysis/figures/*.pdf
-results/classification/Results_Gemini_Pro_Analysis/figures/pdf/*.png
-results/classification/Results_Gemini_Pro_Analysis/figures/png/*.pdf

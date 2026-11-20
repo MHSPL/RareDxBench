@@ -50,7 +50,7 @@ second is a dot grid with gene types down the side and models across: in the cas
 ranked first, the distractor type (from `data/ranking/ranking_answers_311.jsonl`)
 of the gene that took first place. A top gene that is not one of the case's
 candidate genes is shown as "Not labelled". Models without a ranked gene list
-(Gemini 3 Pro, LIRICAL, ClinPrior, Exomiser) are not shown.
+(LIRICAL, ClinPrior, Exomiser) are not shown.
 
 Variant Classification has four tabs:
 
@@ -100,19 +100,32 @@ there automatically and ignores them elsewhere.
 ## Benchmark variant set
 
 The dashboard scores every model on `data/classification/erepo_bias_intervar_merged.jsonl`:
-2,894 ClinGen eRepo variants, each with the expert classification and the
+497 ClinGen eRepo variants, each with the expert classification and the
 BIAS-2015 and InterVar predictions. They are the variants of the full 8,387
-cohort that at most 3 of 11 reference classifiers called with the exact expert
-5-class label (AIVA Opus, Sonnet, Haiku, Gemini 3 Pro, Gemini 3.8 Flash and
-GPT-6.1 Sol; Claude Code Opus, Sonnet and Haiku; BIAS-2015; InterVar), so the
-set concentrates on variants that are hard to classify. It is fixed: models
-added later run on these same variants.
+cohort that none of 8 reference classifiers called with the exact expert
+5-class label (AIVA Opus, Sonnet, Gemini 3.8 Flash and GPT-6.1 Sol; Claude
+Code Opus and Sonnet; BIAS-2015; InterVar), so the set is made of variants
+that are hard to classify. Small models (Haiku) and Gemini 3 Pro are not
+references. It is fixed: models added later run on these same variants. The dashboard
+scores 494 of the 497, because the 3 whose expert classification is Uncertain
+Significance are left out.
+
+The selection is reproducible with `python3 scripts/select_hard_variants.py`.
+It trims the extended set (2,894 variants that at most 3 of 11 classifiers got
+right, the 8 plus Haiku in both versions and Gemini 3 Pro, kept in
+`data/classification/*_extended.jsonl`) and rewrites the benchmark files. The
+scores of models already run on the extended set are computed on the 497
+variants only, because results are matched to the answers by `id`.
+Because the 8 reference classifiers define the set, each of them scores
+exactly 0% exact accuracy on it by construction. Only models that were not
+among the 8 (for example Haiku, Gemini 4 Argon and Hydrogen) can be compared
+here, and not against the 8.
 
 The BIAS-2015 calls and criteria are from BIAS-2015 v3 (3.0.0), taken from
-`MHSPL/AIVA-var-bench` (commit `b44327e`) for these 2,894 variants. The set
+`MHSPL/AIVA-var-bench` (commit `b44327e`) for the extended set's 2,894 variants. The set
 itself was selected with the earlier v2.0.0 calls and was not re-selected.
 
-`data/classification/aiva_bench_input.jsonl` holds the same 2,894 variants without any
+`data/classification/aiva_bench_input.jsonl` holds the same 497 variants without any
 classification (expert, BIAS-2015 or InterVar), for running a model or sharing
 the benchmark; results are matched to the answers by `id`.
 

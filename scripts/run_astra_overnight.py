@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Overnight classification of the 2,894 benchmark variants with GPT-6 Astra
+Overnight classification of the benchmark variants with GPT-6 Astra
 (openai/gpt-6-astra). The run logic lives in scripts/overnight_runner.py.
 
 Usage:

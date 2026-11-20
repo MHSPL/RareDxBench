@@ -216,14 +216,18 @@
       <div class="card-head">
         <div><h3>Confusion matrices</h3><p id="cmSub"></p></div>
         <div class="controls">
+          <div class="seg" id="cmViewSeg" role="group" aria-label="Confusion view">
+            <button data-v="overview" type="button">Overview</button><button data-v="matrix" type="button">Matrices</button>
+          </div>
           <div class="seg" id="cmScaleSeg" role="group" aria-label="Class granularity">
-            <button data-v="4" type="button">4-class</button><button data-v="2" type="button">2-class</button>
+            <button data-v="2" type="button">2-class</button><button data-v="4" type="button">4-class</button>
           </div>
           <div class="seg" id="cmModeSeg" role="group" aria-label="Cell values">
             <button data-v="count" type="button">Counts</button><button data-v="pct" type="button">Row %</button>
           </div>
         </div>
       </div>
+      <div class="cm-over" id="cmOverview"></div>
       <div class="cm-grid" id="cmGrid"></div>
     </div>
   </section>

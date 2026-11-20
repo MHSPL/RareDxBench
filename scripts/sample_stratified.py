@@ -21,10 +21,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from config import CLASSIFICATION_ANSWERS, CLASSIFICATION_RESULTS_DIR, RANDOM_SEED
+from config import CLASSIFICATION_ANSWERS, CLASSIFICATION_DATA_DIR, CLASSIFICATION_RESULTS_DIR, RANDOM_SEED
 
 DEFAULT_INPUT = CLASSIFICATION_ANSWERS
-CATEGORY_MAP = CLASSIFICATION_RESULTS_DIR / "Results_Gemini_Pro_Analysis" / "phenotype_categories.tsv"
+CATEGORY_MAP = CLASSIFICATION_DATA_DIR / "phenotype_categories.tsv"
 RESULTS_GLOB = "*.jsonl"
 
 

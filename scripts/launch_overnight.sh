@@ -22,7 +22,7 @@ fi
 
 echo "=========================================================="
 echo " Launching $LABEL"
-echo " Dataset:     2,894 variants ($INPUT_FILE)"
+echo " Dataset:     benchmark variants ($INPUT_FILE)"
 echo " Concurrency: $CONCURRENCY"
 echo " Log file:    $LOG"
 echo "=========================================================="

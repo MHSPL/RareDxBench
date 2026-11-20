@@ -255,3 +255,27 @@ table.ovt thead .ovt-name { color: var(--text-2); font-weight: 600; font-size: 1
 table.ovt .lbt-meta { display: block; }
 table.ovt tbody tr:last-child > * { border-bottom: 0; }
 table.ovt tr.ovt-sec th { text-align: left; font-size: 13px; font-weight: 600; color: var(--text-2); padding-top: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--axis); }
+
+/* Confusion overview: one bar per model and expert direction */
+.cm-over[hidden], .cm-grid[hidden], .seg[hidden] { display: none; }
+.cm-over { --ocm-name: minmax(150px, 210px); }
+.ocm-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 14px; font-size: 13px; color: var(--text-2); }
+.ocm-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.ocm-legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.ocm-head, .ocm-row { display: grid; grid-template-columns: var(--ocm-name) minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; align-items: center; }
+.ocm-head { font-size: 13px; font-weight: 600; color: var(--text-2); padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.ocm-head small { font-weight: 400; color: var(--muted); margin-left: 4px; }
+.ocm-sec { font-size: 13px; font-weight: 600; color: var(--text-2); padding: 16px 0 6px; }
+.ocm-row { padding: 4px 0; }
+.ocm-name { font-size: 14px; font-weight: 500; display: flex; align-items: center; min-width: 0; }
+.ocm-name .swatch { margin-right: 6px; flex: none; }
+.ocm-bar { display: flex; height: 24px; border-radius: 3px; overflow: hidden; background: var(--surface-2); }
+.ocm-bar span { display: flex; align-items: center; justify-content: center; min-width: 3px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; }
+.ocm-ok { background: var(--good); color: #ffffff; }
+.ocm-vus { background: var(--tier-vus); color: var(--text); }
+.ocm-bad { background: var(--critical); color: #ffffff; }
+@media (max-width: 640px) {
+  .ocm-head, .ocm-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); row-gap: 4px; column-gap: 12px; }
+  .ocm-head > span:first-child { display: none; }
+  .ocm-name { grid-column: 1 / -1; }
+}

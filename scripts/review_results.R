@@ -19,8 +19,8 @@ suppressPackageStartupMessages({
 })
 
 RESULTS  <- "results/classification/Results_Claude_Sonnet_5_5_Analysis/pilot_100_sonnet.jsonl"
-CATEGORY <- "results/classification/Results_Gemini_Pro_Analysis/phenotype_categories.tsv"
-BASELINE <- "results/classification/Results_Gemini_Pro_Analysis/classifications_google_gemini-3-pro-preview_combined.jsonl"
+CATEGORY <- "data/classification/phenotype_categories.tsv"
+BASELINE <- "results/classification/Results_Gemini_3_8_Flash_Analysis/gemini_flash_full.jsonl"
 
 FIVE_CLASS <- c("Pathogenic", "Likely Pathogenic", "Uncertain Significance",
                 "Likely Benign", "Benign")
