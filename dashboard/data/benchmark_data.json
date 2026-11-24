@@ -2,7 +2,7 @@
   "metadata": {
     "title": "RareDx Bench",
     "subtitle": "An open rare disease diagnostics benchmark for any AI model or classical tool, scored against ClinGen expert classifications",
-    "evaluation_date": "November 20, 2026",
+    "evaluation_date": "November 24, 2026",
     "total_variants": 494,
     "categories": [
       "Cancer Predisposition",
@@ -734,6 +734,84 @@
       }
     },
     {
+      "key": "aiva_gemini_neon",
+      "name": "Gemini 4 Neon",
+      "short_name": "Gemini 4 Neon",
+      "family": "Google",
+      "is_anthropic": false,
+      "type": "AIVA agent",
+      "color": "#00C9A7",
+      "color_dark": "#008B74",
+      "description": "AIVA agent",
+      "section": "aiva",
+      "evaluated_count": 492,
+      "total_cohort": 494,
+      "coverage_pct": 99.6,
+      "exact_accuracy": 26.42,
+      "directional_accuracy": 51.22,
+      "macro_f1_5": 39.87,
+      "macro_f1_4": 39.87,
+      "macro_f1_3": 65.61,
+      "macro_f1_2": 65.61,
+      "critical_error_count": 0,
+      "critical_error_rate": 0.0,
+      "false_pathogenic_count": 0,
+      "false_benign_count": 0,
+      "avg_latency_sec": 217.8,
+      "per_class_5": {
+        "Pathogenic": {
+          "precision": 100.0,
+          "recall": 16.36,
+          "f1": 28.12,
+          "support": 220,
+          "tp": 36,
+          "fp": 0,
+          "fn": 184
+        },
+        "Likely Pathogenic": {
+          "precision": 33.93,
+          "recall": 34.55,
+          "f1": 34.23,
+          "support": 165,
+          "tp": 57,
+          "fp": 111,
+          "fn": 108
+        },
+        "Likely Benign": {
+          "precision": 75.0,
+          "recall": 33.33,
+          "f1": 46.15,
+          "support": 72,
+          "tp": 24,
+          "fp": 8,
+          "fn": 48
+        },
+        "Benign": {
+          "precision": 81.25,
+          "recall": 37.14,
+          "f1": 50.98,
+          "support": 35,
+          "tp": 13,
+          "fp": 3,
+          "fn": 22
+        }
+      },
+      "per_class_3": {
+        "pathogenic": {
+          "precision": 100.0,
+          "recall": 52.99,
+          "f1": 69.27,
+          "support": 385
+        },
+        "benign": {
+          "precision": 100.0,
+          "recall": 44.86,
+          "f1": 61.94,
+          "support": 107
+        }
+      }
+    },
+    {
       "key": "aiva_gpt_sol",
       "name": "GPT-6.1 Sol",
       "short_name": "GPT-6.1 Sol",
@@ -812,6 +890,84 @@
       }
     },
     {
+      "key": "aiva_gpt_6_2_sol",
+      "name": "GPT-6.2 Sol",
+      "short_name": "GPT-6.2 Sol",
+      "family": "OpenAI",
+      "is_anthropic": false,
+      "type": "AIVA agent",
+      "color": "#10A37F",
+      "color_dark": "#0D8A6C",
+      "description": "AIVA agent",
+      "section": "aiva",
+      "evaluated_count": 454,
+      "total_cohort": 494,
+      "coverage_pct": 91.9,
+      "exact_accuracy": 5.29,
+      "directional_accuracy": 20.7,
+      "macro_f1_5": 12.63,
+      "macro_f1_4": 12.63,
+      "macro_f1_3": 35.38,
+      "macro_f1_2": 35.38,
+      "critical_error_count": 1,
+      "critical_error_rate": 0.22,
+      "false_pathogenic_count": 0,
+      "false_benign_count": 1,
+      "avg_latency_sec": 50.1,
+      "per_class_5": {
+        "Pathogenic": {
+          "precision": 70.0,
+          "recall": 3.78,
+          "f1": 7.18,
+          "support": 185,
+          "tp": 7,
+          "fp": 3,
+          "fn": 178
+        },
+        "Likely Pathogenic": {
+          "precision": 5.08,
+          "recall": 1.85,
+          "f1": 2.71,
+          "support": 162,
+          "tp": 3,
+          "fp": 56,
+          "fn": 159
+        },
+        "Likely Benign": {
+          "precision": 58.82,
+          "recall": 13.89,
+          "f1": 22.47,
+          "support": 72,
+          "tp": 10,
+          "fp": 7,
+          "fn": 62
+        },
+        "Benign": {
+          "precision": 44.44,
+          "recall": 11.43,
+          "f1": 18.18,
+          "support": 35,
+          "tp": 4,
+          "fp": 5,
+          "fn": 31
+        }
+      },
+      "per_class_3": {
+        "pathogenic": {
+          "precision": 100.0,
+          "recall": 19.88,
+          "f1": 33.17,
+          "support": 347
+        },
+        "benign": {
+          "precision": 96.15,
+          "recall": 23.36,
+          "f1": 37.59,
+          "support": 107
+        }
+      }
+    },
+    {
       "key": "aiva_gpt_astra",
       "name": "GPT-6 Astra",
       "short_name": "GPT-6 Astra",
@@ -885,6 +1041,84 @@
           "precision": 83.33,
           "recall": 9.26,
           "f1": 16.67,
+          "support": 108
+        }
+      }
+    },
+    {
+      "key": "aiva_gpt_6_2_astra",
+      "name": "GPT-6.2 Astra",
+      "short_name": "GPT-6.2 Astra",
+      "family": "OpenAI",
+      "is_anthropic": false,
+      "type": "AIVA agent",
+      "color": "#F59E0B",
+      "color_dark": "#D97706",
+      "description": "AIVA agent",
+      "section": "aiva",
+      "evaluated_count": 488,
+      "total_cohort": 494,
+      "coverage_pct": 98.8,
+      "exact_accuracy": 1.43,
+      "directional_accuracy": 19.88,
+      "macro_f1_5": 2.6,
+      "macro_f1_4": 2.6,
+      "macro_f1_3": 28.63,
+      "macro_f1_2": 28.63,
+      "critical_error_count": 3,
+      "critical_error_rate": 0.61,
+      "false_pathogenic_count": 1,
+      "false_benign_count": 2,
+      "avg_latency_sec": 47.2,
+      "per_class_5": {
+        "Pathogenic": {
+          "precision": 50.0,
+          "recall": 0.47,
+          "f1": 0.92,
+          "support": 215,
+          "tp": 1,
+          "fp": 1,
+          "fn": 214
+        },
+        "Likely Pathogenic": {
+          "precision": 3.61,
+          "recall": 1.82,
+          "f1": 2.42,
+          "support": 165,
+          "tp": 3,
+          "fp": 80,
+          "fn": 162
+        },
+        "Likely Benign": {
+          "precision": 25.0,
+          "recall": 4.11,
+          "f1": 7.06,
+          "support": 73,
+          "tp": 3,
+          "fp": 9,
+          "fn": 70
+        },
+        "Benign": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0,
+          "support": 35,
+          "tp": 0,
+          "fp": 3,
+          "fn": 35
+        }
+      },
+      "per_class_3": {
+        "pathogenic": {
+          "precision": 98.82,
+          "recall": 22.11,
+          "f1": 36.13,
+          "support": 380
+        },
+        "benign": {
+          "precision": 86.67,
+          "recall": 12.04,
+          "f1": 21.14,
           "support": 108
         }
       }
@@ -1641,6 +1875,72 @@
         "vus"
       ]
     },
+    "aiva_gemini_neon": {
+      "matrix_5": [
+        [
+          36,
+          111,
+          0,
+          0,
+          73
+        ],
+        [
+          0,
+          57,
+          0,
+          0,
+          108
+        ],
+        [
+          0,
+          0,
+          24,
+          3,
+          45
+        ],
+        [
+          0,
+          0,
+          8,
+          13,
+          14
+        ]
+      ],
+      "matrix_3": [
+        [
+          204,
+          0,
+          181
+        ],
+        [
+          0,
+          48,
+          59
+        ]
+      ],
+      "labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Likely Benign",
+        "Benign"
+      ],
+      "labels_3": [
+        "pathogenic",
+        "benign"
+      ],
+      "col_labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Likely Benign",
+        "Benign",
+        "Uncertain Significance"
+      ],
+      "col_labels_3": [
+        "pathogenic",
+        "benign",
+        "vus"
+      ]
+    },
     "aiva_gpt_sol": {
       "matrix_5": [
         [
@@ -1707,6 +2007,72 @@
         "vus"
       ]
     },
+    "aiva_gpt_6_2_sol": {
+      "matrix_5": [
+        [
+          7,
+          56,
+          0,
+          0,
+          122
+        ],
+        [
+          3,
+          3,
+          1,
+          0,
+          155
+        ],
+        [
+          0,
+          0,
+          10,
+          5,
+          57
+        ],
+        [
+          0,
+          0,
+          6,
+          4,
+          25
+        ]
+      ],
+      "matrix_3": [
+        [
+          69,
+          1,
+          277
+        ],
+        [
+          0,
+          25,
+          82
+        ]
+      ],
+      "labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Likely Benign",
+        "Benign"
+      ],
+      "labels_3": [
+        "pathogenic",
+        "benign"
+      ],
+      "col_labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Likely Benign",
+        "Benign",
+        "Uncertain Significance"
+      ],
+      "col_labels_3": [
+        "pathogenic",
+        "benign",
+        "vus"
+      ]
+    },
     "aiva_gpt_astra": {
       "matrix_5": [
         [
@@ -1748,6 +2114,72 @@
           0,
           10,
           98
+        ]
+      ],
+      "labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Likely Benign",
+        "Benign"
+      ],
+      "labels_3": [
+        "pathogenic",
+        "benign"
+      ],
+      "col_labels_5": [
+        "Pathogenic",
+        "Likely Pathogenic",
+        "Likely Benign",
+        "Benign",
+        "Uncertain Significance"
+      ],
+      "col_labels_3": [
+        "pathogenic",
+        "benign",
+        "vus"
+      ]
+    },
+    "aiva_gpt_6_2_astra": {
+      "matrix_5": [
+        [
+          1,
+          79,
+          1,
+          0,
+          134
+        ],
+        [
+          1,
+          3,
+          1,
+          0,
+          160
+        ],
+        [
+          0,
+          0,
+          3,
+          3,
+          67
+        ],
+        [
+          0,
+          1,
+          7,
+          0,
+          27
+        ]
+      ],
+      "matrix_3": [
+        [
+          84,
+          2,
+          294
+        ],
+        [
+          1,
+          13,
+          94
         ]
       ],
       "labels_5": [
@@ -6353,6 +6785,500 @@
         "blb_f1": 0.0
       }
     },
+    "aiva_gemini_neon": {
+      "Cancer Predisposition": {
+        "count": 77,
+        "exact_correct": 33,
+        "directional_correct": 43,
+        "matrix_5": [
+          [
+            8,
+            8,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            7,
+            0,
+            0,
+            9
+          ],
+          [
+            0,
+            0,
+            11,
+            0,
+            17
+          ],
+          [
+            0,
+            0,
+            2,
+            7,
+            4
+          ]
+        ],
+        "exact_accuracy": 42.86,
+        "directional_accuracy": 55.84,
+        "macro_f1": 56.49,
+        "macro_f1_3": 71.77,
+        "plp_f1": 51.15,
+        "blb_f1": 61.83
+      },
+      "Metabolic Disorders": {
+        "count": 205,
+        "exact_correct": 43,
+        "directional_correct": 104,
+        "matrix_5": [
+          [
+            13,
+            61,
+            0,
+            0,
+            41
+          ],
+          [
+            0,
+            27,
+            0,
+            0,
+            52
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 20.98,
+        "directional_accuracy": 50.73,
+        "macro_f1": 24.7,
+        "macro_f1_3": 55.66,
+        "plp_f1": 26.32,
+        "blb_f1": 23.08
+      },
+      "Cardiovascular Disorders": {
+        "count": 24,
+        "exact_correct": 5,
+        "directional_correct": 14,
+        "matrix_5": [
+          [
+            3,
+            8,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 20.83,
+        "directional_accuracy": 58.33,
+        "macro_f1": 15.26,
+        "macro_f1_3": 59.39,
+        "plp_f1": 30.52,
+        "blb_f1": 0.0
+      },
+      "Hematologic Disorders": {
+        "count": 65,
+        "exact_correct": 17,
+        "directional_correct": 37,
+        "matrix_5": [
+          [
+            3,
+            19,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            11,
+            0,
+            0,
+            15
+          ],
+          [
+            0,
+            0,
+            3,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 26.15,
+        "directional_accuracy": 56.92,
+        "macro_f1": 40.88,
+        "macro_f1_3": 75.87,
+        "plp_f1": 27.98,
+        "blb_f1": 33.34
+      },
+      "Immunodeficiency Disorders": {
+        "count": 10,
+        "exact_correct": 4,
+        "directional_correct": 6,
+        "matrix_5": [
+          [
+            1,
+            2,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 40.0,
+        "directional_accuracy": 60.0,
+        "macro_f1": 47.27,
+        "macro_f1_3": 75.0,
+        "plp_f1": 47.27,
+        "blb_f1": 0.0
+      },
+      "Neurodevelopmental Disorders": {
+        "count": 41,
+        "exact_correct": 13,
+        "directional_correct": 18,
+        "matrix_5": [
+          [
+            2,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            3,
+            1,
+            9
+          ],
+          [
+            0,
+            0,
+            4,
+            6,
+            7
+          ]
+        ],
+        "exact_accuracy": 31.71,
+        "directional_accuracy": 43.9,
+        "macro_f1": 47.78,
+        "macro_f1_3": 58.48,
+        "plp_f1": 55.55,
+        "blb_f1": 40.0
+      },
+      "Neuromuscular Disorders": {
+        "count": 30,
+        "exact_correct": 7,
+        "directional_correct": 13,
+        "matrix_5": [
+          [
+            3,
+            6,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            9
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 23.33,
+        "directional_accuracy": 43.33,
+        "macro_f1": 34.52,
+        "macro_f1_3": 52.55,
+        "plp_f1": 33.6,
+        "blb_f1": 18.18
+      },
+      "Ophthalmologic Disorders": {
+        "count": 15,
+        "exact_correct": 3,
+        "directional_correct": 6,
+        "matrix_5": [
+          [
+            1,
+            3,
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 20.0,
+        "directional_accuracy": 40.0,
+        "macro_f1": 32.69,
+        "macro_f1_3": 57.14,
+        "plp_f1": 32.69,
+        "blb_f1": 0.0
+      },
+      "Hearing Disorders": {
+        "count": 11,
+        "exact_correct": 2,
+        "directional_correct": 5,
+        "matrix_5": [
+          [
+            0,
+            2,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 18.18,
+        "directional_accuracy": 45.45,
+        "macro_f1": 29.63,
+        "macro_f1_3": 75.0,
+        "plp_f1": 11.11,
+        "blb_f1": 33.34
+      },
+      "RASopathies": {
+        "count": 10,
+        "exact_correct": 3,
+        "directional_correct": 5,
+        "matrix_5": [
+          [
+            2,
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 30.0,
+        "directional_accuracy": 50.0,
+        "macro_f1": 30.95,
+        "macro_f1_3": 70.0,
+        "plp_f1": 28.57,
+        "blb_f1": 33.34
+      },
+      "Vascular Disorders": {
+        "count": 2,
+        "exact_correct": 0,
+        "directional_correct": 1,
+        "matrix_5": [
+          [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 50.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 50.0,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Epilepsy / Neurological": {
+        "count": 2,
+        "exact_correct": 0,
+        "directional_correct": 0,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 0.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 0.0,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      }
+    },
     "aiva_gpt_sol": {
       "Cancer Predisposition": {
         "count": 77,
@@ -6847,6 +7773,500 @@
         "blb_f1": 0.0
       }
     },
+    "aiva_gpt_6_2_sol": {
+      "Cancer Predisposition": {
+        "count": 71,
+        "exact_correct": 7,
+        "directional_correct": 14,
+        "matrix_5": [
+          [
+            1,
+            5,
+            0,
+            0,
+            9
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            15
+          ],
+          [
+            0,
+            0,
+            4,
+            0,
+            23
+          ],
+          [
+            0,
+            0,
+            2,
+            1,
+            10
+          ]
+        ],
+        "exact_accuracy": 9.86,
+        "directional_accuracy": 19.72,
+        "macro_f1": 15.03,
+        "macro_f1_3": 33.31,
+        "plp_f1": 10.79,
+        "blb_f1": 19.27
+      },
+      "Metabolic Disorders": {
+        "count": 188,
+        "exact_correct": 6,
+        "directional_correct": 35,
+        "matrix_5": [
+          [
+            4,
+            28,
+            0,
+            0,
+            66
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            76
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 3.19,
+        "directional_accuracy": 18.62,
+        "macro_f1": 6.58,
+        "macro_f1_3": 23.88,
+        "plp_f1": 4.82,
+        "blb_f1": 8.33
+      },
+      "Cardiovascular Disorders": {
+        "count": 24,
+        "exact_correct": 0,
+        "directional_correct": 8,
+        "matrix_5": [
+          [
+            0,
+            7,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 33.33,
+        "macro_f1": 0.0,
+        "macro_f1_3": 45.92,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Hematologic Disorders": {
+        "count": 57,
+        "exact_correct": 0,
+        "directional_correct": 12,
+        "matrix_5": [
+          [
+            0,
+            11,
+            0,
+            0,
+            14
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            25
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 21.05,
+        "macro_f1": 0.0,
+        "macro_f1_3": 30.24,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Immunodeficiency Disorders": {
+        "count": 8,
+        "exact_correct": 0,
+        "directional_correct": 1,
+        "matrix_5": [
+          [
+            0,
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 12.5,
+        "macro_f1": 0.0,
+        "macro_f1_3": 22.22,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Neurodevelopmental Disorders": {
+        "count": 40,
+        "exact_correct": 6,
+        "directional_correct": 12,
+        "matrix_5": [
+          [
+            1,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            2,
+            3,
+            8
+          ],
+          [
+            0,
+            0,
+            3,
+            3,
+            11
+          ]
+        ],
+        "exact_accuracy": 15.0,
+        "directional_accuracy": 30.0,
+        "macro_f1": 24.58,
+        "macro_f1_3": 35.92,
+        "plp_f1": 25.0,
+        "blb_f1": 24.16
+      },
+      "Neuromuscular Disorders": {
+        "count": 29,
+        "exact_correct": 4,
+        "directional_correct": 8,
+        "matrix_5": [
+          [
+            0,
+            3,
+            0,
+            0,
+            7
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 13.79,
+        "directional_accuracy": 27.59,
+        "macro_f1": 21.43,
+        "macro_f1_3": 45.0,
+        "plp_f1": 7.14,
+        "blb_f1": 25.0
+      },
+      "Ophthalmologic Disorders": {
+        "count": 14,
+        "exact_correct": 0,
+        "directional_correct": 1,
+        "matrix_5": [
+          [
+            0,
+            1,
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 7.14,
+        "macro_f1": 0.0,
+        "macro_f1_3": 13.33,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Hearing Disorders": {
+        "count": 11,
+        "exact_correct": 0,
+        "directional_correct": 2,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 18.18,
+        "macro_f1": 0.0,
+        "macro_f1_3": 43.34,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "RASopathies": {
+        "count": 9,
+        "exact_correct": 0,
+        "directional_correct": 0,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 0.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 0.0,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Vascular Disorders": {
+        "count": 2,
+        "exact_correct": 1,
+        "directional_correct": 1,
+        "matrix_5": [
+          [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 50.0,
+        "directional_accuracy": 50.0,
+        "macro_f1": 50.0,
+        "macro_f1_3": 50.0,
+        "plp_f1": 50.0,
+        "blb_f1": 0.0
+      },
+      "Epilepsy / Neurological": {
+        "count": 1,
+        "exact_correct": 0,
+        "directional_correct": 0,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 0.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 0.0,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      }
+    },
     "aiva_gpt_astra": {
       "Cancer Predisposition": {
         "count": 77,
@@ -7317,6 +8737,500 @@
             0,
             0,
             2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 0.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 0.0,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      }
+    },
+    "aiva_gpt_6_2_astra": {
+      "Cancer Predisposition": {
+        "count": 74,
+        "exact_correct": 2,
+        "directional_correct": 12,
+        "matrix_5": [
+          [
+            0,
+            7,
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            16
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            26
+          ],
+          [
+            0,
+            1,
+            3,
+            0,
+            9
+          ]
+        ],
+        "exact_accuracy": 2.7,
+        "directional_accuracy": 16.22,
+        "macro_f1": 3.03,
+        "macro_f1_3": 27.95,
+        "plp_f1": 0.0,
+        "blb_f1": 6.06
+      },
+      "Metabolic Disorders": {
+        "count": 205,
+        "exact_correct": 2,
+        "directional_correct": 42,
+        "matrix_5": [
+          [
+            1,
+            39,
+            0,
+            0,
+            74
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            77
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 0.98,
+        "directional_accuracy": 20.49,
+        "macro_f1": 0.85,
+        "macro_f1_3": 17.87,
+        "plp_f1": 1.7,
+        "blb_f1": 0.0
+      },
+      "Cardiovascular Disorders": {
+        "count": 25,
+        "exact_correct": 0,
+        "directional_correct": 7,
+        "matrix_5": [
+          [
+            0,
+            6,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 28.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 42.22,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Hematologic Disorders": {
+        "count": 65,
+        "exact_correct": 0,
+        "directional_correct": 18,
+        "matrix_5": [
+          [
+            0,
+            17,
+            1,
+            0,
+            15
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            25
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 27.69,
+        "macro_f1": 0.0,
+        "macro_f1_3": 33.48,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Immunodeficiency Disorders": {
+        "count": 10,
+        "exact_correct": 0,
+        "directional_correct": 3,
+        "matrix_5": [
+          [
+            0,
+            3,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 30.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 46.15,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Neurodevelopmental Disorders": {
+        "count": 41,
+        "exact_correct": 0,
+        "directional_correct": 4,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            12
+          ],
+          [
+            0,
+            0,
+            3,
+            0,
+            14
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 9.76,
+        "macro_f1": 0.0,
+        "macro_f1_3": 11.77,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Neuromuscular Disorders": {
+        "count": 30,
+        "exact_correct": 1,
+        "directional_correct": 6,
+        "matrix_5": [
+          [
+            0,
+            5,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 3.33,
+        "directional_accuracy": 20.0,
+        "macro_f1": 6.67,
+        "macro_f1_3": 29.23,
+        "plp_f1": 0.0,
+        "blb_f1": 10.0
+      },
+      "Ophthalmologic Disorders": {
+        "count": 15,
+        "exact_correct": 1,
+        "directional_correct": 2,
+        "matrix_5": [
+          [
+            0,
+            1,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 6.67,
+        "directional_accuracy": 13.33,
+        "macro_f1": 20.0,
+        "macro_f1_3": 23.53,
+        "plp_f1": 20.0,
+        "blb_f1": 0.0
+      },
+      "Hearing Disorders": {
+        "count": 11,
+        "exact_correct": 0,
+        "directional_correct": 2,
+        "matrix_5": [
+          [
+            0,
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 18.18,
+        "macro_f1": 0.0,
+        "macro_f1_3": 43.34,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "RASopathies": {
+        "count": 10,
+        "exact_correct": 1,
+        "directional_correct": 1,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2
+          ]
+        ],
+        "exact_accuracy": 10.0,
+        "directional_accuracy": 10.0,
+        "macro_f1": 16.67,
+        "macro_f1_3": 12.5,
+        "plp_f1": 33.34,
+        "blb_f1": 0.0
+      },
+      "Vascular Disorders": {
+        "count": 1,
+        "exact_correct": 0,
+        "directional_correct": 0,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "exact_accuracy": 0.0,
+        "directional_accuracy": 0.0,
+        "macro_f1": 0.0,
+        "macro_f1_3": 0.0,
+        "plp_f1": 0.0,
+        "blb_f1": 0.0
+      },
+      "Epilepsy / Neurological": {
+        "count": 1,
+        "exact_correct": 0,
+        "directional_correct": 0,
+        "matrix_5": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
           ],
           [
             0,
@@ -8592,6 +10506,35 @@
       "PS4": 28,
       "PVS1": 134
     },
+    "aiva_gemini_neon": {
+      "BA1": 10,
+      "BP1": 6,
+      "BP2": 4,
+      "BP3": 4,
+      "BP4": 35,
+      "BP5": 4,
+      "BP7": 11,
+      "BS1": 31,
+      "BS2": 18,
+      "BS3": 19,
+      "BS4": 0,
+      "PM1": 60,
+      "PM2": 379,
+      "PM3": 55,
+      "PM4": 18,
+      "PM5": 41,
+      "PM6": 6,
+      "PP1": 28,
+      "PP2": 70,
+      "PP3": 206,
+      "PP4": 76,
+      "PP5": 0,
+      "PS1": 7,
+      "PS2": 11,
+      "PS3": 53,
+      "PS4": 44,
+      "PVS1": 133
+    },
     "aiva_gpt_sol": {
       "BA1": 4,
       "BP1": 6,
@@ -8621,6 +10564,35 @@
       "PS4": 7,
       "PVS1": 107
     },
+    "aiva_gpt_6_2_sol": {
+      "BA1": 10,
+      "BP1": 6,
+      "BP2": 1,
+      "BP3": 1,
+      "BP4": 26,
+      "BP5": 1,
+      "BP7": 6,
+      "BS1": 29,
+      "BS2": 4,
+      "BS3": 6,
+      "BS4": 0,
+      "PM1": 59,
+      "PM2": 249,
+      "PM3": 15,
+      "PM4": 22,
+      "PM5": 15,
+      "PM6": 3,
+      "PP1": 9,
+      "PP2": 72,
+      "PP3": 205,
+      "PP4": 8,
+      "PP5": 0,
+      "PS1": 1,
+      "PS2": 3,
+      "PS3": 18,
+      "PS4": 18,
+      "PVS1": 90
+    },
     "aiva_gpt_astra": {
       "BA1": 3,
       "BP1": 6,
@@ -8649,6 +10621,35 @@
       "PS3": 15,
       "PS4": 5,
       "PVS1": 99
+    },
+    "aiva_gpt_6_2_astra": {
+      "BA1": 4,
+      "BP1": 5,
+      "BP2": 2,
+      "BP3": 1,
+      "BP4": 28,
+      "BP5": 0,
+      "BP7": 5,
+      "BS1": 25,
+      "BS2": 2,
+      "BS3": 2,
+      "BS4": 0,
+      "PM1": 56,
+      "PM2": 311,
+      "PM3": 13,
+      "PM4": 20,
+      "PM5": 15,
+      "PM6": 3,
+      "PP1": 4,
+      "PP2": 78,
+      "PP3": 205,
+      "PP4": 8,
+      "PP5": 0,
+      "PS1": 0,
+      "PS2": 0,
+      "PS3": 13,
+      "PS4": 6,
+      "PVS1": 120
     },
     "baseline_bias": {
       "BA1": 0,
@@ -8871,6 +10872,12 @@
         }
       ]
     },
+    "aiva_gemini_neon": {
+      "false_pathogenic_count": 0,
+      "false_benign_count": 0,
+      "top_false_pathogenic": [],
+      "top_false_benign": []
+    },
     "aiva_gpt_sol": {
       "false_pathogenic_count": 0,
       "false_benign_count": 4,
@@ -8926,6 +10933,25 @@
         }
       ]
     },
+    "aiva_gpt_6_2_sol": {
+      "false_pathogenic_count": 0,
+      "false_benign_count": 1,
+      "top_false_pathogenic": [],
+      "top_false_benign": [
+        {
+          "id": "57ee28b4-485e-499c-ac29-4702ddc55d99",
+          "gene": "F9",
+          "variant": "NM_001313913.2:c.86C>T",
+          "disease": "hemophilia B",
+          "ground_truth": "Likely Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "PP3",
+            "BS1"
+          ]
+        }
+      ]
+    },
     "aiva_gpt_astra": {
       "false_pathogenic_count": 0,
       "false_benign_count": 2,
@@ -8953,6 +10979,50 @@
           "criteria": [
             "PP3",
             "BS1"
+          ]
+        }
+      ]
+    },
+    "aiva_gpt_6_2_astra": {
+      "false_pathogenic_count": 1,
+      "false_benign_count": 2,
+      "top_false_pathogenic": [
+        {
+          "id": "48b4a5b9-e1c5-421f-b71f-26b8643652bc",
+          "gene": "PTEN",
+          "variant": "NM_000314.8(PTEN):c.210-7_210-3del",
+          "disease": "PTEN hamartoma tumor syndrome",
+          "ground_truth": "Benign",
+          "predicted": "Likely Pathogenic",
+          "criteria": [
+            "PVS1",
+            "PM2"
+          ]
+        }
+      ],
+      "top_false_benign": [
+        {
+          "id": "57ee28b4-485e-499c-ac29-4702ddc55d99",
+          "gene": "F9",
+          "variant": "NM_001313913.2:c.86C>T",
+          "disease": "hemophilia B",
+          "ground_truth": "Likely Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "PP3",
+            "BS1"
+          ]
+        },
+        {
+          "id": "4f3c8b67-eb47-4289-b4da-2951df274143",
+          "gene": "F8",
+          "variant": "NM_000132.4(F8):c.5303G>A (p.Arg1768His)",
+          "disease": "hemophilia A",
+          "ground_truth": "Pathogenic",
+          "predicted": "Likely Benign",
+          "criteria": [
+            "BS1",
+            "PP3"
           ]
         }
       ]
@@ -9333,6 +11403,7 @@
         "confidence": "medium"
       }
     ],
+    "aiva_gemini_neon": [],
     "aiva_gpt_sol": [
       {
         "id": "fd54e511-37fc-437e-bf54-4757947ec10f",
@@ -9434,6 +11505,32 @@
         "confidence": "low"
       }
     ],
+    "aiva_gpt_6_2_sol": [
+      {
+        "id": "57ee28b4-485e-499c-ac29-4702ddc55d99",
+        "direction": "P\u2192B",
+        "gene": "F9",
+        "variant": "NM_001313913.2:c.86C>T",
+        "disease": "hemophilia B",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Likely Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS4_Moderate",
+          "PP3"
+        ],
+        "expert_points": 6,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -3,
+        "confidence": "medium"
+      }
+    ],
     "aiva_gpt_astra": [
       {
         "id": "57ee28b4-485e-499c-ac29-4702ddc55d99",
@@ -9480,6 +11577,80 @@
         "model_criteria": [
           "PP3",
           "BS1"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      }
+    ],
+    "aiva_gpt_6_2_astra": [
+      {
+        "id": "48b4a5b9-e1c5-421f-b71f-26b8643652bc",
+        "direction": "B\u2192P",
+        "gene": "PTEN",
+        "variant": "NM_000314.8(PTEN):c.210-7_210-3del",
+        "disease": "PTEN hamartoma tumor syndrome",
+        "category": "Cancer Predisposition",
+        "expert_panel": "PTEN VCEP",
+        "ground_truth": "Benign",
+        "expert_criteria": [
+          "BS2",
+          "BS1",
+          "BS3"
+        ],
+        "expert_points": -12,
+        "predicted": "Likely Pathogenic",
+        "model_criteria": [
+          "PVS1",
+          "PM2"
+        ],
+        "model_points": 9,
+        "confidence": "medium"
+      },
+      {
+        "id": "57ee28b4-485e-499c-ac29-4702ddc55d99",
+        "direction": "P\u2192B",
+        "gene": "F9",
+        "variant": "NM_001313913.2:c.86C>T",
+        "disease": "hemophilia B",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Likely Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS4_Moderate",
+          "PP3"
+        ],
+        "expert_points": 6,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "PP3",
+          "BS1"
+        ],
+        "model_points": -3,
+        "confidence": "low"
+      },
+      {
+        "id": "4f3c8b67-eb47-4289-b4da-2951df274143",
+        "direction": "P\u2192B",
+        "gene": "F8",
+        "variant": "NM_000132.4(F8):c.5303G>A (p.Arg1768His)",
+        "disease": "hemophilia A",
+        "category": "Hematologic Disorders",
+        "expert_panel": "Coagulation Factor Deficiency VCEP",
+        "ground_truth": "Pathogenic",
+        "expert_criteria": [
+          "PP4_Moderate",
+          "PM2_Supporting",
+          "PS3",
+          "PS4",
+          "PP3"
+        ],
+        "expert_points": 12,
+        "predicted": "Likely Benign",
+        "model_criteria": [
+          "BS1",
+          "PP3"
         ],
         "model_points": -3,
         "confidence": "low"
@@ -9903,15 +12074,30 @@
         "dir_pct": 79.4,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 65.2,
+        "dir_pct": 68.9,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 88.5,
         "dir_pct": 88.5,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 85.7,
+        "dir_pct": 86.3,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 87.7,
         "dir_pct": 87.7,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 91.6,
+        "dir_pct": 91.8,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 43.3,
@@ -9970,15 +12156,30 @@
         "dir_pct": 77.5,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 63.8,
+        "dir_pct": 66.3,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 90.7,
         "dir_pct": 90.7,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 87.4,
+        "dir_pct": 87.9,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 89.9,
         "dir_pct": 89.9,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 92.4,
+        "dir_pct": 92.4,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 43.5,
@@ -10037,15 +12238,30 @@
         "dir_pct": 69.0,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 55.7,
+        "dir_pct": 58.3,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 85.8,
         "dir_pct": 86.8,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 81.7,
+        "dir_pct": 83.0,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 87.0,
         "dir_pct": 88.1,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 83.6,
+        "dir_pct": 84.6,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 51.0,
@@ -10104,15 +12320,30 @@
         "dir_pct": 66.2,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 55.7,
+        "dir_pct": 59.6,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 77.9,
         "dir_pct": 77.9,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 76.0,
+        "dir_pct": 77.3,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 77.3,
         "dir_pct": 77.5,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 79.3,
+        "dir_pct": 79.7,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 40.9,
@@ -10171,15 +12402,30 @@
         "dir_pct": 66.8,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 54.3,
+        "dir_pct": 57.7,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 80.2,
         "dir_pct": 80.2,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 78.9,
+        "dir_pct": 80.0,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 79.6,
         "dir_pct": 79.8,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 81.6,
+        "dir_pct": 82.0,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 39.5,
@@ -10238,15 +12484,30 @@
         "dir_pct": 66.8,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 54.1,
+        "dir_pct": 56.5,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 78.9,
         "dir_pct": 78.9,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 78.4,
+        "dir_pct": 79.5,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 77.9,
         "dir_pct": 78.1,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 80.1,
+        "dir_pct": 80.5,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 36.4,
@@ -10305,15 +12566,30 @@
         "dir_pct": 80.6,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 65.4,
+        "dir_pct": 71.3,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 83.6,
         "dir_pct": 83.6,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 83.7,
+        "dir_pct": 85.2,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 83.4,
         "dir_pct": 83.4,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 87.1,
+        "dir_pct": 87.5,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 46.6,
@@ -10372,15 +12648,30 @@
         "dir_pct": 72.9,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 62.8,
+        "dir_pct": 70.3,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 56.5,
         "dir_pct": 58.9,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 58.8,
+        "dir_pct": 61.2,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 56.3,
         "dir_pct": 58.5,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 60.9,
+        "dir_pct": 63.3,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 33.6,
@@ -10439,15 +12730,30 @@
         "dir_pct": 100.0,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 75.2,
+        "dir_pct": 78.9,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 73.1,
         "dir_pct": 74.7,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 72.2,
+        "dir_pct": 75.1,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 72.7,
         "dir_pct": 74.7,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 77.9,
+        "dir_pct": 79.5,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 41.5,
@@ -10458,6 +12764,88 @@
         "exact_pct": 58.5,
         "dir_pct": 60.3,
         "overlap": 494
+      }
+    },
+    "aiva_gemini_neon": {
+      "aiva_opus_rerun": {
+        "exact_pct": 65.2,
+        "dir_pct": 68.9,
+        "overlap": 492
+      },
+      "aiva_sonnet_rerun": {
+        "exact_pct": 63.8,
+        "dir_pct": 66.3,
+        "overlap": 492
+      },
+      "aiva_haiku_rerun": {
+        "exact_pct": 55.7,
+        "dir_pct": 58.3,
+        "overlap": 492
+      },
+      "claude_code_opus": {
+        "exact_pct": 55.7,
+        "dir_pct": 59.6,
+        "overlap": 492
+      },
+      "claude_code_sonnet": {
+        "exact_pct": 54.3,
+        "dir_pct": 57.7,
+        "overlap": 492
+      },
+      "claude_code_haiku": {
+        "exact_pct": 54.1,
+        "dir_pct": 56.5,
+        "overlap": 492
+      },
+      "aiva_gemini_flash": {
+        "exact_pct": 65.4,
+        "dir_pct": 71.3,
+        "overlap": 492
+      },
+      "aiva_gemini_argon": {
+        "exact_pct": 62.8,
+        "dir_pct": 70.3,
+        "overlap": 492
+      },
+      "aiva_gemini_hydrogen": {
+        "exact_pct": 75.2,
+        "dir_pct": 78.9,
+        "overlap": 492
+      },
+      "aiva_gemini_neon": {
+        "exact_pct": 100.0,
+        "dir_pct": 100.0,
+        "overlap": 492
+      },
+      "aiva_gpt_sol": {
+        "exact_pct": 61.0,
+        "dir_pct": 63.2,
+        "overlap": 492
+      },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 61.5,
+        "dir_pct": 64.4,
+        "overlap": 452
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 59.6,
+        "dir_pct": 62.2,
+        "overlap": 492
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 64.6,
+        "dir_pct": 67.1,
+        "overlap": 486
+      },
+      "baseline_bias": {
+        "exact_pct": 35.0,
+        "dir_pct": 50.0,
+        "overlap": 492
+      },
+      "baseline_intervar": {
+        "exact_pct": 46.7,
+        "dir_pct": 50.0,
+        "overlap": 492
       }
     },
     "aiva_gpt_sol": {
@@ -10506,15 +12894,30 @@
         "dir_pct": 74.7,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 61.0,
+        "dir_pct": 63.2,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 100.0,
         "dir_pct": 100.0,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 87.7,
+        "dir_pct": 88.1,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 93.1,
         "dir_pct": 93.1,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 93.0,
+        "dir_pct": 93.0,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 48.0,
@@ -10525,6 +12928,88 @@
         "exact_pct": 75.7,
         "dir_pct": 75.7,
         "overlap": 494
+      }
+    },
+    "aiva_gpt_6_2_sol": {
+      "aiva_opus_rerun": {
+        "exact_pct": 85.7,
+        "dir_pct": 86.3,
+        "overlap": 454
+      },
+      "aiva_sonnet_rerun": {
+        "exact_pct": 87.4,
+        "dir_pct": 87.9,
+        "overlap": 454
+      },
+      "aiva_haiku_rerun": {
+        "exact_pct": 81.7,
+        "dir_pct": 83.0,
+        "overlap": 454
+      },
+      "claude_code_opus": {
+        "exact_pct": 76.0,
+        "dir_pct": 77.3,
+        "overlap": 454
+      },
+      "claude_code_sonnet": {
+        "exact_pct": 78.9,
+        "dir_pct": 80.0,
+        "overlap": 454
+      },
+      "claude_code_haiku": {
+        "exact_pct": 78.4,
+        "dir_pct": 79.5,
+        "overlap": 454
+      },
+      "aiva_gemini_flash": {
+        "exact_pct": 83.7,
+        "dir_pct": 85.2,
+        "overlap": 454
+      },
+      "aiva_gemini_argon": {
+        "exact_pct": 58.8,
+        "dir_pct": 61.2,
+        "overlap": 454
+      },
+      "aiva_gemini_hydrogen": {
+        "exact_pct": 72.2,
+        "dir_pct": 75.1,
+        "overlap": 454
+      },
+      "aiva_gemini_neon": {
+        "exact_pct": 61.5,
+        "dir_pct": 64.4,
+        "overlap": 452
+      },
+      "aiva_gpt_sol": {
+        "exact_pct": 87.7,
+        "dir_pct": 88.1,
+        "overlap": 454
+      },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 100.0,
+        "dir_pct": 100.0,
+        "overlap": 454
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 87.4,
+        "dir_pct": 87.4,
+        "overlap": 454
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 90.0,
+        "dir_pct": 90.5,
+        "overlap": 452
+      },
+      "baseline_bias": {
+        "exact_pct": 43.8,
+        "dir_pct": 47.1,
+        "overlap": 454
+      },
+      "baseline_intervar": {
+        "exact_pct": 69.6,
+        "dir_pct": 69.8,
+        "overlap": 454
       }
     },
     "aiva_gpt_astra": {
@@ -10573,15 +13058,30 @@
         "dir_pct": 74.7,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 59.6,
+        "dir_pct": 62.2,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 93.1,
         "dir_pct": 93.1,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 87.4,
+        "dir_pct": 87.4,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 100.0,
         "dir_pct": 100.0,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 93.2,
+        "dir_pct": 93.2,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 49.4,
@@ -10592,6 +13092,88 @@
         "exact_pct": 76.9,
         "dir_pct": 76.9,
         "overlap": 494
+      }
+    },
+    "aiva_gpt_6_2_astra": {
+      "aiva_opus_rerun": {
+        "exact_pct": 91.6,
+        "dir_pct": 91.8,
+        "overlap": 488
+      },
+      "aiva_sonnet_rerun": {
+        "exact_pct": 92.4,
+        "dir_pct": 92.4,
+        "overlap": 488
+      },
+      "aiva_haiku_rerun": {
+        "exact_pct": 83.6,
+        "dir_pct": 84.6,
+        "overlap": 488
+      },
+      "claude_code_opus": {
+        "exact_pct": 79.3,
+        "dir_pct": 79.7,
+        "overlap": 488
+      },
+      "claude_code_sonnet": {
+        "exact_pct": 81.6,
+        "dir_pct": 82.0,
+        "overlap": 488
+      },
+      "claude_code_haiku": {
+        "exact_pct": 80.1,
+        "dir_pct": 80.5,
+        "overlap": 488
+      },
+      "aiva_gemini_flash": {
+        "exact_pct": 87.1,
+        "dir_pct": 87.5,
+        "overlap": 488
+      },
+      "aiva_gemini_argon": {
+        "exact_pct": 60.9,
+        "dir_pct": 63.3,
+        "overlap": 488
+      },
+      "aiva_gemini_hydrogen": {
+        "exact_pct": 77.9,
+        "dir_pct": 79.5,
+        "overlap": 488
+      },
+      "aiva_gemini_neon": {
+        "exact_pct": 64.6,
+        "dir_pct": 67.1,
+        "overlap": 486
+      },
+      "aiva_gpt_sol": {
+        "exact_pct": 93.0,
+        "dir_pct": 93.0,
+        "overlap": 488
+      },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 90.0,
+        "dir_pct": 90.5,
+        "overlap": 452
+      },
+      "aiva_gpt_astra": {
+        "exact_pct": 93.2,
+        "dir_pct": 93.2,
+        "overlap": 488
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 100.0,
+        "dir_pct": 100.0,
+        "overlap": 488
+      },
+      "baseline_bias": {
+        "exact_pct": 44.9,
+        "dir_pct": 45.7,
+        "overlap": 488
+      },
+      "baseline_intervar": {
+        "exact_pct": 72.3,
+        "dir_pct": 72.5,
+        "overlap": 488
       }
     },
     "baseline_bias": {
@@ -10640,15 +13222,30 @@
         "dir_pct": 50.2,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 35.0,
+        "dir_pct": 50.0,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 48.0,
         "dir_pct": 48.0,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 43.8,
+        "dir_pct": 47.1,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 49.4,
         "dir_pct": 49.4,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 44.9,
+        "dir_pct": 45.7,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 100.0,
@@ -10707,15 +13304,30 @@
         "dir_pct": 60.3,
         "overlap": 494
       },
+      "aiva_gemini_neon": {
+        "exact_pct": 46.7,
+        "dir_pct": 50.0,
+        "overlap": 492
+      },
       "aiva_gpt_sol": {
         "exact_pct": 75.7,
         "dir_pct": 75.7,
         "overlap": 494
       },
+      "aiva_gpt_6_2_sol": {
+        "exact_pct": 69.6,
+        "dir_pct": 69.8,
+        "overlap": 454
+      },
       "aiva_gpt_astra": {
         "exact_pct": 76.9,
         "dir_pct": 76.9,
         "overlap": 494
+      },
+      "aiva_gpt_6_2_astra": {
+        "exact_pct": 72.3,
+        "dir_pct": 72.5,
+        "overlap": 488
       },
       "baseline_bias": {
         "exact_pct": 57.5,
@@ -16689,8 +19301,11 @@
       "aiva_gemini_flash": "11414441114441444214411141414412442441444441444414444142444444444444444111144444444444144444114411411444344140111144141111111414144444444444414444444444444444144414441144444441444414444144141144444444441441431114444444114411444111140444444414444144411111444411134411114141144444444044444444444444444444444444444444144444444440444444444444444444444440444444444444444444444414144444111144444441411440414114414444444442444444014444444443444414444410111141114411111444402344442444410444414444114444",
       "aiva_gemini_argon": "11411441144440441212100041414412042430444110444444111412444444444444400111014444144041041444114011411444304111010114141011110404044114144044400424214044000440011104140140400444440004100144041140144444440141431110144410410011414011141414141404141111411111441111134411114141104411114140244434243444444444444404444440144120244111144444411401444414400440414140441040041411404411411401111114441420400041414114400404444442142444114144414444444402441414111141014111111444412322223122201440444410101014",
       "aiva_gemini_hydrogen": "11411411114441441214100040404402042231424441444444141412444444444444401111144444444124044444114411111444314110111144041111111414142111441444414044444441414144444444441444414144441444444141141141444444441441441114444444114411444441141441444244421144411141444411134411114441114444444404244434444244444444444444444444114420244441414444414414444441444440444444444444444444444100414441111441201410401444414104414444444442144444114014444444444414441204111141044411111444412322222022200444444414141144",
+      "aiva_gemini_neon": "11411411114441421214400040414102042330424441444442111413232444444442201111144444144144014444114111-114443441410111441411111101141121111444400114422414414401441444444411444111411414144401441411114444144414414-1114140444111014144011111411424244121144111141414411134411114141111344444400243433444342434244444202424430114424244111114444111414414444444414444440444444441444444111414414111141441430401041414111444444444443144444104044444424444404441241111101041111110444112322224024401444414414001114",
       "aiva_gpt_sol": "11414444414444444214411141444412444444444444444442444444444444444444444144144224444124444444414411441444344444411144141111111414444444444444414444444444444444444444444444444444444444444444441144444444441441441144444444444414444441144444444444444444411441414411134444144441144444444444444444444244444444444444444444144444444444444444444444444444444440444444444444444444444411414444114144444424444444444144444444444442444444444444444444444414444443141444444411114444442344444444444444444444144444",
+      "aiva_gpt_6_2_sol": "1-4142414444444444-441114-4444124444444444444444-24444434444444444444441110444444444241444441144114-144434-14414-1441411--1114---44444444440404444444444444444444444444-44444444444444444444-4144444444444-4444411444444444444144440411444444444-4444-444-1--14444---3441111414114444444-444444434444434343244444402423444144-44444441444-44444444-40444--4440444444444-4-444-44444411-14444-1--444444444-4444-44144444444-4444244244104444444444424-414444240111141444411114444442324242422401444444444444444",
       "aiva_gpt_astra": "14414444114444444244411141444412444444444444444442444444444444444444444444444244444424144444114411441444344444111144141111111444444444444444444444444444444444444444444444444444444444444444441144444444441441441114444444444444444441144444444444444144441441444411434414144441444444444444444444444244444444444444444444144444444444444444444444440444444440444444444444444444444411414444111444444424441444444414444444444442444444444444444444444414444444411141444414444444442344444444444444444444144444",
+      "aiva_gpt_6_2_astra": "11414441114444444214411-41444412444444444444444442444442444444444444444111-44244444424444444114411441444344144111144141111111444-4444444444441444444444444444444444444444444444444444444444414114444444444144144111444444444441444444114444444444444414441114144441113441111444114444444414444444444424444444444444444444414444444444414444444444444044444444044444444444444444444441141444411--4424441441144144414444444444444244444444444444444444-414444244111141444411114444442324444444444444444414144444",
       "baseline_bias": "41010344143044330443044444414444442444434041443044004402341400424441411444441114444444100443114414441444344440244444404444444044443040000001111044441144111141104011114444014044104414011110444441444000424034444441041401144144103141400000040444040400044444040044434044440404400200004041444344444441424334444414044444144431300000014440000000404440444400044044040444440440444444444404444400400101444440414114414444444432434340011104300444344313244440444444444444444444402343334133310444444444444444",
       "baseline_intervar": "14414444114444444444444444414414444224444441444444444444424444424444411444441444444444444244444444444442444444444444444444444444444444440444111444444444441441444444444444444414444444441144444444444444421444444444444441441141104444444444444444444444444444444444444444444444444444244044444444242244444444444444444441444441444444444444444444444114444440444444444441444144414444444440444444444444444444444444444414444444244144411144444444444414444444444444444444441444142444444114444444444414444444"
     }
@@ -16866,6 +19481,114 @@
         }
       },
       {
+        "key": "aiva_gemini_neon",
+        "name": "Gemini 4 Neon",
+        "short_name": "Gemini 4 Neon",
+        "family": "Google",
+        "provider": "Google",
+        "type": "AIVA agent",
+        "section": "aiva",
+        "total_cohort": 311,
+        "evaluated_count": 311,
+        "is_full": true,
+        "color": "#00C9A7",
+        "color_dark": "#008B74",
+        "top1_pct": 94.86,
+        "top3_pct": 97.75,
+        "top5_pct": 98.39,
+        "top10_pct": 98.71,
+        "top20_pct": 100.0,
+        "mrr": 0.9644,
+        "median_rank": 1.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 54,
+            "top1": 50,
+            "top1_pct": 92.59,
+            "top3": 52,
+            "top3_pct": 96.3,
+            "top5": 52,
+            "top5_pct": 96.3,
+            "top10": 52,
+            "top10_pct": 96.3,
+            "top20": 54,
+            "top20_pct": 100.0,
+            "mrr": 0.9442,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "known_gene_known_disease": {
+            "n": 74,
+            "top1": 69,
+            "top1_pct": 93.24,
+            "top3": 72,
+            "top3_pct": 97.3,
+            "top5": 73,
+            "top5_pct": 98.65,
+            "top10": 73,
+            "top10_pct": 98.65,
+            "top20": 74,
+            "top20_pct": 100.0,
+            "mrr": 0.9568,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "known_gene_new_disease": {
+            "n": 41,
+            "top1": 39,
+            "top1_pct": 95.12,
+            "top3": 41,
+            "top3_pct": 100.0,
+            "top5": 41,
+            "top5_pct": 100.0,
+            "top10": 41,
+            "top10_pct": 100.0,
+            "top20": 41,
+            "top20_pct": 100.0,
+            "mrr": 0.9715,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "new_gene_known_disease": {
+            "n": 74,
+            "top1": 69,
+            "top1_pct": 93.24,
+            "top3": 71,
+            "top3_pct": 95.95,
+            "top5": 72,
+            "top5_pct": 97.3,
+            "top10": 73,
+            "top10_pct": 98.65,
+            "top20": 74,
+            "top20_pct": 100.0,
+            "mrr": 0.9501,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "new_gene_new_disease": {
+            "n": 68,
+            "top1": 68,
+            "top1_pct": 100.0,
+            "top3": 68,
+            "top3_pct": 100.0,
+            "top5": 68,
+            "top5_pct": 100.0,
+            "top10": 68,
+            "top10_pct": 100.0,
+            "top20": 68,
+            "top20_pct": 100.0,
+            "mrr": 1.0,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          }
+        }
+      },
+      {
         "key": "aiva_gemini_argon",
         "name": "Gemini 4 Argon",
         "short_name": "Gemini 4 Argon",
@@ -16974,6 +19697,114 @@
         }
       },
       {
+        "key": "aiva_gpt_6_2_astra",
+        "name": "GPT-6.2 Astra",
+        "short_name": "GPT-6.2 Astra",
+        "family": "OpenAI",
+        "provider": "OpenAI",
+        "type": "AIVA agent",
+        "section": "aiva",
+        "total_cohort": 311,
+        "evaluated_count": 311,
+        "is_full": true,
+        "color": "#F59E0B",
+        "color_dark": "#D97706",
+        "top1_pct": 89.07,
+        "top3_pct": 93.25,
+        "top5_pct": 94.53,
+        "top10_pct": 95.18,
+        "top20_pct": 95.18,
+        "mrr": 0.9135,
+        "median_rank": 1.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 54,
+            "top1": 48,
+            "top1_pct": 88.89,
+            "top3": 52,
+            "top3_pct": 96.3,
+            "top5": 52,
+            "top5_pct": 96.3,
+            "top10": 53,
+            "top10_pct": 98.15,
+            "top20": 53,
+            "top20_pct": 98.15,
+            "mrr": 0.929,
+            "gene_absent": 1,
+            "gene_absent_pct": 1.85,
+            "median_rank": 1.0
+          },
+          "known_gene_known_disease": {
+            "n": 74,
+            "top1": 57,
+            "top1_pct": 77.03,
+            "top3": 57,
+            "top3_pct": 77.03,
+            "top5": 60,
+            "top5_pct": 81.08,
+            "top10": 61,
+            "top10_pct": 82.43,
+            "top20": 61,
+            "top20_pct": 82.43,
+            "mrr": 0.7826,
+            "gene_absent": 12,
+            "gene_absent_pct": 16.22,
+            "median_rank": 1.0
+          },
+          "known_gene_new_disease": {
+            "n": 41,
+            "top1": 39,
+            "top1_pct": 95.12,
+            "top3": 41,
+            "top3_pct": 100.0,
+            "top5": 41,
+            "top5_pct": 100.0,
+            "top10": 41,
+            "top10_pct": 100.0,
+            "top20": 41,
+            "top20_pct": 100.0,
+            "mrr": 0.9756,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "new_gene_known_disease": {
+            "n": 74,
+            "top1": 66,
+            "top1_pct": 89.19,
+            "top3": 73,
+            "top3_pct": 98.65,
+            "top5": 74,
+            "top5_pct": 100.0,
+            "top10": 74,
+            "top10_pct": 100.0,
+            "top20": 74,
+            "top20_pct": 100.0,
+            "mrr": 0.9329,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "new_gene_new_disease": {
+            "n": 68,
+            "top1": 67,
+            "top1_pct": 98.53,
+            "top3": 67,
+            "top3_pct": 98.53,
+            "top5": 67,
+            "top5_pct": 98.53,
+            "top10": 67,
+            "top10_pct": 98.53,
+            "top20": 67,
+            "top20_pct": 98.53,
+            "mrr": 0.9853,
+            "gene_absent": 1,
+            "gene_absent_pct": 1.47,
+            "median_rank": 1.0
+          }
+        }
+      },
+      {
         "key": "aiva_gemini_hydrogen",
         "name": "Gemini 4 Hydrogen",
         "short_name": "Gemini 4 Hydrogen",
@@ -17077,6 +19908,114 @@
             "mrr": 0.9564,
             "gene_absent": 0,
             "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          }
+        }
+      },
+      {
+        "key": "aiva_gpt_6_2_sol",
+        "name": "GPT-6.2 Sol",
+        "short_name": "GPT-6.2 Sol",
+        "family": "OpenAI",
+        "provider": "OpenAI",
+        "type": "AIVA agent",
+        "section": "aiva",
+        "total_cohort": 311,
+        "evaluated_count": 311,
+        "is_full": true,
+        "color": "#10A37F",
+        "color_dark": "#0D8A6C",
+        "top1_pct": 83.92,
+        "top3_pct": 90.03,
+        "top5_pct": 91.96,
+        "top10_pct": 92.28,
+        "top20_pct": 93.57,
+        "mrr": 0.8717,
+        "median_rank": 1.0,
+        "per_category": {
+          "known_gene_disease": {
+            "n": 54,
+            "top1": 46,
+            "top1_pct": 85.19,
+            "top3": 51,
+            "top3_pct": 94.44,
+            "top5": 52,
+            "top5_pct": 96.3,
+            "top10": 53,
+            "top10_pct": 98.15,
+            "top20": 53,
+            "top20_pct": 98.15,
+            "mrr": 0.8952,
+            "gene_absent": 1,
+            "gene_absent_pct": 1.85,
+            "median_rank": 1.0
+          },
+          "known_gene_known_disease": {
+            "n": 74,
+            "top1": 46,
+            "top1_pct": 62.16,
+            "top3": 52,
+            "top3_pct": 70.27,
+            "top5": 54,
+            "top5_pct": 72.97,
+            "top10": 54,
+            "top10_pct": 72.97,
+            "top20": 56,
+            "top20_pct": 75.68,
+            "mrr": 0.6681,
+            "gene_absent": 18,
+            "gene_absent_pct": 24.32,
+            "median_rank": 1.0
+          },
+          "known_gene_new_disease": {
+            "n": 41,
+            "top1": 39,
+            "top1_pct": 95.12,
+            "top3": 41,
+            "top3_pct": 100.0,
+            "top5": 41,
+            "top5_pct": 100.0,
+            "top10": 41,
+            "top10_pct": 100.0,
+            "top20": 41,
+            "top20_pct": 100.0,
+            "mrr": 0.9756,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "new_gene_known_disease": {
+            "n": 74,
+            "top1": 65,
+            "top1_pct": 87.84,
+            "top3": 70,
+            "top3_pct": 94.59,
+            "top5": 73,
+            "top5_pct": 98.65,
+            "top10": 73,
+            "top10_pct": 98.65,
+            "top20": 74,
+            "top20_pct": 100.0,
+            "mrr": 0.9153,
+            "gene_absent": 0,
+            "gene_absent_pct": 0.0,
+            "median_rank": 1.0
+          },
+          "new_gene_new_disease": {
+            "n": 68,
+            "top1": 65,
+            "top1_pct": 95.59,
+            "top3": 66,
+            "top3_pct": 97.06,
+            "top5": 66,
+            "top5_pct": 97.06,
+            "top10": 66,
+            "top10_pct": 97.06,
+            "top20": 67,
+            "top20_pct": 98.53,
+            "mrr": 0.9644,
+            "gene_absent": 1,
+            "gene_absent_pct": 1.47,
             "median_rank": 1.0
           }
         }
@@ -18532,6 +21471,93 @@
           "median_rank": 1.0
         }
       },
+      "aiva_gemini_neon": {
+        "known_gene_disease": {
+          "n": 54,
+          "top1": 50,
+          "top1_pct": 92.59,
+          "top3": 52,
+          "top3_pct": 96.3,
+          "top5": 52,
+          "top5_pct": 96.3,
+          "top10": 52,
+          "top10_pct": 96.3,
+          "top20": 54,
+          "top20_pct": 100.0,
+          "mrr": 0.9442,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "known_gene_known_disease": {
+          "n": 74,
+          "top1": 69,
+          "top1_pct": 93.24,
+          "top3": 72,
+          "top3_pct": 97.3,
+          "top5": 73,
+          "top5_pct": 98.65,
+          "top10": 73,
+          "top10_pct": 98.65,
+          "top20": 74,
+          "top20_pct": 100.0,
+          "mrr": 0.9568,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "known_gene_new_disease": {
+          "n": 41,
+          "top1": 39,
+          "top1_pct": 95.12,
+          "top3": 41,
+          "top3_pct": 100.0,
+          "top5": 41,
+          "top5_pct": 100.0,
+          "top10": 41,
+          "top10_pct": 100.0,
+          "top20": 41,
+          "top20_pct": 100.0,
+          "mrr": 0.9715,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "new_gene_known_disease": {
+          "n": 74,
+          "top1": 69,
+          "top1_pct": 93.24,
+          "top3": 71,
+          "top3_pct": 95.95,
+          "top5": 72,
+          "top5_pct": 97.3,
+          "top10": 73,
+          "top10_pct": 98.65,
+          "top20": 74,
+          "top20_pct": 100.0,
+          "mrr": 0.9501,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "new_gene_new_disease": {
+          "n": 68,
+          "top1": 68,
+          "top1_pct": 100.0,
+          "top3": 68,
+          "top3_pct": 100.0,
+          "top5": 68,
+          "top5_pct": 100.0,
+          "top10": 68,
+          "top10_pct": 100.0,
+          "top20": 68,
+          "top20_pct": 100.0,
+          "mrr": 1.0,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        }
+      },
       "aiva_gpt_astra": {
         "known_gene_disease": {
           "n": 54,
@@ -18619,6 +21645,93 @@
           "median_rank": 1.0
         }
       },
+      "aiva_gpt_6_2_astra": {
+        "known_gene_disease": {
+          "n": 54,
+          "top1": 48,
+          "top1_pct": 88.89,
+          "top3": 52,
+          "top3_pct": 96.3,
+          "top5": 52,
+          "top5_pct": 96.3,
+          "top10": 53,
+          "top10_pct": 98.15,
+          "top20": 53,
+          "top20_pct": 98.15,
+          "mrr": 0.929,
+          "gene_absent": 1,
+          "gene_absent_pct": 1.85,
+          "median_rank": 1.0
+        },
+        "known_gene_known_disease": {
+          "n": 74,
+          "top1": 57,
+          "top1_pct": 77.03,
+          "top3": 57,
+          "top3_pct": 77.03,
+          "top5": 60,
+          "top5_pct": 81.08,
+          "top10": 61,
+          "top10_pct": 82.43,
+          "top20": 61,
+          "top20_pct": 82.43,
+          "mrr": 0.7826,
+          "gene_absent": 12,
+          "gene_absent_pct": 16.22,
+          "median_rank": 1.0
+        },
+        "known_gene_new_disease": {
+          "n": 41,
+          "top1": 39,
+          "top1_pct": 95.12,
+          "top3": 41,
+          "top3_pct": 100.0,
+          "top5": 41,
+          "top5_pct": 100.0,
+          "top10": 41,
+          "top10_pct": 100.0,
+          "top20": 41,
+          "top20_pct": 100.0,
+          "mrr": 0.9756,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "new_gene_known_disease": {
+          "n": 74,
+          "top1": 66,
+          "top1_pct": 89.19,
+          "top3": 73,
+          "top3_pct": 98.65,
+          "top5": 74,
+          "top5_pct": 100.0,
+          "top10": 74,
+          "top10_pct": 100.0,
+          "top20": 74,
+          "top20_pct": 100.0,
+          "mrr": 0.9329,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "new_gene_new_disease": {
+          "n": 68,
+          "top1": 67,
+          "top1_pct": 98.53,
+          "top3": 67,
+          "top3_pct": 98.53,
+          "top5": 67,
+          "top5_pct": 98.53,
+          "top10": 67,
+          "top10_pct": 98.53,
+          "top20": 67,
+          "top20_pct": 98.53,
+          "mrr": 0.9853,
+          "gene_absent": 1,
+          "gene_absent_pct": 1.47,
+          "median_rank": 1.0
+        }
+      },
       "aiva_gpt_sol": {
         "known_gene_disease": {
           "n": 54,
@@ -18703,6 +21816,93 @@
           "mrr": 0.8161,
           "gene_absent": 0,
           "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        }
+      },
+      "aiva_gpt_6_2_sol": {
+        "known_gene_disease": {
+          "n": 54,
+          "top1": 46,
+          "top1_pct": 85.19,
+          "top3": 51,
+          "top3_pct": 94.44,
+          "top5": 52,
+          "top5_pct": 96.3,
+          "top10": 53,
+          "top10_pct": 98.15,
+          "top20": 53,
+          "top20_pct": 98.15,
+          "mrr": 0.8952,
+          "gene_absent": 1,
+          "gene_absent_pct": 1.85,
+          "median_rank": 1.0
+        },
+        "known_gene_known_disease": {
+          "n": 74,
+          "top1": 46,
+          "top1_pct": 62.16,
+          "top3": 52,
+          "top3_pct": 70.27,
+          "top5": 54,
+          "top5_pct": 72.97,
+          "top10": 54,
+          "top10_pct": 72.97,
+          "top20": 56,
+          "top20_pct": 75.68,
+          "mrr": 0.6681,
+          "gene_absent": 18,
+          "gene_absent_pct": 24.32,
+          "median_rank": 1.0
+        },
+        "known_gene_new_disease": {
+          "n": 41,
+          "top1": 39,
+          "top1_pct": 95.12,
+          "top3": 41,
+          "top3_pct": 100.0,
+          "top5": 41,
+          "top5_pct": 100.0,
+          "top10": 41,
+          "top10_pct": 100.0,
+          "top20": 41,
+          "top20_pct": 100.0,
+          "mrr": 0.9756,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "new_gene_known_disease": {
+          "n": 74,
+          "top1": 65,
+          "top1_pct": 87.84,
+          "top3": 70,
+          "top3_pct": 94.59,
+          "top5": 73,
+          "top5_pct": 98.65,
+          "top10": 73,
+          "top10_pct": 98.65,
+          "top20": 74,
+          "top20_pct": 100.0,
+          "mrr": 0.9153,
+          "gene_absent": 0,
+          "gene_absent_pct": 0.0,
+          "median_rank": 1.0
+        },
+        "new_gene_new_disease": {
+          "n": 68,
+          "top1": 65,
+          "top1_pct": 95.59,
+          "top3": 66,
+          "top3_pct": 97.06,
+          "top5": 66,
+          "top5_pct": 97.06,
+          "top10": 66,
+          "top10_pct": 97.06,
+          "top20": 67,
+          "top20_pct": 98.53,
+          "mrr": 0.9644,
+          "gene_absent": 1,
+          "gene_absent_pct": 1.47,
           "median_rank": 1.0
         }
       },
@@ -22615,6 +25815,319 @@
           1,
           1
         ],
+        "aiva_gemini_neon": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          16,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          18,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          12,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          7,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          11,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
         "aiva_gemini_argon": [
           1,
           1,
@@ -22928,6 +26441,319 @@
           1,
           1
         ],
+        "aiva_gpt_6_2_astra": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          6,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          9,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          21,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
         "aiva_gemini_hydrogen": [
           1,
           1,
@@ -23235,6 +27061,319 @@
           1,
           1,
           1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "aiva_gpt_6_2_sol": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          null,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          null,
+          4,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          13,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          2,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          null,
+          1,
+          3,
+          1,
+          null,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          1,
+          1,
+          1,
+          1,
+          1,
+          18,
+          1,
+          5,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          12,
+          7,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          20,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
           1,
           1,
           1,
@@ -26721,6 +30860,16 @@
           "common_fp": 1
         }
       },
+      "aiva_gemini_neon": {
+        "cases": 311,
+        "non_top1": 16,
+        "counts": {
+          "universal_distractor": 4,
+          "phenotype_distractor": 2,
+          "unlabelled": 4,
+          "pathogenic_pheno_irrel": 6
+        }
+      },
       "aiva_gpt_astra": {
         "cases": 311,
         "non_top1": 97,
@@ -26731,6 +30880,16 @@
           "phenotype_distractor": 30,
           "pathogenic_pheno_irrel": 27,
           "non_syndromic_phenotype": 3
+        }
+      },
+      "aiva_gpt_6_2_astra": {
+        "cases": 311,
+        "non_top1": 34,
+        "counts": {
+          "universal_distractor": 4,
+          "unlabelled": 21,
+          "phenotype_distractor": 4,
+          "pathogenic_pheno_irrel": 5
         }
       },
       "aiva_gpt_sol": {
@@ -26745,6 +30904,18 @@
           "universal_distractor": 11,
           "non_syndromic_phenotype": 5,
           "common_fp": 1
+        }
+      },
+      "aiva_gpt_6_2_sol": {
+        "cases": 311,
+        "non_top1": 50,
+        "counts": {
+          "universal_distractor": 4,
+          "tissue_distractor": 2,
+          "unlabelled": 29,
+          "pathogenic_pheno_irrel": 8,
+          "phenotype_distractor": 6,
+          "non_syndromic_phenotype": 1
         }
       },
       "aiva_sonnet": {

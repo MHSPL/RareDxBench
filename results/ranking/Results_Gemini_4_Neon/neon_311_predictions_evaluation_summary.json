@@ -1,0 +1,64 @@
+{
+  "model": "google/gemini-4-neon",
+  "label": "Gemini 4 Neon",
+  "ablation": "hpo+vcf+genes+disease",
+  "cohort": "311_hard_discriminative_subset",
+  "n_evaluated": 311,
+  "metrics": {
+    "n_patients": 311,
+    "no_prediction": 0,
+    "retention_rate": 1.0,
+    "mrr": 0.9644,
+    "ndcg@10": 0.9694,
+    "mean_rank": 1.25,
+    "median_rank": 1.0,
+    "recall@1": 0.9486,
+    "recall@5": 0.9839,
+    "recall@10": 0.9871,
+    "recall@20": 1.0,
+    "recall@50": 1.0,
+    "per_category": {
+      "new_gene_known_disease": {
+        "n": 74,
+        "recall@1": 0.9324,
+        "recall@5": 0.973,
+        "recall@10": 0.9865,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "new_gene_new_disease": {
+        "n": 68,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "known_gene_disease": {
+        "n": 54,
+        "recall@1": 0.9259,
+        "recall@5": 0.963,
+        "recall@10": 0.963,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "known_gene_known_disease": {
+        "n": 74,
+        "recall@1": 0.9324,
+        "recall@5": 0.9865,
+        "recall@10": 0.9865,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      },
+      "known_gene_new_disease": {
+        "n": 41,
+        "recall@1": 0.9512,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@50": 1.0
+      }
+    }
+  },
+  "timestamp": "2026-11-24T09:15:43.606678+00:00"
+}
