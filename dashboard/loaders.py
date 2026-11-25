@@ -198,6 +198,17 @@ def load_model_predictions(model_info: dict, unified_dict: dict) -> dict[str, di
                 cls_raw = item.get("aiva_classification") or item.get("classification", "")
                 err = item.get("error")
                 if err or not cls_raw or cls_raw == "Not classified":
+                    if vid not in preds:
+                        preds[vid] = {
+                            "prediction": "Not classified",
+                            "criteria": [],
+                            "execution_time_ms": item.get("execution_time_ms", 0),
+                            "error": err,
+                            "confidence": "",
+                            "evidence": {},
+                            "criteria_raw": [],
+                            "score": None,
+                        }
                     continue
                 preds[vid] = {
                     "prediction": normalize_classification(cls_raw),

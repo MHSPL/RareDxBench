@@ -38,8 +38,8 @@
       "family": "Anthropic",
       "is_anthropic": true,
       "type": "AIVA agent",
-      "color": "#BD3027",
-      "color_dark": "#D04438",
+      "color": "#991B1B",
+      "color_dark": "#F87171",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -116,8 +116,8 @@
       "family": "Anthropic",
       "is_anthropic": true,
       "type": "AIVA agent",
-      "color": "#046C9A",
-      "color_dark": "#237CAB",
+      "color": "#DC2626",
+      "color_dark": "#EF4444",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -194,8 +194,8 @@
       "family": "Anthropic",
       "is_anthropic": true,
       "type": "AIVA agent",
-      "color": "#6C8645",
-      "color_dark": "#6C8645",
+      "color": "#F87171",
+      "color_dark": "#FCA5A5",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -272,8 +272,8 @@
       "family": "Anthropic",
       "is_anthropic": true,
       "type": "Claude Code",
-      "color": "#FD6467",
-      "color_dark": "#FD6467",
+      "color": "#B91C1C",
+      "color_dark": "#FB7185",
       "description": "Claude Code",
       "section": "agent",
       "evaluated_count": 494,
@@ -350,8 +350,8 @@
       "family": "Anthropic",
       "is_anthropic": true,
       "type": "Claude Code",
-      "color": "#7FC0C6",
-      "color_dark": "#7FC0C6",
+      "color": "#EF4444",
+      "color_dark": "#FDA4AF",
       "description": "Claude Code",
       "section": "agent",
       "evaluated_count": 494,
@@ -428,8 +428,8 @@
       "family": "Anthropic",
       "is_anthropic": true,
       "type": "Claude Code",
-      "color": "#D8A499",
-      "color_dark": "#D8A499",
+      "color": "#FCA5A5",
+      "color_dark": "#FECDD3",
       "description": "Claude Code",
       "section": "agent",
       "evaluated_count": 494,
@@ -506,8 +506,8 @@
       "family": "Google",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#C27D38",
-      "color_dark": "#C27D38",
+      "color": "#60A5FA",
+      "color_dark": "#BFDBFE",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -584,8 +584,8 @@
       "family": "Google",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#184f95",
-      "color_dark": "#4f86d0",
+      "color": "#2563EB",
+      "color_dark": "#3B82F6",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -662,8 +662,8 @@
       "family": "Google",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#3B9AB2",
-      "color_dark": "#3B9AB2",
+      "color": "#3B82F6",
+      "color_dark": "#93C5FD",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -740,24 +740,24 @@
       "family": "Google",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#00C9A7",
-      "color_dark": "#008B74",
+      "color": "#1D4ED8",
+      "color_dark": "#60A5FA",
       "description": "AIVA agent",
       "section": "aiva",
-      "evaluated_count": 492,
+      "evaluated_count": 494,
       "total_cohort": 494,
-      "coverage_pct": 99.6,
-      "exact_accuracy": 26.42,
-      "directional_accuracy": 51.22,
-      "macro_f1_5": 39.87,
-      "macro_f1_4": 39.87,
-      "macro_f1_3": 65.61,
-      "macro_f1_2": 65.61,
+      "coverage_pct": 100.0,
+      "exact_accuracy": 26.32,
+      "directional_accuracy": 51.01,
+      "macro_f1_5": 39.73,
+      "macro_f1_4": 39.73,
+      "macro_f1_3": 65.34,
+      "macro_f1_2": 65.34,
       "critical_error_count": 0,
       "critical_error_rate": 0.0,
       "false_pathogenic_count": 0,
       "false_benign_count": 0,
-      "avg_latency_sec": 217.8,
+      "avg_latency_sec": 218.0,
       "per_class_5": {
         "Pathogenic": {
           "precision": 100.0,
@@ -770,21 +770,21 @@
         },
         "Likely Pathogenic": {
           "precision": 33.93,
-          "recall": 34.55,
-          "f1": 34.23,
-          "support": 165,
+          "recall": 34.34,
+          "f1": 34.13,
+          "support": 166,
           "tp": 57,
           "fp": 111,
-          "fn": 108
+          "fn": 109
         },
         "Likely Benign": {
           "precision": 75.0,
-          "recall": 33.33,
-          "f1": 46.15,
-          "support": 72,
+          "recall": 32.88,
+          "f1": 45.71,
+          "support": 73,
           "tp": 24,
           "fp": 8,
-          "fn": 48
+          "fn": 49
         },
         "Benign": {
           "precision": 81.25,
@@ -799,15 +799,15 @@
       "per_class_3": {
         "pathogenic": {
           "precision": 100.0,
-          "recall": 52.99,
-          "f1": 69.27,
-          "support": 385
+          "recall": 52.85,
+          "f1": 69.15,
+          "support": 386
         },
         "benign": {
           "precision": 100.0,
-          "recall": 44.86,
-          "f1": 61.94,
-          "support": 107
+          "recall": 44.44,
+          "f1": 61.54,
+          "support": 108
         }
       }
     },
@@ -818,8 +818,8 @@
       "family": "OpenAI",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#0A9F9D",
-      "color_dark": "#0A9F9D",
+      "color": "#34D399",
+      "color_dark": "#A7F3D0",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -896,51 +896,51 @@
       "family": "OpenAI",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#10A37F",
-      "color_dark": "#0D8A6C",
+      "color": "#059669",
+      "color_dark": "#10B981",
       "description": "AIVA agent",
       "section": "aiva",
-      "evaluated_count": 454,
+      "evaluated_count": 494,
       "total_cohort": 494,
-      "coverage_pct": 91.9,
-      "exact_accuracy": 5.29,
-      "directional_accuracy": 20.7,
-      "macro_f1_5": 12.63,
-      "macro_f1_4": 12.63,
-      "macro_f1_3": 35.38,
-      "macro_f1_2": 35.38,
+      "coverage_pct": 100.0,
+      "exact_accuracy": 4.86,
+      "directional_accuracy": 19.43,
+      "macro_f1_5": 12.28,
+      "macro_f1_4": 12.28,
+      "macro_f1_3": 34.19,
+      "macro_f1_2": 34.19,
       "critical_error_count": 1,
-      "critical_error_rate": 0.22,
+      "critical_error_rate": 0.2,
       "false_pathogenic_count": 0,
       "false_benign_count": 1,
-      "avg_latency_sec": 50.1,
+      "avg_latency_sec": 48.0,
       "per_class_5": {
         "Pathogenic": {
           "precision": 70.0,
-          "recall": 3.78,
-          "f1": 7.18,
-          "support": 185,
+          "recall": 3.18,
+          "f1": 6.09,
+          "support": 220,
           "tp": 7,
           "fp": 3,
-          "fn": 178
+          "fn": 213
         },
         "Likely Pathogenic": {
-          "precision": 5.08,
-          "recall": 1.85,
-          "f1": 2.71,
-          "support": 162,
+          "precision": 4.92,
+          "recall": 1.81,
+          "f1": 2.64,
+          "support": 166,
           "tp": 3,
-          "fp": 56,
-          "fn": 159
+          "fp": 58,
+          "fn": 163
         },
         "Likely Benign": {
           "precision": 58.82,
-          "recall": 13.89,
-          "f1": 22.47,
-          "support": 72,
+          "recall": 13.7,
+          "f1": 22.22,
+          "support": 73,
           "tp": 10,
           "fp": 7,
-          "fn": 62
+          "fn": 63
         },
         "Benign": {
           "precision": 44.44,
@@ -955,15 +955,15 @@
       "per_class_3": {
         "pathogenic": {
           "precision": 100.0,
-          "recall": 19.88,
-          "f1": 33.17,
-          "support": 347
+          "recall": 18.39,
+          "f1": 31.07,
+          "support": 386
         },
         "benign": {
           "precision": 96.15,
-          "recall": 23.36,
-          "f1": 37.59,
-          "support": 107
+          "recall": 23.15,
+          "f1": 37.31,
+          "support": 108
         }
       }
     },
@@ -974,8 +974,8 @@
       "family": "OpenAI",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#eda100",
-      "color_dark": "#c98500",
+      "color": "#10B981",
+      "color_dark": "#6EE7B7",
       "description": "AIVA agent",
       "section": "aiva",
       "evaluated_count": 494,
@@ -1052,42 +1052,42 @@
       "family": "OpenAI",
       "is_anthropic": false,
       "type": "AIVA agent",
-      "color": "#F59E0B",
-      "color_dark": "#D97706",
+      "color": "#047857",
+      "color_dark": "#34D399",
       "description": "AIVA agent",
       "section": "aiva",
-      "evaluated_count": 488,
+      "evaluated_count": 494,
       "total_cohort": 494,
-      "coverage_pct": 98.8,
-      "exact_accuracy": 1.43,
-      "directional_accuracy": 19.88,
-      "macro_f1_5": 2.6,
-      "macro_f1_4": 2.6,
-      "macro_f1_3": 28.63,
-      "macro_f1_2": 28.63,
+      "coverage_pct": 100.0,
+      "exact_accuracy": 1.42,
+      "directional_accuracy": 20.04,
+      "macro_f1_5": 2.59,
+      "macro_f1_4": 2.59,
+      "macro_f1_3": 28.75,
+      "macro_f1_2": 28.75,
       "critical_error_count": 3,
       "critical_error_rate": 0.61,
       "false_pathogenic_count": 1,
       "false_benign_count": 2,
-      "avg_latency_sec": 47.2,
+      "avg_latency_sec": 47.1,
       "per_class_5": {
         "Pathogenic": {
           "precision": 50.0,
-          "recall": 0.47,
-          "f1": 0.92,
-          "support": 215,
+          "recall": 0.45,
+          "f1": 0.9,
+          "support": 220,
           "tp": 1,
           "fp": 1,
-          "fn": 214
+          "fn": 219
         },
         "Likely Pathogenic": {
-          "precision": 3.61,
-          "recall": 1.82,
-          "f1": 2.42,
-          "support": 165,
+          "precision": 3.53,
+          "recall": 1.81,
+          "f1": 2.39,
+          "support": 166,
           "tp": 3,
-          "fp": 80,
-          "fn": 162
+          "fp": 82,
+          "fn": 163
         },
         "Likely Benign": {
           "precision": 25.0,
@@ -1110,10 +1110,10 @@
       },
       "per_class_3": {
         "pathogenic": {
-          "precision": 98.82,
-          "recall": 22.11,
-          "f1": 36.13,
-          "support": 380
+          "precision": 98.85,
+          "recall": 22.28,
+          "f1": 36.36,
+          "support": 386
         },
         "benign": {
           "precision": 86.67,
@@ -1130,8 +1130,8 @@
       "family": "Rule-based",
       "is_anthropic": false,
       "type": "ACMG rules engine",
-      "color": "#79402E",
-      "color_dark": "#A26552",
+      "color": "#475569",
+      "color_dark": "#CBD5E1",
       "description": "ACMG rules engine",
       "section": "automated",
       "evaluated_count": 494,
@@ -1208,8 +1208,8 @@
       "family": "Rule-based",
       "is_anthropic": false,
       "type": "ACMG rules engine",
-      "color": "#9986A5",
-      "color_dark": "#9986A5",
+      "color": "#64748B",
+      "color_dark": "#E2E8F0",
       "description": "ACMG rules engine",
       "section": "automated",
       "evaluated_count": 494,
@@ -2011,17 +2011,17 @@
       "matrix_5": [
         [
           7,
-          56,
+          58,
           0,
           0,
-          122
+          125
         ],
         [
           3,
           3,
           1,
           0,
-          155
+          158
         ],
         [
           0,
@@ -2040,9 +2040,9 @@
       ],
       "matrix_3": [
         [
-          69,
+          71,
           1,
-          277
+          283
         ],
         [
           0,
@@ -2143,7 +2143,7 @@
       "matrix_5": [
         [
           1,
-          79,
+          81,
           1,
           0,
           134
@@ -2153,7 +2153,7 @@
           3,
           1,
           0,
-          160
+          161
         ],
         [
           0,
@@ -2172,9 +2172,9 @@
       ],
       "matrix_3": [
         [
-          84,
+          86,
           2,
-          294
+          295
         ],
         [
           1,
@@ -6828,7 +6828,7 @@
         "blb_f1": 61.83
       },
       "Metabolic Disorders": {
-        "count": 205,
+        "count": 206,
         "exact_correct": 43,
         "directional_correct": 104,
         "matrix_5": [
@@ -6861,15 +6861,15 @@
             1
           ]
         ],
-        "exact_accuracy": 20.98,
-        "directional_accuracy": 50.73,
-        "macro_f1": 24.7,
-        "macro_f1_3": 55.66,
+        "exact_accuracy": 20.87,
+        "directional_accuracy": 50.49,
+        "macro_f1": 23.88,
+        "macro_f1_3": 54.23,
         "plp_f1": 26.32,
-        "blb_f1": 23.08
+        "blb_f1": 21.43
       },
       "Cardiovascular Disorders": {
-        "count": 24,
+        "count": 25,
         "exact_correct": 5,
         "directional_correct": 14,
         "matrix_5": [
@@ -6902,11 +6902,11 @@
             1
           ]
         ],
-        "exact_accuracy": 20.83,
-        "directional_accuracy": 58.33,
-        "macro_f1": 15.26,
-        "macro_f1_3": 59.39,
-        "plp_f1": 30.52,
+        "exact_accuracy": 20.0,
+        "directional_accuracy": 56.0,
+        "macro_f1": 14.93,
+        "macro_f1_3": 58.24,
+        "plp_f1": 29.86,
         "blb_f1": 0.0
       },
       "Hematologic Disorders": {
@@ -7775,13 +7775,13 @@
     },
     "aiva_gpt_6_2_sol": {
       "Cancer Predisposition": {
-        "count": 71,
+        "count": 77,
         "exact_correct": 7,
-        "directional_correct": 14,
+        "directional_correct": 16,
         "matrix_5": [
           [
             1,
-            5,
+            7,
             0,
             0,
             9
@@ -7808,15 +7808,15 @@
             10
           ]
         ],
-        "exact_accuracy": 9.86,
-        "directional_accuracy": 19.72,
-        "macro_f1": 15.03,
-        "macro_f1_3": 33.31,
-        "plp_f1": 10.79,
-        "blb_f1": 19.27
+        "exact_accuracy": 9.09,
+        "directional_accuracy": 20.78,
+        "macro_f1": 13.92,
+        "macro_f1_3": 34.59,
+        "plp_f1": 8.92,
+        "blb_f1": 18.91
       },
       "Metabolic Disorders": {
-        "count": 188,
+        "count": 206,
         "exact_correct": 6,
         "directional_correct": 35,
         "matrix_5": [
@@ -7825,14 +7825,14 @@
             28,
             0,
             0,
-            66
+            69
           ],
           [
             1,
             1,
             0,
             0,
-            76
+            77
           ],
           [
             0,
@@ -7849,15 +7849,15 @@
             1
           ]
         ],
-        "exact_accuracy": 3.19,
-        "directional_accuracy": 18.62,
-        "macro_f1": 6.58,
-        "macro_f1_3": 23.88,
-        "plp_f1": 4.82,
+        "exact_accuracy": 2.91,
+        "directional_accuracy": 16.99,
+        "macro_f1": 6.3,
+        "macro_f1_3": 22.6,
+        "plp_f1": 4.26,
         "blb_f1": 8.33
       },
       "Cardiovascular Disorders": {
-        "count": 24,
+        "count": 25,
         "exact_correct": 0,
         "directional_correct": 8,
         "matrix_5": [
@@ -7891,14 +7891,14 @@
           ]
         ],
         "exact_accuracy": 0.0,
-        "directional_accuracy": 33.33,
+        "directional_accuracy": 32.0,
         "macro_f1": 0.0,
-        "macro_f1_3": 45.92,
+        "macro_f1_3": 45.0,
         "plp_f1": 0.0,
         "blb_f1": 0.0
       },
       "Hematologic Disorders": {
-        "count": 57,
+        "count": 65,
         "exact_correct": 0,
         "directional_correct": 12,
         "matrix_5": [
@@ -7932,14 +7932,14 @@
           ]
         ],
         "exact_accuracy": 0.0,
-        "directional_accuracy": 21.05,
+        "directional_accuracy": 18.46,
         "macro_f1": 0.0,
-        "macro_f1_3": 30.24,
+        "macro_f1_3": 28.21,
         "plp_f1": 0.0,
         "blb_f1": 0.0
       },
       "Immunodeficiency Disorders": {
-        "count": 8,
+        "count": 10,
         "exact_correct": 0,
         "directional_correct": 1,
         "matrix_5": [
@@ -7955,7 +7955,7 @@
             0,
             0,
             0,
-            5
+            6
           ],
           [
             0,
@@ -7973,14 +7973,14 @@
           ]
         ],
         "exact_accuracy": 0.0,
-        "directional_accuracy": 12.5,
+        "directional_accuracy": 10.0,
         "macro_f1": 0.0,
-        "macro_f1_3": 22.22,
+        "macro_f1_3": 18.18,
         "plp_f1": 0.0,
         "blb_f1": 0.0
       },
       "Neurodevelopmental Disorders": {
-        "count": 40,
+        "count": 41,
         "exact_correct": 6,
         "directional_correct": 12,
         "matrix_5": [
@@ -8013,15 +8013,15 @@
             11
           ]
         ],
-        "exact_accuracy": 15.0,
-        "directional_accuracy": 30.0,
-        "macro_f1": 24.58,
-        "macro_f1_3": 35.92,
-        "plp_f1": 25.0,
+        "exact_accuracy": 14.63,
+        "directional_accuracy": 29.27,
+        "macro_f1": 22.08,
+        "macro_f1_3": 35.16,
+        "plp_f1": 20.0,
         "blb_f1": 24.16
       },
       "Neuromuscular Disorders": {
-        "count": 29,
+        "count": 30,
         "exact_correct": 4,
         "directional_correct": 8,
         "matrix_5": [
@@ -8037,7 +8037,7 @@
             1,
             0,
             0,
-            8
+            9
           ],
           [
             0,
@@ -8054,15 +8054,15 @@
             0
           ]
         ],
-        "exact_accuracy": 13.79,
-        "directional_accuracy": 27.59,
-        "macro_f1": 21.43,
-        "macro_f1_3": 45.0,
-        "plp_f1": 7.14,
+        "exact_accuracy": 13.33,
+        "directional_accuracy": 26.67,
+        "macro_f1": 21.11,
+        "macro_f1_3": 44.23,
+        "plp_f1": 6.67,
         "blb_f1": 25.0
       },
       "Ophthalmologic Disorders": {
-        "count": 14,
+        "count": 15,
         "exact_correct": 0,
         "directional_correct": 1,
         "matrix_5": [
@@ -8096,9 +8096,9 @@
           ]
         ],
         "exact_accuracy": 0.0,
-        "directional_accuracy": 7.14,
+        "directional_accuracy": 6.67,
         "macro_f1": 0.0,
-        "macro_f1_3": 13.33,
+        "macro_f1_3": 12.5,
         "plp_f1": 0.0,
         "blb_f1": 0.0
       },
@@ -8144,7 +8144,7 @@
         "blb_f1": 0.0
       },
       "RASopathies": {
-        "count": 9,
+        "count": 10,
         "exact_correct": 0,
         "directional_correct": 0,
         "matrix_5": [
@@ -8226,7 +8226,7 @@
         "blb_f1": 0.0
       },
       "Epilepsy / Neurological": {
-        "count": 1,
+        "count": 2,
         "exact_correct": 0,
         "directional_correct": 0,
         "matrix_5": [
@@ -8763,13 +8763,13 @@
     },
     "aiva_gpt_6_2_astra": {
       "Cancer Predisposition": {
-        "count": 74,
+        "count": 77,
         "exact_correct": 2,
-        "directional_correct": 12,
+        "directional_correct": 13,
         "matrix_5": [
           [
             0,
-            7,
+            8,
             0,
             0,
             10
@@ -8796,15 +8796,15 @@
             9
           ]
         ],
-        "exact_accuracy": 2.7,
-        "directional_accuracy": 16.22,
+        "exact_accuracy": 2.6,
+        "directional_accuracy": 16.88,
         "macro_f1": 3.03,
-        "macro_f1_3": 27.95,
+        "macro_f1_3": 28.65,
         "plp_f1": 0.0,
         "blb_f1": 6.06
       },
       "Metabolic Disorders": {
-        "count": 205,
+        "count": 206,
         "exact_correct": 2,
         "directional_correct": 42,
         "matrix_5": [
@@ -8837,10 +8837,10 @@
             1
           ]
         ],
-        "exact_accuracy": 0.98,
-        "directional_accuracy": 20.49,
+        "exact_accuracy": 0.97,
+        "directional_accuracy": 20.39,
         "macro_f1": 0.85,
-        "macro_f1_3": 17.87,
+        "macro_f1_3": 17.79,
         "plp_f1": 1.7,
         "blb_f1": 0.0
       },
@@ -9173,13 +9173,13 @@
         "blb_f1": 0.0
       },
       "Vascular Disorders": {
-        "count": 1,
+        "count": 2,
         "exact_correct": 0,
-        "directional_correct": 0,
+        "directional_correct": 1,
         "matrix_5": [
           [
             0,
-            0,
+            1,
             0,
             0,
             0
@@ -9207,14 +9207,14 @@
           ]
         ],
         "exact_accuracy": 0.0,
-        "directional_accuracy": 0.0,
+        "directional_accuracy": 50.0,
         "macro_f1": 0.0,
-        "macro_f1_3": 0.0,
+        "macro_f1_3": 50.0,
         "plp_f1": 0.0,
         "blb_f1": 0.0
       },
       "Epilepsy / Neurological": {
-        "count": 1,
+        "count": 2,
         "exact_correct": 0,
         "directional_correct": 0,
         "matrix_5": [
@@ -9230,7 +9230,7 @@
             0,
             0,
             0,
-            1
+            2
           ],
           [
             0,
@@ -10569,7 +10569,7 @@
       "BP1": 6,
       "BP2": 1,
       "BP3": 1,
-      "BP4": 26,
+      "BP4": 27,
       "BP5": 1,
       "BP7": 6,
       "BS1": 29,
@@ -10577,10 +10577,10 @@
       "BS3": 6,
       "BS4": 0,
       "PM1": 59,
-      "PM2": 249,
+      "PM2": 253,
       "PM3": 15,
       "PM4": 22,
-      "PM5": 15,
+      "PM5": 16,
       "PM6": 3,
       "PP1": 9,
       "PP2": 72,
@@ -10591,7 +10591,7 @@
       "PS2": 3,
       "PS3": 18,
       "PS4": 18,
-      "PVS1": 90
+      "PVS1": 97
     },
     "aiva_gpt_astra": {
       "BA1": 3,
@@ -10635,10 +10635,10 @@
       "BS3": 2,
       "BS4": 0,
       "PM1": 56,
-      "PM2": 311,
+      "PM2": 312,
       "PM3": 13,
       "PM4": 20,
-      "PM5": 15,
+      "PM5": 16,
       "PM6": 3,
       "PP1": 4,
       "PP2": 78,
@@ -10649,7 +10649,7 @@
       "PS2": 0,
       "PS3": 13,
       "PS4": 6,
-      "PVS1": 120
+      "PVS1": 123
     },
     "baseline_bias": {
       "BA1": 0,
@@ -12075,9 +12075,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 65.2,
-        "dir_pct": 68.9,
-        "overlap": 492
+        "exact_pct": 65.0,
+        "dir_pct": 68.6,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 88.5,
@@ -12085,9 +12085,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 85.7,
-        "dir_pct": 86.3,
-        "overlap": 454
+        "exact_pct": 80.4,
+        "dir_pct": 81.0,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 87.7,
@@ -12095,9 +12095,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 91.6,
-        "dir_pct": 91.8,
-        "overlap": 488
+        "exact_pct": 91.1,
+        "dir_pct": 91.3,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 43.3,
@@ -12157,9 +12157,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 63.8,
-        "dir_pct": 66.3,
-        "overlap": 492
+        "exact_pct": 63.6,
+        "dir_pct": 66.0,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 90.7,
@@ -12167,9 +12167,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 87.4,
-        "dir_pct": 87.9,
-        "overlap": 454
+        "exact_pct": 82.0,
+        "dir_pct": 82.4,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 89.9,
@@ -12177,9 +12177,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 92.4,
-        "dir_pct": 92.4,
-        "overlap": 488
+        "exact_pct": 91.9,
+        "dir_pct": 91.9,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 43.5,
@@ -12239,9 +12239,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 55.7,
-        "dir_pct": 58.3,
-        "overlap": 492
+        "exact_pct": 55.5,
+        "dir_pct": 58.1,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 85.8,
@@ -12249,9 +12249,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 81.7,
-        "dir_pct": 83.0,
-        "overlap": 454
+        "exact_pct": 76.5,
+        "dir_pct": 77.7,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 87.0,
@@ -12259,9 +12259,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 83.6,
-        "dir_pct": 84.6,
-        "overlap": 488
+        "exact_pct": 83.0,
+        "dir_pct": 84.0,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 51.0,
@@ -12321,9 +12321,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 55.7,
-        "dir_pct": 59.6,
-        "overlap": 492
+        "exact_pct": 55.5,
+        "dir_pct": 59.3,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 77.9,
@@ -12331,9 +12331,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 76.0,
-        "dir_pct": 77.3,
-        "overlap": 454
+        "exact_pct": 70.9,
+        "dir_pct": 72.1,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 77.3,
@@ -12341,9 +12341,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 79.3,
-        "dir_pct": 79.7,
-        "overlap": 488
+        "exact_pct": 78.9,
+        "dir_pct": 79.4,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 40.9,
@@ -12403,9 +12403,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 54.3,
-        "dir_pct": 57.7,
-        "overlap": 492
+        "exact_pct": 54.0,
+        "dir_pct": 57.5,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 80.2,
@@ -12413,9 +12413,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 78.9,
-        "dir_pct": 80.0,
-        "overlap": 454
+        "exact_pct": 73.3,
+        "dir_pct": 74.3,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 79.6,
@@ -12423,9 +12423,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 81.6,
-        "dir_pct": 82.0,
-        "overlap": 488
+        "exact_pct": 81.2,
+        "dir_pct": 81.6,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 39.5,
@@ -12485,9 +12485,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 54.1,
-        "dir_pct": 56.5,
-        "overlap": 492
+        "exact_pct": 53.8,
+        "dir_pct": 56.3,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 78.9,
@@ -12495,9 +12495,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 78.4,
-        "dir_pct": 79.5,
-        "overlap": 454
+        "exact_pct": 72.5,
+        "dir_pct": 73.5,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 77.9,
@@ -12505,9 +12505,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 80.1,
-        "dir_pct": 80.5,
-        "overlap": 488
+        "exact_pct": 79.8,
+        "dir_pct": 80.2,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 36.4,
@@ -12567,9 +12567,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 65.4,
-        "dir_pct": 71.3,
-        "overlap": 492
+        "exact_pct": 65.2,
+        "dir_pct": 71.1,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 83.6,
@@ -12577,9 +12577,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 83.7,
-        "dir_pct": 85.2,
-        "overlap": 454
+        "exact_pct": 78.5,
+        "dir_pct": 80.0,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 83.4,
@@ -12587,9 +12587,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 87.1,
-        "dir_pct": 87.5,
-        "overlap": 488
+        "exact_pct": 86.6,
+        "dir_pct": 87.0,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 46.6,
@@ -12649,9 +12649,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 62.8,
-        "dir_pct": 70.3,
-        "overlap": 492
+        "exact_pct": 62.6,
+        "dir_pct": 70.0,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 56.5,
@@ -12659,9 +12659,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 58.8,
-        "dir_pct": 61.2,
-        "overlap": 454
+        "exact_pct": 55.3,
+        "dir_pct": 57.5,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 56.3,
@@ -12669,9 +12669,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 60.9,
-        "dir_pct": 63.3,
-        "overlap": 488
+        "exact_pct": 60.3,
+        "dir_pct": 63.2,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 33.6,
@@ -12731,9 +12731,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 75.2,
-        "dir_pct": 78.9,
-        "overlap": 492
+        "exact_pct": 74.9,
+        "dir_pct": 78.5,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 73.1,
@@ -12741,9 +12741,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 72.2,
-        "dir_pct": 75.1,
-        "overlap": 454
+        "exact_pct": 67.8,
+        "dir_pct": 70.6,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 72.7,
@@ -12751,9 +12751,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 77.9,
-        "dir_pct": 79.5,
-        "overlap": 488
+        "exact_pct": 77.3,
+        "dir_pct": 79.1,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 41.5,
@@ -12768,84 +12768,84 @@
     },
     "aiva_gemini_neon": {
       "aiva_opus_rerun": {
-        "exact_pct": 65.2,
-        "dir_pct": 68.9,
-        "overlap": 492
+        "exact_pct": 65.0,
+        "dir_pct": 68.6,
+        "overlap": 494
       },
       "aiva_sonnet_rerun": {
-        "exact_pct": 63.8,
-        "dir_pct": 66.3,
-        "overlap": 492
+        "exact_pct": 63.6,
+        "dir_pct": 66.0,
+        "overlap": 494
       },
       "aiva_haiku_rerun": {
-        "exact_pct": 55.7,
-        "dir_pct": 58.3,
-        "overlap": 492
+        "exact_pct": 55.5,
+        "dir_pct": 58.1,
+        "overlap": 494
       },
       "claude_code_opus": {
-        "exact_pct": 55.7,
-        "dir_pct": 59.6,
-        "overlap": 492
+        "exact_pct": 55.5,
+        "dir_pct": 59.3,
+        "overlap": 494
       },
       "claude_code_sonnet": {
-        "exact_pct": 54.3,
-        "dir_pct": 57.7,
-        "overlap": 492
+        "exact_pct": 54.0,
+        "dir_pct": 57.5,
+        "overlap": 494
       },
       "claude_code_haiku": {
-        "exact_pct": 54.1,
-        "dir_pct": 56.5,
-        "overlap": 492
+        "exact_pct": 53.8,
+        "dir_pct": 56.3,
+        "overlap": 494
       },
       "aiva_gemini_flash": {
-        "exact_pct": 65.4,
-        "dir_pct": 71.3,
-        "overlap": 492
+        "exact_pct": 65.2,
+        "dir_pct": 71.1,
+        "overlap": 494
       },
       "aiva_gemini_argon": {
-        "exact_pct": 62.8,
-        "dir_pct": 70.3,
-        "overlap": 492
+        "exact_pct": 62.6,
+        "dir_pct": 70.0,
+        "overlap": 494
       },
       "aiva_gemini_hydrogen": {
-        "exact_pct": 75.2,
-        "dir_pct": 78.9,
-        "overlap": 492
+        "exact_pct": 74.9,
+        "dir_pct": 78.5,
+        "overlap": 494
       },
       "aiva_gemini_neon": {
         "exact_pct": 100.0,
         "dir_pct": 100.0,
-        "overlap": 492
+        "overlap": 494
       },
       "aiva_gpt_sol": {
-        "exact_pct": 61.0,
-        "dir_pct": 63.2,
-        "overlap": 492
+        "exact_pct": 60.7,
+        "dir_pct": 63.0,
+        "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 61.5,
-        "dir_pct": 64.4,
-        "overlap": 452
+        "exact_pct": 57.7,
+        "dir_pct": 60.5,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
-        "exact_pct": 59.6,
-        "dir_pct": 62.2,
-        "overlap": 492
+        "exact_pct": 59.3,
+        "dir_pct": 61.9,
+        "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 64.6,
-        "dir_pct": 67.1,
-        "overlap": 486
+        "exact_pct": 64.0,
+        "dir_pct": 66.6,
+        "overlap": 494
       },
       "baseline_bias": {
-        "exact_pct": 35.0,
-        "dir_pct": 50.0,
-        "overlap": 492
+        "exact_pct": 34.8,
+        "dir_pct": 49.8,
+        "overlap": 494
       },
       "baseline_intervar": {
-        "exact_pct": 46.7,
-        "dir_pct": 50.0,
-        "overlap": 492
+        "exact_pct": 46.6,
+        "dir_pct": 49.8,
+        "overlap": 494
       }
     },
     "aiva_gpt_sol": {
@@ -12895,9 +12895,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 61.0,
-        "dir_pct": 63.2,
-        "overlap": 492
+        "exact_pct": 60.7,
+        "dir_pct": 63.0,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 100.0,
@@ -12905,9 +12905,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 87.7,
-        "dir_pct": 88.1,
-        "overlap": 454
+        "exact_pct": 82.2,
+        "dir_pct": 82.6,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 93.1,
@@ -12915,9 +12915,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 93.0,
-        "dir_pct": 93.0,
-        "overlap": 488
+        "exact_pct": 92.5,
+        "dir_pct": 92.5,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 48.0,
@@ -12932,84 +12932,84 @@
     },
     "aiva_gpt_6_2_sol": {
       "aiva_opus_rerun": {
-        "exact_pct": 85.7,
-        "dir_pct": 86.3,
-        "overlap": 454
+        "exact_pct": 80.4,
+        "dir_pct": 81.0,
+        "overlap": 494
       },
       "aiva_sonnet_rerun": {
-        "exact_pct": 87.4,
-        "dir_pct": 87.9,
-        "overlap": 454
+        "exact_pct": 82.0,
+        "dir_pct": 82.4,
+        "overlap": 494
       },
       "aiva_haiku_rerun": {
-        "exact_pct": 81.7,
-        "dir_pct": 83.0,
-        "overlap": 454
+        "exact_pct": 76.5,
+        "dir_pct": 77.7,
+        "overlap": 494
       },
       "claude_code_opus": {
-        "exact_pct": 76.0,
-        "dir_pct": 77.3,
-        "overlap": 454
+        "exact_pct": 70.9,
+        "dir_pct": 72.1,
+        "overlap": 494
       },
       "claude_code_sonnet": {
-        "exact_pct": 78.9,
-        "dir_pct": 80.0,
-        "overlap": 454
+        "exact_pct": 73.3,
+        "dir_pct": 74.3,
+        "overlap": 494
       },
       "claude_code_haiku": {
-        "exact_pct": 78.4,
-        "dir_pct": 79.5,
-        "overlap": 454
+        "exact_pct": 72.5,
+        "dir_pct": 73.5,
+        "overlap": 494
       },
       "aiva_gemini_flash": {
-        "exact_pct": 83.7,
-        "dir_pct": 85.2,
-        "overlap": 454
+        "exact_pct": 78.5,
+        "dir_pct": 80.0,
+        "overlap": 494
       },
       "aiva_gemini_argon": {
-        "exact_pct": 58.8,
-        "dir_pct": 61.2,
-        "overlap": 454
+        "exact_pct": 55.3,
+        "dir_pct": 57.5,
+        "overlap": 494
       },
       "aiva_gemini_hydrogen": {
-        "exact_pct": 72.2,
-        "dir_pct": 75.1,
-        "overlap": 454
+        "exact_pct": 67.8,
+        "dir_pct": 70.6,
+        "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 61.5,
-        "dir_pct": 64.4,
-        "overlap": 452
+        "exact_pct": 57.7,
+        "dir_pct": 60.5,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
-        "exact_pct": 87.7,
-        "dir_pct": 88.1,
-        "overlap": 454
+        "exact_pct": 82.2,
+        "dir_pct": 82.6,
+        "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
         "exact_pct": 100.0,
         "dir_pct": 100.0,
-        "overlap": 454
+        "overlap": 494
       },
       "aiva_gpt_astra": {
-        "exact_pct": 87.4,
-        "dir_pct": 87.4,
-        "overlap": 454
+        "exact_pct": 81.8,
+        "dir_pct": 81.8,
+        "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 90.0,
-        "dir_pct": 90.5,
-        "overlap": 452
+        "exact_pct": 84.8,
+        "dir_pct": 85.4,
+        "overlap": 494
       },
       "baseline_bias": {
-        "exact_pct": 43.8,
-        "dir_pct": 47.1,
-        "overlap": 454
+        "exact_pct": 41.5,
+        "dir_pct": 44.5,
+        "overlap": 494
       },
       "baseline_intervar": {
-        "exact_pct": 69.6,
-        "dir_pct": 69.8,
-        "overlap": 454
+        "exact_pct": 65.0,
+        "dir_pct": 65.2,
+        "overlap": 494
       }
     },
     "aiva_gpt_astra": {
@@ -13059,9 +13059,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 59.6,
-        "dir_pct": 62.2,
-        "overlap": 492
+        "exact_pct": 59.3,
+        "dir_pct": 61.9,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 93.1,
@@ -13069,9 +13069,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 87.4,
-        "dir_pct": 87.4,
-        "overlap": 454
+        "exact_pct": 81.8,
+        "dir_pct": 81.8,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 100.0,
@@ -13079,9 +13079,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 93.2,
-        "dir_pct": 93.2,
-        "overlap": 488
+        "exact_pct": 92.5,
+        "dir_pct": 92.5,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 49.4,
@@ -13096,84 +13096,84 @@
     },
     "aiva_gpt_6_2_astra": {
       "aiva_opus_rerun": {
-        "exact_pct": 91.6,
-        "dir_pct": 91.8,
-        "overlap": 488
+        "exact_pct": 91.1,
+        "dir_pct": 91.3,
+        "overlap": 494
       },
       "aiva_sonnet_rerun": {
-        "exact_pct": 92.4,
-        "dir_pct": 92.4,
-        "overlap": 488
+        "exact_pct": 91.9,
+        "dir_pct": 91.9,
+        "overlap": 494
       },
       "aiva_haiku_rerun": {
-        "exact_pct": 83.6,
-        "dir_pct": 84.6,
-        "overlap": 488
+        "exact_pct": 83.0,
+        "dir_pct": 84.0,
+        "overlap": 494
       },
       "claude_code_opus": {
-        "exact_pct": 79.3,
-        "dir_pct": 79.7,
-        "overlap": 488
+        "exact_pct": 78.9,
+        "dir_pct": 79.4,
+        "overlap": 494
       },
       "claude_code_sonnet": {
-        "exact_pct": 81.6,
-        "dir_pct": 82.0,
-        "overlap": 488
+        "exact_pct": 81.2,
+        "dir_pct": 81.6,
+        "overlap": 494
       },
       "claude_code_haiku": {
-        "exact_pct": 80.1,
-        "dir_pct": 80.5,
-        "overlap": 488
+        "exact_pct": 79.8,
+        "dir_pct": 80.2,
+        "overlap": 494
       },
       "aiva_gemini_flash": {
-        "exact_pct": 87.1,
-        "dir_pct": 87.5,
-        "overlap": 488
+        "exact_pct": 86.6,
+        "dir_pct": 87.0,
+        "overlap": 494
       },
       "aiva_gemini_argon": {
-        "exact_pct": 60.9,
-        "dir_pct": 63.3,
-        "overlap": 488
+        "exact_pct": 60.3,
+        "dir_pct": 63.2,
+        "overlap": 494
       },
       "aiva_gemini_hydrogen": {
-        "exact_pct": 77.9,
-        "dir_pct": 79.5,
-        "overlap": 488
+        "exact_pct": 77.3,
+        "dir_pct": 79.1,
+        "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 64.6,
-        "dir_pct": 67.1,
-        "overlap": 486
+        "exact_pct": 64.0,
+        "dir_pct": 66.6,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
-        "exact_pct": 93.0,
-        "dir_pct": 93.0,
-        "overlap": 488
+        "exact_pct": 92.5,
+        "dir_pct": 92.5,
+        "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 90.0,
-        "dir_pct": 90.5,
-        "overlap": 452
+        "exact_pct": 84.8,
+        "dir_pct": 85.4,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
-        "exact_pct": 93.2,
-        "dir_pct": 93.2,
-        "overlap": 488
+        "exact_pct": 92.5,
+        "dir_pct": 92.5,
+        "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
         "exact_pct": 100.0,
         "dir_pct": 100.0,
-        "overlap": 488
+        "overlap": 494
       },
       "baseline_bias": {
-        "exact_pct": 44.9,
-        "dir_pct": 45.7,
-        "overlap": 488
+        "exact_pct": 44.5,
+        "dir_pct": 45.3,
+        "overlap": 494
       },
       "baseline_intervar": {
-        "exact_pct": 72.3,
-        "dir_pct": 72.5,
-        "overlap": 488
+        "exact_pct": 71.7,
+        "dir_pct": 71.9,
+        "overlap": 494
       }
     },
     "baseline_bias": {
@@ -13223,9 +13223,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 35.0,
-        "dir_pct": 50.0,
-        "overlap": 492
+        "exact_pct": 34.8,
+        "dir_pct": 49.8,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 48.0,
@@ -13233,9 +13233,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 43.8,
-        "dir_pct": 47.1,
-        "overlap": 454
+        "exact_pct": 41.5,
+        "dir_pct": 44.5,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 49.4,
@@ -13243,9 +13243,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 44.9,
-        "dir_pct": 45.7,
-        "overlap": 488
+        "exact_pct": 44.5,
+        "dir_pct": 45.3,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 100.0,
@@ -13305,9 +13305,9 @@
         "overlap": 494
       },
       "aiva_gemini_neon": {
-        "exact_pct": 46.7,
-        "dir_pct": 50.0,
-        "overlap": 492
+        "exact_pct": 46.6,
+        "dir_pct": 49.8,
+        "overlap": 494
       },
       "aiva_gpt_sol": {
         "exact_pct": 75.7,
@@ -13315,9 +13315,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_sol": {
-        "exact_pct": 69.6,
-        "dir_pct": 69.8,
-        "overlap": 454
+        "exact_pct": 65.0,
+        "dir_pct": 65.2,
+        "overlap": 494
       },
       "aiva_gpt_astra": {
         "exact_pct": 76.9,
@@ -13325,9 +13325,9 @@
         "overlap": 494
       },
       "aiva_gpt_6_2_astra": {
-        "exact_pct": 72.3,
-        "dir_pct": 72.5,
-        "overlap": 488
+        "exact_pct": 71.7,
+        "dir_pct": 71.9,
+        "overlap": 494
       },
       "baseline_bias": {
         "exact_pct": 57.5,
@@ -19303,9 +19303,9 @@
       "aiva_gemini_hydrogen": "11411411114441441214100040404402042231424441444444141412444444444444401111144444444124044444114411111444314110111144041111111414142111441444414044444441414144444444441444414144441444444141141141444444441441441114444444114411444441141441444244421144411141444411134411114441114444444404244434444244444444444444444444114420244441414444414414444441444440444444444444444444444100414441111441201410401444414104414444444442144444114014444444444414441204111141044411111444412322222022200444444414141144",
       "aiva_gemini_neon": "11411411114441421214400040414102042330424441444442111413232444444442201111144444144144014444114111-114443441410111441411111101141121111444400114422414414401441444444411444111411414144401441411114444144414414-1114140444111014144011111411424244121144111141414411134411114141111344444400243433444342434244444202424430114424244111114444111414414444444414444440444444441444444111414414111141441430401041414111444444444443144444104044444424444404441241111101041111110444112322224024401444414414001114",
       "aiva_gpt_sol": "11414444414444444214411141444412444444444444444442444444444444444444444144144224444124444444414411441444344444411144141111111414444444444444414444444444444444444444444444444444444444444444441144444444441441441144444444444414444441144444444444444444411441414411134444144441144444444444444444444244444444444444444444144444444444444444444444444444444440444444444444444444444411414444114144444424444444444144444444444442444444444444444444444414444443141444444411114444442344444444444444444444144444",
-      "aiva_gpt_6_2_sol": "1-4142414444444444-441114-4444124444444444444444-24444434444444444444441110444444444241444441144114-144434-14414-1441411--1114---44444444440404444444444444444444444444-44444444444444444444-4144444444444-4444411444444444444144440411444444444-4444-444-1--14444---3441111414114444444-444444434444434343244444402423444144-44444441444-44444444-40444--4440444444444-4-444-44444411-14444-1--444444444-4444-44144444444-4444244244104444444444424-414444240111141444411114444442324242422401444444444444444",
+      "aiva_gpt_6_2_sol": "1-4142414444444444144111414444124444444444444444-24444434444444444444441110444444444241444441144114-144434414414-1441411--1114-4-44444444440404444444444444444444444444-44444444444444444444-4144444444444-4444411444444444444144440411444444444-4444-444-1--14444---3441111414114444444-444444434444434343244444402423444144444444441444444444444-40444--444044444444444-444444444411-14444-1--444444444-4444-44144444444-4444244244104444444444424-414444240111141444411114444442324242422401444444444444444",
       "aiva_gpt_astra": "14414444114444444244411141444412444444444444444442444444444444444444444444444244444424144444114411441444344444111144141111111444444444444444444444444444444444444444444444444444444444444444441144444444441441441114444444444444444441144444444444444144441441444411434414144441444444444444444444444244444444444444444444144444444444444444444444440444444440444444444444444444444411414444111444444424441444444414444444444442444444444444444444444414444444411141444414444444442344444444444444444444144444",
-      "aiva_gpt_6_2_astra": "11414441114444444214411-41444412444444444444444442444442444444444444444111-44244444424444444114411441444344144111144141111111444-4444444444441444444444444444444444444444444444444444444444414114444444444144144111444444444441444444114444444444444414441114144441113441111444114444444414444444444424444444444444444444414444444444414444444444444044444444044444444444444444444441141444411--4424441441144144414444444444444244444444444444444444-414444244111141444411114444442324444444444444444414144444",
+      "aiva_gpt_6_2_astra": "11414441114444444214411141444412444444444444444442444442444444444444444111144244444424444444114411441444344144111144141111111444-4444444444441444444444444444444444444444444444444444444444414114444444444144144111444444444441444444114444444444444414441114144441113441111444114444444414444444444424444444444444444444414444444444414444444444444044444444044444444444444444444441141444411--44244414411441444144444444444442444444444444444444444414444244111141444411114444442324444444444444444414144444",
       "baseline_bias": "41010344143044330443044444414444442444434041443044004402341400424441411444441114444444100443114414441444344440244444404444444044443040000001111044441144111141104011114444014044104414011110444441444000424034444441041401144144103141400000040444040400044444040044434044440404400200004041444344444441424334444414044444144431300000014440000000404440444400044044040444440440444444444404444400400101444440414114414444444432434340011104300444344313244440444444444444444444402343334133310444444444444444",
       "baseline_intervar": "14414444114444444444444444414414444224444441444444444444424444424444411444441444444444444244444444444442444444444444444444444444444444440444111444444444441441444444444444444414444444441144444444444444421444444444444441441141104444444444444444444444444444444444444444444444444444244044444444242244444444444444444441444441444444444444444444444114444440444444444441444144414444444440444444444444444444444444444414444444244144411144444444444414444444444444444444441444142444444114444444444414444444"
     }
@@ -19383,8 +19383,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#C27D38",
-        "color_dark": "#C27D38",
+        "color": "#60A5FA",
+        "color_dark": "#BFDBFE",
         "top1_pct": 95.82,
         "top3_pct": 99.04,
         "top5_pct": 99.04,
@@ -19491,8 +19491,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#00C9A7",
-        "color_dark": "#008B74",
+        "color": "#1D4ED8",
+        "color_dark": "#60A5FA",
         "top1_pct": 94.86,
         "top3_pct": 97.75,
         "top5_pct": 98.39,
@@ -19599,8 +19599,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#184f95",
-        "color_dark": "#4f86d0",
+        "color": "#2563EB",
+        "color_dark": "#3B82F6",
         "top1_pct": 92.28,
         "top3_pct": 97.43,
         "top5_pct": 98.07,
@@ -19707,8 +19707,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#F59E0B",
-        "color_dark": "#D97706",
+        "color": "#047857",
+        "color_dark": "#34D399",
         "top1_pct": 89.07,
         "top3_pct": 93.25,
         "top5_pct": 94.53,
@@ -19815,8 +19815,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#3B9AB2",
-        "color_dark": "#3B9AB2",
+        "color": "#3B82F6",
+        "color_dark": "#93C5FD",
         "top1_pct": 81.67,
         "top3_pct": 95.5,
         "top5_pct": 97.11,
@@ -19923,8 +19923,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#10A37F",
-        "color_dark": "#0D8A6C",
+        "color": "#059669",
+        "color_dark": "#10B981",
         "top1_pct": 83.92,
         "top3_pct": 90.03,
         "top5_pct": 91.96,
@@ -20031,8 +20031,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#eda100",
-        "color_dark": "#c98500",
+        "color": "#10B981",
+        "color_dark": "#6EE7B7",
         "top1_pct": 68.81,
         "top3_pct": 83.6,
         "top5_pct": 87.46,
@@ -20139,8 +20139,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#0A9F9D",
-        "color_dark": "#0A9F9D",
+        "color": "#34D399",
+        "color_dark": "#A7F3D0",
         "top1_pct": 55.31,
         "top3_pct": 78.14,
         "top5_pct": 82.64,
@@ -20247,8 +20247,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#FD6467",
-        "color_dark": "#FD6467",
+        "color": "#B91C1C",
+        "color_dark": "#FB7185",
         "top1_pct": 39.87,
         "top3_pct": 58.84,
         "top5_pct": 65.59,
@@ -20355,8 +20355,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#BD3027",
-        "color_dark": "#D04438",
+        "color": "#334155",
+        "color_dark": "#94A3B8",
         "top1_pct": 35.05,
         "top3_pct": 47.59,
         "top5_pct": 51.13,
@@ -20463,8 +20463,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#BD3027",
-        "color_dark": "#D04438",
+        "color": "#991B1B",
+        "color_dark": "#F87171",
         "top1_pct": 23.79,
         "top3_pct": 52.41,
         "top5_pct": 61.41,
@@ -20571,8 +20571,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#046C9A",
-        "color_dark": "#237CAB",
+        "color": "#DC2626",
+        "color_dark": "#EF4444",
         "top1_pct": 20.26,
         "top3_pct": 54.02,
         "top5_pct": 62.38,
@@ -20679,8 +20679,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#7FC0C6",
-        "color_dark": "#7FC0C6",
+        "color": "#EF4444",
+        "color_dark": "#FDA4AF",
         "top1_pct": 19.61,
         "top3_pct": 47.27,
         "top5_pct": 54.02,
@@ -20787,8 +20787,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#5785C1",
-        "color_dark": "#5785C1",
+        "color": "#64748B",
+        "color_dark": "#E2E8F0",
         "top1_pct": 21.54,
         "top3_pct": 44.05,
         "top5_pct": 53.7,
@@ -20895,8 +20895,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#D8A499",
-        "color_dark": "#D8A499",
+        "color": "#FCA5A5",
+        "color_dark": "#FECDD3",
         "top1_pct": 9.0,
         "top3_pct": 37.62,
         "top5_pct": 49.52,
@@ -21003,8 +21003,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#6C8645",
-        "color_dark": "#6C8645",
+        "color": "#F87171",
+        "color_dark": "#FCA5A5",
         "top1_pct": 7.07,
         "top3_pct": 35.69,
         "top5_pct": 50.8,
@@ -21111,8 +21111,8 @@
         "total_cohort": 311,
         "evaluated_count": 311,
         "is_full": true,
-        "color": "#79402E",
-        "color_dark": "#A26552",
+        "color": "#475569",
+        "color_dark": "#CBD5E1",
         "top1_pct": 15.76,
         "top3_pct": 25.72,
         "top5_pct": 29.9,

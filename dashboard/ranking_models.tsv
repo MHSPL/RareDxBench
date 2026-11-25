@@ -1,19 +1,19 @@
 # key	name	provider	method	path	format	color	color_dark	status	section
-aiva_gemini_flash	Gemini 3.8 Flash	Google	AIVA agent	results/ranking/Results_Gemini_3_8_Flash/gemini_flash_311_predictions.jsonl	jsonl	#C27D38	#C27D38	active	aiva
-aiva_gemini_argon	Gemini 4 Argon	Google	AIVA agent	results/ranking/Results_Gemini_4_Argon/argon_311_predictions.jsonl	jsonl	#184f95	#4f86d0	active	aiva
-aiva_gemini_hydrogen	Gemini 4 Hydrogen	Google	AIVA agent	results/ranking/Results_Gemini_4_Hydrogen/hydrogen_311_predictions.jsonl	jsonl	#3B9AB2	#3B9AB2	active	aiva
-aiva_gemini_neon	Gemini 4 Neon	Google	AIVA agent	results/ranking/Results_Gemini_4_Neon/neon_311_predictions.jsonl	jsonl	#00C9A7	#008B74	active	aiva
-aiva_gpt_astra	GPT-6 Astra	OpenAI	AIVA agent	results/ranking/Results_GPT_6_Astra/astra_311_predictions.jsonl	jsonl	#eda100	#c98500	active	aiva
-aiva_gpt_6_2_astra	GPT-6.2 Astra	OpenAI	AIVA agent	results/ranking/Results_GPT_6_2_Astra/astra62_311_predictions.jsonl	jsonl	#F59E0B	#D97706	active	aiva
-aiva_gpt_sol	GPT-6.1 Sol	OpenAI	AIVA agent	results/ranking/Results_GPT_6_1_Sol/sol_ranking_predictions.jsonl	jsonl	#0A9F9D	#0A9F9D	active	aiva
-aiva_gpt_6_2_sol	GPT-6.2 Sol	OpenAI	AIVA agent	results/ranking/Results_GPT_6_2_Sol/sol62_311_predictions.jsonl	jsonl	#10A37F	#0D8A6C	active	aiva
-aiva_sonnet	Sonnet 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Sonnet_5_5/sonnet_ranking_predictions.jsonl	jsonl	#046C9A	#237CAB	active	aiva
-aiva_opus	Opus 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Opus_5_5/opus_ranking_predictions.jsonl	jsonl	#BD3027	#D04438	active	aiva
-aiva_gemini_pro	Gemini 3 Pro	Google	AIVA agent	results/ranking/Results_Gemini_3_Pro/gemini_pro_ranking_predictions.jsonl	jsonl	#E1AF00	#E1AF00	removed	aiva
-aiva_haiku	Haiku 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Haiku_5_5/haiku_ranking_predictions.jsonl	jsonl	#6C8645	#6C8645	active	aiva
-baseline_clinprior	ClinPrior	Rule-based	Network propagation	results/ranking/Results_ClinPrior/clinprior_rankings.jsonl	jsonl	#BD3027	#D04438	active	automated
-baseline_lirical	LIRICAL	Rule-based	Phenotype likelihood	results/ranking/Results_LIRICAL/lirical_rankings.jsonl	jsonl	#5785C1	#5785C1	active	automated
-baseline_exomiser	Exomiser	Rule-based	Cross-species phenotype	results/ranking/Results_Exomiser/exomiser_rankings.jsonl	jsonl	#79402E	#A26552	active	automated
-claude_code_sonnet	Sonnet 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Sonnet_5_5/claude_code_sonnet_311_predictions.jsonl	jsonl	#7FC0C6	#7FC0C6	active	agent
-claude_code_opus	Opus 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Opus_5_5/claude_code_opus_311_predictions.jsonl	jsonl	#FD6467	#FD6467	active	agent
-claude_code_haiku	Haiku 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Haiku_5_5/claude_code_haiku_311_predictions.jsonl	jsonl	#D8A499	#D8A499	active	agent
+aiva_gemini_flash	Gemini 3.8 Flash	Google	AIVA agent	results/ranking/Results_Gemini_3_8_Flash/gemini_flash_311_predictions.jsonl	jsonl	#60A5FA	#BFDBFE	active	aiva
+aiva_gemini_argon	Gemini 4 Argon	Google	AIVA agent	results/ranking/Results_Gemini_4_Argon/argon_311_predictions.jsonl	jsonl	#2563EB	#3B82F6	active	aiva
+aiva_gemini_hydrogen	Gemini 4 Hydrogen	Google	AIVA agent	results/ranking/Results_Gemini_4_Hydrogen/hydrogen_311_predictions.jsonl	jsonl	#3B82F6	#93C5FD	active	aiva
+aiva_gemini_neon	Gemini 4 Neon	Google	AIVA agent	results/ranking/Results_Gemini_4_Neon/neon_311_predictions.jsonl	jsonl	#1D4ED8	#60A5FA	active	aiva
+aiva_gpt_astra	GPT-6 Astra	OpenAI	AIVA agent	results/ranking/Results_GPT_6_Astra/astra_311_predictions.jsonl	jsonl	#10B981	#6EE7B7	active	aiva
+aiva_gpt_6_2_astra	GPT-6.2 Astra	OpenAI	AIVA agent	results/ranking/Results_GPT_6_2_Astra/astra62_311_predictions.jsonl	jsonl	#047857	#34D399	active	aiva
+aiva_gpt_sol	GPT-6.1 Sol	OpenAI	AIVA agent	results/ranking/Results_GPT_6_1_Sol/sol_ranking_predictions.jsonl	jsonl	#34D399	#A7F3D0	active	aiva
+aiva_gpt_6_2_sol	GPT-6.2 Sol	OpenAI	AIVA agent	results/ranking/Results_GPT_6_2_Sol/sol62_311_predictions.jsonl	jsonl	#059669	#10B981	active	aiva
+aiva_sonnet	Sonnet 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Sonnet_5_5/sonnet_ranking_predictions.jsonl	jsonl	#DC2626	#EF4444	active	aiva
+aiva_opus	Opus 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Opus_5_5/opus_ranking_predictions.jsonl	jsonl	#991B1B	#F87171	active	aiva
+aiva_gemini_pro	Gemini 3 Pro	Google	AIVA agent	results/ranking/Results_Gemini_3_Pro/gemini_pro_ranking_predictions.jsonl	jsonl	#93C5FD	#DBEAFE	removed	aiva
+aiva_haiku	Haiku 5.5	Anthropic	AIVA agent	results/ranking/Results_Claude_Haiku_5_5/haiku_ranking_predictions.jsonl	jsonl	#F87171	#FCA5A5	active	aiva
+baseline_clinprior	ClinPrior	Rule-based	Network propagation	results/ranking/Results_ClinPrior/clinprior_rankings.jsonl	jsonl	#334155	#94A3B8	active	automated
+baseline_lirical	LIRICAL	Rule-based	Phenotype likelihood	results/ranking/Results_LIRICAL/lirical_rankings.jsonl	jsonl	#64748B	#E2E8F0	active	automated
+baseline_exomiser	Exomiser	Rule-based	Cross-species phenotype	results/ranking/Results_Exomiser/exomiser_rankings.jsonl	jsonl	#475569	#CBD5E1	active	automated
+claude_code_sonnet	Sonnet 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Sonnet_5_5/claude_code_sonnet_311_predictions.jsonl	jsonl	#EF4444	#FDA4AF	active	agent
+claude_code_opus	Opus 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Opus_5_5/claude_code_opus_311_predictions.jsonl	jsonl	#B91C1C	#FB7185	active	agent
+claude_code_haiku	Haiku 5.5	Anthropic	Claude Code	results/ranking/Results_Claude_Code_Haiku_5_5/claude_code_haiku_311_predictions.jsonl	jsonl	#FCA5A5	#FECDD3	active	agent
