@@ -35,7 +35,7 @@
   }
 
   // One bar per model and expert direction: the share called the right way, uncertain (VUS) or the opposite way
-  const CM_PARTS = [["ok", "Right direction"], ["vus", "Uncertain (VUS)"], ["bad", "Opposite direction"]];
+  const CM_PARTS = [["ok", "Agrees with experts"], ["vus", "Uncertain (VUS)"], ["bad", "Contradicts experts"]];
   function confusionOverview(ms) {
     const rows = [
       { exp: "P/LP", full: "pathogenic or likely pathogenic", i: 0, ok: 0, bad: 1 },
@@ -76,7 +76,7 @@
     // Leaderboard order: by section, ranked by overall F1 on the leaderboard's scale
     const two = state.lbScale === "2" || state.lbScale === "3";
     if (overview) {
-      $("cmSub").textContent = "What each model called for the variants the experts classed as pathogenic or likely pathogenic (left) and benign or likely benign (right). Red marks calls in the opposite direction.";
+      $("cmSub").textContent = "What each model called for the variants the experts classed as pathogenic or likely pathogenic (left) and benign or likely benign (right). Red marks calls that contradict the experts, such as a benign call on a pathogenic variant.";
       $("cmOverview").innerHTML = confusionOverview(bySection(lbColumns(D.models, two).cols).flatMap(([, g]) => g));
       return;
     }

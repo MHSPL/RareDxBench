@@ -527,11 +527,12 @@ table.ovt tr.ovt-sec th { text-align: left; font-size: 13px; font-weight: 600; c
 /* Confusion overview: one bar per model and expert direction */
 .cm-over[hidden], .cm-grid[hidden], .seg[hidden] { display: none; }
 .cm-over { --ocm-name: minmax(150px, 210px); }
-.ocm-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 14px; font-size: 13px; color: var(--text-2); }
+.ocm-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; margin: 0 0 14px; font-size: 13px; color: var(--text-2); }
 .ocm-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .ocm-legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
 .ocm-head, .ocm-row { display: grid; grid-template-columns: var(--ocm-name) minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; align-items: center; }
 .ocm-head { font-size: 13px; font-weight: 600; color: var(--text-2); padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.ocm-head > span:not(:first-child) { text-align: center; }
 .ocm-head small { font-weight: 400; color: var(--muted); margin-left: 4px; }
 .ocm-sec { font-size: 13px; font-weight: 600; color: var(--text-2); padding: 16px 0 6px; }
 .ocm-row { padding: 4px 0; }
@@ -653,7 +654,7 @@ table.ovt tr.ovt-sec th { text-align: left; font-size: 13px; font-weight: 600; c
     <nav class="tabs" role="tablist" aria-label="Views">
       <button class="tab cls-only" role="tab" data-tab="leaderboard">Leaderboard</button>
       <button class="tab cls-only" role="tab" data-tab="categories">Disease categories</button>
-      <button class="tab cls-only" role="tab" data-tab="confusion">Confusion matrices</button>
+      <button class="tab cls-only" role="tab" data-tab="confusion">Error analysis</button>
       <button class="tab cls-only" role="tab" data-tab="criteria">ACMG criteria</button>
       <button class="tab rk-only" role="tab" data-tab="ranking">Leaderboard</button>
       <button class="tab rk-only" role="tab" data-tab="distractors">Why not top 1</button>
@@ -746,10 +747,10 @@ table.ovt tr.ovt-sec th { text-align: left; font-size: 13px; font-weight: 600; c
 
   <!-- CONFUSION -->
   <section class="view" id="view-confusion" role="tabpanel" hidden>
-    <h2 class="sr-only">Confusion matrices</h2>
+    <h2 class="sr-only">Error analysis</h2>
     <div class="card fig-main" data-static>
       <div class="card-head">
-        <div><h3>Confusion matrices</h3><p id="cmSub"></p></div>
+        <div><h3>Error analysis</h3><p id="cmSub"></p></div>
         <div class="controls">
           <div class="seg" id="cmViewSeg" role="group" aria-label="Confusion view">
             <button data-v="overview" type="button">Overview</button><button data-v="matrix" type="button">Matrices</button>
@@ -1567,7 +1568,7 @@ window.BENCHMARK_DATA = {"metadata":{"title":"RareDx Bench","subtitle":"An open 
   }
 
   // One bar per model and expert direction: the share called the right way, uncertain (VUS) or the opposite way
-  const CM_PARTS = [["ok", "Right direction"], ["vus", "Uncertain (VUS)"], ["bad", "Opposite direction"]];
+  const CM_PARTS = [["ok", "Agrees with experts"], ["vus", "Uncertain (VUS)"], ["bad", "Contradicts experts"]];
   function confusionOverview(ms) {
     const rows = [
       { exp: "P/LP", full: "pathogenic or likely pathogenic", i: 0, ok: 0, bad: 1 },
@@ -1608,7 +1609,7 @@ window.BENCHMARK_DATA = {"metadata":{"title":"RareDx Bench","subtitle":"An open 
     // Leaderboard order: by section, ranked by overall F1 on the leaderboard's scale
     const two = state.lbScale === "2" || state.lbScale === "3";
     if (overview) {
-      $("cmSub").textContent = "What each model called for the variants the experts classed as pathogenic or likely pathogenic (left) and benign or likely benign (right). Red marks calls in the opposite direction.";
+      $("cmSub").textContent = "What each model called for the variants the experts classed as pathogenic or likely pathogenic (left) and benign or likely benign (right). Red marks calls that contradict the experts, such as a benign call on a pathogenic variant.";
       $("cmOverview").innerHTML = confusionOverview(bySection(lbColumns(D.models, two).cols).flatMap(([, g]) => g));
       return;
     }
