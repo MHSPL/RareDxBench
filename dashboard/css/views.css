@@ -259,11 +259,12 @@ table.ovt tr.ovt-sec th { text-align: left; font-size: 13px; font-weight: 600; c
 /* Confusion overview: one bar per model and expert direction */
 .cm-over[hidden], .cm-grid[hidden], .seg[hidden] { display: none; }
 .cm-over { --ocm-name: minmax(150px, 210px); }
-.ocm-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 14px; font-size: 13px; color: var(--text-2); }
+.ocm-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; margin: 0 0 14px; font-size: 13px; color: var(--text-2); }
 .ocm-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .ocm-legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
 .ocm-head, .ocm-row { display: grid; grid-template-columns: var(--ocm-name) minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; align-items: center; }
 .ocm-head { font-size: 13px; font-weight: 600; color: var(--text-2); padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.ocm-head > span:not(:first-child) { text-align: center; }
 .ocm-head small { font-weight: 400; color: var(--muted); margin-left: 4px; }
 .ocm-sec { font-size: 13px; font-weight: 600; color: var(--text-2); padding: 16px 0 6px; }
 .ocm-row { padding: 4px 0; }

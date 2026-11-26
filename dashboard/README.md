@@ -58,7 +58,7 @@ Variant Classification has four tabs:
   grouped by section (AIVA, Claude app, Automated), the accuracy-against-safety
   scatter, and the pairwise agreement heatmap. "Choose models" filters all three.
 - **Disease categories**: F1 for each model by disease category.
-- **Confusion matrices**: per model, with precision and recall by class.
+- **Error analysis**: an overview of how each model called the variants the experts classed as pathogenic or benign (agrees, uncertain, contradicts), and, under Matrices, a confusion matrix per model with precision and recall by class.
 - **ACMG criteria**: share of variants citing each criterion, pathogenic
   evidence above benign evidence.
 
